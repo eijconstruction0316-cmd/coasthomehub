@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 
 const jobTypes = [
   "Waterproofing",
@@ -109,7 +110,7 @@ export default function QuotePage() {
               ))}
             </div>
           </div>
-          <a href="/" className="btn-primary">← Back to Home</a>
+          <Link href="/" className="btn-primary">← Back to Home</Link>
         </div>
       </div>
     );

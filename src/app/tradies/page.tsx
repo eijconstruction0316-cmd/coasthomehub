@@ -125,7 +125,7 @@ export default function TradiesPage() {
               <h1 style={{ color: "white", fontSize: "clamp(2rem, 5vw, 3.4rem)", marginBottom: 20, lineHeight: 1.1 }}>
                 Grow Your Trade Business
                 <br />
-                <span style={{ color: "var(--ocean-300)" }}>Across QLD's Coast.</span>
+                <span style={{ color: "var(--ocean-300)" }}>Across QLD&apos;s Coast.</span>
               </h1>
               <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "1.1rem", lineHeight: 1.7, marginBottom: 36, maxWidth: 480 }}>
                 Get quality leads from homeowners actively seeking your services — from Gold Coast to Sunshine Coast. Flat monthly fee. No commissions. Cancel anytime.
