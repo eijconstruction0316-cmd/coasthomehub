@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     // ── 1. Email to business (EIJ Construction) ──────────────────
     await resend.emails.send({
       from: process.env.FROM_EMAIL || "noreply@coasthomehub.com.au",
-      to: process.env.CONTACT_EMAIL || "info@eijconstruction.com.au",
+      to: process.env.CONTACT_EMAIL || "info@coasthomehub.com.au",
       subject: `🔧 New Quote Request: ${jobType} in ${location}`,
       html: `
         <div style="font-family: 'Outfit', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f5f0e8; padding: 24px; border-radius: 12px;">
@@ -110,8 +110,8 @@ export async function POST(req: NextRequest) {
           </div>
 
           <p style="color: #9c7d55; font-size: 0.78rem; text-align: center; margin-top: 8px;">
-            Questions? Reply to this email or call us at +61 (0) XXX XXX XXX<br/>
-            © 2025 CoastHomeHub & EIJ Construction · coasthomehub.com.au
+            Questions? Just reply to this email and our team will help.<br/>
+            © 2026 CoastHomeHub & EIJ Construction · coasthomehub.com.au
           </p>
         </div>
       `,

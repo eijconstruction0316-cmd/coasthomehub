@@ -56,7 +56,6 @@ function RegisterForm() {
   const [selectedPlan, setSelectedPlan] = useState(initialPlan);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
-  const [cardFlipped, setCardFlipped] = useState(false);
   const [loading, setLoading] = useState(false);
   const [stripeError, setStripeError] = useState("");
 
@@ -69,10 +68,6 @@ function RegisterForm() {
     phone: "",
     website: "",
     description: "",
-    cardNumber: "",
-    cardExpiry: "",
-    cardCVC: "",
-    cardName: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -358,67 +353,27 @@ function RegisterForm() {
                 })}
               </div>
 
-              {/* Mock credit card form */}
+              {/* Secure payment handoff — card details are entered on Stripe's PCI-compliant page, never on our site */}
               <div style={{ borderTop: "1px solid var(--sand-200)", paddingTop: 24 }}>
-                <h3 style={{ fontSize: "1rem", marginBottom: 16 }}>💳 Payment Details</h3>
-
-                {/* Visual card preview */}
+                <h3 style={{ fontSize: "1rem", marginBottom: 16 }}>💳 Payment</h3>
                 <div
-                  onClick={() => setCardFlipped(!cardFlipped)}
                   style={{
-                    background: `linear-gradient(135deg, var(--slate-dark), var(--slate-mid))`,
-                    borderRadius: 16,
+                    background: "var(--ocean-50)",
+                    border: "1px solid var(--ocean-100)",
+                    borderRadius: 12,
                     padding: "20px 24px",
-                    color: "white",
-                    marginBottom: 20,
-                    cursor: "pointer",
-                    position: "relative",
-                    minHeight: 100,
-                    userSelect: "none",
                   }}
-                  title="Click to flip"
                 >
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                    <div style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.6)", textTransform: "uppercase", letterSpacing: "0.08em" }}>CoastHomeHub</div>
-                    <div style={{ fontSize: "1.4rem" }}>💳</div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+                    <span style={{ fontSize: "1.4rem" }}>🔒</span>
+                    <strong style={{ color: "var(--ocean-700)", fontSize: "0.95rem" }}>Secure checkout powered by Stripe</strong>
                   </div>
-                  <div style={{ fontFamily: "monospace", fontSize: "1rem", letterSpacing: "0.2em", margin: "12px 0 8px", color: form.cardNumber ? "white" : "rgba(255,255,255,0.3)" }}>
-                    {form.cardNumber || "•••• •••• •••• ••••"}
-                  </div>
-                  <div style={{ display: "flex", gap: 24, fontSize: "0.8rem" }}>
-                    <div>
-                      <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.5)", textTransform: "uppercase" }}>Name</div>
-                      <div>{form.cardName || "YOUR NAME"}</div>
-                    </div>
-                    <div>
-                      <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.5)", textTransform: "uppercase" }}>Expires</div>
-                      <div>{form.cardExpiry || "MM/YY"}</div>
-                    </div>
-                  </div>
+                  <p style={{ fontSize: "0.85rem", color: "var(--slate-light)", lineHeight: 1.7, margin: 0 }}>
+                    When you continue, you&apos;ll be taken to Stripe&apos;s secure payment page to enter your card details.
+                    Your card information is handled entirely by Stripe and never touches our servers. You can cancel your
+                    subscription anytime.
+                  </p>
                 </div>
-
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-                  <div className="form-group" style={{ gridColumn: "1 / -1" }}>
-                    <label className="form-label" htmlFor="cardNumber">Card Number *</label>
-                    <input id="cardNumber" name="cardNumber" className="form-input" placeholder="1234 5678 9012 3456" value={form.cardNumber} onChange={handleChange} required maxLength={19} />
-                  </div>
-                  <div className="form-group" style={{ gridColumn: "1 / -1" }}>
-                    <label className="form-label" htmlFor="cardName">Name on Card *</label>
-                    <input id="cardName" name="cardName" className="form-input" placeholder="Peter Kim" value={form.cardName} onChange={handleChange} required />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="cardExpiry">Expiry Date *</label>
-                    <input id="cardExpiry" name="cardExpiry" className="form-input" placeholder="MM/YY" value={form.cardExpiry} onChange={handleChange} required maxLength={5} />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="cardCVC">CVC *</label>
-                    <input id="cardCVC" name="cardCVC" className="form-input" placeholder="123" value={form.cardCVC} onChange={handleChange} required maxLength={4} type="password" />
-                  </div>
-                </div>
-
-                <p style={{ fontSize: "0.75rem", color: "var(--slate-light)", marginTop: 10 }}>
-                  🔒 Secured by 256-bit SSL encryption. We never store your card details.
-                </p>
               </div>
 
               <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
@@ -465,13 +420,13 @@ function RegisterForm() {
           </div>
 
           <div className="card" style={{ padding: 24, background: "var(--sand-50)", border: "1px solid var(--sand-200)" }}>
-            <div style={{ fontSize: "1.5rem", marginBottom: 8 }}>📞</div>
+            <div style={{ fontSize: "1.5rem", marginBottom: 8 }}>✉️</div>
             <h4 style={{ fontSize: "0.95rem", marginBottom: 8 }}>Questions?</h4>
             <p style={{ fontSize: "0.82rem", color: "var(--slate-light)", lineHeight: 1.6, marginBottom: 12 }}>
-              Our team is available Mon–Fri 9am–5pm to help you get set up.
+              Email us anytime — we&apos;ll help you get set up within one business day.
             </p>
-            <a href="tel:+61XXXXXXXXX" style={{ fontWeight: 700, color: "var(--ocean-500)", textDecoration: "none", fontSize: "0.95rem" }}>
-              +61 (0) XXX XXX XXX
+            <a href="mailto:info@coasthomehub.com.au" style={{ fontWeight: 700, color: "var(--ocean-500)", textDecoration: "none", fontSize: "0.95rem" }}>
+              info@coasthomehub.com.au
             </a>
           </div>
 

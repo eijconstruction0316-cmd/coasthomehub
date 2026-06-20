@@ -28,9 +28,9 @@ export default function PrivacyPage() {
           {[
             {
               title: "1. Who We Are",
-              content: `CoastHomeHub is operated by EIJ Construction Pty Ltd (ABN: XX XXX XXX XXX), a Queensland-based company. Our platform connects Australian homeowners with licensed local trade professionals.
+              content: `CoastHomeHub is operated by EIJ Construction Pty Ltd (ABN 79 674 743 545, ACN 674 743 545), a Queensland-based company. Our platform connects Australian homeowners with licensed local trade professionals.
 
-Contact: info@eijconstruction.com.au | +61 (0) XXX XXX XXX`,
+Contact: info@coasthomehub.com.au`,
             },
             {
               title: "2. Information We Collect",
@@ -68,7 +68,7 @@ We do not sell, rent, or trade your personal information to third parties for ma
             },
             {
               title: "5. Data Retention",
-              content: `We retain your personal information for as long as your account is active or as needed to provide services. You may request deletion of your data at any time by emailing info@eijconstruction.com.au. We will respond within 30 days.
+              content: `We retain your personal information for as long as your account is active or as needed to provide services. You may request deletion of your data at any time by emailing info@coasthomehub.com.au. We will respond within 30 days.
 
 Some information may be retained for up to 7 years to comply with Australian tax and accounting obligations.`,
             },
@@ -93,7 +93,7 @@ No method of transmission over the internet is 100% secure. We encourage you to 
 • Request deletion of your data (subject to legal retention obligations)
 • Complain about a breach of the Australian Privacy Principles
 
-To exercise any of these rights, contact us at info@eijconstruction.com.au. If you are unsatisfied with our response, you may lodge a complaint with the Office of the Australian Information Commissioner (OAIC) at www.oaic.gov.au.`,
+To exercise any of these rights, contact us at info@coasthomehub.com.au. If you are unsatisfied with our response, you may lodge a complaint with the Office of the Australian Information Commissioner (OAIC) at www.oaic.gov.au.`,
             },
             {
               title: "9. Changes to This Policy",
@@ -106,8 +106,7 @@ Continued use of our platform after changes are posted constitutes your acceptan
               content: `For any privacy-related questions or requests:
 
 EIJ Construction Pty Ltd
-Email: info@eijconstruction.com.au
-Phone: +61 (0) XXX XXX XXX
+Email: info@coasthomehub.com.au
 Address: Brisbane, QLD, Australia`,
             },
           ].map((section) => (

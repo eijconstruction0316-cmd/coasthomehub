@@ -28,7 +28,7 @@ export default function TermsPage() {
           {[
             {
               title: "1. About CoastHomeHub",
-              content: `CoastHomeHub is an online platform operated by EIJ Construction Pty Ltd (ABN: XX XXX XXX XXX) ("we", "us", "our"). The platform connects Queensland homeowners ("Homeowners") with licensed trade professionals ("Tradies") for home improvement projects.
+              content: `CoastHomeHub is an online platform operated by EIJ Construction Pty Ltd (ABN 79 674 743 545, ACN 674 743 545) ("we", "us", "our"). The platform connects Queensland homeowners ("Homeowners") with licensed trade professionals ("Tradies") for home improvement projects.
 
 CoastHomeHub is a referral platform only. We are not a party to any contract between Homeowners and Tradies, and we do not guarantee the quality, timing, or outcome of any services arranged through our platform.`,
             },
@@ -85,7 +85,7 @@ We reserve the right to change subscription pricing with 30 days notice to regis
 • We fail to verify your licence and your account is not activated
 • There is a technical error resulting in duplicate charges
 
-Refund requests must be submitted in writing to info@eijconstruction.com.au within 7 days of the charge.
+Refund requests must be submitted in writing to info@coasthomehub.com.au within 7 days of the charge.
 
 Under Australian Consumer Law, our services come with guarantees that cannot be excluded. Nothing in these Terms limits your rights under the Australian Consumer Law.`,
             },
@@ -113,7 +113,7 @@ We are not liable for indirect, consequential, or incidental damages, including 
               content: `If you have a dispute with a Tradie or Homeowner you connected with through our platform, we encourage you to resolve it directly first.
 
 If you have a dispute with CoastHomeHub:
-1. Contact us at info@eijconstruction.com.au — we aim to resolve disputes within 10 business days
+1. Contact us at info@coasthomehub.com.au — we aim to resolve disputes within 10 business days
 2. If unresolved, disputes will be subject to the laws of Queensland, Australia
 3. Both parties agree to attempt mediation before commencing legal proceedings`,
             },
@@ -123,7 +123,7 @@ If you have a dispute with CoastHomeHub:
 
 If you do not accept the updated Terms, you may cancel your account before the effective date.
 
-Contact: info@eijconstruction.com.au | +61 (0) XXX XXX XXX
+Contact: info@coasthomehub.com.au
 EIJ Construction Pty Ltd, Brisbane QLD Australia`,
             },
           ].map((section) => (

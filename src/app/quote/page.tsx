@@ -391,13 +391,13 @@ export default function QuotePage() {
                   border: "1px solid var(--sand-200)",
                 }}
               >
-                <div style={{ fontSize: "1.8rem", marginBottom: 8 }}>📞</div>
-                <h4 style={{ fontSize: "1rem", marginBottom: 8 }}>Prefer to Call?</h4>
+                <div style={{ fontSize: "1.8rem", marginBottom: 8 }}>✉️</div>
+                <h4 style={{ fontSize: "1rem", marginBottom: 8 }}>Prefer Email?</h4>
                 <p style={{ fontSize: "0.85rem", color: "var(--slate-light)", lineHeight: 1.6, marginBottom: 12 }}>
-                  EIJ Construction is available Mon–Sat 7am–5pm.
+                  Send us your details and we&apos;ll reply within one business day (Mon–Sat 7am–5pm).
                 </p>
                 <a
-                  href="tel:+61XXXXXXXXX"
+                  href="mailto:info@coasthomehub.com.au"
                   style={{
                     fontWeight: 700,
                     color: "var(--ocean-500)",
@@ -405,7 +405,7 @@ export default function QuotePage() {
                     fontSize: "1rem",
                   }}
                 >
-                  +61 (0) XXX XXX XXX
+                  info@coasthomehub.com.au
                 </a>
               </div>
 
