@@ -9,6 +9,17 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    id: 7,
+    tag: "Renovation Costs",
+    title: "Why Is Renovation So Expensive in QLD? An Honest Answer to “The Neighbour Got It Half Price”",
+    excerpt:
+      "“My neighbour got theirs done for half that.” A licensed QLD builder explains what the cheap quote really leaves out — and why renovation cost is mostly people, not paint.",
+    readTime: "6 min read",
+    color: "var(--gold)",
+    emoji: "💰",
+    date: "June 21, 2026",
+  },
+  {
     id: 1,
     tag: "2025 Trends",
     title: "Top 10 Australian Home Design Trends for 2025",
@@ -76,9 +87,10 @@ const posts = [
   },
 ];
 
-const categories = ["All", "2025 Trends", "DIY Guide", "Buyer's Guide", "Cost Guide", "Design Trends"];
+const categories = ["All", "Renovation Costs", "2025 Trends", "DIY Guide", "Buyer's Guide", "Cost Guide", "Design Trends"];
 
 export default function BlogPage() {
+  const featured = posts[0];
   return (
     <>
       {/* Hero */}
@@ -141,7 +153,7 @@ export default function BlogPage() {
           >
             <div
               style={{
-                background: "linear-gradient(135deg, var(--ocean-400)22, var(--ocean-400)44)",
+                background: `linear-gradient(135deg, ${featured.color}22, ${featured.color}44)`,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -150,7 +162,7 @@ export default function BlogPage() {
                 minHeight: 260,
               }}
             >
-              🏠
+              {featured.emoji}
             </div>
             <div style={{ padding: "40px" }}>
               <span
@@ -166,19 +178,19 @@ export default function BlogPage() {
                   marginBottom: 16,
                 }}
               >
-                ⭐ FEATURED · 2025 Trends
+                ⭐ FEATURED · {featured.tag}
               </span>
               <h2 style={{ fontSize: "1.5rem", marginBottom: 12, lineHeight: 1.3 }}>
-                Top 10 Australian Home Design Trends for 2025
+                {featured.title}
               </h2>
               <p style={{ color: "var(--slate-light)", lineHeight: 1.7, marginBottom: 24, fontSize: "0.95rem" }}>
-                From coastal textures and organic shapes to bold earthy tones — discover what&apos;s dominating Queensland interiors this year and how to incorporate them into your home.
+                {featured.excerpt}
               </p>
               <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
-                <Link href="/blog/1" className="btn-primary" style={{ fontSize: "0.9rem", padding: "10px 24px" }} id="read-featured">
+                <Link href={`/blog/${featured.id}`} className="btn-primary" style={{ fontSize: "0.9rem", padding: "10px 24px" }} id="read-featured">
                   Read Article →
                 </Link>
-                <span style={{ fontSize: "0.8rem", color: "var(--slate-light)" }}>⏱ 5 min read · June 12, 2025</span>
+                <span style={{ fontSize: "0.8rem", color: "var(--slate-light)" }}>⏱ {featured.readTime} · {featured.date}</span>
               </div>
             </div>
           </div>
