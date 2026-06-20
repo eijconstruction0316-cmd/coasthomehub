@@ -22,16 +22,24 @@ const serviceCategories = [
 ];
 
 const serviceAreas = [
-  "Gold Coast North",
-  "Gold Coast South",
-  "Tweed Heads / NSW Border",
-  "Logan",
-  "Brisbane South",
-  "Brisbane North",
-  "Ipswich",
-  "Sunshine Coast",
-  "Noosa",
-  "Hervey Bay",
+  "Gold Coast North (Coomera, Hope Island)",
+  "Gold Coast Central (Surfers Paradise, Robina)",
+  "Gold Coast South (Burleigh, Coolangatta)",
+  "Gold Coast Hinterland",
+  "Tweed Heads & Northern NSW",
+  "Logan & Springwood",
+  "Redland City (Capalaba, Cleveland)",
+  "Ipswich & West Brisbane",
+  "Brisbane CBD & Inner Suburbs",
+  "Brisbane North (Chermside, North Lakes)",
+  "Brisbane South (Sunnybank, Mt Gravatt)",
+  "Brisbane East & Bayside",
+  "Moreton Bay Region",
+  "Sunshine Coast South (Caloundra)",
+  "Sunshine Coast Central (Maroochydore, Buderim)",
+  "Sunshine Coast North (Coolum, Noosa)",
+  "Sunshine Coast Hinterland",
+  "Other QLD / Regional",
 ];
 
 const plans = [

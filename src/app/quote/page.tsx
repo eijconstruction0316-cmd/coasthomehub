@@ -15,15 +15,24 @@ const jobTypes = [
 ];
 
 const locations = [
-  "Gold Coast",
-  "Tweed Heads",
-  "Northern Gold Coast",
-  "Logan",
-  "Brisbane South",
-  "Brisbane North",
-  "Sunshine Coast",
-  "Noosa",
-  "Other QLD",
+  "Gold Coast North (Coomera, Hope Island)",
+  "Gold Coast Central (Surfers Paradise, Robina)",
+  "Gold Coast South (Burleigh, Coolangatta)",
+  "Gold Coast Hinterland",
+  "Tweed Heads & Northern NSW",
+  "Logan & Springwood",
+  "Redland City (Capalaba, Cleveland)",
+  "Ipswich & West Brisbane",
+  "Brisbane CBD & Inner Suburbs",
+  "Brisbane North (Chermside, North Lakes)",
+  "Brisbane South (Sunnybank, Mt Gravatt)",
+  "Brisbane East & Bayside",
+  "Moreton Bay Region",
+  "Sunshine Coast South (Caloundra)",
+  "Sunshine Coast Central (Maroochydore, Buderim)",
+  "Sunshine Coast North (Coolum, Noosa)",
+  "Sunshine Coast Hinterland",
+  "Other QLD / Regional",
 ];
 
 export default function QuotePage() {
