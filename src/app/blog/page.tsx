@@ -85,9 +85,42 @@ const posts = [
     emoji: "🧱",
     date: "May 15, 2025",
   },
+  {
+    id: 8,
+    tag: "DIY Guide",
+    title: "How to Re-Grout Bathroom Tiles (Step by Step)",
+    excerpt:
+      "Crumbling grout lets water behind your tiles and ruins your waterproofing. Here's the full weekend DIY guide — removal, mixing, application, and sealing — with QLD humidity tips.",
+    readTime: "9 min read",
+    color: "#0891b2",
+    emoji: "🪣",
+    date: "June 14, 2026",
+  },
+  {
+    id: 9,
+    tag: "DIY Guide",
+    title: "Fix a Running Toilet in Under an Hour (Replace the Fill Valve & Flapper)",
+    excerpt:
+      "A running toilet wastes up to 200,000L a year. The fix costs $20–$40 in parts and takes under an hour — here's the step-by-step guide, plus what QLD law says homeowners can do themselves.",
+    readTime: "7 min read",
+    color: "#16a34a",
+    emoji: "🚽",
+    date: "June 10, 2026",
+  },
+  {
+    id: 10,
+    tag: "DIY Guide",
+    title: "Painting Your Home Interior in Queensland: Products, Prep & a Pro Finish",
+    excerpt:
+      "The highest-ROI DIY job you can do. The full guide to paint selection, prep, priming, cutting in, and rolling — with tips specific to QLD's humidity, heat, and coastal conditions.",
+    readTime: "11 min read",
+    color: "#d97706",
+    emoji: "🖌️",
+    date: "June 7, 2026",
+  },
 ];
 
-const categories = ["All", "Renovation Costs", "2025 Trends", "DIY Guide", "Buyer's Guide", "Cost Guide", "Design Trends"];
+const categories = ["All", "DIY Guide", "Renovation Costs", "2025 Trends", "Buyer's Guide", "Cost Guide", "Design Trends"];
 
 export default function BlogPage() {
   const featured = posts[0];

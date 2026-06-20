@@ -14,7 +14,7 @@ const team = [
     emoji: "👷",
     color: "var(--ocean-400)",
     bio: "With over 8 years of hands-on experience in waterproofing, silicone sealing, and bathroom renovation across Queensland, Peter founded EIJ Construction to deliver premium results with a personal touch. Originally from South Korea, Peter brings meticulous attention to detail and an international perspective on modern home design to every project.",
-    credentials: ["QBCC Licensed Builder", "AS 3740 Waterproofing Certified", "8+ Years Experience", "500+ Projects Completed"],
+    credentials: ["QBCC Licensed Builder", "AS 3740 Waterproofing Certified", "8+ Years Experience", "Gold Coast · Sunshine Coast"],
   },
 ];
 
@@ -77,10 +77,10 @@ export default function AboutPage() {
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
               {[
-                { v: "500+", l: "Projects Completed" },
+                { v: "QBCC", l: "Licensed Builder" },
                 { v: "8+", l: "Years in QLD" },
-                { v: "5.0 ★", l: "Average Rating" },
-                { v: "Gold–Sunny", l: "Coast Coverage" },
+                { v: "SEQ", l: "Gold–Sunshine Coast" },
+                { v: "AS 3740", l: "Waterproofing Certified" },
               ].map((s) => (
                 <div key={s.l} className="card" style={{ padding: "24px", textAlign: "center", background: "var(--ocean-50)", border: "1px solid var(--ocean-100)" }}>
                   <div style={{ fontSize: "1.8rem", fontWeight: 900, color: "var(--ocean-500)", lineHeight: 1, marginBottom: 6 }}>{s.v}</div>

@@ -43,14 +43,12 @@ const serviceAreas = [
 ];
 
 const plans = [
-  { id: "starter", name: "Starter", price: 99, tagline: "Up to 5 leads/month", color: "var(--ocean-400)" },
-  { id: "pro", name: "Pro", price: 179, tagline: "Up to 20 leads/month", color: "var(--ocean-600)", popular: true },
-  { id: "premium", name: "Premium", price: 299, tagline: "Unlimited leads", color: "var(--gold)" },
+  { id: "founding", name: "Founding Member", price: 149, tagline: "All leads in your area · No caps · No commissions", color: "var(--ocean-500)" },
 ];
 
 function RegisterForm() {
   const searchParams = useSearchParams();
-  const initialPlan = searchParams.get("plan") || "pro";
+  const initialPlan = searchParams.get("plan") || "founding";
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(initialPlan);
@@ -155,7 +153,7 @@ function RegisterForm() {
           ))}
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          {["Business Details", "Services & Areas", "Choose Plan & Pay"].map((label, i) => (
+          {["Business Details", "Services & Areas", "Confirm & Pay"].map((label, i) => (
             <span key={label} style={{ fontSize: "0.75rem", color: step > i ? "var(--ocean-600)" : "var(--slate-light)", fontWeight: step === i + 1 ? 700 : 400 }}>
               {label}
             </span>
@@ -305,52 +303,29 @@ function RegisterForm() {
           {step === 3 && (
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               <div>
-                <h2 style={{ fontSize: "1.4rem", marginBottom: 4 }}>Step 3: Choose Your Plan</h2>
-                <p style={{ color: "var(--slate-light)", fontSize: "0.875rem" }}>First month 50% off. Cancel anytime — no lock-in.</p>
+                <h2 style={{ fontSize: "1.4rem", marginBottom: 4 }}>Step 3: Confirm & Pay</h2>
+                <p style={{ color: "var(--slate-light)", fontSize: "0.875rem" }}>Founding member rate — flat monthly fee, no lock-in, cancel anytime.</p>
               </div>
 
-              {/* Plan selector */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                {plans.map((p) => {
-                  const active = selectedPlan === p.id;
-                  return (
-                    <div
-                      key={p.id}
-                      id={`select-plan-${p.id}`}
-                      onClick={() => setSelectedPlan(p.id)}
-                      style={{
-                        border: active ? `2px solid ${p.color}` : "1px solid var(--sand-200)",
-                        borderRadius: "var(--radius-md)",
-                        padding: "16px 20px",
-                        cursor: "pointer",
-                        background: active ? `${p.color}0a` : "white",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        transition: "var(--transition-fast)",
-                        position: "relative",
-                      }}
-                    >
-                      <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-                        <div style={{ width: 20, height: 20, borderRadius: "50%", border: `2px solid ${active ? p.color : "var(--sand-300)"}`, background: active ? p.color : "white", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                          {active && <div style={{ width: 8, height: 8, borderRadius: "50%", background: "white" }} />}
-                        </div>
-                        <div>
-                          <div style={{ fontWeight: 700, fontSize: "1rem", color: "var(--slate-dark)" }}>{p.name}</div>
-                          <div style={{ fontSize: "0.8rem", color: "var(--slate-light)" }}>{p.tagline}</div>
-                        </div>
-                      </div>
-                      <div style={{ textAlign: "right" }}>
-                        {(p as { popular?: boolean }).popular && <div style={{ fontSize: "0.68rem", fontWeight: 800, color: p.color, textTransform: "uppercase", letterSpacing: "0.05em" }}>Most Popular</div>}
-                        <div>
-                          <span style={{ fontSize: "0.75rem", color: "var(--slate-light)", textDecoration: "line-through" }}>${p.price}</span>
-                          <span style={{ fontSize: "1.2rem", fontWeight: 900, color: p.color, marginLeft: 6 }}>${Math.round(p.price * 0.5)}</span>
-                          <span style={{ fontSize: "0.78rem", color: "var(--slate-light)" }}> 1st month</span>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+              {/* Plan summary */}
+              <div style={{ border: "2px solid var(--ocean-400)", borderRadius: "var(--radius-md)", padding: "20px 24px", background: "var(--ocean-50)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div>
+                    <div style={{ fontWeight: 800, fontSize: "1.05rem", color: "var(--ocean-700)" }}>⭐ Founding Member Access</div>
+                    <div style={{ fontSize: "0.82rem", color: "var(--slate-light)", marginTop: 4 }}>All leads · No caps · No commissions</div>
+                  </div>
+                  <div style={{ textAlign: "right" }}>
+                    <span style={{ fontSize: "1.8rem", fontWeight: 900, color: "var(--ocean-600)" }}>$149</span>
+                    <span style={{ fontSize: "0.82rem", color: "var(--slate-light)" }}>/month +GST</span>
+                  </div>
+                </div>
+                <ul style={{ listStyle: "none", marginTop: 16, display: "flex", flexDirection: "column", gap: 8 }}>
+                  {["All matching leads in your service area", "QBCC licence verified — your badge of trust", "Max 3 tradies per lead — never a crowd", "Instant SMS + email notifications", "Month-to-month — cancel before next billing"].map((f) => (
+                    <li key={f} style={{ display: "flex", gap: 8, fontSize: "0.85rem", color: "var(--slate-mid)" }}>
+                      <span style={{ color: "#16a34a", fontWeight: 700 }}>✓</span><span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               {/* Secure payment handoff — card details are entered on Stripe's PCI-compliant page, never on our site */}
@@ -385,7 +360,7 @@ function RegisterForm() {
                   disabled={loading}
                   style={{ opacity: loading ? 0.75 : 1 }}
                 >
-                  {loading ? "⏳ Redirecting to secure payment..." : `🔧 Complete Registration — $${Math.round(plan.price * 0.5)} Today`}
+                  {loading ? "⏳ Redirecting to secure payment..." : `🔧 Complete Registration — $${plan.price} Today`}
                 </button>
               </div>
               {stripeError && (
@@ -394,7 +369,7 @@ function RegisterForm() {
                 </div>
               )}
               <p style={{ fontSize: "0.75rem", color: "var(--slate-light)" }}>
-                By completing registration you agree to our <a href="/terms" style={{ color: "var(--ocean-500)" }}>Terms of Service</a> and <a href="/privacy" style={{ color: "var(--ocean-500)" }}>Privacy Policy</a>. You will be charged ${Math.round(plan.price * 0.5)} today and ${plan.price}/month thereafter. Cancel anytime.
+                By completing registration you agree to our <a href="/terms" style={{ color: "var(--ocean-500)" }}>Terms of Service</a> and <a href="/privacy" style={{ color: "var(--ocean-500)" }}>Privacy Policy</a>. You will be charged ${plan.price}+GST/month. Cancel anytime before your next billing date.
               </p>
             </div>
           )}

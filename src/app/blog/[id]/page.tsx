@@ -329,6 +329,157 @@ const posts: Record<string, {
     ],
     relatedIds: [5, 3, 2],
   },
+  "8": {
+    id: 8,
+    tag: "DIY Guide",
+    title: "How to Re-Grout Bathroom Tiles (Step by Step)",
+    emoji: "🪣",
+    color: "#0891b2",
+    date: "June 14, 2026",
+    readTime: "9 min read",
+    author: "Peter Kim, EIJ Construction",
+    intro: "Crumbling, discoloured grout makes even a clean bathroom look dirty — and left too long, it lets water seep behind tiles and ruin your waterproofing. The good news: re-grouting is one of the most satisfying DIY jobs you can do on a weekend. Here's exactly how to do it properly.",
+    sections: [
+      {
+        heading: "Tools & Materials You'll Need",
+        body: "Oscillating multi-tool with grout blade (or manual grout rake), vacuum, grout float, sponge, grout (unsanded for joints under 3mm, sanded for wider), grout sealer, painter's tape, safety glasses, and rubber gloves. Budget $60–$120 for materials. Renting an oscillating tool saves money on a one-off job.",
+      },
+      {
+        heading: "Step 1: Remove the Old Grout",
+        body: "Use your oscillating grout removal blade to rake out the old grout to a depth of at least 2mm — deeper if it's cracked all the way through. Work carefully along each joint. Don't rush; forcing the tool can chip tile edges. Vacuum all dust and debris before moving on. This is the hardest part of the job — budget 2–3 hours for an average bathroom.",
+      },
+      {
+        heading: "Step 2: Clean and Dry Thoroughly",
+        body: "Vacuum again, then wipe joints with a damp cloth to remove any remaining dust. Any grease, soap residue, or moisture will prevent the new grout from bonding properly. Let the joints dry completely — at least 2 hours, or overnight in Queensland's humidity.",
+      },
+      {
+        heading: "Step 3: Mix Your Grout",
+        body: "Mix grout to a thick peanut-butter consistency — too watery and it'll crack, too stiff and it won't work into the joints. In QLD's heat, work in small batches (enough for one wall at a time) because grout sets fast. Always add powder to water, not the other way around.",
+      },
+      {
+        heading: "Step 4: Apply the Grout",
+        body: "Load your grout float and work it diagonally across the tiles, pressing firmly to pack grout into every joint. Cover a 1m² section at a time. Don't worry about the mess on the tile faces — you'll clean it off. Hold the float at 45° to force grout into the joints without pulling it back out.",
+      },
+      {
+        heading: "Step 5: Clean and Finish",
+        body: "Wait 15–20 minutes after grouting a section, then wipe with a damp (not wet) sponge in circular motions to remove excess grout from tile faces. Rinse your sponge constantly. Repeat with a clean damp sponge for a final wipe. A grout haze may remain — buff it off with a dry microfibre cloth after 1 hour.",
+      },
+      {
+        heading: "Step 6: Seal the Grout (Don't Skip This)",
+        body: "After the grout has cured for 72 hours (longer in humidity), apply a penetrating grout sealer. In Queensland's humid climate, this step is critical — unsealed grout absorbs moisture and grows mould fast. Apply with a small brush or foam applicator, wipe off excess, and reapply annually.",
+      },
+      {
+        heading: "When to Call a Tradie Instead",
+        body: "If tiles are loose or hollow (tap them — a dull thud means the adhesive has failed), if you see water damage or staining on the wall behind the tiles, or if the waterproofing membrane is compromised — stop. These are signs of a bigger problem that DIY re-grouting will only hide temporarily. A licensed tiler will diagnose the real issue.",
+      },
+    ],
+    tips: [
+      "Always use bathroom/tile grout — not wall filler or general-purpose grout",
+      "In Queensland's heat, mist tile surfaces lightly before grouting to slow the set time",
+      "Don't re-grout over existing grout — removal is non-negotiable for a proper bond",
+      "Epoxy grout is more durable and stain-resistant but harder to work with — good for shower floors",
+      "Replace silicone sealant at internal corners at the same time — never use grout in corners (it cracks)",
+    ],
+    relatedIds: [2, 6, 3],
+  },
+  "9": {
+    id: 9,
+    tag: "DIY Guide",
+    title: "Fix a Running Toilet in Under an Hour (Replace the Fill Valve & Flapper)",
+    emoji: "🚽",
+    color: "#16a34a",
+    date: "June 10, 2026",
+    readTime: "7 min read",
+    author: "Peter Kim, EIJ Construction",
+    intro: "A running toilet can waste up to 200,000 litres of water a year — and add hundreds of dollars to your water bill. In most cases the fix costs $20–$40 in parts and takes under an hour with no special skills. Here's how to diagnose and fix the two most common causes.",
+    sections: [
+      {
+        heading: "Diagnose First: Which Part is Failing?",
+        body: "Put a few drops of food colouring in the cistern (tank). Wait 15 minutes without flushing. If colour appears in the bowl, your flapper is leaking. If the water level is up at the overflow pipe, the fill valve (ballcock) isn't shutting off properly. If both tests fail, replace both — they're cheap and the job is already half done.",
+      },
+      {
+        heading: "Tools & Materials",
+        body: "Adjustable wrench, sponge, bucket, replacement fill valve (Caroma and Geberit are reliable Australian brands, $15–$40), replacement flapper (match the brand on your cistern, $5–$15), and rubber gloves. Most hardware stores stock universal kits. Take a photo of your cistern before going shopping.",
+      },
+      {
+        heading: "Step 1: Turn Off the Water Supply",
+        body: "Find the isolation valve on the pipe behind or below the toilet and turn it clockwise until it stops. Flush the toilet to empty the cistern. Use a sponge to mop out any remaining water in the bottom of the cistern. Lay a towel on the floor — there will be drips.",
+      },
+      {
+        heading: "Step 2: Replace the Flapper",
+        body: "Unhook the chain from the flush lever. Unhook the old flapper from the pegs on either side of the flush valve seat. Clip the new flapper onto the same pegs and reconnect the chain, leaving about 1–2cm of slack. Too much slack and the flapper won't seal; too tight and it won't drop back down after flushing.",
+      },
+      {
+        heading: "Step 3: Replace the Fill Valve",
+        body: "Disconnect the water supply line from the bottom of the cistern (have your bucket ready — some water will come out). Remove the locknut holding the old fill valve in place. Lift out the old valve. Drop in the new fill valve, adjust the height per the instructions, and hand-tighten the locknut. Reconnect the water supply line.",
+      },
+      {
+        heading: "Step 4: Test and Adjust",
+        body: "Turn the water supply back on slowly and let the cistern fill. Adjust the water level on the new fill valve so it sits about 25mm below the top of the overflow pipe — most valves have a simple clip or screw adjustment. Flush a few times and check for leaks at the supply line connection. Done.",
+      },
+      {
+        heading: "Queensland Note: Plumbing Licence Requirements",
+        body: "In Queensland, homeowners can perform minor maintenance like replacing a toilet cistern filling valve, flapper, or flush button on their own home — this is classified as 'owner-occupier work'. However, moving or installing new plumbing fixtures, altering waste pipes, or any work on gas connections must be done by a licensed Queensland plumber. When in doubt, check with the QBCC.",
+      },
+    ],
+    tips: [
+      "Take a photo of your toilet model number (inside the cistern lid) before buying parts — compatibility matters",
+      "Replace both flapper and fill valve at the same time — the cost difference is minimal if you're already in there",
+      "After reassembly, add a few drops of food colouring in the cistern again to confirm the flapper is sealing",
+      "If the cistern still runs after replacing both parts, the flush valve seat may be corroded — call a plumber",
+      "Caroma and Geberit parts are widely available in QLD and have good support — avoid unknown imports",
+    ],
+    relatedIds: [2, 8, 6],
+  },
+  "10": {
+    id: 10,
+    tag: "DIY Guide",
+    title: "Painting Your Home Interior in Queensland: Products, Prep, and Getting a Professional Finish",
+    emoji: "🖌️",
+    color: "#d97706",
+    date: "June 7, 2026",
+    readTime: "11 min read",
+    author: "Peter Kim, EIJ Construction",
+    intro: "Interior painting is one of the highest-ROI DIY jobs you can do — a single room weekend project can dramatically transform a space. But in Queensland's humid subtropical climate, getting a lasting, professional-quality finish requires the right products and prep. Here's the complete guide.",
+    sections: [
+      {
+        heading: "Choosing the Right Paint for Queensland",
+        body: "Queensland's humidity (often 70–85% in summer) and temperature swings demand moisture-resistant, mould-inhibiting paint. For bathrooms and kitchens: use a dedicated bathroom paint (Dulux Wash & Wear Bathroom or Taubmans Endure Bathroom) — not standard interior paint. For living areas and bedrooms: a premium low-VOC acrylic in low-sheen or satin finish suits QLD homes well. Avoid flat/matt finishes in humid rooms — they absorb moisture and grow mould.",
+      },
+      {
+        heading: "Preparation is 80% of the Job",
+        body: "Fill cracks and nail holes with flexible filler (Selleys No More Gaps for corners and joints, Spakfilla for flat surfaces). Sand smooth when dry. Remove any mould with a sugar soap and bleach solution — never paint over mould. Clean all surfaces with sugar soap to remove grease and dust. Fill, sand, and sugar soap in that order, then let walls dry completely before painting.",
+      },
+      {
+        heading: "Prime: Don't Skip It",
+        body: "New plasterboard, repaired areas, or previously unpainted surfaces must be primed. Use a sealer/primer that suits the surface type. On previously painted walls in good condition, a quality paint + primer combo (like Dulux Wash & Wear +Primer) can work. In Queensland's humid areas, use a mould-resistant primer. Skipping primer on bare surfaces almost always shows through as uneven sheen and poor coverage.",
+      },
+      {
+        heading: "The Right Tools Make a Huge Difference",
+        body: "Invest in a quality roller (25mm nap for textured walls, 12mm for smooth), a good angled brush (65mm for cutting in), a roller tray, painter's tape, drop sheets, and an extension pole. Cheap rollers leave fibres in the paint and create a stippled finish. For large rooms, a 230mm wide roller cuts job time in half. A good 65mm angled brush lets you cut in cleanly without taping every edge.",
+      },
+      {
+        heading: "Cutting In: The Skill That Separates DIY from Pro",
+        body: "Cutting in means painting the edges (where walls meet ceilings, cornices, trim, and other walls) with a brush before rolling. Load the brush and tap off excess — don't wipe the brush on the rim or you'll dry it out. Use the angled tip and draw a steady line with your forearm resting against the wall for control. Work in 50cm sections. In Queensland's heat, cut in one wall at a time and roll immediately — you want a wet edge where the brush meets the roller.",
+      },
+      {
+        heading: "Rolling: Technique for a Smooth Finish",
+        body: "Use a W or M pattern — roll diagonally across the wall, then back-roll vertically without reloading to even out the finish. Maintain a wet edge and work wall to wall without stopping in the middle. Two thin coats are always better than one thick coat. In Queensland's humidity, allow full cure time between coats (2–4 hours in summer heat is usually enough, but longer in humid conditions — feel the paint, don't guess).",
+      },
+      {
+        heading: "Queensland-Specific: Heat and Humidity Tips",
+        body: "Paint in the morning before the afternoon heat peaks — above 35°C, paint dries too fast and shows lap marks. Close windows on humid days to slow drying and avoid dust settling in wet paint. Never paint in direct sunlight. If you see condensation on walls in the morning (common in coastal QLD), wait for it to evaporate completely before starting.",
+      },
+    ],
+    tips: [
+      "Always buy 10% more paint than calculated — colour-matching a second tin is hit and miss",
+      "In QLD bathrooms, use a mould-inhibiting primer even if you can't see mould — it's often microscopic",
+      "Store leftover paint in a sealed container with a piece of glad wrap pressed against the surface to prevent skinning",
+      "Remove painter's tape while the final coat is still slightly tacky — pulling off dry tape can peel the paint edge",
+      "A quality brush is the single best investment — a Purdy or Wooster brush used carefully outlasts 10 cheap brushes",
+    ],
+    relatedIds: [1, 4, 5],
+  },
 };
 
 const allPosts = Object.values(posts);

@@ -6,13 +6,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_placeholder"
 });
 
 const priceIds: Record<string, string | undefined> = {
+  founding: process.env.STRIPE_PRICE_FOUNDING,
+  // legacy plan IDs kept for backward-compatibility with any existing Stripe webhooks
   starter: process.env.STRIPE_PRICE_STARTER,
   pro: process.env.STRIPE_PRICE_PRO,
   premium: process.env.STRIPE_PRICE_PREMIUM,
 };
 
-// Fallback display prices (used in session metadata for confirmation page)
 const planDetails: Record<string, { name: string; price: number }> = {
+  founding: { name: "Founding Member", price: 149 },
   starter: { name: "Starter", price: 99 },
   pro: { name: "Pro", price: 179 },
   premium: { name: "Premium", price: 299 },
@@ -94,7 +96,7 @@ export async function POST(req: NextRequest) {
       },
       custom_text: {
         submit: {
-          message: `Welcome to CoastHomeHub, ${businessName}! First month 50% off applied automatically.`,
+          message: `Welcome to CoastHomeHub, ${businessName}! Your founding member profile will go live within 24 hours.`,
         },
       },
     });

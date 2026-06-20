@@ -8,13 +8,13 @@ const categories = ["All", "Bathroom", "Kitchen", "Living Room", "Exterior", "Be
 const designImages: Record<number, string> = {
   1: "/gallery/interior-1.jpg",
   2: "/gallery/interior-2.jpg",
-  3: "/gallery/interior-6.jpg",
-  4: "/gallery/interior-1.jpg",
+  3: "/gallery/interior-3.jpg",
+  4: "/gallery/interior-4.jpg",
   5: "/gallery/interior-5.jpg",
-  6: "/gallery/interior-7.jpg",
-  7: "/gallery/interior-8.jpg",
-  8: "/gallery/interior-4.jpg",
-  9: "/gallery/interior-3.jpg",
+  6: "/gallery/interior-6.jpg",
+  7: "/gallery/interior-7.jpg",
+  8: "/gallery/interior-8.jpg",
+  9: "/gallery/interior-1.jpg",
 };
 
 const designs = [
