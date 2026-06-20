@@ -126,10 +126,10 @@ export default async function RegisterSuccessPage({
 
         <p style={{ marginTop: 24, fontSize: "0.8rem", color: "var(--slate-light)" }}>
           Questions? Email{" "}
-          <a href="mailto:info@eijconstruction.com.au" style={{ color: "var(--ocean-500)", fontWeight: 600 }}>
-            info@eijconstruction.com.au
+          <a href="mailto:info@coasthomehub.com.au" style={{ color: "var(--ocean-500)", fontWeight: 600 }}>
+            info@coasthomehub.com.au
           </a>{" "}
-          or call +61 (0) XXX XXX XXX
+          or use the live chat on our site.
         </p>
       </div>
     </div>

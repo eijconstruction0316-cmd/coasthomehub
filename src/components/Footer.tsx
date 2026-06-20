@@ -58,34 +58,27 @@ export default function Footer() {
                   CoastHome<span style={{ color: "var(--ocean-300)" }}>Hub</span>
                 </div>
                 <div style={{ fontSize: "0.65rem", color: "var(--ocean-300)", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-                  Gold Coast · Sunshine Coast
+                  South East QLD
                 </div>
               </div>
             </div>
             <p style={{ fontSize: "0.9rem", lineHeight: 1.7, maxWidth: 280, marginBottom: 20 }}>
-              Queensland&apos;s trusted home improvement platform. Connecting homeowners with licensed tradies from Gold Coast to Sunshine Coast.
+              Queensland&apos;s trusted home improvement platform. Connecting homeowners with licensed tradies across South East QLD — Brisbane, Gold Coast and the Sunshine Coast.
             </p>
-            <div style={{ display: "flex", gap: 10 }}>
-              {["📘", "📷", "🎵"].map((icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  style={{
-                    width: 36,
-                    height: 36,
-                    background: "rgba(255,255,255,0.08)",
-                    borderRadius: 8,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "1rem",
-                    textDecoration: "none",
-                    transition: "var(--transition-fast)",
-                  }}
-                >
-                  {icon}
-                </a>
-              ))}
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.12)",
+                borderRadius: 8,
+                padding: "8px 14px",
+                fontSize: "0.8rem",
+              }}
+            >
+              <span>✅</span>
+              <span style={{ color: "rgba(255,255,255,0.7)" }}>Licensed builder — QBCC verified</span>
             </div>
           </div>
 
@@ -143,9 +136,9 @@ export default function Footer() {
             </h4>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {[
-                { icon: "📍", text: "Brisbane, QLD, Australia" },
-                { icon: "📞", text: "+61 (0) XXX XXX XXX" },
-                { icon: "✉️", text: "info@eijconstruction.com.au" },
+                { icon: "📍", text: "South East QLD — Brisbane · Gold Coast · Sunshine Coast" },
+                { icon: "✉️", text: "info@coasthomehub.com.au" },
+                { icon: "💬", text: "Live chat — ask us anything, anytime" },
                 { icon: "🕐", text: "Mon–Sat: 7am–5pm" },
               ].map((item) => (
                 <div key={item.icon} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
@@ -172,7 +165,7 @@ export default function Footer() {
           }}
         >
           <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)" }}>
-            © 2025 CoastHomeHub & EIJ Construction Pty Ltd. All rights reserved. ABN: XX XXX XXX XXX
+            © 2026 CoastHomeHub & EIJ Construction Pty Ltd. All rights reserved. ABN 79 674 743 545 · ACN 674 743 545
           </p>
           <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
             {[

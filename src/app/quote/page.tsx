@@ -63,12 +63,12 @@ export default function QuotePage() {
       const res = await fetch("/api/send-quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, jobType: form.jobType, location: form.location, timeline: form.timeline }),
+        body: JSON.stringify({ ...form }),
       });
       if (!res.ok) throw new Error("Send failed");
       setSubmitted(true);
     } catch {
-      setError("Something went wrong. Please try again or call us directly.");
+      setError("Something went wrong. Please try again or email us directly.");
     } finally {
       setLoading(false);
     }
@@ -92,7 +92,7 @@ export default function QuotePage() {
             Quote Request Received!
           </h2>
           <p style={{ color: "var(--slate-light)", fontSize: "1.05rem", lineHeight: 1.7, marginBottom: 32 }}>
-            Thanks, <strong>{form.name}</strong>! We&apos;ll review your request and connect you with 1–3 licensed local tradies within <strong>24 hours</strong>.
+            Thanks, <strong>{form.name}</strong>! We&apos;ll review your request and connect you with up to 3 QBCC-licensed local tradies within <strong>24 hours</strong>.
           </p>
           <div
             style={{
@@ -138,14 +138,20 @@ export default function QuotePage() {
       >
         <div className="container-md">
           <div className="badge" style={{ marginBottom: 20, display: "inline-flex" }}>
-            Free Quote Request
+            Free — No Obligation
           </div>
           <h1 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", marginBottom: 16 }}>
-            Get Connected with a Local Tradie
+            Ready for Real Quotes?
           </h1>
-          <p style={{ color: "var(--slate-light)", fontSize: "1.05rem", maxWidth: 520, margin: "0 auto" }}>
-            Fill in the details below and we&apos;ll match you with 1–3 licensed, insured professionals from Gold Coast to Sunshine Coast — at no cost to you.
+          <p style={{ color: "var(--slate-light)", fontSize: "1.05rem", maxWidth: 520, margin: "0 auto 20px" }}>
+            Tell us about your renovation and we&apos;ll match you with up to 3 QBCC-licensed local tradies — at no cost to you, with no obligation.
           </p>
+          <Link
+            href="/design"
+            style={{ fontSize: "0.85rem", color: "var(--ocean-500)", fontWeight: 600, textDecoration: "none" }}
+          >
+            ✨ Haven&apos;t designed your space yet? Chat with CoastAI first →
+          </Link>
         </div>
       </section>
 
@@ -155,7 +161,7 @@ export default function QuotePage() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 340px",
+              gridTemplateColumns: "1fr 320px",
               gap: 40,
               alignItems: "flex-start",
             }}
@@ -276,7 +282,7 @@ export default function QuotePage() {
                 <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
                   <h3 style={{ fontSize: "1.3rem" }}>Step 2: Your Contact Details</h3>
                   <p style={{ color: "var(--slate-light)", fontSize: "0.9rem" }}>
-                    We&apos;ll only share your details with matched tradies — not for spam.
+                    We&apos;ll only share your details with matched tradies — never for spam or marketing.
                   </p>
 
                   <div className="form-group">
@@ -356,6 +362,7 @@ export default function QuotePage() {
 
             {/* Sidebar */}
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              {/* What you get */}
               <div
                 style={{
                   background: "linear-gradient(135deg, var(--ocean-600), var(--ocean-500))",
@@ -370,10 +377,10 @@ export default function QuotePage() {
                 <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
                   {[
                     "Up to 3 matched local quotes",
-                    "Licensed & insured tradies only",
+                    "QBCC-licensed tradies only",
                     "Reply within 24 hours",
                     "100% free — no obligation",
-                    "No hidden fees ever",
+                    "Your details stay private",
                   ].map((item) => (
                     <li key={item} style={{ display: "flex", gap: 10, fontSize: "0.9rem", color: "rgba(255,255,255,0.9)" }}>
                       <span>✓</span>
@@ -383,56 +390,48 @@ export default function QuotePage() {
                 </ul>
               </div>
 
+              {/* Design first prompt */}
               <div
                 className="card"
                 style={{
-                  padding: "24px",
+                  padding: "22px",
+                  background: "linear-gradient(135deg, var(--sand-50), white)",
+                  border: "1px solid var(--sand-200)",
+                }}
+              >
+                <div style={{ fontSize: "1.6rem", marginBottom: 8 }}>✨</div>
+                <h4 style={{ fontSize: "0.95rem", marginBottom: 8 }}>Not sure what you need?</h4>
+                <p style={{ fontSize: "0.84rem", color: "var(--slate-light)", lineHeight: 1.6, marginBottom: 14 }}>
+                  Chat with CoastAI first — upload a photo of your space and get a design concept plus a realistic QLD ballpark, free.
+                </p>
+                <Link
+                  href="/design"
+                  style={{ fontWeight: 700, color: "var(--ocean-500)", textDecoration: "none", fontSize: "0.88rem" }}
+                >
+                  Try CoastAI →
+                </Link>
+              </div>
+
+              {/* Email fallback */}
+              <div
+                className="card"
+                style={{
+                  padding: "22px",
                   background: "var(--sand-50)",
                   border: "1px solid var(--sand-200)",
                 }}
               >
-                <div style={{ fontSize: "1.8rem", marginBottom: 8 }}>📞</div>
-                <h4 style={{ fontSize: "1rem", marginBottom: 8 }}>Prefer to Call?</h4>
-                <p style={{ fontSize: "0.85rem", color: "var(--slate-light)", lineHeight: 1.6, marginBottom: 12 }}>
-                  EIJ Construction is available Mon–Sat 7am–5pm.
+                <div style={{ fontSize: "1.6rem", marginBottom: 8 }}>✉️</div>
+                <h4 style={{ fontSize: "0.95rem", marginBottom: 8 }}>Prefer Email?</h4>
+                <p style={{ fontSize: "0.84rem", color: "var(--slate-light)", lineHeight: 1.6, marginBottom: 12 }}>
+                  Mon–Sat 7am–5pm. We reply within one business day.
                 </p>
                 <a
-                  href="tel:+61XXXXXXXXX"
-                  style={{
-                    fontWeight: 700,
-                    color: "var(--ocean-500)",
-                    textDecoration: "none",
-                    fontSize: "1rem",
-                  }}
+                  href="mailto:info@coasthomehub.com.au"
+                  style={{ fontWeight: 700, color: "var(--ocean-500)", textDecoration: "none", fontSize: "0.92rem" }}
                 >
-                  +61 (0) XXX XXX XXX
+                  info@coasthomehub.com.au
                 </a>
-              </div>
-
-              <div
-                className="card"
-                style={{ padding: "24px", background: "white" }}
-              >
-                <h4 style={{ fontSize: "0.95rem", marginBottom: 12 }}>🏆 Why Choose Us?</h4>
-                {[
-                  ["500+", "Jobs completed"],
-                  ["8+", "Years in QLD"],
-                  ["5★", "Average rating"],
-                ].map(([v, l]) => (
-                  <div
-                    key={l}
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      padding: "8px 0",
-                      borderBottom: "1px solid var(--sand-100)",
-                    }}
-                  >
-                    <span style={{ fontWeight: 800, fontSize: "1.2rem", color: "var(--ocean-500)" }}>{v}</span>
-                    <span style={{ fontSize: "0.85rem", color: "var(--slate-light)" }}>{l}</span>
-                  </div>
-                ))}
               </div>
             </div>
           </div>

@@ -63,12 +63,12 @@ export async function POST(req: NextRequest) {
                 </div>
 
                 <p style="color: #4a607a; line-height: 1.7; margin: 16px 0 0; font-size: 0.875rem;">
-                  Questions? Reply to this email or call us at <a href="tel:+61XXXXXXXXX" style="color: #1f7a72;">+61 (0) XXX XXX XXX</a>
+                  Questions? Just reply to this email and our team will help you.
                 </p>
               </div>
 
               <p style="color: #9c7d55; font-size: 0.78rem; text-align: center;">
-                © 2025 CoastHomeHub & EIJ Construction · coasthomehub.com.au
+                © 2026 CoastHomeHub & EIJ Construction · coasthomehub.com.au
               </p>
             </div>
           `,
@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
         // Notify admin of new registration
         await resend.emails.send({
           from: process.env.FROM_EMAIL || "noreply@coasthomehub.com.au",
-          to: process.env.CONTACT_EMAIL || "info@eijconstruction.com.au",
+          to: process.env.CONTACT_EMAIL || "info@coasthomehub.com.au",
           subject: `💳 New Tradie Registration: ${businessName} (${plan})`,
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 520px; margin: 0 auto; padding: 24px;">

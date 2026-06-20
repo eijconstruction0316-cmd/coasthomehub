@@ -288,6 +288,47 @@ const posts: Record<string, {
     ],
     relatedIds: [2, 5, 3],
   },
+  "7": {
+    id: 7,
+    tag: "Renovation Costs",
+    title: "Why Is Renovation So Expensive in QLD? An Honest Answer to “The Neighbour Got It Half Price”",
+    emoji: "💰",
+    color: "var(--gold)",
+    date: "June 21, 2026",
+    readTime: "6 min read",
+    author: "Peter Kim, EIJ Construction",
+    intro: "Almost every homeowner asks it: “Why is this so expensive? My neighbour got theirs done for half that.” It’s a fair question — and the honest answer surprises most people. After years on the tools across South East QLD, here’s what that “half price” quote usually leaves out, and why the real cost of a renovation is mostly people, not paint.",
+    sections: [
+      {
+        heading: "“Half price” usually means something is missing",
+        body: "A quote can be half the price for a reason — the trick is finding where the other half went. Nine times out of ten, the cheap quote is missing one of these: no QBCC licence, no insurance, waterproofing done in a single coat instead of two, or demolition and rubbish removal quietly left off the page. You don’t see what’s missing on quote day. You see it 18 months later when the bathroom leaks.",
+      },
+      {
+        heading: "The biggest cost isn’t materials — it’s labour",
+        body: "Homeowners assume tiles and fittings are where the money goes. They’re not. In Australia, the largest line item is almost always labour. Licensed tradespeople here are paid award wages, carry public liability and workers’ compensation insurance, and work to strict safety and building codes. That hourly rate isn’t a markup — it’s a qualified, insured professional who is legally accountable for the work. A cash job with no licence skips all of that, which is exactly why it looks cheaper.",
+      },
+      {
+        heading: "Why a licence and insurance actually matter to you",
+        body: "In Queensland, building work over a set value must be done by a QBCC-licensed contractor, and that licence comes with up to 6.5 years of statutory warranty cover. If an unlicensed operator damages your home — or injures themselves on your property without insurance — the liability can land on you, the homeowner. The licensed price includes that protection. The “half price” job often transfers the risk straight to you without telling you.",
+      },
+      {
+        heading: "The false economy: waterproofing",
+        body: "This is the one that costs people the most. Proper waterproofing is two coats, correctly cured, with special attention to corners and floor wastes — because corners are where leaks almost always start. A cheap quote saves money by doing one coat, or rushing the corners. It holds for a year, maybe two. Then water gets into the wall, and you’re not paying to fix waterproofing — you’re paying to rip out and rebuild the whole bathroom. That’s the real “double price.”",
+      },
+      {
+        heading: "So how do you compare quotes fairly?",
+        body: "Don’t compare the total — compare what’s inside it. Ask every quote the same questions: Are you QBCC licensed? Is the price including demolition and rubbish removal? How many coats of waterproofing, and is it warranted? Are you insured? When the cheap quote answers honestly, the gap usually closes on its own. Cheap isn’t cheap — it’s just the bill you can’t see yet.",
+      },
+    ],
+    tips: [
+      "Always ask for the QBCC licence number — you can verify it free on the QBCC website",
+      "Make sure demolition and rubbish removal are written into the quote, not assumed",
+      "Insist on two-coat waterproofing with a written warranty — it’s the cheapest insurance you’ll ever buy",
+      "Confirm the contractor carries public liability and workers’ compensation insurance",
+      "A quote that’s far below the rest isn’t a bargain — ask what’s missing before you sign",
+    ],
+    relatedIds: [5, 3, 2],
+  },
 };
 
 const allPosts = Object.values(posts);
