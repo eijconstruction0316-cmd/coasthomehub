@@ -1,9 +1,9 @@
-import { GoogleGenerativeAI, type Part, type Content } from "@google/generative-ai";
+import { GoogleGenAI } from "@google/genai";
 import { NextRequest } from "next/server";
 
 /* CoastAI — renovation design concierge for CoastHomeHub.
    Vision-capable: homeowner can upload a photo of their space.
-   Powered by Gemini 2.0 Flash. */
+   Powered by Gemini 2.5 Flash. */
 
 const SYSTEM = `You are CoastAI, the renovation design concierge for CoastHomeHub — a South East Queensland (Gold Coast, Sunshine Coast, Brisbane) home-renovation platform built and vetted by EIJ Construction, a QBCC-licensed Queensland builder.
 
@@ -26,6 +26,10 @@ type InMsg = {
   text: string;
   image?: { media_type: string; data: string }; // base64 (no data: prefix)
 };
+
+type GeminiPart =
+  | { text: string }
+  | { inlineData: { mimeType: string; data: string } };
 
 export async function POST(req: NextRequest) {
   const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
@@ -53,10 +57,10 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  // Map wire format → Gemini content parts.
+  // Build Gemini contents array (all messages including the last).
   // Gemini uses "user"/"model" roles (not "assistant").
-  const history: Content[] = messages.slice(0, -1).map((m) => {
-    const parts: Part[] = [];
+  const contents = messages.map((m) => {
+    const parts: GeminiPart[] = [];
     if (m.image?.data) {
       parts.push({ inlineData: { mimeType: m.image.media_type, data: m.image.data } });
     }
@@ -64,27 +68,20 @@ export async function POST(req: NextRequest) {
     return { role: m.role === "assistant" ? "model" : "user", parts };
   });
 
-  const lastMsg = messages[messages.length - 1];
-  const lastParts: Part[] = [];
-  if (lastMsg.image?.data) {
-    lastParts.push({ inlineData: { mimeType: lastMsg.image.media_type, data: lastMsg.image.data } });
-  }
-  lastParts.push({ text: lastMsg.text || "" });
-
-  const genai = new GoogleGenerativeAI(apiKey);
-  const model = genai.getGenerativeModel({
-    model: "gemini-2.0-flash",
-    systemInstruction: SYSTEM,
-  });
+  const ai = new GoogleGenAI({ apiKey });
+  const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       try {
-        const chat = model.startChat({ history });
-        const result = await chat.sendMessageStream(lastParts);
-        for await (const chunk of result.stream) {
-          const text = chunk.text();
+        const result = await ai.models.generateContentStream({
+          model,
+          config: { systemInstruction: SYSTEM },
+          contents,
+        });
+        for await (const chunk of result) {
+          const text = chunk.text;
           if (text) controller.enqueue(encoder.encode(text));
         }
       } catch (err) {
