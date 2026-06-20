@@ -4,88 +4,26 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "List Your Trade Business | CoastHomeHub for Tradies",
   description:
-    "Join Queensland's fastest-growing home improvement platform. Get quality leads from Gold Coast to Sunshine Coast. Licensed tradies only.",
+    "Join CoastHomeHub and receive warm, pre-qualified renovation leads from Gold Coast to Sunshine Coast. QBCC-licensed tradies only. Flat monthly fee, no commissions.",
 };
 
-const plans = [
-  {
-    id: "starter",
-    name: "Starter",
-    price: 99,
-    period: "month",
-    tagline: "Perfect to get started",
-    color: "var(--ocean-400)",
-    features: [
-      "Up to 5 leads per month",
-      "Basic business profile",
-      "Listed in local directory",
-      "Email lead notifications",
-      "Customer review system",
-    ],
-    notIncluded: ["Priority listing", "Unlimited leads", "Analytics dashboard", "Featured badge"],
-    cta: "Start Starter",
-    popular: false,
-  },
-  {
-    id: "pro",
-    name: "Pro",
-    price: 179,
-    period: "month",
-    tagline: "Most popular for growing businesses",
-    color: "var(--ocean-600)",
-    features: [
-      "Up to 20 leads per month",
-      "Enhanced business profile + photos",
-      "Priority listing above Starter",
-      "SMS + email notifications",
-      "Customer review system",
-      "Analytics dashboard",
-      "Featured badge on profile",
-    ],
-    notIncluded: ["Unlimited leads"],
-    cta: "Start Pro",
-    popular: true,
-  },
-  {
-    id: "premium",
-    name: "Premium",
-    price: 299,
-    period: "month",
-    tagline: "Maximum exposure & unlimited leads",
-    color: "var(--gold)",
-    features: [
-      "Unlimited leads",
-      "Premium business profile + portfolio",
-      "#1 priority listing in your area",
-      "SMS + email + phone notifications",
-      "Customer review system",
-      "Full analytics dashboard",
-      "Featured badge + homepage spotlight",
-      "Dedicated account manager",
-    ],
-    notIncluded: [],
-    cta: "Start Premium",
-    popular: false,
-  },
-];
-
 const benefits = [
-  { icon: "🎯", title: "Quality Local Leads", desc: "Homeowners in your area who are actively looking — not time-wasters browsing." },
-  { icon: "✅", title: "Verified Homeowners", desc: "Every quote request includes contact details and job photos. No spam." },
-  { icon: "📊", title: "Track Your ROI", desc: "See exactly how many views, leads, and bookings your profile generates." },
-  { icon: "⭐", title: "Build Your Reputation", desc: "Collect verified 5-star reviews that appear on Google and your profile." },
-  { icon: "📱", title: "Instant Notifications", desc: "Be the first tradie to respond. Speed wins jobs." },
-  { icon: "🏷️", title: "No Commission", desc: "Flat monthly fee. We never take a percentage of your job value." },
+  { icon: "🎯", title: "Pre-Qualified Leads", desc: "Homeowners arrive via CoastAI having already described their project and seen a ballpark cost — they know what they want." },
+  { icon: "✅", title: "Verified Contact Details", desc: "Every quote request includes the homeowner's name, location, job description, and photos. No spam, no tyre-kickers." },
+  { icon: "🔒", title: "Max 3 Quotes per Job", desc: "Homeowners receive a maximum of 3 tradie quotes. You're never competing against a crowd." },
+  { icon: "📱", title: "Instant Notifications", desc: "Get an SMS and email the moment a matching lead lands in your area. First to respond often wins the job." },
+  { icon: "🏷️", title: "No Commission Ever", desc: "Flat monthly access fee. We never take a percentage of your job value — every dollar you earn is yours." },
+  { icon: "🏛️", title: "QBCC Licence Verified", desc: "Every tradie on CoastHomeHub is checked against the QBCC register. Your licence is your badge of trust." },
 ];
 
 const faqs = [
   {
     q: "How do I receive leads?",
-    a: "When a homeowner submits a quote request in your service area and job category, you receive an instant SMS and email with their name, job description, location, and photos. You contact them directly.",
+    a: "When a homeowner submits a quote request in your service area and job category, you receive an instant SMS and email with their name, job description, location, and any photos they've uploaded. You contact them directly from there.",
   },
   {
     q: "Do I need to be licensed?",
-    a: "Yes. All tradies on CoastHomeHub must hold a valid Queensland licence for the services they offer. We verify your licence number during registration.",
+    a: "Yes. All tradies on CoastHomeHub must hold a valid Queensland licence for the services they offer. We verify your QBCC licence number during registration — unlicensed tradespeople are not accepted.",
   },
   {
     q: "Can I cancel anytime?",
@@ -93,11 +31,15 @@ const faqs = [
   },
   {
     q: "What areas do you cover?",
-    a: "We currently cover Gold Coast, Tweed Heads, Logan, Brisbane South and North, Sunshine Coast, and Noosa. We're expanding rapidly.",
+    a: "We currently cover Gold Coast, Tweed Heads, Logan, Brisbane (South, North, East, CBD), Sunshine Coast, and Noosa. Coverage is expanding as we grow.",
   },
   {
-    q: "How many other tradies will I compete with per lead?",
-    a: "Homeowners receive a maximum of 3 quotes. Pro and Premium members get first right of refusal before Starter members are notified.",
+    q: "How many other tradies compete per lead?",
+    a: "Homeowners receive a maximum of 3 quotes total. When a lead matches your profile you receive it directly — you won't be up against a dozen competitors.",
+  },
+  {
+    q: "What makes CoastHomeHub leads different?",
+    a: "Homeowners land on CoastHomeHub after chatting with CoastAI, our AI renovation designer. By the time they fill in a quote request they've already described their space, discussed a design, and seen a realistic QLD cost range — so they're genuinely ready to proceed.",
   },
 ];
 
@@ -123,47 +65,37 @@ export default function TradiesPage() {
                 🔧 For Licensed Tradies
               </div>
               <h1 style={{ color: "white", fontSize: "clamp(2rem, 5vw, 3.4rem)", marginBottom: 20, lineHeight: 1.1 }}>
-                Grow Your Trade Business
+                Warm Leads From
                 <br />
-                <span style={{ color: "var(--ocean-300)" }}>Across QLD&apos;s Coast.</span>
+                <span style={{ color: "var(--ocean-300)" }}>Ready-to-Quote Homeowners.</span>
               </h1>
               <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "1.1rem", lineHeight: 1.7, marginBottom: 36, maxWidth: 480 }}>
-                Get quality leads from homeowners actively seeking your services — from Gold Coast to Sunshine Coast. Flat monthly fee. No commissions. Cancel anytime.
+                CoastHomeHub homeowners have already described their project, seen a design concept, and got a ballpark cost. By the time they reach you, they&apos;re ready for a real quote — not just browsing.
               </p>
               <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
                 <Link href="/tradies/register" className="btn-gold" id="tradie-hero-cta">
-                  List My Business →
+                  Register My Business →
                 </Link>
-                <a href="#pricing" className="btn-secondary" style={{ color: "rgba(255,255,255,0.8)", borderColor: "rgba(255,255,255,0.3)" }}>
-                  View Pricing
+                <a href="#how-it-works" className="btn-secondary" style={{ color: "rgba(255,255,255,0.8)", borderColor: "rgba(255,255,255,0.3)" }}>
+                  How It Works
                 </a>
               </div>
             </div>
 
-            {/* Stats card */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-              <div className="glass-card" style={{ padding: 28, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}>
-                <div style={{ fontSize: "2rem", marginBottom: 8 }}>📈</div>
-                <h3 style={{ color: "white", fontSize: "1.2rem", marginBottom: 6 }}>
-                  Average Tradie ROI
-                </h3>
-                <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.9rem", lineHeight: 1.6 }}>
-                  Pro members report an average of <strong style={{ color: "var(--ocean-300)" }}>$4,200 AUD extra revenue</strong> in their first 3 months.
-                </p>
-              </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-                {[
-                  { v: "500+", l: "Active Homeowners" },
-                  { v: "Gold–Sunshine", l: "Coverage Area" },
-                  { v: "3 max", l: "Quotes per Lead" },
-                  { v: "No %", l: "Commission Ever" },
-                ].map((s) => (
-                  <div key={s.l} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "var(--radius-md)", padding: "16px", textAlign: "center" }}>
-                    <div style={{ fontWeight: 900, fontSize: "1.2rem", color: "var(--ocean-300)", lineHeight: 1 }}>{s.v}</div>
-                    <div style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.5)", marginTop: 4 }}>{s.l}</div>
-                  </div>
-                ))}
-              </div>
+            {/* Trust cards */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+              {[
+                { icon: "✅", v: "QBCC", l: "Licence verified" },
+                { icon: "🏠", v: "3 max", l: "Quotes per lead" },
+                { icon: "🏷️", v: "No %", l: "Commission ever" },
+                { icon: "📍", v: "SEQ", l: "Gold Coast · Sunshine" },
+              ].map((s) => (
+                <div key={s.l} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "var(--radius-md)", padding: "20px 16px", textAlign: "center" }}>
+                  <div style={{ fontSize: "1.4rem", marginBottom: 6 }}>{s.icon}</div>
+                  <div style={{ fontWeight: 900, fontSize: "1.1rem", color: "var(--ocean-300)", lineHeight: 1 }}>{s.v}</div>
+                  <div style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.5)", marginTop: 4 }}>{s.l}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -174,8 +106,8 @@ export default function TradiesPage() {
       <section className="section" style={{ background: "white" }}>
         <div className="container-lg">
           <div style={{ textAlign: "center", marginBottom: 56 }}>
-            <div className="badge" style={{ marginBottom: 16, display: "inline-flex" }}>Why Join Us</div>
-            <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.6rem)" }}>Everything You Need to Win More Jobs</h2>
+            <div className="badge" style={{ marginBottom: 16, display: "inline-flex" }}>Why Join</div>
+            <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.6rem)" }}>Built Around Quality, Not Volume</h2>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 24 }}>
             {benefits.map((b) => (
@@ -190,7 +122,7 @@ export default function TradiesPage() {
       </section>
 
       {/* How it works */}
-      <section className="section" style={{ background: "var(--off-white)" }}>
+      <section className="section" id="how-it-works" style={{ background: "var(--off-white)" }}>
         <div className="container-lg">
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div className="badge" style={{ marginBottom: 16, display: "inline-flex" }}>How It Works</div>
@@ -198,10 +130,10 @@ export default function TradiesPage() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }} className="steps-grid">
             {[
-              { step: "01", icon: "📝", title: "Register & Verify", desc: "Create your profile and submit your QLD licence number. We verify within 24 hours." },
-              { step: "02", icon: "💳", title: "Choose a Plan", desc: "Pick Starter, Pro, or Premium. No lock-in contracts — cancel anytime." },
-              { step: "03", icon: "📬", title: "Receive Leads", desc: "Get instant SMS + email when a homeowner in your area requests your service." },
-              { step: "04", icon: "🤝", title: "Win the Job", desc: "Contact the homeowner directly, quote your price, win the work. Keep 100%." },
+              { step: "01", icon: "📝", title: "Register & Apply", desc: "Create your business profile and tell us about the services you offer and your service area." },
+              { step: "02", icon: "✅", title: "Verify Your Licence", desc: "Submit your QBCC licence number. We verify it against the QBCC register before your profile goes live." },
+              { step: "03", icon: "📬", title: "Receive Leads", desc: "Get an instant SMS + email when a homeowner in your area requests your service. Details and photos included." },
+              { step: "04", icon: "🤝", title: "Win the Job", desc: "Contact the homeowner directly, quote your price, win the work. Keep 100% — no commissions." },
             ].map((s) => (
               <div key={s.step} style={{ textAlign: "center", padding: "28px 20px" }}>
                 <div style={{ position: "relative", display: "inline-block", marginBottom: 16 }}>
@@ -217,70 +149,69 @@ export default function TradiesPage() {
         <style>{`@media(max-width:768px){.steps-grid{grid-template-columns:1fr 1fr!important;}}`}</style>
       </section>
 
-      {/* Pricing */}
-      <section className="section" id="pricing" style={{ background: "white" }}>
-        <div className="container-lg">
-          <div style={{ textAlign: "center", marginBottom: 56 }}>
-            <div className="badge" style={{ marginBottom: 16, display: "inline-flex" }}>Pricing</div>
-            <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.6rem)", marginBottom: 12 }}>Simple, Transparent Pricing</h2>
-            <p style={{ color: "var(--slate-light)", fontSize: "1rem" }}>No commissions, no lock-in, no surprise fees. Cancel anytime.</p>
+      {/* Access */}
+      <section className="section" id="access" style={{ background: "white" }}>
+        <div className="container-md">
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <div className="badge" style={{ marginBottom: 16, display: "inline-flex" }}>Founding Member Access</div>
+            <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.6rem)", marginBottom: 12 }}>Simple, Flat-Fee Access</h2>
+            <p style={{ color: "var(--slate-light)", fontSize: "1rem", maxWidth: 520, margin: "0 auto" }}>
+              One flat monthly fee. No lead caps, no pay-per-click, no commission. You compete on your skills and speed — not your budget.
+            </p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }} className="pricing-grid">
-            {plans.map((plan) => (
-              <div
-                key={plan.id}
-                id={`plan-${plan.id}`}
-                style={{
-                  border: plan.popular ? `2px solid ${plan.color}` : "1px solid var(--sand-200)",
-                  borderRadius: "var(--radius-xl)",
-                  padding: "32px 28px",
-                  background: plan.popular ? "linear-gradient(160deg, var(--ocean-50), white)" : "white",
-                  position: "relative",
-                  boxShadow: plan.popular ? "var(--shadow-lg)" : "var(--shadow-sm)",
-                  transition: "var(--transition)",
-                }}
-              >
-                {plan.popular && (
-                  <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: plan.color, color: "white", fontSize: "0.75rem", fontWeight: 800, padding: "5px 16px", borderRadius: "50px", whiteSpace: "nowrap", letterSpacing: "0.04em" }}>
-                    ⭐ MOST POPULAR
-                  </div>
-                )}
-                <div style={{ marginBottom: 20 }}>
-                  <h3 style={{ fontSize: "1.3rem", color: plan.color, marginBottom: 4 }}>{plan.name}</h3>
-                  <p style={{ fontSize: "0.82rem", color: "var(--slate-light)" }}>{plan.tagline}</p>
-                </div>
-                <div style={{ marginBottom: 24 }}>
-                  <span style={{ fontSize: "2.8rem", fontWeight: 900, color: "var(--slate-dark)", lineHeight: 1 }}>${plan.price}</span>
-                  <span style={{ color: "var(--slate-light)", fontSize: "0.9rem" }}> / month</span>
-                  <p style={{ fontSize: "0.78rem", color: "var(--slate-light)", marginTop: 4 }}>+GST · Billed monthly · Cancel anytime</p>
-                </div>
-                <ul style={{ listStyle: "none", marginBottom: 28, display: "flex", flexDirection: "column", gap: 10 }}>
-                  {plan.features.map((f) => (
-                    <li key={f} style={{ display: "flex", gap: 10, fontSize: "0.875rem", color: "var(--slate-mid)" }}>
-                      <span style={{ color: "#16a34a", fontWeight: 700 }}>✓</span>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                  {plan.notIncluded.map((f) => (
-                    <li key={f} style={{ display: "flex", gap: 10, fontSize: "0.875rem", color: "var(--sand-400)" }}>
-                      <span>—</span>
-                      <span style={{ textDecoration: "line-through" }}>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={`/tradies/register?plan=${plan.id}`}
-                  className={plan.popular ? "btn-primary" : "btn-secondary"}
-                  style={{ display: "block", textAlign: "center", width: "100%", boxSizing: "border-box" }}
-                  id={`pricing-${plan.id}-cta`}
-                >
-                  {plan.cta} →
-                </Link>
-              </div>
-            ))}
+
+          <div
+            style={{
+              maxWidth: 480,
+              margin: "0 auto",
+              border: "2px solid var(--ocean-400)",
+              borderRadius: "var(--radius-xl)",
+              padding: "40px 36px",
+              background: "linear-gradient(160deg, var(--ocean-50), white)",
+              boxShadow: "var(--shadow-lg)",
+              textAlign: "center",
+              position: "relative",
+            }}
+          >
+            <div style={{ position: "absolute", top: -16, left: "50%", transform: "translateX(-50%)", background: "var(--ocean-500)", color: "white", fontSize: "0.75rem", fontWeight: 800, padding: "6px 18px", borderRadius: "50px", whiteSpace: "nowrap", letterSpacing: "0.04em" }}>
+              ⭐ FOUNDING MEMBER RATE
+            </div>
+            <h3 style={{ fontSize: "1.4rem", color: "var(--ocean-600)", marginBottom: 6 }}>Full Access</h3>
+            <p style={{ fontSize: "0.85rem", color: "var(--slate-light)", marginBottom: 24 }}>All leads in your area · No caps · No commissions</p>
+            <div style={{ marginBottom: 28 }}>
+              <span style={{ fontSize: "3rem", fontWeight: 900, color: "var(--slate-dark)", lineHeight: 1 }}>$149</span>
+              <span style={{ color: "var(--slate-light)", fontSize: "0.95rem" }}> / month</span>
+              <p style={{ fontSize: "0.8rem", color: "var(--slate-light)", marginTop: 6 }}>+GST · Billed monthly · Cancel anytime</p>
+            </div>
+            <ul style={{ listStyle: "none", marginBottom: 32, display: "flex", flexDirection: "column", gap: 12, textAlign: "left" }}>
+              {[
+                "All matching leads in your service area",
+                "QBCC licence verified — your badge of trust",
+                "Business profile with photos + services listed",
+                "Instant SMS + email lead notifications",
+                "Max 3 tradies per lead — never a crowd",
+                "No commission on any job won",
+                "Month-to-month — cancel before next billing",
+              ].map((f) => (
+                <li key={f} style={{ display: "flex", gap: 10, fontSize: "0.9rem", color: "var(--slate-mid)" }}>
+                  <span style={{ color: "#16a34a", fontWeight: 700, flexShrink: 0 }}>✓</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/tradies/register"
+              className="btn-primary"
+              style={{ display: "block", textAlign: "center", width: "100%", boxSizing: "border-box" }}
+              id="access-cta"
+            >
+              Register My Business →
+            </Link>
+            <p style={{ fontSize: "0.78rem", color: "var(--slate-light)", marginTop: 16 }}>
+              Founding member rate locks in for 12 months from your registration date.
+            </p>
           </div>
         </div>
-        <style>{`@media(max-width:900px){.pricing-grid{grid-template-columns:1fr!important;}}`}</style>
       </section>
 
       {/* FAQ */}
@@ -304,9 +235,9 @@ export default function TradiesPage() {
       {/* CTA */}
       <section style={{ background: "linear-gradient(135deg, var(--ocean-600), var(--ocean-400))", padding: "80px 0", textAlign: "center" }}>
         <div className="container-md">
-          <h2 style={{ color: "white", fontSize: "clamp(1.6rem, 4vw, 2.4rem)", marginBottom: 12 }}>Ready to Get More QLD Jobs?</h2>
+          <h2 style={{ color: "white", fontSize: "clamp(1.6rem, 4vw, 2.4rem)", marginBottom: 12 }}>Ready to Receive Warm QLD Leads?</h2>
           <p style={{ color: "rgba(255,255,255,0.8)", marginBottom: 36, maxWidth: 460, margin: "0 auto 36px" }}>
-            Join licensed tradies already growing their business on CoastHomeHub. First month 50% off.
+            Register your QBCC-licensed business today. Flat monthly fee, no lock-in, no commissions.
           </p>
           <Link href="/tradies/register" className="btn-gold" id="tradie-bottom-cta">
             🔧 Register Your Business
