@@ -224,12 +224,13 @@ export default function Home() {
                 className="glass-card"
                 style={{
                   padding: "36px",
-                  background: "linear-gradient(135deg, rgba(31,122,114,0.92), rgba(61,153,144,0.88))",
+                  backgroundImage: "linear-gradient(135deg, rgba(20,30,40,0.78), rgba(20,40,38,0.62)), url(/gallery/interior-3.jpg)",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                   color: "white",
                   border: "1px solid rgba(255,255,255,0.25)",
                 }}
               >
-                <div style={{ fontSize: "2.5rem", marginBottom: 8 }}>🏠</div>
                 <h3 style={{ color: "white", fontSize: "1.4rem", marginBottom: 8 }}>
                   Find Licensed Tradies
                 </h3>

@@ -4,6 +4,19 @@ import Link from "next/link";
 
 const categories = ["All", "Bathroom", "Kitchen", "Living Room", "Exterior", "Bedroom"];
 
+// 디자인별 잡지급 사진 (Unsplash, 상업 사용 무료)
+const designImages: Record<number, string> = {
+  1: "/gallery/interior-1.jpg",
+  2: "/gallery/interior-2.jpg",
+  3: "/gallery/interior-6.jpg",
+  4: "/gallery/interior-1.jpg",
+  5: "/gallery/interior-5.jpg",
+  6: "/gallery/interior-7.jpg",
+  7: "/gallery/interior-8.jpg",
+  8: "/gallery/interior-4.jpg",
+  9: "/gallery/interior-3.jpg",
+};
+
 const designs = [
   {
     id: 1,
@@ -409,36 +422,38 @@ export default function GalleryPage() {
                 onClick={() => setSelected(design)}
                 style={{ cursor: "pointer", overflow: "hidden" }}
               >
-                {/* Colour palette visual header */}
+                {/* Photo visual header */}
                 <div
                   style={{
-                    height: 160,
-                    background: `linear-gradient(135deg, ${design.palette[0]}, ${design.palette[1]}, ${design.palette[2]})`,
+                    height: 200,
+                    backgroundImage: `url(${designImages[design.id]})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                     display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "20px 24px",
+                    alignItems: "flex-end",
+                    justifyContent: "flex-start",
+                    padding: "16px",
                     position: "relative",
                   }}
                 >
+                  {/* 가독성용 하단 그라데이션 */}
+                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%)" }} />
                   {/* Palette dots */}
-                  <div style={{ display: "flex", gap: 10 }}>
+                  <div style={{ display: "flex", gap: 8, position: "relative", zIndex: 1 }}>
                     {design.palette.map((color) => (
                       <div
                         key={color}
                         style={{
-                          width: 32,
-                          height: 32,
+                          width: 22,
+                          height: 22,
                           borderRadius: "50%",
                           background: color,
-                          border: "2px solid rgba(255,255,255,0.6)",
-                          boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+                          border: "2px solid rgba(255,255,255,0.85)",
+                          boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
                         }}
                       />
                     ))}
                   </div>
-                  {/* Emoji */}
-                  <div style={{ fontSize: "2.8rem" }}>{design.emoji}</div>
 
                   {/* Trending badge */}
                   {design.trending && (
@@ -587,25 +602,28 @@ export default function GalleryPage() {
             {/* Modal header */}
             <div
               style={{
-                background: `linear-gradient(135deg, ${selected.palette[0]}, ${selected.palette[1]}, ${selected.palette[2]})`,
-                height: 180,
+                backgroundImage: `url(${designImages[selected.id]})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                height: 220,
                 display: "flex",
-                alignItems: "center",
+                alignItems: "flex-end",
                 justifyContent: "space-between",
                 padding: "28px 32px",
                 position: "relative",
               }}
             >
-              <div>
-                <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.6) 100%)" }} />
+              <div style={{ position: "relative", zIndex: 1 }}>
+                <div style={{ display: "flex", gap: 8, marginBottom: 10 }}>
                   {selected.palette.map((c) => (
-                    <div key={c} style={{ width: 28, height: 28, borderRadius: "50%", background: c, border: "2px solid rgba(255,255,255,0.6)", boxShadow: "0 2px 8px rgba(0,0,0,0.2)" }} />
+                    <div key={c} style={{ width: 24, height: 24, borderRadius: "50%", background: c, border: "2px solid rgba(255,255,255,0.85)", boxShadow: "0 2px 8px rgba(0,0,0,0.3)" }} />
                   ))}
                 </div>
-                <h2 style={{ color: selected.palette[2], fontSize: "1.6rem", textShadow: "0 1px 3px rgba(255,255,255,0.5)" }}>
+                <h2 style={{ color: "#fff", fontSize: "1.6rem", textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}>
                   {selected.name}
                 </h2>
-                <p style={{ color: selected.palette[2], fontSize: "0.9rem", opacity: 0.85 }}>{selected.subtitle}</p>
+                <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.9rem", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>{selected.subtitle}</p>
               </div>
               <div style={{ fontSize: "4rem" }}>{selected.emoji}</div>
               <button
