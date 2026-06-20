@@ -508,21 +508,28 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
       {/* Hero */}
       <section
         style={{
-          background: `linear-gradient(160deg, ${post.color}15 0%, var(--sand-50) 100%)`,
+          background: `linear-gradient(160deg, ${post.color}20 0%, var(--sand-50) 100%)`,
           paddingTop: 120,
-          paddingBottom: 56,
+          paddingBottom: 64,
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <div className="container-md">
+        {/* Decorative large emoji */}
+        <div style={{ position: "absolute", right: "5%", top: "50%", transform: "translateY(-50%)", fontSize: "10rem", opacity: 0.08, pointerEvents: "none", userSelect: "none" }}>
+          {post.emoji}
+        </div>
+        <div className="container-md" style={{ position: "relative" }}>
           <Link href="/blog" style={{ color: "var(--ocean-500)", fontSize: "0.875rem", fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 24 }}>
             ← Back to All Articles
           </Link>
-          <div style={{ display: "flex", gap: 10, marginBottom: 16, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 10, marginBottom: 16, flexWrap: "wrap", alignItems: "center" }}>
+            <span style={{ fontSize: "1.8rem" }}>{post.emoji}</span>
             <span style={{ display: "inline-block", background: `${post.color}18`, color: post.color, border: `1px solid ${post.color}35`, borderRadius: "50px", padding: "4px 14px", fontSize: "0.78rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em" }}>
               {post.tag}
             </span>
           </div>
-          <h1 style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", marginBottom: 20, lineHeight: 1.2 }}>
+          <h1 style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", marginBottom: 20, lineHeight: 1.2, maxWidth: 680 }}>
             {post.title}
           </h1>
           <div style={{ display: "flex", gap: 20, alignItems: "center", color: "var(--slate-light)", fontSize: "0.875rem", flexWrap: "wrap" }}>
@@ -578,7 +585,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
                 </div>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontWeight: 700, marginBottom: 4 }}>Written by Peter Kim</div>
-                  <div style={{ fontSize: "0.85rem", color: "var(--slate-light)" }}>Licensed waterproofing specialist & founder of EIJ Construction. 8+ years across Gold Coast to Sunshine Coast.</div>
+                  <div style={{ fontSize: "0.85rem", color: "var(--slate-light)" }}>QBCC-licensed waterproofing specialist & founder of EIJ Construction. Gold Coast · Sunshine Coast · SEQ.</div>
                 </div>
                 <Link href="/quote" className="btn-primary" style={{ fontSize: "0.875rem", padding: "10px 20px", whiteSpace: "nowrap" }} id="article-get-quote">
                   Get a Free Quote

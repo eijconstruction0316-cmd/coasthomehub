@@ -128,12 +128,28 @@ export default function ServicesPage() {
               Get a Free Quote
             </Link>
             <div style={{ display: "flex", gap: 24, alignItems: "center", flexWrap: "wrap" }}>
-              {["✅ QLD Licensed", "🛡️ Fully Insured", "⭐ 5-Star Rated"].map((b) => (
+              {["✅ QBCC Licensed", "🛡️ Fully Insured", "🏠 SEQ Specialists"].map((b) => (
                 <span key={b} style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--slate-mid)" }}>
                   {b}
                 </span>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CoastAI nudge */}
+      <section style={{ background: "white", padding: "32px 0", borderBottom: "1px solid var(--sand-100)" }}>
+        <div className="container-lg">
+          <div style={{ display: "flex", gap: 20, alignItems: "center", background: "linear-gradient(135deg, var(--ocean-50), var(--sand-50))", borderRadius: "var(--radius-lg)", padding: "20px 28px", flexWrap: "wrap" }}>
+            <div style={{ fontSize: "2rem" }}>✨</div>
+            <div style={{ flex: 1, minWidth: 220 }}>
+              <div style={{ fontWeight: 700, marginBottom: 4 }}>Not sure what you need?</div>
+              <div style={{ fontSize: "0.875rem", color: "var(--slate-light)" }}>Snap a photo and chat with CoastAI — get a free design concept and realistic QLD price estimate before you commit to anything.</div>
+            </div>
+            <Link href="/design" className="btn-primary" style={{ fontSize: "0.875rem", padding: "10px 22px", whiteSpace: "nowrap" }}>
+              Try CoastAI Free →
+            </Link>
           </div>
         </div>
       </section>
