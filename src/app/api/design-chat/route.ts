@@ -1,17 +1,9 @@
-import Anthropic from "@anthropic-ai/sdk";
+import { GoogleGenerativeAI, type Part, type Content } from "@google/generative-ai";
 import { NextRequest } from "next/server";
 
-/* CoastAI — the renovation design concierge that fronts CoastHomeHub.
-   Vision-capable: the homeowner can upload a photo of their space.
-   Goal: give real design + a realistic QLD ballpark, then hand off to
-   "get 3 licensed quotes". Honest, on-topic, ranges (never fixed prices). */
-
-const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY || "",
-});
-
-// Default to the most capable model; override with ANTHROPIC_MODEL if needed.
-const MODEL = process.env.ANTHROPIC_MODEL || "claude-opus-4-8";
+/* CoastAI — renovation design concierge for CoastHomeHub.
+   Vision-capable: homeowner can upload a photo of their space.
+   Powered by Gemini 2.0 Flash. */
 
 const SYSTEM = `You are CoastAI, the renovation design concierge for CoastHomeHub — a South East Queensland (Gold Coast, Sunshine Coast, Brisbane) home-renovation platform built and vetted by EIJ Construction, a QBCC-licensed Queensland builder.
 
@@ -36,9 +28,10 @@ type InMsg = {
 };
 
 export async function POST(req: NextRequest) {
-  if (!process.env.ANTHROPIC_API_KEY) {
+  const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+  if (!apiKey) {
     return new Response(
-      JSON.stringify({ error: "AI is not configured yet (missing ANTHROPIC_API_KEY)." }),
+      JSON.stringify({ error: "AI is not configured yet (missing GOOGLE_GENERATIVE_AI_API_KEY)." }),
       { status: 503, headers: { "content-type": "application/json" } }
     );
   }
@@ -60,52 +53,44 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  // Map our wire format → Anthropic message blocks (text + optional image).
-  const apiMessages: Anthropic.MessageParam[] = messages.map((m) => {
-    const content: Anthropic.ContentBlockParam[] = [];
+  // Map wire format → Gemini content parts.
+  // Gemini uses "user"/"model" roles (not "assistant").
+  const history: Content[] = messages.slice(0, -1).map((m) => {
+    const parts: Part[] = [];
     if (m.image?.data) {
-      content.push({
-        type: "image",
-        source: {
-          type: "base64",
-          media_type: m.image.media_type as
-            | "image/jpeg"
-            | "image/png"
-            | "image/gif"
-            | "image/webp",
-          data: m.image.data,
-        },
-      });
+      parts.push({ inlineData: { mimeType: m.image.media_type, data: m.image.data } });
     }
-    content.push({ type: "text", text: m.text || "" });
-    return { role: m.role, content };
+    parts.push({ text: m.text || "" });
+    return { role: m.role === "assistant" ? "model" : "user", parts };
+  });
+
+  const lastMsg = messages[messages.length - 1];
+  const lastParts: Part[] = [];
+  if (lastMsg.image?.data) {
+    lastParts.push({ inlineData: { mimeType: lastMsg.image.media_type, data: lastMsg.image.data } });
+  }
+  lastParts.push({ text: lastMsg.text || "" });
+
+  const genai = new GoogleGenerativeAI(apiKey);
+  const model = genai.getGenerativeModel({
+    model: "gemini-2.0-flash",
+    systemInstruction: SYSTEM,
   });
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       try {
-        const llm = client.messages.stream({
-          model: MODEL,
-          max_tokens: 1500,
-          system: SYSTEM,
-          messages: apiMessages,
-        });
-        for await (const event of llm) {
-          if (
-            event.type === "content_block_delta" &&
-            event.delta.type === "text_delta"
-          ) {
-            controller.enqueue(encoder.encode(event.delta.text));
-          }
+        const chat = model.startChat({ history });
+        const result = await chat.sendMessageStream(lastParts);
+        for await (const chunk of result.stream) {
+          const text = chunk.text();
+          if (text) controller.enqueue(encoder.encode(text));
         }
-        await llm.finalMessage();
       } catch (err) {
         console.error("design-chat error:", err);
         controller.enqueue(
-          encoder.encode(
-            "\n\n⚠️ Sorry — I hit a snag just then. Please try again in a moment."
-          )
+          encoder.encode("\n\n⚠️ Sorry — I hit a snag just then. Please try again in a moment.")
         );
       } finally {
         controller.close();
