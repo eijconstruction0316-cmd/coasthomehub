@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/gallery", label: "Gallery" },
   { href: "/design", label: "✨ AI Designer" },
   { href: "/blog", label: "DIY & Trends" },
+  { href: "/magazine", label: "📖 Magazine" },
   { href: "/tradies", label: "For Tradies 🔧" },
   { href: "/quote", label: "Get a Quote" },
 ];

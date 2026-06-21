@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import DesignChat from "@/components/DesignChat";
 
 export const metadata: Metadata = {
@@ -40,7 +41,9 @@ export default function DesignPage() {
             border: "1px solid rgba(255,255,255,0.7)",
           }}
         >
-          <DesignChat />
+          <Suspense fallback={null}>
+            <DesignChat />
+          </Suspense>
         </div>
 
         <div style={{ display: "flex", gap: 18, justifyContent: "center", flexWrap: "wrap", marginTop: 22 }}>

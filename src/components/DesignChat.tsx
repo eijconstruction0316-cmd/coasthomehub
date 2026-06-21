@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 
 type ChatImage = { media_type: string; data: string; preview: string };
 type Msg = { role: "user" | "assistant"; text: string; images?: ChatImage[] };
 type ContactForm = { name: string; email: string; phone: string; suburb: string };
+
+const FREE_QUOTA = 2;
 
 const STARTERS = [
   "Modernise our main bathroom 🛁",
@@ -59,16 +62,25 @@ function fileToImage(file: File): Promise<ChatImage> {
 }
 
 export default function DesignChat() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [pendingImages, setPendingImages] = useState<ChatImage[]>([]);
   const [busy, setBusy] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
+  const [showPaywall, setShowPaywall] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [contact, setContact] = useState<ContactForm>({ name: "", email: "", phone: "", suburb: "" });
+
+  // Subscription / quota state (localStorage)
+  const [quotesUsed, setQuotesUsed] = useState(0);
+  const [subscribed, setSubscribed] = useState(false);
+  const [loadingCheckout, setLoadingCheckout] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -76,6 +88,17 @@ export default function DesignChat() {
   const started = messages.length > 0;
   const aiReplies = messages.filter((m) => m.role === "assistant" && m.text.length > 0).length;
   const showBriefButton = aiReplies >= 2;
+  const atQuotaLimit = !subscribed && quotesUsed >= FREE_QUOTA;
+
+  // Hydrate from localStorage + handle post-payment redirect
+  useEffect(() => {
+    if (searchParams.get("unlocked") === "1") {
+      localStorage.setItem("chub_access", "unlocked");
+      router.replace("/design");
+    }
+    setSubscribed(localStorage.getItem("chub_access") === "unlocked");
+    setQuotesUsed(Number(localStorage.getItem("chub_quotes_used") ?? 0));
+  }, [searchParams, router]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -133,6 +156,24 @@ export default function DesignChat() {
     }
   }
 
+  async function handleSubscribe() {
+    setLoadingCheckout(true);
+    try {
+      const res = await fetch("/api/create-homeowner-session", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ returnPath: "/design" }),
+      });
+      const { url, error } = await res.json();
+      if (error) { alert(error); return; }
+      window.location.href = url;
+    } catch {
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoadingCheckout(false);
+    }
+  }
+
   async function handleSubmitBrief(e: React.FormEvent) {
     e.preventDefault();
     if (!contact.name || !contact.email) return;
@@ -170,6 +211,11 @@ export default function DesignChat() {
       });
 
       if (!sendRes.ok) throw new Error("Could not send emails");
+
+      // Increment usage counter
+      const newCount = quotesUsed + 1;
+      localStorage.setItem("chub_quotes_used", String(newCount));
+      setQuotesUsed(newCount);
 
       setSubmitted(true);
       setShowModal(false);
@@ -221,10 +267,10 @@ export default function DesignChat() {
           </div>
           {started && showBriefButton && !submitted && (
             <button
-              onClick={() => setShowModal(true)}
-              style={{ marginLeft: "auto", fontSize: "0.78rem", fontWeight: 700, color: "white", background: "linear-gradient(135deg, #c9972a, #e8b84b)", border: "none", padding: "8px 14px", borderRadius: "50px", cursor: "pointer", whiteSpace: "nowrap", fontFamily: "inherit" }}
+              onClick={() => atQuotaLimit ? setShowPaywall(true) : setShowModal(true)}
+              style={{ marginLeft: "auto", fontSize: "0.78rem", fontWeight: 700, color: "white", background: atQuotaLimit ? "linear-gradient(135deg,#6b7280,#9ca3af)" : "linear-gradient(135deg, #c9972a, #e8b84b)", border: "none", padding: "8px 14px", borderRadius: "50px", cursor: "pointer", whiteSpace: "nowrap", fontFamily: "inherit" }}
             >
-              📋 Get My Quote Brief →
+              {atQuotaLimit ? "🔒 Subscribe to continue" : "📋 Get My Quote Brief →"}
             </button>
           )}
           {submitted && (
@@ -301,16 +347,29 @@ export default function DesignChat() {
 
           {/* Prompt to get brief after 2 AI replies */}
           {showBriefButton && !submitted && (
-            <div style={{ background: "linear-gradient(135deg,rgba(201,151,42,0.08),rgba(232,184,75,0.04))", border: "1px solid rgba(201,151,42,0.25)", borderRadius: 14, padding: "16px 18px", textAlign: "center", marginTop: 4 }}>
-              <p style={{ fontSize: "0.88rem", color: "#7a5a1a", margin: "0 0 12px", lineHeight: 1.5 }}>
-                Ready to get this scoped and quoted? I can email you a full brief — then we&apos;ll find QBCC-licensed tradies in your area.
-              </p>
-              <button
-                onClick={() => setShowModal(true)}
-                style={{ background: "linear-gradient(135deg, #c9972a, #e8b84b)", color: "white", border: "none", borderRadius: "50px", padding: "11px 22px", fontWeight: 700, fontSize: "0.9rem", cursor: "pointer", fontFamily: "inherit" }}
-              >
-                📋 Get My Quote Brief →
-              </button>
+            <div style={{ background: atQuotaLimit ? "linear-gradient(135deg,rgba(107,114,128,0.07),rgba(156,163,175,0.04))" : "linear-gradient(135deg,rgba(201,151,42,0.08),rgba(232,184,75,0.04))", border: `1px solid ${atQuotaLimit ? "rgba(107,114,128,0.2)" : "rgba(201,151,42,0.25)"}`, borderRadius: 14, padding: "16px 18px", textAlign: "center", marginTop: 4 }}>
+              {atQuotaLimit ? (
+                <>
+                  <p style={{ fontSize: "0.88rem", color: "#374151", margin: "0 0 6px", fontWeight: 700 }}>🔒 You&apos;ve used your {FREE_QUOTA} free briefs</p>
+                  <p style={{ fontSize: "0.82rem", color: "#6b7280", margin: "0 0 14px", lineHeight: 1.5 }}>Subscribe for $10/month to send unlimited briefs + access the full magazine.</p>
+                  <button onClick={() => setShowPaywall(true)} style={{ background: "linear-gradient(135deg,#0e4440,#1f7a72)", color: "white", border: "none", borderRadius: "50px", padding: "11px 22px", fontWeight: 700, fontSize: "0.9rem", cursor: "pointer", fontFamily: "inherit" }}>
+                    Unlock Unlimited Access →
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p style={{ fontSize: "0.88rem", color: "#7a5a1a", margin: "0 0 6px", lineHeight: 1.5 }}>
+                    Ready to get this scoped and quoted?
+                  </p>
+                  {!subscribed && <p style={{ fontSize: "0.78rem", color: "#9c7d55", margin: "0 0 12px" }}>{FREE_QUOTA - quotesUsed} free brief{FREE_QUOTA - quotesUsed !== 1 ? "s" : ""} remaining</p>}
+                  <button
+                    onClick={() => setShowModal(true)}
+                    style={{ background: "linear-gradient(135deg, #c9972a, #e8b84b)", color: "white", border: "none", borderRadius: "50px", padding: "11px 22px", fontWeight: 700, fontSize: "0.9rem", cursor: "pointer", fontFamily: "inherit" }}
+                  >
+                    📋 Get My Quote Brief →
+                  </button>
+                </>
+              )}
             </div>
           )}
 
@@ -388,6 +447,42 @@ export default function DesignChat() {
           </p>
         </div>
       </div>
+
+      {/* Paywall modal */}
+      {showPaywall && (
+        <div
+          onClick={(e) => { if (e.target === e.currentTarget) setShowPaywall(false); }}
+          style={{ position: "fixed", inset: 0, background: "rgba(10,20,30,0.6)", zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}
+        >
+          <div style={{ background: "white", borderRadius: 20, padding: "32px 28px 28px", width: "100%", maxWidth: 420, boxShadow: "0 24px 60px rgba(0,0,0,0.25)", textAlign: "center" }}>
+            <div style={{ fontSize: "2.5rem", marginBottom: 12 }}>🔒</div>
+            <h2 style={{ margin: "0 0 10px", fontSize: "1.2rem", fontWeight: 800, color: "#1a2332" }}>You&apos;ve used your {FREE_QUOTA} free briefs</h2>
+            <p style={{ color: "#4a607a", fontSize: "0.9rem", lineHeight: 1.7, margin: "0 0 24px" }}>
+              Subscribe for <strong>$10/month AUD</strong> to send unlimited AI quote briefs and read every magazine article. Cancel anytime.
+            </p>
+            <div style={{ background: "#f0f9f8", border: "1px solid #d8f0ed", borderRadius: 12, padding: "16px 20px", marginBottom: 24, textAlign: "left" }}>
+              {[
+                "✅ Unlimited AI quote briefs",
+                "📖 Full magazine access (8+ articles)",
+                "🔧 Matched QBCC-licensed tradies",
+                "❌ Cancel anytime",
+              ].map((item) => (
+                <div key={item} style={{ fontSize: "0.88rem", color: "#2d3f54", marginBottom: 8, fontWeight: 500 }}>{item}</div>
+              ))}
+            </div>
+            <button
+              onClick={handleSubscribe}
+              disabled={loadingCheckout}
+              style={{ width: "100%", background: loadingCheckout ? "#d1d5db" : "linear-gradient(135deg,#c9972a,#e8b84b)", color: "white", border: "none", borderRadius: 12, padding: "14px 0", fontWeight: 700, fontSize: "1rem", cursor: loadingCheckout ? "default" : "pointer", fontFamily: "inherit", marginBottom: 10 }}
+            >
+              {loadingCheckout ? "Loading checkout…" : "Subscribe — $10/month AUD →"}
+            </button>
+            <button onClick={() => setShowPaywall(false)} style={{ background: "none", border: "none", color: "#9ca3af", fontSize: "0.82rem", cursor: "pointer", fontFamily: "inherit" }}>
+              Maybe later
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Contact modal */}
       {showModal && (
