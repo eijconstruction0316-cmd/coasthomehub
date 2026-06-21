@@ -3,16 +3,34 @@ import { NextRequest, NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder");
 
+function esc(str: string | null | undefined): string {
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { jobType, location, timeline, description, name, email, phone } = body;
 
+    // Sanitise all user-supplied strings before embedding in HTML
+    const sJobType = esc(jobType);
+    const sLocation = esc(location);
+    const sTimeline = esc(timeline || "Not specified");
+    const sDescription = esc(description);
+    const sName = esc(name);
+    const sEmail = esc(email);
+    const sPhone = esc(phone);
+
     // ── 1. Email to business (EIJ Construction) ──────────────────
     await resend.emails.send({
       from: process.env.FROM_EMAIL || "noreply@coasthomehub.com.au",
       to: process.env.CONTACT_EMAIL || "info@coasthomehub.com.au",
-      subject: `🔧 New Quote Request: ${jobType} in ${location}`,
+      subject: `🔧 New Quote Request: ${sJobType} in ${sLocation}`,
       html: `
         <div style="font-family: 'Outfit', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f5f0e8; padding: 24px; border-radius: 12px;">
           <div style="background: linear-gradient(135deg, #1f7a72, #3d9990); padding: 24px 28px; border-radius: 10px; margin-bottom: 20px;">
@@ -24,10 +42,10 @@ export async function POST(req: NextRequest) {
             <h2 style="font-size: 1rem; color: #1a2332; margin: 0 0 16px;">Job Details</h2>
             <table style="width: 100%; border-collapse: collapse;">
               ${[
-                ["Job Type", jobType],
-                ["Location", location],
-                ["Timeline", timeline || "Not specified"],
-                ["Description", description],
+                ["Job Type", sJobType],
+                ["Location", sLocation],
+                ["Timeline", sTimeline],
+                ["Description", sDescription],
               ]
                 .map(
                   ([k, v]) => `
@@ -44,9 +62,9 @@ export async function POST(req: NextRequest) {
             <h2 style="font-size: 1rem; color: #1a2332; margin: 0 0 16px;">Customer Contact</h2>
             <table style="width: 100%; border-collapse: collapse;">
               ${[
-                ["Name", name],
-                ["Email", `<a href="mailto:${email}">${email}</a>`],
-                ["Phone", phone ? `<a href="tel:${phone}">${phone}</a>` : "Not provided"],
+                ["Name", sName],
+                ["Email", `<a href="mailto:${sEmail}">${sEmail}</a>`],
+                ["Phone", sPhone ? `<a href="tel:${sPhone}">${sPhone}</a>` : "Not provided"],
               ]
                 .map(
                   ([k, v]) => `
@@ -57,8 +75,8 @@ export async function POST(req: NextRequest) {
                 )
                 .join("")}
             </table>
-            <a href="mailto:${email}" style="display: inline-block; margin-top: 16px; background: linear-gradient(135deg, #1f7a72, #3d9990); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem;">
-              Reply to ${name} →
+            <a href="mailto:${sEmail}" style="display: inline-block; margin-top: 16px; background: linear-gradient(135deg, #1f7a72, #3d9990); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem;">
+              Reply to ${sName} →
             </a>
           </div>
 
@@ -82,9 +100,9 @@ export async function POST(req: NextRequest) {
           </div>
 
           <div style="background: white; border-radius: 10px; padding: 24px; margin-bottom: 16px;">
-            <p style="color: #1a2332; font-size: 1rem; margin: 0 0 12px;">Hi <strong>${name}</strong>,</p>
+            <p style="color: #1a2332; font-size: 1rem; margin: 0 0 12px;">Hi <strong>${sName}</strong>,</p>
             <p style="color: #4a607a; line-height: 1.7; margin: 0 0 20px;">
-              Thanks for your quote request! We've received your enquiry for <strong>${jobType}</strong> in <strong>${location}</strong>.
+              Thanks for your quote request! We've received your enquiry for <strong>${sJobType}</strong> in <strong>${sLocation}</strong>.
             </p>
             <p style="color: #4a607a; line-height: 1.7; margin: 0 0 20px;">
               We'll review your request and connect you with <strong>1–3 licensed local tradies</strong> within <strong>7 days</strong>.
@@ -93,9 +111,9 @@ export async function POST(req: NextRequest) {
               <strong style="color: #155e58; font-size: 0.85rem;">Your Request Summary</strong>
               <table style="width: 100%; margin-top: 10px; border-collapse: collapse;">
                 ${[
-                  ["Job Type", jobType],
-                  ["Location", location],
-                  ["Timeline", timeline || "Not specified"],
+                  ["Job Type", sJobType],
+                  ["Location", sLocation],
+                  ["Timeline", sTimeline],
                 ]
                   .map(
                     ([k, v]) => `

@@ -5,6 +5,15 @@ const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder");
 
 export const runtime = "nodejs";
 
+function esc(str: string | null | undefined): string {
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 type Report = {
   jobType: string;
   location: string | null;
@@ -184,8 +193,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
+    // Escape customer-supplied strings before use in HTML
+    const safeName = esc(customer.name);
+    const safeEmail = esc(customer.email);
+    const safePhone = esc(customer.phone);
+    const safeSuburb = esc(customer.suburb);
+
     const conversation = messages
-      .map((m) => `${m.role === "user" ? customer.name : "CoastAI"}: ${m.text}`)
+      .map((m) => `${m.role === "user" ? esc(customer.name) : "CoastAI"}: ${esc(m.text)}`)
       .join("\n\n");
 
     const from = process.env.FROM_EMAIL || "CoastHomeHub <info@coasthomehub.com.au>";
@@ -195,14 +210,14 @@ export async function POST(req: NextRequest) {
       resend.emails.send({
         from,
         to: customer.email,
-        subject: `✅ Your renovation brief is ready — ${report.jobType}`,
-        html: customerEmail(report, customer.name),
+        subject: `✅ Your renovation brief is ready — ${esc(report.jobType)}`,
+        html: customerEmail(report, safeName),
       }),
       resend.emails.send({
         from,
         to: contactEmail,
-        subject: `🔧 New Quote: ${report.jobType}${report.location ? ` · ${report.location}` : ""} — ${customer.name}`,
-        html: businessEmail(report, customer, conversation),
+        subject: `🔧 New Quote: ${esc(report.jobType)}${report.location ? ` · ${esc(report.location)}` : ""} — ${safeName}`,
+        html: businessEmail(report, { name: safeName, email: safeEmail, phone: safePhone, suburb: safeSuburb }, conversation),
         replyTo: customer.email,
       }),
     ]);

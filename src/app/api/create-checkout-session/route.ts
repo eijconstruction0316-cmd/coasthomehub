@@ -42,12 +42,13 @@ export async function POST(req: NextRequest) {
 
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3031";
 
-    // If Stripe price IDs aren't configured yet, redirect to a mock success page
-    if (!priceId || priceId.includes("price_") === false || priceId === `price_${plan}_id_here`) {
-      // Development mode — skip real Stripe, go to success
-      return NextResponse.json({
-        url: `${appUrl}/tradies/register/success?plan=${plan}&name=${encodeURIComponent(contactName)}&business=${encodeURIComponent(businessName)}&email=${encodeURIComponent(email)}`,
-      });
+    // Block checkout if Stripe price ID is not properly configured
+    if (!priceId || !priceId.startsWith("price_")) {
+      console.error(`Stripe price ID not configured for plan: ${plan}`);
+      return NextResponse.json(
+        { error: "Payment is not configured yet. Please contact us at info@coasthomehub.com.au to register." },
+        { status: 503 }
+      );
     }
 
     // Create or retrieve Stripe customer
@@ -96,7 +97,7 @@ export async function POST(req: NextRequest) {
       },
       custom_text: {
         submit: {
-          message: `Welcome to CoastHomeHub, ${businessName}! Your founding member profile will go live within 24 hours.`,
+          message: `Welcome to CoastHomeHub, ${businessName}! Your founding member profile will go live within 7 days after licence verification.`,
         },
       },
     });

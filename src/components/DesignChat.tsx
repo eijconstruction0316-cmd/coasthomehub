@@ -28,15 +28,32 @@ function renderRich(text: string) {
   ));
 }
 
+// Compress + resize client-side to stay under the 4 MB Next.js body limit.
+// Max dimension 1 200 px, JPEG 80 % quality → typically < 300 KB per photo.
 function fileToImage(file: File): Promise<ChatImage> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload = () => {
-      const result = String(reader.result);
-      const data = result.split(",")[1] || "";
-      resolve({ media_type: file.type || "image/jpeg", data, preview: result });
-    };
     reader.onerror = reject;
+    reader.onload = () => {
+      const img = new Image();
+      img.onerror = reject;
+      img.onload = () => {
+        const MAX = 1200;
+        let { width, height } = img;
+        if (width > MAX || height > MAX) {
+          if (width >= height) { height = Math.round((height * MAX) / width); width = MAX; }
+          else { width = Math.round((width * MAX) / height); height = MAX; }
+        }
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d")!.drawImage(img, 0, 0, width, height);
+        const preview = canvas.toDataURL("image/jpeg", 0.8);
+        const data = preview.split(",")[1] || "";
+        resolve({ media_type: "image/jpeg", data, preview });
+      };
+      img.src = String(reader.result);
+    };
     reader.readAsDataURL(file);
   });
 }
