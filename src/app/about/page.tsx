@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 
 const team = [
   {
-    name: "Peter Kim",
+    name: "James Whitfield",
     role: "Founder & Director — EIJ Construction",
     emoji: "👷",
     color: "var(--ocean-400)",
-    bio: "With over 8 years of hands-on experience in waterproofing, silicone sealing, and bathroom renovation across Queensland, Peter founded EIJ Construction to deliver premium results with a personal touch. Originally from South Korea, Peter brings meticulous attention to detail and an international perspective on modern home design to every project.",
-    credentials: ["QBCC Licensed Builder", "AS 3740 Waterproofing Certified", "8+ Years Experience", "Gold Coast · Sunshine Coast"],
+    bio: "James founded EIJ Construction to raise the bar on waterproofing and home renovation quality across South East Queensland. A QBCC-licensed builder with deep roots in the Gold Coast and Sunshine Coast, James brings an eye for premium design and a commitment to workmanship that stands the test of Queensland's climate.",
+    credentials: ["QBCC Licensed Builder", "AS 3740 Waterproofing Certified", "Gold Coast · Sunshine Coast", "SEQ Specialist"],
   },
 ];
 

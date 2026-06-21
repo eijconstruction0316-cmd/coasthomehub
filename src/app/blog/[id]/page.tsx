@@ -24,7 +24,7 @@ const posts: Record<string, {
     color: "var(--ocean-400)",
     date: "June 12, 2025",
     readTime: "5 min read",
-    author: "Peter Kim, EIJ Construction",
+    author: "James Whitfield, EIJ Construction",
     intro: "Australia's home design landscape is evolving fast. After years of grey-on-grey minimalism, 2025 is seeing a bold shift toward warmth, texture, and personality. Here's what's dominating Queensland interiors this year — and why.",
     sections: [
       {
@@ -84,7 +84,7 @@ const posts: Record<string, {
     color: "var(--sand-500)",
     date: "June 8, 2025",
     readTime: "8 min read",
-    author: "Peter Kim, EIJ Construction",
+    author: "James Whitfield, EIJ Construction",
     intro: "Mouldy, cracked, or discoloured silicone is one of the most common home maintenance issues in Queensland. The good news? If you're reasonably handy, you can replace shower silicone yourself in a day — saving hundreds on a call-out fee. Here's exactly how to do it.",
     sections: [
       {
@@ -132,7 +132,7 @@ const posts: Record<string, {
     color: "#7c3aed",
     date: "June 3, 2025",
     readTime: "6 min read",
-    author: "Peter Kim, EIJ Construction",
+    author: "James Whitfield, EIJ Construction",
     intro: "Queensland's subtropical climate — intense UV, heavy summer rainfall, and high humidity — is one of the most demanding environments for home waterproofing in Australia. Here's what you need to know before your next renovation.",
     sections: [
       {
@@ -172,7 +172,7 @@ const posts: Record<string, {
     color: "#0891b2",
     date: "May 28, 2025",
     readTime: "7 min read",
-    author: "Peter Kim, EIJ Construction",
+    author: "James Whitfield, EIJ Construction",
     intro: "Queensland homeowners have always been drawn to the coast — but 2025's coastal minimalism is nothing like the seashell-and-driftwood interiors of years past. It's sophisticated, calm, and built for the way Queenslanders actually live.",
     sections: [
       {
@@ -212,7 +212,7 @@ const posts: Record<string, {
     color: "#16a34a",
     date: "May 22, 2025",
     readTime: "9 min read",
-    author: "Peter Kim, EIJ Construction",
+    author: "James Whitfield, EIJ Construction",
     intro: "2025 pricing for bathroom renovations across Queensland — from a basic refresh to a luxury master ensuite. We've surveyed dozens of licensed tradies to give you real numbers, not vague estimates.",
     sections: [
       {
@@ -256,7 +256,7 @@ const posts: Record<string, {
     color: "#d97706",
     date: "May 15, 2025",
     readTime: "10 min read",
-    author: "Peter Kim, EIJ Construction",
+    author: "James Whitfield, EIJ Construction",
     intro: "DIY tiling can save you thousands — or cost you thousands more if done wrong. A licensed Queensland tiler shares what homeowners get wrong, what requires a licensed professional, and how to get professional results if you choose to DIY.",
     sections: [
       {
@@ -296,7 +296,7 @@ const posts: Record<string, {
     color: "var(--gold)",
     date: "June 21, 2026",
     readTime: "6 min read",
-    author: "Peter Kim, EIJ Construction",
+    author: "James Whitfield, EIJ Construction",
     intro: "Almost every homeowner asks it: “Why is this so expensive? My neighbour got theirs done for half that.” It’s a fair question — and the honest answer surprises most people. After years on the tools across South East QLD, here’s what that “half price” quote usually leaves out, and why the real cost of a renovation is mostly people, not paint.",
     sections: [
       {
@@ -337,7 +337,7 @@ const posts: Record<string, {
     color: "#0891b2",
     date: "June 14, 2026",
     readTime: "9 min read",
-    author: "Peter Kim, EIJ Construction",
+    author: "James Whitfield, EIJ Construction",
     intro: "Crumbling, discoloured grout makes even a clean bathroom look dirty — and left too long, it lets water seep behind tiles and ruin your waterproofing. The good news: re-grouting is one of the most satisfying DIY jobs you can do on a weekend. Here's exactly how to do it properly.",
     sections: [
       {
@@ -390,7 +390,7 @@ const posts: Record<string, {
     color: "#16a34a",
     date: "June 10, 2026",
     readTime: "7 min read",
-    author: "Peter Kim, EIJ Construction",
+    author: "James Whitfield, EIJ Construction",
     intro: "A running toilet can waste up to 200,000 litres of water a year — and add hundreds of dollars to your water bill. In most cases the fix costs $20–$40 in parts and takes under an hour with no special skills. Here's how to diagnose and fix the two most common causes.",
     sections: [
       {
@@ -439,7 +439,7 @@ const posts: Record<string, {
     color: "#d97706",
     date: "June 7, 2026",
     readTime: "11 min read",
-    author: "Peter Kim, EIJ Construction",
+    author: "James Whitfield, EIJ Construction",
     intro: "Interior painting is one of the highest-ROI DIY jobs you can do — a single room weekend project can dramatically transform a space. But in Queensland's humid subtropical climate, getting a lasting, professional-quality finish requires the right products and prep. Here's the complete guide.",
     sections: [
       {
@@ -584,7 +584,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
                   👷
                 </div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 700, marginBottom: 4 }}>Written by Peter Kim</div>
+                  <div style={{ fontWeight: 700, marginBottom: 4 }}>Written by James Whitfield</div>
                   <div style={{ fontSize: "0.85rem", color: "var(--slate-light)" }}>QBCC-licensed waterproofing specialist & founder of EIJ Construction. Gold Coast · Sunshine Coast · SEQ.</div>
                 </div>
                 <Link href="/quote" className="btn-primary" style={{ fontSize: "0.875rem", padding: "10px 20px", whiteSpace: "nowrap" }} id="article-get-quote">
