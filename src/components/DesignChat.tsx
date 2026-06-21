@@ -120,19 +120,23 @@ export default function DesignChat() {
     setSubmitError("");
 
     try {
+      // Strip image binary data — only text + hasPhoto flag is needed for report generation
+      const textMessages = messages.map((m) => ({
+        role: m.role,
+        text: m.text,
+        hasPhoto: !!m.image,
+      }));
+
       const reportRes = await fetch("/api/generate-report", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          messages: messages.map((m) => ({
-            role: m.role,
-            text: m.text,
-            image: m.image ? { media_type: m.image.media_type, data: m.image.data } : undefined,
-          })),
-        }),
+        body: JSON.stringify({ messages: textMessages }),
       });
 
-      if (!reportRes.ok) throw new Error("Could not generate report");
+      if (!reportRes.ok) {
+        const body = await reportRes.json().catch(() => ({}));
+        throw new Error(body.error || "Could not generate report");
+      }
       const { report } = await reportRes.json();
 
       const sendRes = await fetch("/api/send-report", {

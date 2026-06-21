@@ -21,7 +21,7 @@ Return ONLY valid JSON with these exact fields (use null for unknown values):
   "hasPhoto": boolean          // true if user uploaded a photo
 }`;
 
-type InMsg = { role: string; text: string; image?: { media_type: string; data: string } };
+type InMsg = { role: string; text: string; hasPhoto?: boolean };
 
 export async function POST(req: NextRequest) {
   const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
   }
   if (messages.length < 2) return NextResponse.json({ error: "Not enough conversation" }, { status: 400 });
 
-  const hasPhoto = messages.some((m) => m.image?.data);
+  const hasPhoto = messages.some((m) => m.hasPhoto);
 
   const conversationText = messages
     .map((m) => `${m.role === "user" ? "Homeowner" : "CoastAI"}: ${m.text}`)
