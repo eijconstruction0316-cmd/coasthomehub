@@ -92,7 +92,7 @@ export default function QuotePage() {
             Quote Request Received!
           </h2>
           <p style={{ color: "var(--slate-light)", fontSize: "1.05rem", lineHeight: 1.7, marginBottom: 32 }}>
-            Thanks, <strong>{form.name}</strong>! We&apos;ll review your request and connect you with up to 3 QBCC-licensed local tradies within <strong>24 hours</strong>.
+            Thanks, <strong>{form.name}</strong>! We&apos;ll review your request and connect you with up to 3 QBCC-licensed local tradies within <strong>7 days</strong>.
           </p>
           <div
             style={{
@@ -378,7 +378,7 @@ export default function QuotePage() {
                   {[
                     "Up to 3 matched local quotes",
                     "QBCC-licensed tradies only",
-                    "Reply within 24 hours",
+                    "Matched within 7 days",
                     "100% free — no obligation",
                     "Your details stay private",
                   ].map((item) => (

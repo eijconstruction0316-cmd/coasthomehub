@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
               Thanks for your quote request! We've received your enquiry for <strong>${jobType}</strong> in <strong>${location}</strong>.
             </p>
             <p style="color: #4a607a; line-height: 1.7; margin: 0 0 20px;">
-              We'll review your request and connect you with <strong>1–3 licensed local tradies</strong> within <strong>24 hours</strong>.
+              We'll review your request and connect you with <strong>1–3 licensed local tradies</strong> within <strong>7 days</strong>.
             </p>
             <div style="background: #f0f9f8; border: 1px solid #a8d8d3; border-radius: 8px; padding: 16px 20px; margin-top: 16px;">
               <strong style="color: #155e58; font-size: 0.85rem;">Your Request Summary</strong>
