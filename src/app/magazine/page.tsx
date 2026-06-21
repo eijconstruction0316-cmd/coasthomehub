@@ -10,6 +10,7 @@ const ARTICLES = [
     id: 1,
     free: true,
     category: "COST GUIDE",
+    image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80&auto=format&fit=crop",
     title: "The Hidden Costs of Bathroom Renovations in QLD",
     excerpt: "Most homeowners budget for tiles and vanities — but forget the four costs that blow out 80% of bathroom renos. We break them down with real QLD figures.",
     readTime: "5 min read",
@@ -42,6 +43,7 @@ Moving a wall? Relocating the shower? That's a building approval. Skipping it me
     id: 2,
     free: true,
     category: "DESIGN TRENDS",
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&auto=format&fit=crop",
     title: "Coastal Kitchen Refresh: QLD Trends for 2026",
     excerpt: "Bright white kitchens are out. These are the palettes, materials and layouts dominating South East QLD renovations this year — and why they work in our climate.",
     readTime: "4 min read",
@@ -77,6 +79,7 @@ Open-plan kitchens are giving way to defined galley kitchens with a clear "work 
     id: 3,
     free: false,
     category: "LEGAL & COMPLIANCE",
+    image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&q=80&auto=format&fit=crop",
     title: "QBCC Licence Check: What Every QLD Homeowner Must Know",
     excerpt: "Hiring an unlicensed tradie in Queensland voids your home warranty and can cost you tens of thousands. Here's the 2-minute check that protects you.",
     readTime: "3 min read",
@@ -86,6 +89,7 @@ Open-plan kitchens are giving way to defined galley kitchens with a clear "work 
     id: 4,
     free: false,
     category: "OUTDOOR LIVING",
+    image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80&auto=format&fit=crop",
     title: "Deck vs Patio: Which Adds More Value to Your QLD Home?",
     excerpt: "Both can transform your outdoor space — but only one gives you a measurable return at sale time. We look at the numbers, the council rules, and the QLD climate factor.",
     readTime: "6 min read",
@@ -95,6 +99,7 @@ Open-plan kitchens are giving way to defined galley kitchens with a clear "work 
     id: 5,
     free: false,
     category: "PROJECT PLANNING",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80&auto=format&fit=crop",
     title: "The Ultimate QLD Home Renovation Timeline (2026 Edition)",
     excerpt: "From first quote to final inspection — a week-by-week timeline for every major renovation type, with Queensland-specific delays built in.",
     readTime: "8 min read",
@@ -104,6 +109,7 @@ Open-plan kitchens are giving way to defined galley kitchens with a clear "work 
     id: 6,
     free: false,
     category: "MATERIALS",
+    image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80&auto=format&fit=crop",
     title: "What Actually Survives the QLD Climate: A Material Guide",
     excerpt: "UV, humidity, salt air, cyclone-prep — Queensland throws a lot at your home. Which materials win? Which ones fail? Real data from QLD tradespeople.",
     readTime: "7 min read",
@@ -113,6 +119,7 @@ Open-plan kitchens are giving way to defined galley kitchens with a clear "work 
     id: 7,
     free: false,
     category: "INVESTMENT",
+    image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80&auto=format&fit=crop",
     title: "Which Renovations Return the Most in South East QLD (2026 Data)",
     excerpt: "Not all renovations add equal value. We surveyed QLD property valuers and agents to rank the renovations with the highest return on investment in our market.",
     readTime: "5 min read",
@@ -122,6 +129,7 @@ Open-plan kitchens are giving way to defined galley kitchens with a clear "work 
     id: 8,
     free: false,
     category: "DIY vs TRADIE",
+    image: "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=600&q=80&auto=format&fit=crop",
     title: "What You Can (and Cannot) Legally DIY in Queensland",
     excerpt: "QLD has some of the strictest owner-builder rules in Australia. Get it wrong and you face fines, voided insurance, and unsellable property. Know the line.",
     readTime: "4 min read",
@@ -250,13 +258,29 @@ function MagazineContent() {
                 onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 24px rgba(0,0,0,0.1)"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = ""; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 8px rgba(0,0,0,0.06)"; }}
               >
-                {/* Category stripe */}
-                <div style={{ height: 5, background: a.free ? "linear-gradient(90deg,#1f7a72,#3d9990)" : "linear-gradient(90deg,#c9972a,#e8b84b)" }} />
-                <div style={{ padding: "22px 22px 20px" }}>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
-                    <span style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: ".08em", color: a.free ? "#1f7a72" : "#c9972a", background: a.free ? "#f0f9f8" : "rgba(201,151,42,0.1)", padding: "3px 10px", borderRadius: 50 }}>{a.category}</span>
-                    {locked ? <span style={{ fontSize: "0.75rem", color: "#9ca3af" }}>🔒 Subscribers</span> : <span style={{ fontSize: "0.75rem", color: "#1f7a72", fontWeight: 600 }}>✓ Free</span>}
+                {/* Cover image */}
+                <div style={{ position: "relative", height: 180, overflow: "hidden", background: "#e8dfd0" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={(a as typeof a & { image?: string }).image}
+                    alt={a.title}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  />
+                  {locked && (
+                    <div style={{ position: "absolute", inset: 0, background: "rgba(10,20,30,0.45)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <span style={{ fontSize: "1.8rem" }}>🔒</span>
+                    </div>
+                  )}
+                  <div style={{ position: "absolute", top: 10, left: 10 }}>
+                    <span style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: ".07em", color: a.free ? "#1f7a72" : "#c9972a", background: "white", padding: "3px 10px", borderRadius: 50 }}>{a.category}</span>
                   </div>
+                  {a.free && (
+                    <div style={{ position: "absolute", top: 10, right: 10 }}>
+                      <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "white", background: "#1f7a72", padding: "3px 10px", borderRadius: 50 }}>FREE</span>
+                    </div>
+                  )}
+                </div>
+                <div style={{ padding: "18px 20px 18px" }}>
                   <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "#1a2332", margin: "0 0 10px", lineHeight: 1.4 }}>{a.title}</h3>
                   <p style={{ fontSize: "0.87rem", color: "#4a607a", lineHeight: 1.6, margin: "0 0 16px" }}>{a.excerpt}</p>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
