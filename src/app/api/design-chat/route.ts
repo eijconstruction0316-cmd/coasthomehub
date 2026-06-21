@@ -24,7 +24,7 @@ export const maxDuration = 60;
 type InMsg = {
   role: "user" | "assistant";
   text: string;
-  image?: { media_type: string; data: string }; // base64 (no data: prefix)
+  images?: { media_type: string; data: string }[]; // multiple base64 images
 };
 
 type GeminiPart =
@@ -61,8 +61,8 @@ export async function POST(req: NextRequest) {
   // Gemini uses "user"/"model" roles (not "assistant").
   const contents = messages.map((m) => {
     const parts: GeminiPart[] = [];
-    if (m.image?.data) {
-      parts.push({ inlineData: { mimeType: m.image.media_type, data: m.image.data } });
+    for (const img of m.images ?? []) {
+      if (img.data) parts.push({ inlineData: { mimeType: img.media_type, data: img.data } });
     }
     parts.push({ text: m.text || "" });
     return { role: m.role === "assistant" ? "model" : "user", parts };

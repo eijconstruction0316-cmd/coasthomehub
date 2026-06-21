@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 type ChatImage = { media_type: string; data: string; preview: string };
-type Msg = { role: "user" | "assistant"; text: string; image?: ChatImage };
+type Msg = { role: "user" | "assistant"; text: string; images?: ChatImage[] };
 type ContactForm = { name: string; email: string; phone: string; suburb: string };
 
 const STARTERS = [
@@ -44,7 +44,7 @@ function fileToImage(file: File): Promise<ChatImage> {
 export default function DesignChat() {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
-  const [pendingImage, setPendingImage] = useState<ChatImage | null>(null);
+  const [pendingImages, setPendingImages] = useState<ChatImage[]>([]);
   const [busy, setBusy] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
@@ -66,13 +66,17 @@ export default function DesignChat() {
 
   async function send(textArg?: string) {
     const text = (textArg ?? input).trim();
-    if ((!text && !pendingImage) || busy) return;
+    if ((!text && pendingImages.length === 0) || busy) return;
 
-    const userMsg: Msg = { role: "user", text: text || "What could you do with this?", image: pendingImage ?? undefined };
+    const userMsg: Msg = {
+      role: "user",
+      text: text || (pendingImages.length > 1 ? `What could you do with these ${pendingImages.length} photos?` : "What could you do with this?"),
+      images: pendingImages.length > 0 ? pendingImages : undefined,
+    };
     const next = [...messages, userMsg];
     setMessages([...next, { role: "assistant", text: "" }]);
     setInput("");
-    setPendingImage(null);
+    setPendingImages([]);
     setBusy(true);
 
     try {
@@ -83,16 +87,15 @@ export default function DesignChat() {
           messages: next.map((m) => ({
             role: m.role,
             text: m.text,
-            image: m.image ? { media_type: m.image.media_type, data: m.image.data } : undefined,
+            images: m.images?.map((img) => ({ media_type: img.media_type, data: img.data })),
           })),
         }),
       });
 
       if (!res.ok || !res.body) {
-        const msg =
-          res.status === 503
-            ? "The AI designer isn't switched on yet on this site. Meanwhile, you can describe your project below."
-            : "Sorry — something went wrong. Please try again.";
+        const msg = res.status === 503
+          ? "The AI designer isn't switched on yet on this site. Meanwhile, you can describe your project below."
+          : "Sorry — something went wrong. Please try again.";
         setMessages((m) => { const c = [...m]; c[c.length - 1] = { role: "assistant", text: msg }; return c; });
         return;
       }
@@ -120,11 +123,11 @@ export default function DesignChat() {
     setSubmitError("");
 
     try {
-      // Strip image binary data — only text + hasPhoto flag is needed for report generation
       const textMessages = messages.map((m) => ({
         role: m.role,
         text: m.text,
-        hasPhoto: !!m.image,
+        hasPhoto: (m.images?.length ?? 0) > 0,
+        imageCount: m.images?.length ?? 0,
       }));
 
       const reportRes = await fetch("/api/generate-report", {
@@ -161,9 +164,15 @@ export default function DesignChat() {
   }
 
   async function onPick(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (file) setPendingImage(await fileToImage(file));
+    const files = Array.from(e.target.files ?? []);
+    if (files.length === 0) return;
+    const converted = await Promise.all(files.map(fileToImage));
+    setPendingImages((prev) => [...prev, ...converted].slice(0, 6)); // max 6 photos
     e.target.value = "";
+  }
+
+  function removeImage(idx: number) {
+    setPendingImages((prev) => prev.filter((_, i) => i !== idx));
   }
 
   function field(label: string, key: keyof ContactForm, type = "text", required = false) {
@@ -215,7 +224,7 @@ export default function DesignChat() {
               <div style={{ fontSize: "2.4rem", marginBottom: 10 }}>📸</div>
               <h3 style={{ fontSize: "1.15rem", marginBottom: 8 }}>Show me your space</h3>
               <p style={{ color: "var(--slate-light)", fontSize: "0.92rem", lineHeight: 1.6, maxWidth: 380, margin: "0 auto 22px" }}>
-                Upload a photo and tell me what you&apos;re dreaming of. I&apos;ll sketch a concept, give you a real QLD ballpark, then line up licensed local tradies to quote it.
+                Upload photos and tell me what you&apos;re dreaming of. I&apos;ll sketch a concept, give you a real QLD ballpark, then line up licensed local tradies to quote it.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center", maxWidth: 440, margin: "0 auto" }}>
                 {STARTERS.map((s) => (
@@ -231,9 +240,32 @@ export default function DesignChat() {
             m.role === "user" ? (
               <div key={i} style={{ display: "flex", justifyContent: "flex-end" }}>
                 <div style={{ maxWidth: "82%" }}>
-                  {m.image && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={m.image.preview} alt="Your space" style={{ width: "100%", maxWidth: 260, borderRadius: "14px 14px 4px 14px", marginBottom: 6, display: "block", marginLeft: "auto", boxShadow: "var(--shadow-sm)" }} />
+                  {/* Photo grid */}
+                  {m.images && m.images.length > 0 && (
+                    <div style={{
+                      display: "grid",
+                      gridTemplateColumns: m.images.length === 1 ? "1fr" : m.images.length === 2 ? "1fr 1fr" : "1fr 1fr 1fr",
+                      gap: 4,
+                      marginBottom: 6,
+                      maxWidth: 280,
+                      marginLeft: "auto",
+                    }}>
+                      {m.images.map((img, ii) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          key={ii}
+                          src={img.preview}
+                          alt={`Photo ${ii + 1}`}
+                          style={{
+                            width: "100%",
+                            aspectRatio: "1",
+                            objectFit: "cover",
+                            borderRadius: m.images!.length === 1 ? "14px 14px 4px 14px" : ii === 0 ? "10px 4px 4px 4px" : ii === m.images!.length - 1 ? "4px 10px 14px 4px" : "4px",
+                            boxShadow: "var(--shadow-sm)",
+                          }}
+                        />
+                      ))}
+                    </div>
                   )}
                   <div style={{ background: "var(--ocean-500)", color: "white", padding: "10px 14px", borderRadius: "14px 14px 4px 14px", fontSize: "0.9rem", lineHeight: 1.5, whiteSpace: "pre-wrap" }}>
                     {m.text}
@@ -276,28 +308,61 @@ export default function DesignChat() {
 
         {/* Composer */}
         <div style={{ borderTop: "1px solid var(--sand-100)", padding: "12px 14px" }}>
-          {pendingImage && (
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={pendingImage.preview} alt="Attached" style={{ width: 42, height: 42, objectFit: "cover", borderRadius: 8 }} />
-              <span style={{ fontSize: "0.8rem", color: "var(--slate-light)" }}>Photo attached</span>
-              <button onClick={() => setPendingImage(null)} style={{ marginLeft: "auto", background: "none", border: "none", color: "var(--slate-light)", cursor: "pointer", fontSize: "1rem" }}>✕</button>
+          {/* Pending image thumbnails */}
+          {pendingImages.length > 0 && (
+            <div style={{ display: "flex", gap: 8, marginBottom: 10, flexWrap: "wrap" }}>
+              {pendingImages.map((img, idx) => (
+                <div key={idx} style={{ position: "relative", flexShrink: 0 }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={img.preview} alt={`Photo ${idx + 1}`} style={{ width: 52, height: 52, objectFit: "cover", borderRadius: 10, border: "2px solid var(--ocean-100)", display: "block" }} />
+                  <button
+                    onClick={() => removeImage(idx)}
+                    style={{ position: "absolute", top: -6, right: -6, width: 18, height: 18, borderRadius: "50%", background: "#ef4444", color: "white", border: "none", cursor: "pointer", fontSize: "0.6rem", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1 }}
+                  >
+                    ✕
+                  </button>
+                </div>
+              ))}
+              {pendingImages.length < 6 && (
+                <button
+                  onClick={() => fileRef.current?.click()}
+                  style={{ width: 52, height: 52, borderRadius: 10, border: "2px dashed var(--ocean-200)", background: "var(--ocean-50)", color: "var(--ocean-400)", cursor: "pointer", fontSize: "1.3rem", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}
+                >
+                  +
+                </button>
+              )}
+              <span style={{ alignSelf: "center", fontSize: "0.75rem", color: "var(--slate-light)" }}>
+                {pendingImages.length}/6 photo{pendingImages.length !== 1 ? "s" : ""}
+              </span>
             </div>
           )}
+
           <div style={{ display: "flex", gap: 8, alignItems: "flex-end" }}>
-            <input ref={fileRef} type="file" accept="image/*" onChange={onPick} style={{ display: "none" }} />
-            <button onClick={() => fileRef.current?.click()} aria-label="Upload a photo" style={{ flexShrink: 0, width: 42, height: 42, borderRadius: 12, border: "1px solid var(--sand-200)", background: "white", cursor: "pointer", fontSize: "1.15rem" }}>
-              📷
-            </button>
+            <input ref={fileRef} type="file" accept="image/*" multiple onChange={onPick} style={{ display: "none" }} />
+            {pendingImages.length === 0 && (
+              <button
+                onClick={() => fileRef.current?.click()}
+                aria-label="Upload photos"
+                title="Upload up to 6 photos"
+                style={{ flexShrink: 0, width: 42, height: 42, borderRadius: 12, border: "1px solid var(--sand-200)", background: "white", cursor: "pointer", fontSize: "1.15rem" }}
+              >
+                📷
+              </button>
+            )}
             <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } }}
-              placeholder="Describe your space, or attach a photo…"
+              placeholder={pendingImages.length > 0 ? `${pendingImages.length} photo${pendingImages.length !== 1 ? "s" : ""} attached — describe what you want…` : "Describe your space, or attach photos…"}
               rows={1}
               style={{ flex: 1, resize: "none", border: "1px solid var(--sand-200)", borderRadius: 12, padding: "11px 14px", fontSize: "0.92rem", fontFamily: "inherit", lineHeight: 1.4, maxHeight: 120, outline: "none", color: "var(--slate-dark)" }}
             />
-            <button onClick={() => send()} disabled={busy || (!input.trim() && !pendingImage)} aria-label="Send" style={{ flexShrink: 0, width: 42, height: 42, borderRadius: 12, border: "none", background: busy || (!input.trim() && !pendingImage) ? "var(--sand-300)" : "linear-gradient(135deg, var(--ocean-500), var(--ocean-400))", color: "white", cursor: busy ? "default" : "pointer", fontSize: "1.1rem" }}>
+            <button
+              onClick={() => send()}
+              disabled={busy || (!input.trim() && pendingImages.length === 0)}
+              aria-label="Send"
+              style={{ flexShrink: 0, width: 42, height: 42, borderRadius: 12, border: "none", background: busy || (!input.trim() && pendingImages.length === 0) ? "var(--sand-300)" : "linear-gradient(135deg, var(--ocean-500), var(--ocean-400))", color: "white", cursor: busy ? "default" : "pointer", fontSize: "1.1rem" }}
+            >
               ➤
             </button>
           </div>
