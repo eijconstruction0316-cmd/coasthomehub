@@ -151,67 +151,110 @@ export default function TradiesPage() {
 
       {/* Access */}
       <section className="section" id="access" style={{ background: "white" }}>
-        <div className="container-md">
+        <div className="container-lg">
           <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <div className="badge" style={{ marginBottom: 16, display: "inline-flex" }}>Founding Member Access</div>
-            <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.6rem)", marginBottom: 12 }}>Simple, Flat-Fee Access</h2>
-            <p style={{ color: "var(--slate-light)", fontSize: "1rem", maxWidth: 520, margin: "0 auto" }}>
-              One flat monthly fee. No lead caps, no pay-per-click, no commission. You compete on your skills and speed — not your budget.
+            <div className="badge" style={{ marginBottom: 16, display: "inline-flex" }}>Choose Your Plan</div>
+            <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.6rem)", marginBottom: 12 }}>Flat-Fee. No Commissions. No Lock-In.</h2>
+            <p style={{ color: "var(--slate-light)", fontSize: "1rem", maxWidth: 560, margin: "0 auto" }}>
+              Pick the plan that fits your growth stage. Upgrade or downgrade anytime — your leads keep coming.
             </p>
           </div>
 
-          <div
-            style={{
-              maxWidth: 480,
-              margin: "0 auto",
-              border: "2px solid var(--ocean-400)",
-              borderRadius: "var(--radius-xl)",
-              padding: "40px 36px",
-              background: "linear-gradient(160deg, var(--ocean-50), white)",
-              boxShadow: "var(--shadow-lg)",
-              textAlign: "center",
-              position: "relative",
-            }}
-          >
-            <div style={{ position: "absolute", top: -16, left: "50%", transform: "translateX(-50%)", background: "var(--ocean-500)", color: "white", fontSize: "0.75rem", fontWeight: 800, padding: "6px 18px", borderRadius: "50px", whiteSpace: "nowrap", letterSpacing: "0.04em" }}>
-              ⭐ FOUNDING MEMBER RATE
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, maxWidth: 960, margin: "0 auto" }} className="plans-grid">
+
+            {/* Founding */}
+            <div style={{ border: "1px solid var(--sand-200)", borderRadius: "var(--radius-xl)", padding: "36px 28px", background: "white", boxShadow: "var(--shadow-sm)", display: "flex", flexDirection: "column", position: "relative" }}>
+              <h3 style={{ fontSize: "1.1rem", color: "var(--slate-dark)", marginBottom: 4 }}>Founding</h3>
+              <p style={{ fontSize: "0.82rem", color: "var(--slate-light)", marginBottom: 20 }}>Get started with qualified leads</p>
+              <div style={{ marginBottom: 24 }}>
+                <span style={{ fontSize: "2.6rem", fontWeight: 900, color: "var(--slate-dark)", lineHeight: 1 }}>$149</span>
+                <span style={{ color: "var(--slate-light)", fontSize: "0.9rem" }}> /month +GST</span>
+              </div>
+              <ul style={{ listStyle: "none", marginBottom: 28, display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
+                {[
+                  "All matching leads in your area",
+                  "QBCC verified badge",
+                  "Business profile + photos",
+                  "SMS & email notifications",
+                  "Max 3 tradies per lead",
+                  "No commission ever",
+                ].map((f) => (
+                  <li key={f} style={{ display: "flex", gap: 9, fontSize: "0.85rem", color: "var(--slate-mid)" }}>
+                    <span style={{ color: "#16a34a", fontWeight: 700, flexShrink: 0 }}>✓</span><span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/tradies/register?plan=founding" className="btn-secondary" style={{ display: "block", textAlign: "center" }} id="plan-founding-cta">
+                Get Started →
+              </Link>
             </div>
-            <h3 style={{ fontSize: "1.4rem", color: "var(--ocean-600)", marginBottom: 6 }}>Full Access</h3>
-            <p style={{ fontSize: "0.85rem", color: "var(--slate-light)", marginBottom: 24 }}>All leads in your area · No caps · No commissions</p>
-            <div style={{ marginBottom: 28 }}>
-              <span style={{ fontSize: "3rem", fontWeight: 900, color: "var(--slate-dark)", lineHeight: 1 }}>$149</span>
-              <span style={{ color: "var(--slate-light)", fontSize: "0.95rem" }}> / month</span>
-              <p style={{ fontSize: "0.8rem", color: "var(--slate-light)", marginTop: 6 }}>+GST · Billed monthly · Cancel anytime</p>
+
+            {/* Growth — Most Popular */}
+            <div style={{ border: "2px solid var(--ocean-400)", borderRadius: "var(--radius-xl)", padding: "36px 28px", background: "linear-gradient(160deg, var(--ocean-50), white)", boxShadow: "var(--shadow-lg)", display: "flex", flexDirection: "column", position: "relative" }}>
+              <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: "var(--ocean-500)", color: "white", fontSize: "0.72rem", fontWeight: 800, padding: "5px 16px", borderRadius: "50px", whiteSpace: "nowrap", letterSpacing: "0.05em" }}>
+                ⭐ MOST POPULAR
+              </div>
+              <h3 style={{ fontSize: "1.1rem", color: "var(--ocean-700)", marginBottom: 4 }}>Growth</h3>
+              <p style={{ fontSize: "0.82rem", color: "var(--slate-light)", marginBottom: 20 }}>Stand out and build your brand</p>
+              <div style={{ marginBottom: 24 }}>
+                <span style={{ fontSize: "2.6rem", fontWeight: 900, color: "var(--ocean-600)", lineHeight: 1 }}>$249</span>
+                <span style={{ color: "var(--slate-light)", fontSize: "0.9rem" }}> /month +GST</span>
+              </div>
+              <ul style={{ listStyle: "none", marginBottom: 28, display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
+                {[
+                  "Everything in Founding",
+                  "🔵 Spotlight badge — profile boosted",
+                  "🏗️ Auto Project Story pages (SEO)",
+                  "📊 Monthly lead performance report",
+                  "Priority customer support",
+                  "No commission ever",
+                ].map((f) => (
+                  <li key={f} style={{ display: "flex", gap: 9, fontSize: "0.85rem", color: "var(--slate-mid)" }}>
+                    <span style={{ color: "var(--ocean-500)", fontWeight: 700, flexShrink: 0 }}>✓</span><span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/tradies/register?plan=growth" className="btn-primary" style={{ display: "block", textAlign: "center" }} id="plan-growth-cta">
+                Choose Growth →
+              </Link>
             </div>
-            <ul style={{ listStyle: "none", marginBottom: 32, display: "flex", flexDirection: "column", gap: 12, textAlign: "left" }}>
-              {[
-                "All matching leads in your service area",
-                "QBCC licence verified — your badge of trust",
-                "Business profile with photos + services listed",
-                "Instant SMS + email lead notifications",
-                "Max 3 tradies per lead — never a crowd",
-                "No commission on any job won",
-                "Month-to-month — cancel before next billing",
-              ].map((f) => (
-                <li key={f} style={{ display: "flex", gap: 10, fontSize: "0.9rem", color: "var(--slate-mid)" }}>
-                  <span style={{ color: "#16a34a", fontWeight: 700, flexShrink: 0 }}>✓</span>
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              href="/tradies/register"
-              className="btn-primary"
-              style={{ display: "block", textAlign: "center", width: "100%", boxSizing: "border-box" }}
-              id="access-cta"
-            >
-              Register My Business →
-            </Link>
-            <p style={{ fontSize: "0.78rem", color: "var(--slate-light)", marginTop: 16 }}>
-              Founding member rate locks in for 12 months from your registration date.
-            </p>
+
+            {/* Elite */}
+            <div style={{ border: "1px solid var(--gold)", borderRadius: "var(--radius-xl)", padding: "36px 28px", background: "linear-gradient(160deg, #fef9f0, white)", boxShadow: "var(--shadow-md)", display: "flex", flexDirection: "column", position: "relative" }}>
+              <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: "var(--gold)", color: "white", fontSize: "0.72rem", fontWeight: 800, padding: "5px 16px", borderRadius: "50px", whiteSpace: "nowrap", letterSpacing: "0.05em" }}>
+                👑 ELITE
+              </div>
+              <h3 style={{ fontSize: "1.1rem", color: "#92650a", marginBottom: 4 }}>Elite</h3>
+              <p style={{ fontSize: "0.82rem", color: "var(--slate-light)", marginBottom: 20 }}>Maximum visibility & brand authority</p>
+              <div style={{ marginBottom: 24 }}>
+                <span style={{ fontSize: "2.6rem", fontWeight: 900, color: "#92650a", lineHeight: 1 }}>$399</span>
+                <span style={{ color: "var(--slate-light)", fontSize: "0.9rem" }}> /month +GST</span>
+              </div>
+              <ul style={{ listStyle: "none", marginBottom: 28, display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
+                {[
+                  "Everything in Growth",
+                  "📰 Magazine interview opportunity (quarterly)",
+                  "📧 Homeowner newsletter feature (monthly)",
+                  "📞 Dedicated onboarding call",
+                  "🎯 Priority search placement",
+                  "No commission ever",
+                ].map((f) => (
+                  <li key={f} style={{ display: "flex", gap: 9, fontSize: "0.85rem", color: "var(--slate-mid)" }}>
+                    <span style={{ color: "var(--gold)", fontWeight: 700, flexShrink: 0 }}>✓</span><span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/tradies/register?plan=elite" style={{ display: "block", textAlign: "center", padding: "13px 24px", borderRadius: "50px", fontWeight: 700, fontSize: "0.95rem", textDecoration: "none", background: "linear-gradient(135deg, var(--gold), var(--gold-light))", color: "white", boxShadow: "0 4px 16px rgba(201,151,42,0.35)" }} id="plan-elite-cta">
+                Choose Elite →
+              </Link>
+            </div>
+
           </div>
+          <p style={{ textAlign: "center", fontSize: "0.78rem", color: "var(--slate-light)", marginTop: 20 }}>
+            All plans: month-to-month · Cancel anytime · Prices +GST · Founding rate locks in for 12 months
+          </p>
         </div>
+        <style>{`@media(max-width:900px){.plans-grid{grid-template-columns:1fr!important;}}`}</style>
       </section>
 
       {/* FAQ */}

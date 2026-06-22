@@ -43,7 +43,33 @@ const serviceAreas = [
 ];
 
 const plans = [
-  { id: "founding", name: "Founding Member", price: 149, tagline: "All leads in your area · No caps · No commissions", color: "var(--ocean-500)" },
+  {
+    id: "founding",
+    name: "Founding",
+    price: 149,
+    tagline: "Get started with qualified leads",
+    color: "var(--ocean-500)",
+    badge: null,
+    features: ["All matching leads in your area", "QBCC verified badge", "Business profile + photos", "SMS & email notifications", "Max 3 tradies per lead", "No commission ever"],
+  },
+  {
+    id: "growth",
+    name: "Growth",
+    price: 249,
+    tagline: "Stand out and build your brand",
+    color: "var(--ocean-500)",
+    badge: "⭐ MOST POPULAR",
+    features: ["Everything in Founding", "Spotlight badge — profile boosted", "Auto Project Story pages (SEO)", "Monthly lead performance report", "Priority customer support", "No commission ever"],
+  },
+  {
+    id: "elite",
+    name: "Elite",
+    price: 399,
+    tagline: "Maximum visibility & brand authority",
+    color: "#92650a",
+    badge: "👑 ELITE",
+    features: ["Everything in Growth", "Magazine interview opportunity (quarterly)", "Homeowner newsletter feature (monthly)", "Dedicated onboarding call", "Priority search placement", "No commission ever"],
+  },
 ];
 
 function RegisterForm() {
@@ -51,7 +77,7 @@ function RegisterForm() {
   const initialPlan = searchParams.get("plan") || "founding";
   const [step, setStep] = useState(1);
   const [submitted] = useState(false);
-  const [selectedPlan] = useState(initialPlan);
+  const [selectedPlan, setSelectedPlan] = useState(initialPlan);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -80,7 +106,7 @@ function RegisterForm() {
     setSelectedAreas((prev) => prev.includes(a) ? prev.filter((x) => x !== a) : [...prev, a]);
   };
 
-  const plan = plans.find((p) => p.id === selectedPlan) || plans[1];
+  const plan = plans.find((p) => p.id === selectedPlan) || plans[0];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -303,50 +329,82 @@ function RegisterForm() {
           {step === 3 && (
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               <div>
-                <h2 style={{ fontSize: "1.4rem", marginBottom: 4 }}>Step 3: Confirm & Pay</h2>
-                <p style={{ color: "var(--slate-light)", fontSize: "0.875rem" }}>Founding member rate — flat monthly fee, no lock-in, cancel anytime.</p>
+                <h2 style={{ fontSize: "1.4rem", marginBottom: 4 }}>Step 3: Choose Your Plan</h2>
+                <p style={{ color: "var(--slate-light)", fontSize: "0.875rem" }}>Flat monthly fee — no lock-in, cancel anytime.</p>
               </div>
 
-              {/* Plan summary */}
-              <div style={{ border: "2px solid var(--ocean-400)", borderRadius: "var(--radius-md)", padding: "20px 24px", background: "var(--ocean-50)" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <div>
-                    <div style={{ fontWeight: 800, fontSize: "1.05rem", color: "var(--ocean-700)" }}>⭐ Founding Member Access</div>
-                    <div style={{ fontSize: "0.82rem", color: "var(--slate-light)", marginTop: 4 }}>All leads · No caps · No commissions</div>
-                  </div>
-                  <div style={{ textAlign: "right" }}>
-                    <span style={{ fontSize: "1.8rem", fontWeight: 900, color: "var(--ocean-600)" }}>$149</span>
-                    <span style={{ fontSize: "0.82rem", color: "var(--slate-light)" }}>/month +GST</span>
-                  </div>
-                </div>
-                <ul style={{ listStyle: "none", marginTop: 16, display: "flex", flexDirection: "column", gap: 8 }}>
-                  {["All matching leads in your service area", "QBCC licence verified — your badge of trust", "Max 3 tradies per lead — never a crowd", "Instant SMS + email notifications", "Month-to-month — cancel before next billing"].map((f) => (
-                    <li key={f} style={{ display: "flex", gap: 8, fontSize: "0.85rem", color: "var(--slate-mid)" }}>
-                      <span style={{ color: "#16a34a", fontWeight: 700 }}>✓</span><span>{f}</span>
+              {/* Plan selector cards */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {plans.map((p) => {
+                  const isSelected = selectedPlan === p.id;
+                  const isElite = p.id === "elite";
+                  const borderColor = isSelected ? (isElite ? "var(--gold)" : "var(--ocean-400)") : "var(--sand-200)";
+                  const bg = isSelected ? (isElite ? "#fef9f0" : "var(--ocean-50)") : "white";
+                  return (
+                    <button
+                      key={p.id}
+                      type="button"
+                      onClick={() => setSelectedPlan(p.id)}
+                      style={{
+                        border: `2px solid ${borderColor}`,
+                        borderRadius: "var(--radius-md)",
+                        padding: "16px 20px",
+                        background: bg,
+                        cursor: "pointer",
+                        textAlign: "left",
+                        fontFamily: "Outfit, sans-serif",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 16,
+                        transition: "var(--transition-fast)",
+                        width: "100%",
+                      }}
+                    >
+                      {/* Radio dot */}
+                      <div style={{ width: 20, height: 20, borderRadius: "50%", border: `2px solid ${isSelected ? (isElite ? "var(--gold)" : "var(--ocean-400)") : "var(--sand-300)"}`, background: isSelected ? (isElite ? "var(--gold)" : "var(--ocean-400)") : "white", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        {isSelected && <div style={{ width: 8, height: 8, borderRadius: "50%", background: "white" }} />}
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 2 }}>
+                          <span style={{ fontWeight: 800, fontSize: "1rem", color: isElite ? "#92650a" : "var(--slate-dark)" }}>{p.name}</span>
+                          {p.badge && (
+                            <span style={{ fontSize: "0.65rem", fontWeight: 800, padding: "2px 8px", borderRadius: "50px", background: isElite ? "var(--gold)" : "var(--ocean-500)", color: "white", letterSpacing: "0.04em" }}>
+                              {p.badge}
+                            </span>
+                          )}
+                        </div>
+                        <span style={{ fontSize: "0.8rem", color: "var(--slate-light)" }}>{p.tagline}</span>
+                      </div>
+                      <div style={{ textAlign: "right", flexShrink: 0 }}>
+                        <span style={{ fontSize: "1.5rem", fontWeight: 900, color: isElite ? "#92650a" : "var(--ocean-600)" }}>${p.price}</span>
+                        <span style={{ fontSize: "0.75rem", color: "var(--slate-light)", display: "block" }}>/month +GST</span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Selected plan features */}
+              <div style={{ border: "1px solid var(--sand-200)", borderRadius: "var(--radius-md)", padding: "16px 20px", background: "var(--sand-50)" }}>
+                <p style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--slate-dark)", marginBottom: 10, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  {plan.name} plan includes:
+                </p>
+                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 7 }}>
+                  {plan.features.map((f) => (
+                    <li key={f} style={{ display: "flex", gap: 8, fontSize: "0.83rem", color: "var(--slate-mid)" }}>
+                      <span style={{ color: "#16a34a", fontWeight: 700, flexShrink: 0 }}>✓</span><span>{f}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Secure payment handoff — card details are entered on Stripe's PCI-compliant page, never on our site */}
-              <div style={{ borderTop: "1px solid var(--sand-200)", paddingTop: 24 }}>
-                <h3 style={{ fontSize: "1rem", marginBottom: 16 }}>💳 Payment</h3>
-                <div
-                  style={{
-                    background: "var(--ocean-50)",
-                    border: "1px solid var(--ocean-100)",
-                    borderRadius: 12,
-                    padding: "20px 24px",
-                  }}
-                >
-                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-                    <span style={{ fontSize: "1.4rem" }}>🔒</span>
-                    <strong style={{ color: "var(--ocean-700)", fontSize: "0.95rem" }}>Secure checkout powered by Stripe</strong>
-                  </div>
-                  <p style={{ fontSize: "0.85rem", color: "var(--slate-light)", lineHeight: 1.7, margin: 0 }}>
-                    When you continue, you&apos;ll be taken to Stripe&apos;s secure payment page to enter your card details.
-                    Your card information is handled entirely by Stripe and never touches our servers. You can cancel your
-                    subscription anytime.
+              {/* Secure payment note */}
+              <div style={{ background: "var(--ocean-50)", border: "1px solid var(--ocean-100)", borderRadius: 12, padding: "16px 20px", display: "flex", alignItems: "flex-start", gap: 12 }}>
+                <span style={{ fontSize: "1.3rem", flexShrink: 0 }}>🔒</span>
+                <div>
+                  <strong style={{ color: "var(--ocean-700)", fontSize: "0.9rem" }}>Secure checkout powered by Stripe</strong>
+                  <p style={{ fontSize: "0.82rem", color: "var(--slate-light)", lineHeight: 1.65, margin: "4px 0 0" }}>
+                    You&apos;ll be taken to Stripe&apos;s secure payment page. Your card details never touch our servers.
                   </p>
                 </div>
               </div>
@@ -360,7 +418,7 @@ function RegisterForm() {
                   disabled={loading}
                   style={{ opacity: loading ? 0.75 : 1 }}
                 >
-                  {loading ? "⏳ Redirecting to secure payment..." : `🔧 Complete Registration — $${plan.price} Today`}
+                  {loading ? "⏳ Redirecting to secure payment..." : `🔧 Register — $${plan.price}/month`}
                 </button>
               </div>
               {stripeError && (

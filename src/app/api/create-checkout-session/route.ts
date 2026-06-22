@@ -15,6 +15,8 @@ import {
 
 const priceIds: Record<string, string | undefined> = {
   founding: process.env.STRIPE_PRICE_FOUNDING,
+  growth: process.env.STRIPE_PRICE_GROWTH,
+  elite: process.env.STRIPE_PRICE_ELITE,
   // legacy plan IDs kept for backward-compatibility with any existing Stripe webhooks
   starter: process.env.STRIPE_PRICE_STARTER,
   pro: process.env.STRIPE_PRICE_PRO,
@@ -23,6 +25,8 @@ const priceIds: Record<string, string | undefined> = {
 
 const planDetails: Record<string, { name: string; price: number }> = {
   founding: { name: "Founding Member", price: 149 },
+  growth: { name: "Growth", price: 249 },
+  elite: { name: "Elite", price: 399 },
   starter: { name: "Starter", price: 99 },
   pro: { name: "Pro", price: 179 },
   premium: { name: "Premium", price: 299 },
