@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const trustRow = [
   { value: "Max 3", label: "quotes — never sold to 10" },
@@ -64,9 +65,21 @@ const trustStack = [
 ];
 
 const designHub = [
-  { img: "/gallery/interior-2.jpg", tag: "Design Trends", title: "What's actually selling in QLD homes for 2026" },
-  { img: "/gallery/interior-5.jpg", tag: "DIY Guide", title: "Re-seal your own shower — the licensed way" },
-  { img: "/gallery/interior-7.jpg", tag: "Cost Guide", title: "Why renovation costs what it costs in QLD" },
+  {
+    img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&auto=format&fit=crop",
+    tag: "Design Trends",
+    title: "What's actually selling in QLD homes for 2026",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80&auto=format&fit=crop",
+    tag: "DIY Guide",
+    title: "Re-seal your own shower — the licensed way",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80&auto=format&fit=crop",
+    tag: "Cost Guide",
+    title: "Why renovation costs what it costs in QLD",
+  },
 ];
 
 const testimonials = [
@@ -173,8 +186,14 @@ export default function Home() {
                 <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 16 }}>
                   <div style={{ maxWidth: "80%" }}>
                     <div style={{ borderRadius: "18px 18px 4px 18px", overflow: "hidden" }}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/gallery/interior-1.jpg" alt="Your bathroom" style={{ width: "100%", height: 130, objectFit: "cover", display: "block" }} />
+                      <Image
+                        src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=80&auto=format&fit=crop"
+                        alt="Your bathroom"
+                        width={400}
+                        height={130}
+                        style={{ width: "100%", height: 130, objectFit: "cover", display: "block" }}
+                        unoptimized
+                      />
                     </div>
                     <div style={{ background: "var(--ocean-500)", color: "white", padding: "10px 16px", borderRadius: "16px 16px 4px 16px", fontSize: "0.83rem", marginTop: 8, lineHeight: 1.5 }}>
                       Can you modernise our main bathroom? Budget around $20k.
@@ -373,8 +392,7 @@ export default function Home() {
             {designHub.map((p) => (
               <Link key={p.title} href="/blog" className="card" style={{ overflow: "hidden", textDecoration: "none", display: "block" }}>
                 <div style={{ height: 200, overflow: "hidden", position: "relative" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.img} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.5s ease" }} className="hub-img" />
+                  <Image src={p.img} alt={p.title} width={600} height={200} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.5s ease" }} className="hub-img" unoptimized />
                   <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(14,68,64,0.3) 0%, transparent 60%)" }} />
                 </div>
                 <div style={{ padding: "22px 24px" }}>

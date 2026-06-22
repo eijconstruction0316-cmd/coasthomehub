@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -55,54 +56,15 @@ export default function Navigation() {
         }}
       >
         {/* Logo */}
-        <Link
-          href="/"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            textDecoration: "none",
-          }}
-        >
-          <div
-            style={{
-              width: 40,
-              height: 40,
-              background: "linear-gradient(135deg, #1f7a72, #3d9990)",
-              borderRadius: 10,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "1.2rem",
-            }}
-          >
-            🏠
-          </div>
-          <div>
-            <div
-              style={{
-                fontWeight: 800,
-                fontSize: "1.2rem",
-                color: scrolled ? "var(--slate-dark)" : "var(--slate-dark)",
-                lineHeight: 1,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              CoastHome
-              <span style={{ color: "var(--ocean-500)" }}>Hub</span>
-            </div>
-            <div
-              style={{
-                fontSize: "0.65rem",
-                color: "var(--ocean-500)",
-                fontWeight: 600,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-              }}
-            >
-              Gold Coast · Sunshine Coast
-            </div>
-          </div>
+        <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+          <Image
+            src="/logo.svg"
+            alt="CoastHomeHub"
+            width={180}
+            height={50}
+            priority
+            style={{ height: 44, width: "auto" }}
+          />
         </Link>
 
         {/* Desktop Nav Links */}

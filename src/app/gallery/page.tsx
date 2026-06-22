@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const categories = ["All", "Bathroom", "Kitchen", "Living Room", "Exterior", "Bedroom"];
 
-// 디자인별 잡지급 사진 (Unsplash, 상업 사용 무료)
+// 디자인별 사진 (로컬 + Unsplash 보완)
 const designImages: Record<number, string> = {
   1: "/gallery/interior-1.jpg",
   2: "/gallery/interior-2.jpg",
@@ -14,7 +14,7 @@ const designImages: Record<number, string> = {
   6: "/gallery/interior-6.jpg",
   7: "/gallery/interior-7.jpg",
   8: "/gallery/interior-8.jpg",
-  9: "/gallery/interior-1.jpg",
+  9: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80&auto=format&fit=crop",
 };
 
 const designs = [
