@@ -2,6 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import HeroInteractiveCard from "@/components/HeroInteractiveCard";
 import { getPublishedMagazineArticles } from "@/lib/magazineCms";
+import LiveSuburbTracker from "@/components/LiveSuburbTracker";
+import RenovationCostCalculator from "@/components/RenovationCostCalculator";
+import DesignLookbook from "@/components/DesignLookbook";
 
 const trustRow = [
   { value: "Max 3", label: "quotes — never sold to 10" },
@@ -173,6 +176,13 @@ export default function Home() {
         `}</style>
       </section>
 
+      {/* Live Suburb Matching Tracker */}
+      <section style={{ background: "white", paddingTop: "52px", paddingBottom: "0" }}>
+        <div className="container-lg">
+          <LiveSuburbTracker />
+        </div>
+      </section>
+
       {/* ───────────────── HOW IT WORKS ───────────────── */}
       <section className="section" style={{ background: "white" }}>
         <div className="container-lg">
@@ -218,6 +228,22 @@ export default function Home() {
           @media (max-width: 900px) { .steps-grid { grid-template-columns: 1fr 1fr !important; gap: 40px !important; } }
           @media (max-width: 520px) { .steps-grid { grid-template-columns: 1fr !important; } }
         `}</style>
+      </section>
+
+      {/* Interactive Ballpark Cost Calculator */}
+      <section className="section" style={{ background: "var(--off-white)", borderTop: "1px solid var(--sand-200)", borderBottom: "1px solid var(--sand-200)", paddingBottom: "80px" }}>
+        <div className="container-lg">
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <div className="badge" style={{ marginBottom: "18px" }}>Budget Tool</div>
+            <h2 style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)", letterSpacing: "-0.02em", color: "var(--slate-dark)" }}>
+              Estimate Your Renovation Budget
+            </h2>
+            <p style={{ color: "var(--slate-light)", fontSize: "1.05rem", maxWidth: "560px", margin: "0 auto" }}>
+              Get a compliant, realistic cost breakdown for construction works in South East Queensland instantly.
+            </p>
+          </div>
+          <RenovationCostCalculator />
+        </div>
       </section>
 
       {/* ───────────────── FEATURED CURATION ───────────────── */}
@@ -373,6 +399,13 @@ export default function Home() {
           .curation-img:hover { transform: scale(1.05); }
           .hover-arrow:hover { color: var(--ocean-600) !important; text-decoration: underline !important; }
         `}</style>
+      </section>
+
+      {/* Design Lookbook & Compliance Selector */}
+      <section className="section" style={{ background: "white", borderBottom: "1px solid var(--sand-200)" }}>
+        <div className="container-lg">
+          <DesignLookbook />
+        </div>
       </section>
 
       {/* ───────────────── WHY DIFFERENT ───────────────── */}
