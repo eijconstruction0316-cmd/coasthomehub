@@ -50,7 +50,15 @@ const plans = [
     tagline: "Get started with qualified leads",
     color: "var(--ocean-500)",
     badge: null,
-    features: ["All matching leads in your area", "QBCC verified badge", "Business profile + photos", "SMS & email notifications", "Max 3 tradies per lead", "No commission ever"],
+    features: [
+      "3 free lead credits per month ($90 value)",
+      "Purchase extra credits at base rates",
+      "QBCC verified badge",
+      "Business profile + photos",
+      "B2B Buyers Club: supplier info access",
+      "SMS & email notifications",
+      "No commission ever"
+    ],
   },
   {
     id: "growth",
@@ -59,7 +67,15 @@ const plans = [
     tagline: "Stand out and build your brand",
     color: "var(--ocean-500)",
     badge: "⭐ MOST POPULAR",
-    features: ["Everything in Founding", "Spotlight badge — profile boosted", "Auto Project Story pages (SEO)", "Monthly lead performance report", "Priority customer support", "No commission ever"],
+    features: [
+      "10 free lead credits per month ($300 value)",
+      "Purchase extra credits with 10% discount",
+      "B2B Buyers Club: 5% trade discount",
+      "Spotlight badge — profile boosted",
+      "Auto Project Story pages (SEO)",
+      "Monthly lead performance report",
+      "No commission ever"
+    ],
   },
   {
     id: "elite",
@@ -69,12 +85,12 @@ const plans = [
     color: "#92650a",
     badge: "👑 ELITE",
     features: [
-      "Everything in Growth",
-      "Unlimited project portfolio uploads (Post Job Listings)",
-      "Magazine interview opportunity (quarterly)",
-      "Homeowner newsletter feature (monthly)",
-      "Dedicated onboarding call",
-      "Priority search placement",
+      "25 free lead credits per month ($750 value)",
+      "Purchase extra credits with 20% discount",
+      "B2B Buyers Club: 10% discount + free delivery",
+      "12-hour First-Look Priority Access",
+      "Unlimited portfolio uploads & supplier tags",
+      "Homepage spotlight & magazine feature",
       "No commission ever"
     ],
   },
@@ -434,6 +450,9 @@ function RegisterForm() {
                   ⚠️ {stripeError}
                 </div>
               )}
+              <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", padding: 12, borderRadius: 8, fontSize: "0.72rem", color: "var(--slate-mid)", lineHeight: 1.5, marginTop: 10 }}>
+                <strong>Compliance Note:</strong> CoastHomeHub (operated by EIJ Construction Pty Ltd) acts strictly as a directory matching licensed contractors with consumers. We are not a builder and do not contract or guarantee any building work. By registering, you confirm you hold a valid, active QBCC licence for your services and agree that you are solely liable for all projects and contracts with customers.
+              </div>
               <p style={{ fontSize: "0.75rem", color: "var(--slate-light)" }}>
                 By completing registration you agree to our <a href="/terms" style={{ color: "var(--ocean-500)" }}>Terms of Service</a> and <a href="/privacy" style={{ color: "var(--ocean-500)" }}>Privacy Policy</a>. You will be charged ${plan.price}+GST/month. Cancel anytime before your next billing date.
               </p>

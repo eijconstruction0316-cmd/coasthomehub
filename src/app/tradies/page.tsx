@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import PartnershipBanner from "@/components/PartnershipBanner";
 
 export const metadata: Metadata = {
   title: "List Your Trade Business | CoastHomeHub for Tradies",
@@ -9,11 +10,11 @@ export const metadata: Metadata = {
 
 const benefits = [
   { icon: "🎯", title: "Pre-Qualified Leads", desc: "Homeowners arrive via CoastAI having already described their project and seen a ballpark cost — they know what they want." },
-  { icon: "✅", title: "Verified Contact Details", desc: "Every quote request includes the homeowner's name, location, job description, and photos. No spam, no tyre-kickers." },
-  { icon: "🔒", title: "Max 3 Quotes per Job", desc: "Homeowners receive a maximum of 3 tradie quotes. You're never competing against a crowd." },
-  { icon: "📱", title: "Instant Notifications", desc: "Get an SMS and email the moment a matching lead lands in your area. First to respond often wins the job." },
-  { icon: "🏷️", title: "No Commission Ever", desc: "Flat monthly access fee. We never take a percentage of your job value — every dollar you earn is yours." },
-  { icon: "🏛️", title: "QBCC Licence Verified", desc: "Every tradie on CoastHomeHub is checked against the QBCC register. Your licence is your badge of trust." },
+  { icon: "🤝", title: "B2B Buyers Club", desc: "Save thousands on construction materials. Get up to 10% direct trade discount at Reece, Beaumont Tiles, Laminex, Osmo & more." },
+  { icon: "⚡", title: "First-Look Access", desc: "Elite members get 12-hour exclusive priority access to new local leads before they are released to others." },
+  { icon: "🏷️", title: "No Commission Ever", desc: "Flat monthly subscription fee. We never take a percentage of your contract value — you keep 100% of your earnings." },
+  { icon: "📸", title: "Archipro-style Curation", desc: "Showcase your portfolio with product tags linking back to suppliers. Attract high-end homeowners with editorial design." },
+  { icon: "🏛️", title: "QBCC Verified Trust", desc: "We verify license numbers to filter out cowboys, protecting reputable builders and maintaining high industry standards." },
 ];
 
 const faqs = [
@@ -172,11 +173,12 @@ export default function TradiesPage() {
               </div>
               <ul style={{ listStyle: "none", marginBottom: 28, display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
                 {[
-                  "All matching leads in your area",
+                  "3 free lead credits per month ($90 value)",
+                  "Purchase extra credits at base rates",
                   "QBCC verified badge",
                   "Business profile + photos",
+                  "B2B Buyers Club: supplier info access",
                   "SMS & email notifications",
-                  "Max 3 tradies per lead",
                   "No commission ever",
                 ].map((f) => (
                   <li key={f} style={{ display: "flex", gap: 9, fontSize: "0.85rem", color: "var(--slate-mid)" }}>
@@ -202,11 +204,12 @@ export default function TradiesPage() {
               </div>
               <ul style={{ listStyle: "none", marginBottom: 28, display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
                 {[
-                  "Everything in Founding",
-                  "🔵 Spotlight badge — profile boosted",
+                  "10 free lead credits per month ($300 value)",
+                  "Purchase extra credits with 10% discount",
+                  "B2B Buyers Club: 5% trade discount",
+                  "Spotlight badge — profile boosted",
                   "🏗️ Auto Project Story pages (SEO)",
-                  "📊 Monthly lead performance report",
-                  "Priority customer support",
+                  "Monthly lead performance report",
                   "No commission ever",
                 ].map((f) => (
                   <li key={f} style={{ display: "flex", gap: 9, fontSize: "0.85rem", color: "var(--slate-mid)" }}>
@@ -232,12 +235,12 @@ export default function TradiesPage() {
               </div>
               <ul style={{ listStyle: "none", marginBottom: 28, display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
                 {[
-                  "Everything in Growth",
-                  "📝 Unlimited project portfolio uploads (Post Job Listings)",
-                  "📰 Magazine interview opportunity (quarterly)",
-                  "📧 Homeowner newsletter feature (monthly)",
-                  "📞 Dedicated onboarding call",
-                  "🎯 Priority search placement",
+                  "25 free lead credits per month ($750 value)",
+                  "Purchase extra credits with 20% discount",
+                  "B2B Buyers Club: 10% discount + free delivery",
+                  "⚡ 12-hour First-Look Priority Access",
+                  "📸 Unlimited portfolio uploads & supplier tags",
+                  "📰 Homepage spotlight & magazine feature",
                   "No commission ever",
                 ].map((f) => (
                   <li key={f} style={{ display: "flex", gap: 9, fontSize: "0.85rem", color: "var(--slate-mid)" }}>
@@ -254,6 +257,11 @@ export default function TradiesPage() {
           <p style={{ textAlign: "center", fontSize: "0.78rem", color: "var(--slate-light)", marginTop: 20 }}>
             All plans: month-to-month · Cancel anytime · Prices +GST · Founding rate locks in for 12 months
           </p>
+
+          {/* Legal Compliance Disclaimer */}
+          <div style={{ maxWidth: 800, margin: "48px auto 0", padding: "24px", background: "var(--sand-50)", border: "1px solid var(--sand-200)", borderRadius: "var(--radius-md)", fontSize: "0.82rem", color: "var(--slate-mid)", lineHeight: 1.7 }}>
+            <strong>⚠️ Legal & QBCC Compliance Notice:</strong> CoastHomeHub is an independent online directory and marketing platform owned and operated by EIJ Construction Pty Ltd. CoastHomeHub is NOT a builder or building contractor and does not provide direct construction, plumbing, waterproofing, or other trade services. We act solely as an advertising and referral agency matching QLD homeowners with QBCC-licensed contractors. All contracts, warranties, and building works are strictly between the homeowner and the respective contractor. Users are responsible for verifying the current licence status and insurance of any tradie engaged via this platform.
+          </div>
         </div>
         <style>{`@media(max-width:900px){.plans-grid{grid-template-columns:1fr!important;}}`}</style>
       </section>
@@ -275,6 +283,9 @@ export default function TradiesPage() {
           </div>
         </div>
       </section>
+
+      {/* Material Partners Marquee */}
+      <PartnershipBanner />
 
       {/* CTA */}
       <section style={{ background: "linear-gradient(135deg, var(--ocean-600), var(--ocean-400))", padding: "80px 0", textAlign: "center" }}>

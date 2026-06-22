@@ -5,6 +5,7 @@ import { getPublishedMagazineArticles } from "@/lib/magazineCms";
 import LiveSuburbTracker from "@/components/LiveSuburbTracker";
 import RenovationCostCalculator from "@/components/RenovationCostCalculator";
 import DesignLookbook from "@/components/DesignLookbook";
+import PartnershipBanner from "@/components/PartnershipBanner";
 
 const trustRow = [
   { value: "Max 3", label: "quotes — never sold to 10" },
@@ -555,6 +556,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Material Partners Marquee */}
+      <PartnershipBanner />
 
       {/* ───────────────── FOR TRADIES ───────────────── */}
       <section className="section-sm" style={{ background: "white" }}>

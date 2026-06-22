@@ -4,6 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
 import MagazineArticleCard from "@/components/MagazineArticleCard";
+import PartnershipBanner from "@/components/PartnershipBanner";
 import {
   getArticleBySlug,
   getPublishedMagazineArticles,
@@ -182,6 +183,9 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
             </section>
           )}
         </div>
+
+        {/* Material Partners Marquee */}
+        <PartnershipBanner />
       </article>
     </>
   );
