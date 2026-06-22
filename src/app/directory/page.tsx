@@ -223,7 +223,11 @@ export default function DirectoryPage() {
                       <span style={{ fontSize: "0.78rem", color: "var(--slate-light)" }}>{tradie.qbcc}</span>
                     </div>
 
-                    <h2 style={{ fontSize: "1.45rem", color: "var(--slate-dark)", marginBottom: 4 }}>{tradie.name}</h2>
+                    <Link href={`/directory/${tradie.id}`} style={{ textDecoration: "none" }}>
+                      <h2 style={{ fontSize: "1.45rem", color: "var(--slate-dark)", marginBottom: 4, cursor: "pointer" }} className="hover-name">
+                        {tradie.name}
+                      </h2>
+                    </Link>
                     <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 16 }}>
                       <span style={{ color: "#f59e0b", fontSize: "1rem" }}>★</span>
                       <strong style={{ fontSize: "0.875rem", color: "var(--slate-dark)" }}>{tradie.rating}</strong>
@@ -344,6 +348,10 @@ export default function DirectoryPage() {
       </section>
 
       <style dangerouslySetInnerHTML={{ __html: `
+        .hover-name:hover {
+          color: var(--ocean-600) !important;
+          text-decoration: underline;
+        }
         @media (max-width: 860px) {
           .directory-card-grid {
             grid-template-columns: 1fr !important;
