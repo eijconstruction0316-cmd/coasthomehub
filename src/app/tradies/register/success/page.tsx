@@ -1,10 +1,14 @@
 import Link from "next/link";
 
 const planDetails: Record<string, { name: string; price: number; tagline: string }> = {
+  founding: { name: "Founding Member", price: 149, tagline: "Unlimited matching leads for launch partners" },
+  growth: { name: "Growth", price: 249, tagline: "Up to 30 leads/month" },
+  elite: { name: "Elite", price: 399, tagline: "Unlimited matching leads" },
   starter: { name: "Starter", price: 99, tagline: "Up to 5 leads/month" },
   pro: { name: "Pro", price: 179, tagline: "Up to 20 leads/month" },
   premium: { name: "Premium", price: 299, tagline: "Unlimited leads" },
 };
+
 
 function safeDecodeParam(value: string | undefined, fallback: string) {
   if (!value) return fallback;
@@ -21,7 +25,7 @@ export default async function RegisterSuccessPage({
   searchParams: Promise<{ plan?: string; name?: string; business?: string; email?: string }>;
 }) {
   const params = await searchParams;
-  const plan = planDetails[params.plan || "pro"] || planDetails.pro;
+  const plan = planDetails[params.plan || "founding"] || planDetails.founding;
   const name = safeDecodeParam(params.name, "there");
   const business = safeDecodeParam(params.business, "your business");
 
