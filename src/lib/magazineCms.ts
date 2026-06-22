@@ -18,6 +18,13 @@ export type MagazineSection = {
   bullets?: string[];
   image?: string;
   imageCaption?: string;
+  quote?: string;
+  quoteAuthor?: string;
+  aside?: {
+    title: string;
+    text: string;
+    list?: string[];
+  };
 };
 
 export type MagazineArticle = {
@@ -644,6 +651,314 @@ export const magazineArticles: MagazineArticle[] = [
       {
         question: "Can I do the demolition myself to save money?",
         answer: "Yes, but with caution. You can save $1,000-$2,000, but you must ensure you don't damage active plumbing or electrical lines, and you must get a licensed professional to inspect and remove any asbestos before you start."
+      }
+    ]
+  },
+  {
+    slug: "the-waterproofing-bible-as-3740-compliance",
+    title: "The Waterproofing Bible: AS 3740 Compliance Guide",
+    subtitle: "What QLD certifiers check before you lay a single bathroom tile.",
+    excerpt: "A deep technical dive into wet area membranes, flashing, and form 16 certification in Queensland home building.",
+    type: "Builder Interview",
+    collection: "magazine",
+    category: "Compliance",
+    heroImage: "/images/waterproofing_membrane_detail.png",
+    readTime: "9 min read",
+    publishedAt: "2026-06-21",
+    updatedAt: "2026-06-22",
+    author: "CoastHomeHub Engineering",
+    tags: ["Waterproofing", "AS 3740", "Builder Interview", "Compliance"],
+    featured: true,
+    status: "published",
+    seo: {
+      title: "AS 3740 Waterproofing Compliance Guide | CoastHomeHub",
+      description: "Avoid waterproofing failures in QLD. Learn about class 3 membranes, bond breakers, wall sheeting, and Form 16 certification codes under AS 3740."
+    },
+    sections: [
+      {
+        heading: "The Substrate prep (Crucial Foundation)",
+        paragraphs: [
+          "Waterproofing never fails on its own; it fails because the substrate underneath moves, cracks, or rots. Under Australian Standard AS 3740, the wall and floor sheeting must be completely rigid and securely fastened. For timber-framed floors, compressed fiber cement (CFC) sheeting of at least 19mm is required, or certified structural-grade subflooring.",
+          "Before applying the liquid membrane, all gaps, screw holes, and joints must be filled with a polyurethane sealant (such as Sikaflex 11FC). The substrate must be vacuumed clean of all plaster dust and primed with a specialized solvent or water-based primer to guarantee membrane adhesion."
+        ],
+        image: "/images/waterproofing_membrane_detail.png",
+        imageCaption: "Figure 4.1: Close-up of professional Class III liquid membrane application over joint reinforcement mesh at a bathroom wall-to-floor junction."
+      },
+      {
+        heading: "Bond Breakers & Flashing (The AS 3740 Core)",
+        paragraphs: [
+          "A membrane must be able to stretch if the building settles. If you paint membrane directly over a joint, any movement will tear it. AS 3740 mandates the use of a 'bond breaker' at all wall-to-floor and wall-to-wall intersections. This is achieved by installing a flexible backing rod or elastic sealing tape over a polyurethane fillet.",
+          "For showers, the waterproofing must extend at least 150mm up the wall sheets from the finished shower floor level. In frameless shower designs, the entire bathroom floor must be waterproofed, and a water stop angle (a metal or plastic L-profile) must be anchor-fixed at the doorway to prevent water wicking into the hallway carpets."
+        ]
+      },
+      {
+        heading: "Form 16 Certification and QBCC Penalties",
+        paragraphs: [
+          "In Queensland, a waterproofing contractor must hold a specific QBCC Waterproofing Licence. Upon completion of the membrane cure, the applicator must issue a Form 16 (Inspection Certificate) to the building certifier. Doing waterproofing work without a license or failing to supply a Form 16 can lead to severe fines and renders home warranty insurance completely void."
+        ]
+      }
+    ],
+    faq: [
+      {
+        question: "How many coats of waterproofing are required?",
+        answer: "Typically, two liberal coats are required to achieve the manufacturer's specified dry film thickness (usually 1.0mm to 1.2mm). Each coat must be applied perpendicular to the previous one."
+      },
+      {
+        question: "What is a Form 16 in QLD waterproofing?",
+        answer: "It is a statutory building certificate of inspection signed by a licensed waterproofing installer, certifying that the wet area works comply with the Building Code of Australia and AS 3740."
+      }
+    ]
+  },
+  {
+    slug: "composite-vs-hardwood-qld-decking-guide",
+    title: "Resort Style Decking: Composite vs Hardwood in QLD",
+    subtitle: "Managing salt air, direct UV sun, and high maintenance in Brisbane & Gold Coast deck renovations.",
+    excerpt: "An honest editorial comparison of Merbau, Spotted Gum, and premium composite decking under QLD coastal climates.",
+    type: "Style Guide",
+    collection: "inspiration",
+    category: "Outdoor",
+    heroImage: "/images/composite_decking_detail.png",
+    readTime: "8 min read",
+    publishedAt: "2026-06-20",
+    updatedAt: "2026-06-22",
+    author: "CoastHomeHub Landscaping",
+    tags: ["Outdoor", "Decking", "Hardwood", "Composite"],
+    status: "published",
+    seo: {
+      title: "Composite vs Hardwood Decking QLD Guide | CoastHomeHub",
+      description: "Choose the right decking material for Gold Coast and Sunshine Coast homes. Merbau vs Spotted Gum vs Premium Composites for UV and salt resistance."
+    },
+    styleMeta: {
+      palette: ["#8b5a2b", "#6e757c", "#0f3a36"],
+      bestFor: "Pool decks, beachside alfresco areas, and low-maintenance backyards",
+      costLevel: "Mid to high tier depending on subframe structural span"
+    },
+    sections: [
+      {
+        heading: "Natural Hardwood: Merbau vs. Spotted Gum",
+        paragraphs: [
+          "Natural timber decks carry a classic, tactile warmth that composite cannot fully copy. In Queensland, the two most popular species are Merbau (imported class-1 durability) and Spotted Gum (native Australian hardwood). Spotted Gum is highly favored for its beautiful wavy grain and natural fire resistance (up to BAL 29).",
+          "However, timber requires commitment. In SE QLD's intense sun, a hardwood deck must be washed and oiled every 6 to 12 months. Without maintenance, Spotted Gum will split and turn a silver-grey color due to UV bleaching. Merbau also contains high amounts of tannin, which will bleed red-brown stains onto surrounding concrete when it rains."
+        ]
+      },
+      {
+        heading: "Composite Decking: The Low-Maintenance Revolution",
+        paragraphs: [
+          "Premium composite boards (like Ekodeck, ModWood, or Trex) are made from a blend of recycled wood fibers and polymer plastics. The main selling point is zero maintenance: no sanding, staining, or oiling is ever required. They do not splinter, making them highly safe for barefoot pool areas.",
+          "The trade-off is thermal absorption. In a Queensland summer, composite boards get significantly hotter underfoot than natural wood. Capcapped composites are also more expensive initially, with material costs roughly 30% higher than standard Merbau boards."
+        ],
+        image: "/images/composite_decking_detail.png",
+        imageCaption: "Figure 5.1: Luxury pool deck featuring premium composite decking boards installed with hidden clip fasteners to prevent visible screw heads."
+      }
+    ],
+    faq: [
+      {
+        question: "Does composite decking warp in QLD heat?",
+        answer: "Composite expands and contracts lineally. If the installer leaves correct gap spacing at butt joints and uses matching clips, it will not warp. Proper ventilation underneath the subframe is mandatory."
+      },
+      {
+        question: "How do I stop timber deck tannins from staining concrete?",
+        answer: "Pre-wash the timber boards with a deck cleaner multiple times to strip the excess tannins before laying them, or opt for composite decking which does not contain tannins."
+      }
+    ]
+  },
+  {
+    slug: "integrated-marble-slab-kitchen-detailing",
+    title: "Integrated Marble Slab Detailing in Modern Kitchens",
+    subtitle: "Mitered waterfall edges, seamless slab splashbacks, and premium brass hardware integration.",
+    excerpt: "How to budget and coordinate high-end marble installations with stonemasons and QBCC joiners.",
+    type: "Style Guide",
+    collection: "inspiration",
+    category: "Kitchen",
+    heroImage: "/images/luxury_marble_splashback.png",
+    readTime: "7 min read",
+    publishedAt: "2026-06-19",
+    updatedAt: "2026-06-22",
+    author: "CoastHomeHub Editorial",
+    tags: ["Kitchen", "Marble", "Stone", "Cabinetry"],
+    featured: true,
+    status: "published",
+    seo: {
+      title: "Integrated Marble Slab Kitchen Design Guide | CoastHomeHub",
+      description: "Design an editorial kitchen in Queensland. Waterfall island edges, marble slab splashbacks, and brushed gold socket integrations."
+    },
+    styleMeta: {
+      palette: ["#ffffff", "#dedede", "#c9a054"],
+      bestFor: "Luxury custom kitchens, open plan pavilion homes, and executive residences",
+      costLevel: "High-end premium stonemasonry tier"
+    },
+    sections: [
+      {
+        heading: "The Waterfall Island & Slab Splashback Integration",
+        paragraphs: [
+          "In high-end kitchen design, the island benchtop is treated as a solid piece of stone sculpture. A mitered waterfall edge — where the marble vein flows continuously from the horizontal benchtop down the vertical side panel — requires precision CNC cutting by a stonemason.",
+          "Extending this stone slab vertically onto the wall as a seamless splashback removes grout lines entirely. This creates a clean, architectural look that elevates the entire kitchen. To keep the focus on the marble, recess powerpoints or use brushed metal faceplates that harmonize with the stone veining."
+        ],
+        image: "/images/luxury_marble_splashback.png",
+        imageCaption: "Figure 6.1: High-end kitchen slab splashback featuring integrated brushed brass dual electrical outlets flush-mounted to Calacatta marble."
+      },
+      {
+        heading: "Stone Selection: Natural Marble vs. Engineered Alternatives",
+        paragraphs: [
+          "Calacatta and Carrara marble are the gold standards of luxury, but natural marble is porous and prone to staining from lemon juice, wine, or vinegar. It requires annual sealing and careful daily maintenance.",
+          "For high-use family kitchens, engineered quartz or sintered porcelain slabs offer identical visual vein patterns but are entirely non-porous and scratch-resistant. These alternatives do not require sealing and can withstand direct heat from hot pots."
+        ]
+      }
+    ],
+    faq: [
+      {
+        question: "How thick should a kitchen stone benchtop be?",
+        answer: "Standard slabs are 20mm thick. For a chunkier look (e.g. 40mm or 80mm), the stonemason builds a mitered apron edge around the perimeter."
+      },
+      {
+        question: "Are natural marble splashbacks hard to maintain?",
+        answer: "If sealed correctly with a high-grade sealer, they resist splashing. Clean splatters immediately and avoid harsh acidic spray cleaners."
+      }
+    ]
+  },
+  {
+    slug: "the-ultimate-travertine-pool-landscaping-guide",
+    title: "The Resort Landscape: Travertine & Pool Detailing",
+    subtitle: "Mitered drop-face coping, saltwater-resistant sealers, and compliance with QLD AS 2610 pool safety standards.",
+    excerpt: "How to design a resort-style pool deck on the Gold Coast. Stone selection, slip ratings, and structural drainage details.",
+    type: "Style Guide",
+    collection: "inspiration",
+    category: "Outdoor",
+    heroImage: "/images/pool_travertine_coping.png",
+    readTime: "8 min read",
+    publishedAt: "2026-06-20",
+    updatedAt: "2026-06-22",
+    author: "CoastHomeHub Landscaping",
+    tags: ["Outdoor", "Pool", "Travertine", "Landscaping"],
+    featured: true,
+    status: "published",
+    seo: {
+      title: "Travertine Pool Coping & Landscaping Guide QLD | CoastHomeHub",
+      description: "How to design a resort pool deck with ivory travertine. Covers mitered drop-face edges, AS 2610 safety fences, slip ratings, and sealing."
+    },
+    styleMeta: {
+      palette: ["#eae3d2", "#a6d6d2", "#1e5e59"],
+      bestFor: "In-ground concrete swimming pools, pool surrounds, and luxury landscape designs",
+      costLevel: "Premium stonemasonry and structural landscaping tier"
+    },
+    sections: [
+      {
+        heading: "The Design Chemistry: Ivory Travertine Meets Turquoise Water",
+        paragraphs: [
+          "Ivory travertine is the absolute gold standard for coastal pool landscaping. Its natural cream tones reflect heat, keeping the stone surface comfortable to walk on even under South East Queensland's scorching summer sun. When framed by crystal-clear turquoise pool water, it creates a striking aesthetic contrast that mimics luxury resorts.",
+          "To keep the layout clean, design with large-format travertine tiles (such as 600x600mm or 800x400mm). Lay them in a running-bond or modular pattern to emphasize the size of the deck, and use matching sand-colored grout to make the joints vanish."
+        ],
+        quote: "A pool deck is only as good as the masonry details. Rushing the travertine installation without structural expansion joints is the number one cause of cracked tiles on Gold Coast coastal properties.",
+        quoteAuthor: "Noosa Coastal Carpentry & Landscapes",
+        image: "/images/pool_travertine_coping.png",
+        imageCaption: "Figure 7.1: A stunning travertine pool coping with drop-face mitered edge, frameless glass pool fence, and subtropical foliage."
+      },
+      {
+        heading: "The Safety Standard: AS 2610 and Slip Ratings",
+        paragraphs: [
+          "Under Australian Standard AS 2610, pool surrounds must meet strict safety guidelines. For outdoor pedestrian wet areas, a minimum P4 slip resistance rating is mandatory, although P5 is highly recommended for pool steps and high-splash zones. Ensure your stone supplier provides certified slip-test reports before you purchase.",
+          "Additionally, the pool fence must comply with local QLD safety legislation. Ensure any climbable trees, barbecues, or deck chairs are placed outside the 900mm non-climbable zone surrounding the fence."
+        ],
+        aside: {
+          title: "AS 2610 Pool Fencing & Gates Checklist",
+          text: "Never compromise on pool safety compliance. Private certifiers check the following details:",
+          list: [
+            "Gate must swing outwards (away from the pool area)",
+            "Gate latch must be at least 1500mm above finished ground level",
+            "Glass panels must carry safety toughness markings",
+            "No climbable objects within 900mm non-climbable zone"
+          ]
+        }
+      },
+      {
+        heading: "Technical Sealing & Saltwater Protection",
+        paragraphs: [
+          "Travertine is a highly porous sedimentary rock. If you have a saltwater pool, salt crystals will penetrate the stone. As the water evaporates, the salt crystallizes and expands, causing the stone to flake and erode (salt attack).",
+          "To prevent this, apply two coats of a premium consolidating sealer (like Dry-Treat or Stain-Proof) specifically designed for porous stone around saltwater pools. This sealer must be reapplied every 3 to 5 years depending on traffic and exposure."
+        ]
+      }
+    ],
+    faq: [
+      {
+        question: "Does travertine get hot in the sun?",
+        answer: "Light-colored travertine (like Ivory or Classic) stays significantly cooler underfoot than darker stones (like Granite or Slate) or composite decking, making it ideal for bare feet."
+      },
+      {
+        question: "How do I clean travertine pool surrounds?",
+        answer: "Pressure wash the stone once or twice a year with a mild pH-neutral stone cleaner. Avoid acidic cleaners as they will permanently etch the calcium carbonate structure of the travertine."
+      }
+    ]
+  },
+  {
+    slug: "microcement-and-backlit-mirrors-ensuite-guide",
+    title: "The Spa Ensuite: Microcement & Backlit Mirror Detailing",
+    subtitle: "Grout-free seamless walls, class-3 waterproofing compliance, and ambient color temperature specification.",
+    excerpt: "Elevate your bathroom into a luxury residential spa. Master the styling, engineering, and AS 3740 compliance of microcement wet areas.",
+    type: "Style Guide",
+    collection: "inspiration",
+    category: "Bathroom",
+    heroImage: "/images/microcement_backlit_mirror.png",
+    readTime: "7 min read",
+    publishedAt: "2026-06-20",
+    updatedAt: "2026-06-22",
+    author: "CoastHomeHub Editorial",
+    tags: ["Bathroom", "Microcement", "Lighting", "Style Guide"],
+    featured: true,
+    status: "published",
+    seo: {
+      title: "Microcement & Backlit Mirrors Bathroom Guide | CoastHomeHub",
+      description: "How to apply microcement in wet areas. Grout-free styling tips, Class 3 AS 3740 waterproofing, and backlit LED mirror specifications."
+    },
+    styleMeta: {
+      palette: ["#a19d98", "#ffffff", "#bca685"],
+      bestFor: "Luxury master ensuites, powder rooms, and micro-bathrooms looking for visual expansion",
+      costLevel: "Premium artisan rendering tier"
+    },
+    sections: [
+      {
+        heading: "The Visual Expansion: Seamless Microcement Walls",
+        paragraphs: [
+          "Traditional bathroom tiles create a grid of grout lines that can make small bathrooms feel busy and enclosed. Microcement — a composite coating based on cement, water-based resins, and silica sand — offers a completely seamless finish that flows across floors, walls, and even vanity benches.",
+          "This lack of grout lines provides a clean, unbroken canvas that makes the space feel visually larger and calmer. The hand-applied texture adds warmth and depth that tiles cannot replicate, giving the ensuite an organic, residential spa character."
+        ],
+        quote: "Microcement is a premium hand-applied finish. The beauty lies in the subtle trowel marks and texture variations created by the artisan.",
+        quoteAuthor: "Paddington Tiling & Waterproofing",
+        image: "/images/microcement_backlit_mirror.png",
+        imageCaption: "Figure 8.1: A minimalist vanity area featuring warm backlit round mirror, grey microcement walls, raw stone sink, and gold hardware."
+      },
+      {
+        heading: "Technical Waterproofing Under Microcement",
+        paragraphs: [
+          "A common misconception is that microcement itself is waterproof. While the polyurethane sealer coats prevent surface water penetration, Queensland building certifiers require a fully compliant Class 3 waterproofing membrane underneath.",
+          "Any movement in the subfloor (timber framing) will crack the microcement. Applying an elastic, fiber-reinforced liquid or sheet membrane is mandatory before the base render coats are troweled on."
+        ],
+        aside: {
+          title: "Microcement Substrate & Preparation Checklist",
+          text: "To avoid hairline cracks and guarantee waterproofing integrity, ensure your builder follows these guidelines:",
+          list: [
+            "Use 19mm Compressed Fiber Cement (CFC) sheeting on floors",
+            "Embed fiberglass reinforcing mesh between the base microcement coats",
+            "Apply three coats of water-based polyurethane sealer to lock in the finish",
+            "Leave 5-10mm perimeter expansion joints filled with matching elastic sealant"
+          ]
+        }
+      },
+      {
+        heading: "Illuminating the Space: Backlit Mirror Specification",
+        paragraphs: [
+          "To bring out the organic texture of microcement walls, use raking light. A round backlit mirror creates a soft halo of light that highlights the subtle trowel variations while eliminating harsh shadows on your face.",
+          "For master bathrooms, specify 2700K (warm white) LEDs to create a relaxing evening ambiance, and wire it to a secondary dimmable circuit separate from the bright overhead downlights."
+        ]
+      }
+    ],
+    faq: [
+      {
+        question: "Is microcement slippery on bathroom floors?",
+        answer: "No. Microcement can be finished with varying grades of silica sand in the final sealer coat to achieve the required R10 or R11 slip resistance class for residential bathrooms."
+      },
+      {
+        question: "Can you apply microcement over existing tiles?",
+        answer: "Yes. Provided the existing tiles are structurally sound, flat, and not leaking, a specialized epoxy primer and mesh can be applied to bond the microcement directly over the old tiles without demolition."
       }
     ]
   }
