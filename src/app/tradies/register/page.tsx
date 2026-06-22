@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
@@ -50,8 +50,8 @@ function RegisterForm() {
   const searchParams = useSearchParams();
   const initialPlan = searchParams.get("plan") || "founding";
   const [step, setStep] = useState(1);
-  const [submitted, setSubmitted] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState(initialPlan);
+  const [submitted] = useState(false);
+  const [selectedPlan] = useState(initialPlan);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);

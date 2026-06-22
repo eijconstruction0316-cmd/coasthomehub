@@ -482,8 +482,6 @@ const posts: Record<string, {
   },
 };
 
-const allPosts = Object.values(posts);
-
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
   const post = posts[id];

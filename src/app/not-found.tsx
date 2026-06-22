@@ -48,7 +48,8 @@ export default function NotFound() {
         <div style={{ marginTop: 48, display: "flex", gap: 24, justifyContent: "center", flexWrap: "wrap" }}>
           {[
             { href: "/services", label: "Services" },
-            { href: "/gallery", label: "Gallery" },
+            { href: "/inspiration", label: "Inspiration" },
+            { href: "/projects", label: "Projects" },
             { href: "/quote", label: "Get a Quote" },
             { href: "/tradies", label: "For Tradies" },
           ].map((l) => (

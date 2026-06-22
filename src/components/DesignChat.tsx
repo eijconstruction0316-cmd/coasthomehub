@@ -78,8 +78,16 @@ export default function DesignChat() {
   const [contact, setContact] = useState<ContactForm>({ name: "", email: "", phone: "", suburb: "" });
 
   // Subscription / quota state (localStorage)
-  const [quotesUsed, setQuotesUsed] = useState(0);
-  const [subscribed, setSubscribed] = useState(false);
+  const [quotesUsed, setQuotesUsed] = useState(() =>
+    typeof window === "undefined"
+      ? 0
+      : Number(localStorage.getItem("chub_quotes_used") ?? 0)
+  );
+  const [subscribed, setSubscribed] = useState(() =>
+    typeof window === "undefined"
+      ? false
+      : localStorage.getItem("chub_access") === "unlocked"
+  );
   const [loadingCheckout, setLoadingCheckout] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -94,10 +102,9 @@ export default function DesignChat() {
   useEffect(() => {
     if (searchParams.get("unlocked") === "1") {
       localStorage.setItem("chub_access", "unlocked");
+      window.setTimeout(() => setSubscribed(true), 0);
       router.replace("/design");
     }
-    setSubscribed(localStorage.getItem("chub_access") === "unlocked");
-    setQuotesUsed(Number(localStorage.getItem("chub_quotes_used") ?? 0));
   }, [searchParams, router]);
 
   useEffect(() => {
@@ -198,13 +205,14 @@ export default function DesignChat() {
         const body = await reportRes.json().catch(() => ({}));
         throw new Error(body.error || "Could not generate report");
       }
-      const { report } = await reportRes.json();
+      const { report, reportToken } = await reportRes.json();
 
       const sendRes = await fetch("/api/send-report", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           report,
+          reportToken,
           customer: contact,
           messages: messages.map((m) => ({ role: m.role, text: m.text })),
         }),

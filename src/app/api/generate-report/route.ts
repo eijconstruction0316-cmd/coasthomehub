@@ -1,5 +1,14 @@
 import { GoogleGenAI } from "@google/genai";
 import { NextRequest, NextResponse } from "next/server";
+import { extractedReportSchema, generateReportSchema } from "@/lib/apiSchemas";
+import {
+  jsonError,
+  parseJson,
+  rateLimit,
+  requireReportSigningSecret,
+  signPayload,
+  verifySameOrigin,
+} from "@/lib/security";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -24,16 +33,30 @@ Return ONLY valid JSON with these exact fields (use null for unknown values):
 type InMsg = { role: string; text: string; hasPhoto?: boolean; imageCount?: number };
 
 export async function POST(req: NextRequest) {
+  const limited = rateLimit(req, {
+    key: "generate-report",
+    limit: 12,
+    windowMs: 15 * 60 * 1000,
+  });
+  if (limited) return limited;
+
+  const originError = verifySameOrigin(req);
+  if (originError) return originError;
+
   const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
   if (!apiKey) return NextResponse.json({ error: "AI not configured" }, { status: 503 });
 
-  let messages: InMsg[];
   try {
-    const body = await req.json();
-    messages = Array.isArray(body?.messages) ? body.messages : [];
-  } catch {
-    return NextResponse.json({ error: "Bad request" }, { status: 400 });
+    requireReportSigningSecret();
+  } catch (err) {
+    console.error("Report signing configuration error:", err);
+    return jsonError("Report signing is not configured", 503);
   }
+
+  const parsed = await parseJson(req, generateReportSchema);
+  if (parsed.error) return parsed.error;
+  const { messages } = parsed.data as { messages: InMsg[] };
+
   if (messages.length < 2) return NextResponse.json({ error: "Not enough conversation" }, { status: 400 });
 
   const hasPhoto = messages.some((m) => m.hasPhoto);
@@ -64,11 +87,21 @@ export async function POST(req: NextRequest) {
     const jsonMatch = raw.match(/\{[\s\S]*\}/);
     if (!jsonMatch) return NextResponse.json({ error: "Could not extract report" }, { status: 500 });
 
-    const report = JSON.parse(jsonMatch[0]);
-    report.hasPhoto = hasPhoto;
-    report.photoCount = photoCount;
+    const aiReport = JSON.parse(jsonMatch[0]);
+    const parsedReport = extractedReportSchema.safeParse({
+      ...aiReport,
+      hasPhoto,
+      photoCount,
+    });
 
-    return NextResponse.json({ report });
+    if (!parsedReport.success) {
+      return NextResponse.json({ error: "Could not validate report" }, { status: 500 });
+    }
+
+    return NextResponse.json({
+      report: parsedReport.data,
+      reportToken: signPayload(parsedReport.data),
+    });
   } catch (err) {
     console.error("generate-report error:", err);
     return NextResponse.json({ error: "Report generation failed" }, { status: 500 });

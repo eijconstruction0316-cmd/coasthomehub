@@ -1,25 +1,50 @@
 import Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_placeholder", {
-  apiVersion: "2026-05-27.dahlia",
-});
-
-const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder");
+import {
+  escapeHtml,
+  getAppUrl,
+  jsonError,
+  rateLimit,
+  requireEnv,
+  requireStripeSecretKey,
+} from "@/lib/security";
 
 export async function POST(req: NextRequest) {
-  const sig = req.headers.get("stripe-signature")!;
+  const limited = rateLimit(req, {
+    key: "stripe-webhook",
+    limit: 120,
+    windowMs: 60 * 1000,
+  });
+  if (limited) return limited;
+
+  const sig = req.headers.get("stripe-signature");
+  if (!sig) return jsonError("Missing signature", 400);
+
   const body = await req.text();
+  const appUrl = getAppUrl();
+
+  let stripe: Stripe;
+  let resend: Resend;
+  let webhookSecret: string;
+
+  try {
+    stripe = new Stripe(requireStripeSecretKey(), {
+      apiVersion: "2026-05-27.dahlia",
+    });
+    webhookSecret = requireEnv("STRIPE_WEBHOOK_SECRET");
+
+    const resendKey = requireEnv("RESEND_API_KEY");
+    resend = new Resend(resendKey);
+  } catch (err) {
+    console.error("Webhook environment configuration error:", err);
+    return jsonError("Webhook is not configured", 503);
+  }
 
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(
-      body,
-      sig,
-      process.env.STRIPE_WEBHOOK_SECRET!
-    );
+    event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
   } catch (err) {
     console.error("Webhook signature verification failed:", err);
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
@@ -31,6 +56,12 @@ export async function POST(req: NextRequest) {
       const session = event.data.object as Stripe.Checkout.Session;
       const { businessName, contactName, plan, licenceNumber } = session.metadata || {};
       const email = session.customer_details?.email;
+      const safeBusinessName = escapeHtml(businessName || "Your Business");
+      const safeContactName = escapeHtml(contactName || "there");
+      const safePlan = escapeHtml(plan || "Pro");
+      const safeLicenceNumber = escapeHtml(licenceNumber || "Not provided");
+      const safeEmail = escapeHtml(email || "");
+      const safeSessionId = escapeHtml(session.id);
 
       if (email) {
         // Welcome email to new tradie
@@ -43,13 +74,13 @@ export async function POST(req: NextRequest) {
               <div style="background: linear-gradient(135deg, #1f7a72, #3d9990); padding: 28px; border-radius: 10px; margin-bottom: 20px; text-align: center;">
                 <div style="font-size: 2.5rem; margin-bottom: 8px;">🔧</div>
                 <h1 style="color: white; margin: 0; font-size: 1.4rem;">Welcome to CoastHomeHub!</h1>
-                <p style="color: rgba(255,255,255,0.85); margin: 8px 0 0; font-size: 0.9rem;">Your ${plan || "Pro"} membership is now active</p>
+                <p style="color: rgba(255,255,255,0.85); margin: 8px 0 0; font-size: 0.9rem;">Your ${safePlan} membership is now active</p>
               </div>
 
               <div style="background: white; border-radius: 10px; padding: 24px; margin-bottom: 16px;">
-                <p style="color: #1a2332; font-size: 1rem; margin: 0 0 16px;">Hi <strong>${contactName || "there"}</strong>,</p>
+                <p style="color: #1a2332; font-size: 1rem; margin: 0 0 16px;">Hi <strong>${safeContactName}</strong>,</p>
                 <p style="color: #4a607a; line-height: 1.7; margin: 0 0 16px;">
-                  Your business <strong>${businessName}</strong> is now listed on CoastHomeHub. We&apos;re verifying your QBCC licence number (<strong>${licenceNumber}</strong>) and your profile will go live within 24 hours.
+                  Your business <strong>${safeBusinessName}</strong> is now listed on CoastHomeHub. We&apos;re verifying your QBCC licence number (<strong>${safeLicenceNumber}</strong>) and your profile will go live within 24 hours.
                 </p>
 
                 <div style="background: #f0f9f8; border: 1px solid #a8d8d3; border-radius: 8px; padding: 16px 20px; margin: 16px 0;">
@@ -84,12 +115,12 @@ export async function POST(req: NextRequest) {
               <h2 style="color: #1f7a72;">New Tradie Registered</h2>
               <table style="width:100%; border-collapse: collapse; background: #f5f0e8; border-radius: 8px; padding: 16px;">
                 ${[
-                  ["Business", businessName],
-                  ["Contact", contactName],
-                  ["Email", email],
-                  ["Plan", plan],
-                  ["Licence #", licenceNumber],
-                  ["Session ID", session.id],
+                  ["Business", safeBusinessName],
+                  ["Contact", safeContactName],
+                  ["Email", safeEmail],
+                  ["Plan", safePlan],
+                  ["Licence #", safeLicenceNumber],
+                  ["Session ID", safeSessionId],
                 ]
                   .map(
                     ([k, v]) =>
@@ -114,6 +145,7 @@ export async function POST(req: NextRequest) {
       const customer = await stripe.customers.retrieve(customerId) as Stripe.Customer;
 
       if (customer.email) {
+        const safeCustomerName = escapeHtml(customer.name || "there");
         await resend.emails.send({
           from: process.env.FROM_EMAIL || "noreply@coasthomehub.com.au",
           to: customer.email,
@@ -121,9 +153,9 @@ export async function POST(req: NextRequest) {
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 520px; margin: 0 auto; padding: 24px;">
               <h2>Subscription Cancelled</h2>
-              <p>Hi ${customer.name || "there"},</p>
+              <p>Hi ${safeCustomerName},</p>
               <p>Your CoastHomeHub subscription has been cancelled. Your profile will remain visible until the end of your current billing period.</p>
-              <p>We'd love to have you back. <a href="${process.env.NEXT_PUBLIC_APP_URL}/tradies/register">Re-subscribe anytime →</a></p>
+              <p>We'd love to have you back. <a href="${appUrl}/tradies/register">Re-subscribe anytime →</a></p>
               <p style="color:#4a607a; font-size:0.875rem;">— The CoastHomeHub Team</p>
             </div>
           `,
@@ -146,7 +178,7 @@ export async function POST(req: NextRequest) {
             <div style="font-family: Arial, sans-serif; max-width: 520px; margin: 0 auto; padding: 24px;">
               <h2 style="color: #dc2626;">Payment Failed</h2>
               <p>We couldn't process your CoastHomeHub subscription payment. Please update your payment method to keep your profile active.</p>
-              <a href="${process.env.NEXT_PUBLIC_APP_URL}/tradies" style="display: inline-block; background: #1f7a72; color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; margin-top: 12px;">
+              <a href="${appUrl}/tradies" style="display: inline-block; background: #1f7a72; color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; margin-top: 12px;">
                 Update Payment Method →
               </a>
               <p style="color:#4a607a; font-size:0.875rem; margin-top:16px;">We'll retry the payment 3 times over 7 days before suspending your account.</p>

@@ -1,24 +1,49 @@
 import Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_placeholder", {
-  apiVersion: "2026-05-27.dahlia",
-});
+import { homeownerSessionSchema } from "@/lib/apiSchemas";
+import {
+  getAppUrl,
+  jsonError,
+  parseJson,
+  rateLimit,
+  requireStripePrice,
+  requireStripeSecretKey,
+  safeReturnPath,
+  verifySameOrigin,
+} from "@/lib/security";
 
 export async function POST(req: NextRequest) {
+  const limited = rateLimit(req, {
+    key: "homeowner-checkout",
+    limit: 10,
+    windowMs: 15 * 60 * 1000,
+  });
+  if (limited) return limited;
+
+  const originError = verifySameOrigin(req);
+  if (originError) return originError;
+
+  const parsed = await parseJson(req, homeownerSessionSchema);
+  if (parsed.error) return parsed.error;
+
+  const { email } = parsed.data;
+  const returnPath = safeReturnPath(parsed.data.returnPath, "/design");
+  let priceId: string;
+  let stripeSecretKey: string;
+
   try {
-    const body = await req.json();
-    const { email, returnPath = "/design" } = body as { email?: string; returnPath?: string };
+    priceId = requireStripePrice("STRIPE_PRICE_HOMEOWNER");
+    stripeSecretKey = requireStripeSecretKey();
+  } catch (err) {
+    console.error("homeowner-session configuration error:", err);
+    return jsonError("Payment is not configured", 503);
+  }
 
-    const priceId = process.env.STRIPE_PRICE_HOMEOWNER;
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://coasthomehub.com.au";
-
-    if (!priceId || !priceId.startsWith("price_")) {
-      return NextResponse.json(
-        { error: "Subscription not configured yet. Please contact info@coasthomehub.com.au" },
-        { status: 503 }
-      );
-    }
+  try {
+    const appUrl = getAppUrl();
+    const stripe = new Stripe(stripeSecretKey, {
+      apiVersion: "2026-05-27.dahlia",
+    });
 
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
       mode: "subscription",
@@ -43,6 +68,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ url: session.url });
   } catch (err) {
     console.error("homeowner-session error:", err);
-    return NextResponse.json({ error: "Could not create checkout session" }, { status: 500 });
+    return jsonError("Could not create checkout session", 500);
   }
 }

@@ -1,18 +1,20 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
-
-const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder");
+import { sendReportSchema } from "@/lib/apiSchemas";
+import {
+  escapeHtml,
+  escapeHtmlArray,
+  jsonError,
+  mailtoHref,
+  parseJson,
+  rateLimit,
+  requireReportSigningSecret,
+  telHref,
+  verifySameOrigin,
+  verifySignedPayload,
+} from "@/lib/security";
 
 export const runtime = "nodejs";
-
-function esc(str: string | null | undefined): string {
-  return String(str ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
 
 type Report = {
   jobType: string;
@@ -26,7 +28,25 @@ type Report = {
   aiSummary: string;
   urgency: string | null;
   hasPhoto: boolean;
+  photoCount?: number;
 };
+
+function escapeReport(report: Report): Report {
+  return {
+    jobType: escapeHtml(report.jobType),
+    location: report.location ? escapeHtml(report.location) : null,
+    budget: report.budget ? escapeHtml(report.budget) : null,
+    estimatedCost: report.estimatedCost ? escapeHtml(report.estimatedCost) : null,
+    timeline: report.timeline ? escapeHtml(report.timeline) : null,
+    scope: escapeHtmlArray(report.scope),
+    materials: escapeHtmlArray(report.materials),
+    designConcept: report.designConcept ? escapeHtml(report.designConcept) : null,
+    aiSummary: escapeHtml(report.aiSummary),
+    urgency: report.urgency ? escapeHtml(report.urgency) : null,
+    hasPhoto: report.hasPhoto,
+    photoCount: report.photoCount,
+  };
+}
 
 function row(label: string, value: string | null | undefined) {
   if (!value) return "";
@@ -109,7 +129,19 @@ function customerEmail(report: Report, name: string) {
 </body></html>`;
 }
 
-function businessEmail(report: Report, customer: { name: string; email: string; phone: string; suburb: string }, conversation: string) {
+function businessEmail(
+  report: Report,
+  customer: {
+    name: string;
+    email: string;
+    phone: string;
+    suburb: string;
+    emailHref: string;
+    phoneHref: string;
+    replyHref: string;
+  },
+  conversation: string
+) {
   return `<!DOCTYPE html><html><head><meta charset="utf-8"></head>
 <body style="margin:0;padding:0;background:#f5f0e8;font-family:Arial,sans-serif">
 <div style="max-width:640px;margin:32px auto;background:#f5f0e8;padding:24px">
@@ -131,11 +163,11 @@ function businessEmail(report: Report, customer: { name: string; email: string; 
     <h2 style="font-size:0.9rem;color:#1a2332;margin:0 0 14px;font-weight:700;text-transform:uppercase;letter-spacing:.05em">Customer</h2>
     <table style="width:100%;border-collapse:collapse">
       ${row("Name", customer.name)}
-      ${row("Email", `<a href="mailto:${customer.email}" style="color:#1f7a72">${customer.email}</a>`)}
-      ${row("Phone", customer.phone ? `<a href="tel:${customer.phone}" style="color:#1f7a72">${customer.phone}</a>` : "Not provided")}
+      ${row("Email", `<a href="${customer.emailHref}" style="color:#1f7a72">${customer.email}</a>`)}
+      ${row("Phone", customer.phoneHref ? `<a href="${customer.phoneHref}" style="color:#1f7a72">${customer.phone}</a>` : "Not provided")}
       ${row("Suburb", customer.suburb || report.location || "Not specified")}
     </table>
-    <a href="mailto:${customer.email}?subject=Re: Your ${report.jobType} quote request&body=Hi ${customer.name}," style="display:inline-block;margin-top:14px;background:linear-gradient(135deg,#c9972a,#e8b84b);color:white;padding:10px 24px;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px">Reply to Customer →</a>
+    <a href="${customer.replyHref}" style="display:inline-block;margin-top:14px;background:linear-gradient(135deg,#c9972a,#e8b84b);color:white;padding:10px 24px;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px">Reply to Customer →</a>
   </div>
 
   <!-- Job Brief -->
@@ -181,26 +213,53 @@ function businessEmail(report: Report, customer: { name: string; email: string; 
 }
 
 export async function POST(req: NextRequest) {
+  const limited = rateLimit(req, {
+    key: "send-report",
+    limit: 6,
+    windowMs: 15 * 60 * 1000,
+  });
+  if (limited) return limited;
+
+  const originError = verifySameOrigin(req);
+  if (originError) return originError;
+
+  const parsed = await parseJson(req, sendReportSchema);
+  if (parsed.error) return parsed.error;
+
+  const { report, reportToken, customer, messages } = parsed.data;
   try {
-    const body = await req.json();
-    const { report, customer, messages } = body as {
-      report: Report;
-      customer: { name: string; email: string; phone: string; suburb: string };
-      messages: Array<{ role: string; text: string }>;
-    };
+    requireReportSigningSecret();
+  } catch (err) {
+    console.error("Report signing configuration error:", err);
+    return jsonError("Report signing is not configured", 503);
+  }
 
-    if (!report || !customer?.email || !customer?.name) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
-    }
+  if (!verifySignedPayload(reportToken, report)) {
+    return jsonError("Invalid report token", 403);
+  }
 
-    // Escape customer-supplied strings before use in HTML
-    const safeName = esc(customer.name);
-    const safeEmail = esc(customer.email);
-    const safePhone = esc(customer.phone);
-    const safeSuburb = esc(customer.suburb);
+  const resendKey = process.env.RESEND_API_KEY;
+  if (!resendKey || resendKey === "re_placeholder") {
+    return jsonError("Email service is not configured", 503);
+  }
+
+  const resend = new Resend(resendKey);
+
+  try {
+    const safeReport = escapeReport(report);
+    const safeName = escapeHtml(customer.name);
+    const safeEmail = escapeHtml(customer.email);
+    const safePhone = escapeHtml(customer.phone);
+    const safeSuburb = escapeHtml(customer.suburb);
+    const customerEmailHref = mailtoHref(customer.email);
+    const customerPhoneHref = customer.phone ? telHref(customer.phone) : "";
+    const replyHref = mailtoHref(customer.email, {
+      subject: `Re: Your ${report.jobType} quote request`,
+      body: `Hi ${customer.name},`,
+    });
 
     const conversation = messages
-      .map((m) => `${m.role === "user" ? esc(customer.name) : "CoastAI"}: ${esc(m.text)}`)
+      .map((m) => `${m.role === "user" ? safeName : "CoastAI"}: ${escapeHtml(m.text)}`)
       .join("\n\n");
 
     const from = process.env.FROM_EMAIL || "CoastHomeHub <info@coasthomehub.com.au>";
@@ -210,14 +269,26 @@ export async function POST(req: NextRequest) {
       resend.emails.send({
         from,
         to: customer.email,
-        subject: `✅ Your renovation brief is ready — ${esc(report.jobType)}`,
-        html: customerEmail(report, safeName),
+        subject: `✅ Your renovation brief is ready — ${report.jobType}`,
+        html: customerEmail(safeReport, safeName),
       }),
       resend.emails.send({
         from,
         to: contactEmail,
-        subject: `🔧 New Quote: ${esc(report.jobType)}${report.location ? ` · ${esc(report.location)}` : ""} — ${safeName}`,
-        html: businessEmail(report, { name: safeName, email: safeEmail, phone: safePhone, suburb: safeSuburb }, conversation),
+        subject: `🔧 New Quote: ${report.jobType}${report.location ? ` · ${report.location}` : ""} — ${customer.name}`,
+        html: businessEmail(
+          safeReport,
+          {
+            name: safeName,
+            email: safeEmail,
+            phone: safePhone,
+            suburb: safeSuburb,
+            emailHref: customerEmailHref,
+            phoneHref: customerPhoneHref,
+            replyHref,
+          },
+          conversation
+        ),
         replyTo: customer.email,
       }),
     ]);

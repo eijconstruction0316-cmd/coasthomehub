@@ -6,6 +6,15 @@ const planDetails: Record<string, { name: string; price: number; tagline: string
   premium: { name: "Premium", price: 299, tagline: "Unlimited leads" },
 };
 
+function safeDecodeParam(value: string | undefined, fallback: string) {
+  if (!value) return fallback;
+  try {
+    return decodeURIComponent(value).slice(0, 120);
+  } catch {
+    return fallback;
+  }
+}
+
 export default async function RegisterSuccessPage({
   searchParams,
 }: {
@@ -13,8 +22,8 @@ export default async function RegisterSuccessPage({
 }) {
   const params = await searchParams;
   const plan = planDetails[params.plan || "pro"] || planDetails.pro;
-  const name = params.name || "there";
-  const business = params.business || "your business";
+  const name = safeDecodeParam(params.name, "there");
+  const business = safeDecodeParam(params.business, "your business");
 
   return (
     <div
@@ -47,11 +56,11 @@ export default async function RegisterSuccessPage({
         </div>
 
         <h1 style={{ fontSize: "clamp(1.8rem, 5vw, 2.4rem)", marginBottom: 12, color: "var(--ocean-600)" }}>
-          Welcome to CoastHomeHub, {decodeURIComponent(name)}!
+          Welcome to CoastHomeHub, {name}!
         </h1>
 
         <p style={{ color: "var(--slate-light)", fontSize: "1rem", lineHeight: 1.75, marginBottom: 32 }}>
-          <strong>{decodeURIComponent(business)}</strong> has been registered on the{" "}
+          <strong>{business}</strong> has been registered on the{" "}
           <strong style={{ color: plan.name === "Premium" ? "var(--gold)" : "var(--ocean-500)" }}>
             {plan.name} Plan
           </strong>

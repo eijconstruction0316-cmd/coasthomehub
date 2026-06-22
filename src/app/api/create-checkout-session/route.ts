@@ -1,9 +1,16 @@
 import Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_placeholder", {
-  apiVersion: "2026-05-27.dahlia",
-});
+import { tradieCheckoutSchema } from "@/lib/apiSchemas";
+import {
+  getAppUrl,
+  isProduction,
+  jsonError,
+  parseJson,
+  productionMockCheckoutBlocked,
+  rateLimit,
+  requireStripeSecretKey,
+  verifySameOrigin,
+} from "@/lib/security";
 
 const priceIds: Record<string, string | undefined> = {
   founding: process.env.STRIPE_PRICE_FOUNDING,
@@ -21,8 +28,20 @@ const planDetails: Record<string, { name: string; price: number }> = {
 };
 
 export async function POST(req: NextRequest) {
+  const limited = rateLimit(req, {
+    key: "tradie-checkout",
+    limit: 10,
+    windowMs: 15 * 60 * 1000,
+  });
+  if (limited) return limited;
+
+  const originError = verifySameOrigin(req);
+  if (originError) return originError;
+
+  const parsed = await parseJson(req, tradieCheckoutSchema);
+  if (parsed.error) return parsed.error;
+
   try {
-    const body = await req.json();
     const {
       plan,
       businessName,
@@ -31,7 +50,9 @@ export async function POST(req: NextRequest) {
       abn,
       licenceNumber,
       phone,
-    } = body;
+      services,
+      areas,
+    } = parsed.data;
 
     const priceId = priceIds[plan];
     const details = planDetails[plan];
@@ -40,16 +61,38 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid plan selected" }, { status: 400 });
     }
 
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3031";
+    const appUrl = getAppUrl();
+    const allowMockCheckout = process.env.ALLOW_MOCK_CHECKOUT === "true" && !isProduction;
 
-    // Block checkout if Stripe price ID is not properly configured
+    if (productionMockCheckoutBlocked()) {
+      return jsonError("Mock checkout is not allowed in production", 500);
+    }
+
     if (!priceId || !priceId.startsWith("price_")) {
+      if (allowMockCheckout) {
+        return NextResponse.json({
+          url: `${appUrl}/tradies/register/success?plan=${plan}&name=${encodeURIComponent(contactName)}&business=${encodeURIComponent(businessName)}&email=${encodeURIComponent(email)}&mock=1`,
+        });
+      }
+
       console.error(`Stripe price ID not configured for plan: ${plan}`);
       return NextResponse.json(
         { error: "Payment is not configured yet. Please contact us at info@coasthomehub.com.au to register." },
         { status: 503 }
       );
     }
+
+    let stripeSecretKey: string;
+    try {
+      stripeSecretKey = requireStripeSecretKey();
+    } catch (err) {
+      console.error("Stripe secret key is not configured:", err);
+      return jsonError("Payment is not configured", 503);
+    }
+
+    const stripe = new Stripe(stripeSecretKey, {
+      apiVersion: "2026-05-27.dahlia",
+    });
 
     // Create or retrieve Stripe customer
     let customer;
@@ -66,6 +109,8 @@ export async function POST(req: NextRequest) {
           licenceNumber,
           phone,
           plan,
+          services: services.join(", ").slice(0, 500),
+          areas: areas.join(", ").slice(0, 500),
         },
       });
     }
@@ -85,6 +130,8 @@ export async function POST(req: NextRequest) {
           abn,
           licenceNumber,
           plan,
+          services: services.join(", ").slice(0, 500),
+          areas: areas.join(", ").slice(0, 500),
         },
       },
       metadata: {
@@ -94,6 +141,8 @@ export async function POST(req: NextRequest) {
         licenceNumber,
         phone,
         plan,
+        services: services.join(", ").slice(0, 500),
+        areas: areas.join(", ").slice(0, 500),
       },
       custom_text: {
         submit: {

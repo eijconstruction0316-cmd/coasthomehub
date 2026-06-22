@@ -1,0 +1,72 @@
+{
+  "name": "CoastHomeHub Magazine",
+  "version": 1,
+  "contentTypes": [
+    {
+      "id": "styleGuide",
+      "label": "Style Guide",
+      "collection": "inspiration",
+      "requiredFields": ["slug", "title", "subtitle", "excerpt", "heroImage", "category", "sections", "seo"],
+      "optionalFields": ["styleMeta", "faq", "tags", "featured"]
+    },
+    {
+      "id": "projectStory",
+      "label": "Project Story",
+      "collection": "projects",
+      "requiredFields": ["slug", "title", "subtitle", "excerpt", "heroImage", "category", "sections", "projectMeta", "seo"],
+      "optionalFields": ["faq", "tags", "featured"]
+    },
+    {
+      "id": "costGuide",
+      "label": "Cost Guide",
+      "collection": "magazine",
+      "requiredFields": ["slug", "title", "subtitle", "excerpt", "heroImage", "category", "sections", "seo"],
+      "optionalFields": ["faq", "tags", "featured"]
+    },
+    {
+      "id": "builderInterview",
+      "label": "Builder Interview",
+      "collection": "magazine",
+      "requiredFields": ["slug", "title", "subtitle", "excerpt", "heroImage", "category", "sections", "seo"],
+      "optionalFields": ["faq", "tags", "featured"]
+    },
+    {
+      "id": "designerInterview",
+      "label": "Designer Interview",
+      "collection": "magazine",
+      "requiredFields": ["slug", "title", "subtitle", "excerpt", "heroImage", "category", "sections", "seo"],
+      "optionalFields": ["faq", "tags", "featured"]
+    }
+  ],
+  "sharedFields": {
+    "slug": { "type": "string", "unique": true, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "status": { "type": "enum", "values": ["draft", "published"] },
+    "publishedAt": { "type": "date" },
+    "updatedAt": { "type": "date" },
+    "author": { "type": "string" },
+    "readTime": { "type": "string" },
+    "tags": { "type": "string[]" },
+    "sections": {
+      "type": "array",
+      "itemShape": {
+        "heading": "string",
+        "paragraphs": "string[]",
+        "bullets": "string[]"
+      }
+    },
+    "faq": {
+      "type": "array",
+      "itemShape": {
+        "question": "string",
+        "answer": "string"
+      }
+    },
+    "seo": {
+      "type": "object",
+      "shape": {
+        "title": "string",
+        "description": "string"
+      }
+    }
+  }
+}

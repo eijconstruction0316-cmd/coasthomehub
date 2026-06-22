@@ -8,11 +8,12 @@ const services = [
 ];
 
 const resources = [
-  { label: "2025 Design Trends", href: "/blog" },
-  { label: "Project Gallery", href: "/gallery" },
+  { label: "Magazine", href: "/magazine" },
+  { label: "Inspiration", href: "/inspiration" },
+  { label: "Project Stories", href: "/projects" },
+  { label: "Service Areas", href: "/locations" },
   { label: "DIY Guides", href: "/blog/diy" },
-  { label: "Cost Estimator", href: "/quote" },
-  { label: "Find a Tradie", href: "/quote" },
+  { label: "AI Planner", href: "/planner" },
 ];
 
 export default function Footer() {

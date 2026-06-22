@@ -1,36 +1,60 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
-
-const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder");
-
-function esc(str: string | null | undefined): string {
-  return String(str ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
+import { quoteRequestSchema } from "@/lib/apiSchemas";
+import {
+  checkQuoteBotSignals,
+  escapeHtml,
+  jsonError,
+  mailtoHref,
+  parseJson,
+  rateLimit,
+  telHref,
+  verifySameOrigin,
+} from "@/lib/security";
 
 export async function POST(req: NextRequest) {
+  const limited = rateLimit(req, {
+    key: "send-quote",
+    limit: 8,
+    windowMs: 15 * 60 * 1000,
+  });
+  if (limited) return limited;
+
+  const originError = verifySameOrigin(req);
+  if (originError) return originError;
+
+  const parsed = await parseJson(req, quoteRequestSchema);
+  if (parsed.error) return parsed.error;
+
+  const botError = checkQuoteBotSignals(parsed.data);
+  if (botError) return botError;
+
+  const resendKey = process.env.RESEND_API_KEY;
+  if (!resendKey || resendKey === "re_placeholder") {
+    return jsonError("Email service is not configured", 503);
+  }
+
+  const resend = new Resend(resendKey);
+
   try {
-    const body = await req.json();
-    const { jobType, location, timeline, description, name, email, phone } = body;
+    const { jobType, location, timeline, description, name, email, phone } = parsed.data;
 
     // Sanitise all user-supplied strings before embedding in HTML
-    const sJobType = esc(jobType);
-    const sLocation = esc(location);
-    const sTimeline = esc(timeline || "Not specified");
-    const sDescription = esc(description);
-    const sName = esc(name);
-    const sEmail = esc(email);
-    const sPhone = esc(phone);
+    const sJobType = escapeHtml(jobType);
+    const sLocation = escapeHtml(location);
+    const sTimeline = escapeHtml(timeline || "Not specified");
+    const sDescription = escapeHtml(description);
+    const sName = escapeHtml(name);
+    const sEmail = escapeHtml(email);
+    const sPhone = escapeHtml(phone);
+    const emailHref = mailtoHref(email);
+    const phoneHref = phone ? telHref(phone) : "";
 
     // ── 1. Email to business (EIJ Construction) ──────────────────
     await resend.emails.send({
       from: process.env.FROM_EMAIL || "noreply@coasthomehub.com.au",
       to: process.env.CONTACT_EMAIL || "info@coasthomehub.com.au",
-      subject: `🔧 New Quote Request: ${sJobType} in ${sLocation}`,
+      subject: `🔧 New Quote Request: ${jobType} in ${location}`,
       html: `
         <div style="font-family: 'Outfit', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f5f0e8; padding: 24px; border-radius: 12px;">
           <div style="background: linear-gradient(135deg, #1f7a72, #3d9990); padding: 24px 28px; border-radius: 10px; margin-bottom: 20px;">
@@ -63,8 +87,8 @@ export async function POST(req: NextRequest) {
             <table style="width: 100%; border-collapse: collapse;">
               ${[
                 ["Name", sName],
-                ["Email", `<a href="mailto:${sEmail}">${sEmail}</a>`],
-                ["Phone", sPhone ? `<a href="tel:${sPhone}">${sPhone}</a>` : "Not provided"],
+                ["Email", `<a href="${emailHref}">${sEmail}</a>`],
+                ["Phone", phoneHref ? `<a href="${phoneHref}">${sPhone}</a>` : "Not provided"],
               ]
                 .map(
                   ([k, v]) => `
@@ -75,7 +99,7 @@ export async function POST(req: NextRequest) {
                 )
                 .join("")}
             </table>
-            <a href="mailto:${sEmail}" style="display: inline-block; margin-top: 16px; background: linear-gradient(135deg, #1f7a72, #3d9990); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem;">
+            <a href="${emailHref}" style="display: inline-block; margin-top: 16px; background: linear-gradient(135deg, #1f7a72, #3d9990); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem;">
               Reply to ${sName} →
             </a>
           </div>

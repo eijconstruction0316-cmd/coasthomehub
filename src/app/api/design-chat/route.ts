@@ -1,5 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 import { NextRequest } from "next/server";
+import { designChatSchema } from "@/lib/apiSchemas";
+import { parseJson, rateLimit, verifySameOrigin } from "@/lib/security";
 
 /* CoastAI — renovation design concierge for CoastHomeHub.
    Vision-capable: homeowner can upload a photo of their space.
@@ -21,17 +23,21 @@ BOUNDARIES: Stay on home renovation, design, DIY and the quoting process. If ask
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-type InMsg = {
-  role: "user" | "assistant";
-  text: string;
-  images?: { media_type: string; data: string }[]; // multiple base64 images
-};
-
 type GeminiPart =
   | { text: string }
   | { inlineData: { mimeType: string; data: string } };
 
 export async function POST(req: NextRequest) {
+  const limited = rateLimit(req, {
+    key: "design-chat",
+    limit: 20,
+    windowMs: 10 * 60 * 1000,
+  });
+  if (limited) return limited;
+
+  const originError = verifySameOrigin(req);
+  if (originError) return originError;
+
   const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
   if (!apiKey) {
     return new Response(
@@ -40,16 +46,10 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  let messages: InMsg[];
-  try {
-    const body = await req.json();
-    messages = Array.isArray(body?.messages) ? body.messages : [];
-  } catch {
-    return new Response(JSON.stringify({ error: "Bad request" }), {
-      status: 400,
-      headers: { "content-type": "application/json" },
-    });
-  }
+  const parsed = await parseJson(req, designChatSchema);
+  if (parsed.error) return parsed.error;
+  const { messages } = parsed.data;
+
   if (messages.length === 0) {
     return new Response(JSON.stringify({ error: "No messages" }), {
       status: 400,

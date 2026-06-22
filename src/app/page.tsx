@@ -151,7 +151,7 @@ export default function Home() {
                 <Link href="/quote" className="btn-gold" id="hero-start-ai" style={{ fontSize: "1.05rem", padding: "15px 36px" }}>
                   📸 Design my space with AI →
                 </Link>
-                <Link href="/gallery" style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "rgba(255,255,255,0.85)", padding: "14px 30px", borderRadius: "50px", fontWeight: 600, fontSize: "1rem", textDecoration: "none", border: "2px solid rgba(255,255,255,0.25)", transition: "var(--transition)" }} id="hero-browse" className="btn-outline-white">
+                <Link href="/projects" style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "rgba(255,255,255,0.85)", padding: "14px 30px", borderRadius: "50px", fontWeight: 600, fontSize: "1rem", textDecoration: "none", border: "2px solid rgba(255,255,255,0.25)", transition: "var(--transition)" }} id="hero-browse" className="btn-outline-white">
                   Browse real projects
                 </Link>
               </div>
@@ -385,12 +385,12 @@ export default function Home() {
                 Real QLD projects, honest cost guides and DIY know-how — so you make confident decisions before you spend.
               </p>
             </div>
-            <Link href="/blog" className="btn-secondary" id="hub-all">All guides →</Link>
+            <Link href="/magazine" className="btn-secondary" id="hub-all">All guides →</Link>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
             {designHub.map((p) => (
-              <Link key={p.title} href="/blog" className="card" style={{ overflow: "hidden", textDecoration: "none", display: "block" }}>
+              <Link key={p.title} href="/magazine" className="card" style={{ overflow: "hidden", textDecoration: "none", display: "block" }}>
                 <div style={{ height: 200, overflow: "hidden", position: "relative" }}>
                   <Image src={p.img} alt={p.title} width={600} height={200} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.5s ease" }} className="hub-img" unoptimized />
                   <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(14,68,64,0.3) 0%, transparent 60%)" }} />
