@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { plannerQuestionRequestSchema } from "@/lib/apiSchemas";
 import { parseJson, rateLimit, verifySameOrigin } from "@/lib/security";
+import { logError } from "@/lib/logger";
 import { buildPlannerQuestionPrompt, getFallbackPlannerQuestion } from "@/lib/planner";
 
 export const runtime = "nodejs";
@@ -79,7 +80,7 @@ export async function POST(req: NextRequest) {
       },
     });
   } catch (err) {
-    console.error("planner question error:", err);
+    logError("planner-question", err);
     return NextResponse.json({ complete: false, question: fallback.question });
   }
 }

@@ -2,6 +2,7 @@ import { GoogleGenAI } from "@google/genai";
 import { NextRequest } from "next/server";
 import { designChatSchema } from "@/lib/apiSchemas";
 import { parseJson, rateLimit, verifySameOrigin } from "@/lib/security";
+import { logError } from "@/lib/logger";
 
 /* CoastAI — renovation design concierge for CoastHomeHub.
    Vision-capable: homeowner can upload a photo of their space.
@@ -92,7 +93,7 @@ export async function POST(req: NextRequest) {
           if (text) controller.enqueue(encoder.encode(text));
         }
       } catch (err) {
-        console.error("design-chat error:", err);
+        logError("design-chat", err);
         controller.enqueue(
           encoder.encode("\n\n⚠️ Sorry — I hit a snag just then. Please try again in a moment.")
         );

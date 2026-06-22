@@ -3,7 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { plannerBriefRequestSchema, plannerBriefSchema } from "@/lib/apiSchemas";
 import { jsonError, parseJson, rateLimit, verifySameOrigin } from "@/lib/security";
 import { buildPlannerBriefFallback, buildPlannerBriefPrompt } from "@/lib/planner";
-import { savePlannerBrief } from "@/lib/plannerDatabase";
+import { generatePdfAccessToken, savePlannerBrief } from "@/lib/plannerDatabase";
+import { logError } from "@/lib/logger";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -47,7 +48,7 @@ export async function POST(req: NextRequest) {
         if (aiBrief.success) brief = aiBrief.data;
       }
     } catch (err) {
-      console.error("planner brief AI fallback:", err);
+      logError("planner-brief:ai", err);
     }
   }
 
@@ -59,13 +60,14 @@ export async function POST(req: NextRequest) {
       brief,
     });
 
+    const token = generatePdfAccessToken(record.id);
     return NextResponse.json({
       id: record.id,
       brief: record.brief,
-      pdfUrl: `/api/planner/pdf/${record.id}`,
+      pdfUrl: `/api/planner/pdf/${record.id}?token=${token}`,
     });
   } catch (err) {
-    console.error("planner brief save error:", err);
+    logError("planner-brief", err);
     return jsonError("Could not save project brief", 500);
   }
 }

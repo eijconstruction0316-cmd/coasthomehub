@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { quoteRequestSchema } from "@/lib/apiSchemas";
+import { logError } from "@/lib/logger";
 import {
   checkQuoteBotSignals,
   escapeHtml,
@@ -161,7 +162,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Email send error:", error);
+    logError("send-quote", error);
     return NextResponse.json(
       { error: "Failed to send email" },
       { status: 500 }

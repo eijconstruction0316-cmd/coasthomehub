@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { tradieCheckoutSchema } from "@/lib/apiSchemas";
+import { logError, logWarn } from "@/lib/logger";
 import {
   getAppUrl,
   isProduction,
@@ -75,7 +76,7 @@ export async function POST(req: NextRequest) {
         });
       }
 
-      console.error(`Stripe price ID not configured for plan: ${plan}`);
+      logWarn("checkout:price-id", `Price ID not configured for plan: ${plan}`);
       return NextResponse.json(
         { error: "Payment is not configured yet. Please contact us at info@coasthomehub.com.au to register." },
         { status: 503 }
@@ -86,7 +87,7 @@ export async function POST(req: NextRequest) {
     try {
       stripeSecretKey = requireStripeSecretKey();
     } catch (err) {
-      console.error("Stripe secret key is not configured:", err);
+      logError("checkout:stripe-key", err);
       return jsonError("Payment is not configured", 503);
     }
 
@@ -153,7 +154,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
-    console.error("Stripe checkout error:", error);
+    logError("create-checkout-session", error);
     return NextResponse.json(
       { error: "Failed to create checkout session" },
       { status: 500 }

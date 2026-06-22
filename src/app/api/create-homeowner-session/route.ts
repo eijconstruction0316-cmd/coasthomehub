@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { homeownerSessionSchema } from "@/lib/apiSchemas";
+import { logError } from "@/lib/logger";
 import {
   getAppUrl,
   jsonError,
@@ -35,7 +36,7 @@ export async function POST(req: NextRequest) {
     priceId = requireStripePrice("STRIPE_PRICE_HOMEOWNER");
     stripeSecretKey = requireStripeSecretKey();
   } catch (err) {
-    console.error("homeowner-session configuration error:", err);
+    logError("homeowner-session:config", err);
     return jsonError("Payment is not configured", 503);
   }
 
@@ -67,7 +68,7 @@ export async function POST(req: NextRequest) {
     const session = await stripe.checkout.sessions.create(sessionParams);
     return NextResponse.json({ url: session.url });
   } catch (err) {
-    console.error("homeowner-session error:", err);
+    logError("homeowner-session", err);
     return jsonError("Could not create checkout session", 500);
   }
 }

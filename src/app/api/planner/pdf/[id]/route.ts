@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { jsonError, rateLimit } from "@/lib/security";
-import { getPlannerBrief } from "@/lib/plannerDatabase";
+import { getPlannerBrief, verifyPdfAccessToken } from "@/lib/plannerDatabase";
 import { generatePlannerPdf } from "@/lib/plannerPdf";
+import { logError } from "@/lib/logger";
 
 export const runtime = "nodejs";
 
@@ -26,15 +27,27 @@ export async function GET(
   const parsedId = briefIdSchema.safeParse(id);
   if (!parsedId.success) return jsonError("Invalid brief id", 400);
 
-  const record = await getPlannerBrief(parsedId.data);
-  if (!record) return jsonError("Brief not found", 404);
+  // 접근 토큰 검증 — ?token=xxx 없으면 403
+  const token = req.nextUrl.searchParams.get("token") ?? "";
+  if (!token || !verifyPdfAccessToken(parsedId.data, token)) {
+    logError("planner-pdf", new Error("Unauthorized PDF access attempt"), { id: parsedId.data });
+    return jsonError("Access denied", 403);
+  }
 
-  const pdf = generatePlannerPdf(record);
-  return new NextResponse(pdf, {
-    headers: {
-      "content-type": "application/pdf",
-      "content-disposition": `attachment; filename="coasthomehub-planner-${record.id}.pdf"`,
-      "cache-control": "private, no-store",
-    },
-  });
+  try {
+    const record = await getPlannerBrief(parsedId.data);
+    if (!record) return jsonError("Brief not found", 404);
+
+    const pdf = generatePlannerPdf(record);
+    return new NextResponse(pdf, {
+      headers: {
+        "content-type": "application/pdf",
+        "content-disposition": `attachment; filename="coasthomehub-planner-${record.id}.pdf"`,
+        "cache-control": "private, no-store",
+      },
+    });
+  } catch (err) {
+    logError("planner-pdf", err, { id: parsedId.data });
+    return jsonError("Could not generate PDF", 500);
+  }
 }

@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { sendReportSchema } from "@/lib/apiSchemas";
+import { logError } from "@/lib/logger";
 import {
   escapeHtml,
   escapeHtmlArray,
@@ -230,7 +231,7 @@ export async function POST(req: NextRequest) {
   try {
     requireReportSigningSecret();
   } catch (err) {
-    console.error("Report signing configuration error:", err);
+    logError("send-report:signing", err);
     return jsonError("Report signing is not configured", 503);
   }
 
@@ -299,7 +300,7 @@ export async function POST(req: NextRequest) {
       businessEmailId: businessResult.data?.id,
     });
   } catch (err) {
-    console.error("send-report error:", err);
+    logError("send-report", err);
     return NextResponse.json({ error: "Failed to send report" }, { status: 500 });
   }
 }

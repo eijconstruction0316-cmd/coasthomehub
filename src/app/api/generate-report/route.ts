@@ -1,6 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 import { NextRequest, NextResponse } from "next/server";
 import { extractedReportSchema, generateReportSchema } from "@/lib/apiSchemas";
+import { logError } from "@/lib/logger";
 import {
   jsonError,
   parseJson,
@@ -49,7 +50,7 @@ export async function POST(req: NextRequest) {
   try {
     requireReportSigningSecret();
   } catch (err) {
-    console.error("Report signing configuration error:", err);
+    logError("generate-report:signing", err);
     return jsonError("Report signing is not configured", 503);
   }
 
@@ -105,7 +106,7 @@ export async function POST(req: NextRequest) {
       reportToken: signPayload(parsedReport.data),
     });
   } catch (err) {
-    console.error("generate-report error:", err);
+    logError("generate-report", err);
     return NextResponse.json({ error: "Report generation failed" }, { status: 500 });
   }
 }

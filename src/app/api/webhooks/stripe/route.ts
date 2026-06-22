@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { logError, logWarn, logInfo } from "@/lib/logger";
 import {
   escapeHtml,
   getAppUrl,
@@ -37,7 +38,7 @@ export async function POST(req: NextRequest) {
     const resendKey = requireEnv("RESEND_API_KEY");
     resend = new Resend(resendKey);
   } catch (err) {
-    console.error("Webhook environment configuration error:", err);
+    logError("webhook:config", err);
     return jsonError("Webhook is not configured", 503);
   }
 
@@ -46,7 +47,7 @@ export async function POST(req: NextRequest) {
   try {
     event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
   } catch (err) {
-    console.error("Webhook signature verification failed:", err);
+    logWarn("webhook:signature", err);
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 
