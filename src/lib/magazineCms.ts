@@ -457,6 +457,182 @@ export const magazineArticles: MagazineArticle[] = [
       },
     ],
   },
+  {
+    slug: "the-material-edit-fluted-glass-tasmanian-oak",
+    title: "The Material Edit: Fluted Glass & Tasmanian Oak",
+    subtitle: "A Vogue-inspired material pairing meets strict QLD building compliance.",
+    excerpt: "How to balance the tactile warmth of natural Australian hardwood with the structural light-refraction of vertical ribbed glass in ensuite designs.",
+    type: "Style Guide",
+    collection: "inspiration",
+    category: "Bathroom",
+    heroImage: "/gallery/interior-3.jpg",
+    readTime: "7 min read",
+    publishedAt: "2026-06-20",
+    updatedAt: "2026-06-22",
+    author: "CoastHomeHub Editorial",
+    tags: ["Bathroom", "Materials", "Tasmanian Oak", "Fluted Glass"],
+    featured: true,
+    status: "published",
+    seo: {
+      title: "Tactile Bathroom Style Guide: Fluted Glass & Tasmanian Oak | CoastHomeHub",
+      description: "Learn how to style Tasmanian Oak and fluted glass in Queensland bathroom renovations while staying compliant with waterproofing and AS 1288 glass standards."
+    },
+    styleMeta: {
+      palette: ["#e3d8c5", "#ffffff", "#3d3d3d"],
+      bestFor: "Luxury master ensuites, parent retreats and light-filled bathrooms",
+      costLevel: "Premium fixture and carpentry tier"
+    },
+    sections: [
+      {
+        heading: "The Aesthetic Chemistry (Vogue Styling)",
+        paragraphs: [
+          "In contemporary design, luxury is defined by the conversation between natural textures and architectural glass. Tasmanian Oak offers a warm, honey-toned grain that feels soft and grounded. When paired with the sharp, vertical lines of fluted glass, it creates a striking balance of texture and light refraction.",
+          "To keep this look editorial, avoid heavy black metal frames. Opt for frameless or minimal brass/gold brackets. This allows the glass texture and timber grain to remain the central design elements, keeping the space open and serene."
+        ]
+      },
+      {
+        heading: "The Construction Reality (QBCC & AS 1288 Standards)",
+        paragraphs: [
+          "While timber brings high-end aesthetics, raw hardwood in wet areas is a major liability under QLD's high humidity. Tasmanian Oak used in vanities or wall features must be double-sealed with marine-grade polyurethane or Osmo oil. Proper mechanical ventilation is mandatory to prevent mold and timber warping.",
+          "Furthermore, any glass panel installed in a wet area must comply with Australian Standard AS 1288. For frameless shower screens, this means using a minimum of 10mm toughened safety glass. Ensure your QBCC-licensed glazier provides a certificate of compliance upon installation."
+        ]
+      },
+      {
+        heading: "Get the Look: Trade Specifications",
+        paragraphs: [
+          "When submitting your project brief through CoastHomeHub, specify the following details to ensure accurate quoting from local contractors:"
+        ],
+        bullets: [
+          "Timber: Select select-grade Tasmanian Oak veneer with moisture-resistant MDF casing.",
+          "Glass: 10mm toughened safety fluted glass shower screen with polished edges.",
+          "Hardware: Brushed gold or satin brass wall brackets (no perimeter frame).",
+          "Waterproofing: Class 3 membrane system fully compliant with AS 3740."
+        ]
+      }
+    ],
+    faq: [
+      {
+        question: "Is Tasmanian Oak safe for high-moisture bathrooms?",
+        answer: "Yes, but only if it is correctly sealed on all sides (including the back and cut-outs) before installation, and the bathroom has an active mechanical exhaust fan sized for the room."
+      },
+      {
+        question: "Does fluted glass require more cleaning?",
+        answer: "No. The textured ribbed surface actually hides water spots and fingerprints much better than clear glass, making it both beautiful and low-maintenance."
+      }
+    ]
+  },
+  {
+    slug: "noosa-pavilion-kitchen-transformation",
+    title: "Project Story: The Noosa Pavilion Kitchen Transformation",
+    subtitle: "A Kinfolk-inspired indoor-outdoor flow backed by structural steel engineering.",
+    excerpt: "Behind the scenes of a high-end Noosa kitchen renovation where load-bearing walls were replaced with custom black steel beams.",
+    type: "Project Story",
+    collection: "projects",
+    category: "Kitchen",
+    heroImage: "/gallery/interior-4.jpg",
+    readTime: "8 min read",
+    publishedAt: "2026-06-18",
+    updatedAt: "2026-06-22",
+    author: "CoastHomeHub Projects",
+    tags: ["Kitchen", "Structural", "Noosa", "Project Story"],
+    featured: true,
+    status: "published",
+    seo: {
+      title: "Noosa Pavilion Kitchen Renovation Project Story | CoastHomeHub",
+      description: "Inside the Noosa Pavilion renovation: a structural kitchen redesign featuring load-bearing wall removal, custom steel engineering, and high-end timber curation."
+    },
+    projectMeta: {
+      location: "Noosa Heads",
+      projectType: "Structural wall removal & luxury kitchen refit",
+      budgetRange: "$65k-$95k",
+      timeline: "6-8 weeks site time"
+    },
+    sections: [
+      {
+        heading: "The Editorial Brief",
+        paragraphs: [
+          "The goal for this Noosa Heads pavilion home was to erase the boundary between the kitchen and the outdoor entertaining deck. The original 1990s layout was enclosed, blocking the sun and isolating the cook from the family area.",
+          "Drawing inspiration from minimalist European design, we planned a wide island bench in light limestone-look quartz, contrasted with matte black cabinetry and integrated timber shelves. The highlight is the wide servery window that folds completely open to the alfresco dining space."
+        ]
+      },
+      {
+        heading: "The Structural Challenge (Structural Steel & Permits)",
+        paragraphs: [
+          "To achieve the open-plan flow, we had to remove a 4.2-meter load-bearing timber wall that supported the roof rafters. This required a structural engineer to design a custom steel beam (universal beam) to span the opening, resting on new double studs at each end.",
+          "Under Queensland regulations, structural modifications require building approval (BA) from a private certifier. We submitted engineering drawings (Form 15) and obtained the necessary permits before starting demolition. An experienced QBCC-licensed carpenter coordinated the steel lift using a specialized material hoist."
+        ]
+      },
+      {
+        heading: "Exact Budget & Materials Breakdown",
+        paragraphs: [
+          "The project total ended at $84,500. Major cost drivers included the structural steel fabrication and certifier fees ($9,200), premium engineered stone for the waterfall island ($14,500), and custom integrated polyurethane cabinetry ($28,000). The remaining budget covered plumbing, electrical upgrades, and commercial-grade aluminum bifold windows."
+        ]
+      }
+    ],
+    faq: [
+      {
+        question: "Do I need a building permit to remove an internal wall in QLD?",
+        answer: "If the wall is load-bearing, yes. You must engage a structural engineer to design the replacement beam and obtain building approval from a licensed certifier."
+      },
+      {
+        question: "What is a Form 15 in QLD construction?",
+        answer: "A Form 15 is a Certificate of Design Compliance. It is issued by the structural engineer to certify that the proposed steel beam design complies with the Building Code of Australia (BCA)."
+      }
+    ]
+  },
+  {
+    slug: "the-2026-qld-renovation-budget-blueprint",
+    title: "The 2026 QLD Renovation Budget Blueprint",
+    subtitle: "A Dwell-style cost guide for smart mix-and-match choices and waterproofing protection.",
+    excerpt: "How to budget like a builder and style like an editor. Real numbers, labor trends, and cost-saving choices for Queensland homes.",
+    type: "Cost Guide",
+    collection: "magazine",
+    category: "Cost Guide",
+    heroImage: "/gallery/interior-5.jpg",
+    readTime: "9 min read",
+    publishedAt: "2026-06-15",
+    updatedAt: "2026-06-22",
+    author: "CoastHomeHub Editorial",
+    tags: ["Cost Guide", "Budgeting", "Materials", "Queensland"],
+    status: "published",
+    seo: {
+      title: "2026 QLD Renovation Budget & Cost Guide | CoastHomeHub",
+      description: "Maximize your renovation budget in South East Queensland. Dwell-style high-low cost strategy, waterproofing safety advice, and 2026 labor cost trends."
+    },
+    sections: [
+      {
+        heading: "High-Low Mix: Where to Invest vs. Save",
+        paragraphs: [
+          "Great editors know how to mix high-end luxury items with cost-effective basics to create a stunning overall impression. In renovations, this is called the High-Low Mix strategy. To get the best return on your investment, direct your budget where it will have the most tactile and visual impact.",
+          "Invest in touchpoints: spend on designer tapware, a stone vanity top, and a feature wall tile that catches the eye. Save on hidden items: use standard laminate or polyurethane cabinet boxes, standard white wet-wall tiles for non-feature walls, and off-the-shelf mirror cabinets."
+        ]
+      },
+      {
+        heading: "The Invisible Costs: Waterproofing & Prep",
+        paragraphs: [
+          "The biggest mistake homeowners make is allocating 100% of their budget to visible finishes. In QLD, the highest source of building disputes is water leaks. If your bathroom waterproofing fails, you will have to strip the tiles and start again — nullifying any savings.",
+          "Ensure your budget allocates at least $2,000-$3,500 for professional waterproofing by a QBCC-licensed contractor. Rushing the screed or membrane drying times to save labor costs will always lead to long-term structural issues."
+        ]
+      },
+      {
+        heading: "Labor and Inflation Trends in QLD (2026)",
+        paragraphs: [
+          "Renovation labor costs in South East Queensland have stabilized after the surges of recent years, but trade availability remains tight. Expect carpentry labor to average $75-$95/hour, while specialized trades like plumbing and electrical range from $90-$120/hour.",
+          "When planning your budget, always add a strict 15% contingency buffer for unforeseen issues (like structural dry rot behind old walls, asbestos removal, or rerouting old copper pipes) that can only be diagnosed after demolition."
+        ]
+      }
+    ],
+    faq: [
+      {
+        question: "How much does a standard bathroom cost in QLD for 2026?",
+        answer: "A standard family bathroom renovation currently ranges between $22,000 and $36,000, depending on size, plumbing movements, and finish quality."
+      },
+      {
+        question: "Can I do the demolition myself to save money?",
+        answer: "Yes, but with caution. You can save $1,000-$2,000, but you must ensure you don't damage active plumbing or electrical lines, and you must get a licensed professional to inspect and remove any asbestos before you start."
+      }
+    ]
+  }
 ];
 
 export function getPublishedMagazineArticles() {
