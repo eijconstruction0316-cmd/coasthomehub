@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
 import MagazineArticleCard from "@/components/MagazineArticleCard";
@@ -134,6 +135,25 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                   <ul style={{ paddingLeft: 22, display: "grid", gap: 8, color: "var(--slate-mid)", lineHeight: 1.65 }}>
                     {section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
                   </ul>
+                )}
+                {section.image && (
+                  <div style={{ marginTop: 24, marginBottom: 24 }}>
+                    <div style={{ position: "relative", height: "min(40vw, 320px)", minHeight: 200, width: "100%", borderRadius: 12, overflow: "hidden", border: "1px solid var(--sand-200)", boxShadow: "var(--shadow-sm)" }}>
+                      <Image
+                        src={section.image}
+                        alt={section.imageCaption || section.heading}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        style={{ objectFit: "cover" }}
+                        unoptimized
+                      />
+                    </div>
+                    {section.imageCaption && (
+                      <p style={{ color: "var(--slate-light)", fontSize: "0.8rem", marginTop: 8, fontStyle: "italic", textAlign: "center" }}>
+                        {section.imageCaption}
+                      </p>
+                    )}
+                  </div>
                 )}
               </section>
             ))}

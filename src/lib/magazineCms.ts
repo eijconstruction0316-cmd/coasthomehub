@@ -16,6 +16,8 @@ export type MagazineSection = {
   heading: string;
   paragraphs: string[];
   bullets?: string[];
+  image?: string;
+  imageCaption?: string;
 };
 
 export type MagazineArticle = {
@@ -488,14 +490,18 @@ export const magazineArticles: MagazineArticle[] = [
         paragraphs: [
           "In contemporary design, luxury is defined by the conversation between natural textures and architectural glass. Tasmanian Oak offers a warm, honey-toned grain that feels soft and grounded. When paired with the sharp, vertical lines of fluted glass, it creates a striking balance of texture and light refraction.",
           "To keep this look editorial, avoid heavy black metal frames. Opt for frameless or minimal brass/gold brackets. This allows the glass texture and timber grain to remain the central design elements, keeping the space open and serene."
-        ]
+        ],
+        image: "/gallery/interior-6.jpg",
+        imageCaption: "Figure 1.1: Fluted glass panels refract soft natural morning light, creating privacy without losing space in this ensuite layout."
       },
       {
         heading: "The Construction Reality (QBCC & AS 1288 Standards)",
         paragraphs: [
           "While timber brings high-end aesthetics, raw hardwood in wet areas is a major liability under QLD's high humidity. Tasmanian Oak used in vanities or wall features must be double-sealed with marine-grade polyurethane or Osmo oil. Proper mechanical ventilation is mandatory to prevent mold and timber warping.",
           "Furthermore, any glass panel installed in a wet area must comply with Australian Standard AS 1288. For frameless shower screens, this means using a minimum of 10mm toughened safety glass. Ensure your QBCC-licensed glazier provides a certificate of compliance upon installation."
-        ]
+        ],
+        image: "/images/modern_bathroom_after.png",
+        imageCaption: "Figure 1.2: A finished QLD ensuite showcasing double-sealed Tasmanian Oak timber grain offset by brushed brass fittings."
       },
       {
         heading: "Get the Look: Trade Specifications",
@@ -553,14 +559,18 @@ export const magazineArticles: MagazineArticle[] = [
         paragraphs: [
           "The goal for this Noosa Heads pavilion home was to erase the boundary between the kitchen and the outdoor entertaining deck. The original 1990s layout was enclosed, blocking the sun and isolating the cook from the family area.",
           "Drawing inspiration from minimalist European design, we planned a wide island bench in light limestone-look quartz, contrasted with matte black cabinetry and integrated timber shelves. The highlight is the wide servery window that folds completely open to the alfresco dining space."
-        ]
+        ],
+        image: "/images/luxury_kitchen.png",
+        imageCaption: "Figure 2.1: The completed Noosa Heads kitchen showing the wide limestone waterfall island, opening onto the coastal deck."
       },
       {
         heading: "The Structural Challenge (Structural Steel & Permits)",
         paragraphs: [
           "To achieve the open-plan flow, we had to remove a 4.2-meter load-bearing timber wall that supported the roof rafters. This required a structural engineer to design a custom steel beam (universal beam) to span the opening, resting on new double studs at each end.",
           "Under Queensland regulations, structural modifications require building approval (BA) from a private certifier. We submitted engineering drawings (Form 15) and obtained the necessary permits before starting demolition. An experienced QBCC-licensed carpenter coordinated the steel lift using a specialized material hoist."
-        ]
+        ],
+        image: "/gallery/interior-8.jpg",
+        imageCaption: "Figure 2.2: A detailed close-up of custom integrated oak shelves and matte black joinery panels."
       },
       {
         heading: "Exact Budget & Materials Breakdown",
@@ -605,14 +615,18 @@ export const magazineArticles: MagazineArticle[] = [
         paragraphs: [
           "Great editors know how to mix high-end luxury items with cost-effective basics to create a stunning overall impression. In renovations, this is called the High-Low Mix strategy. To get the best return on your investment, direct your budget where it will have the most tactile and visual impact.",
           "Invest in touchpoints: spend on designer tapware, a stone vanity top, and a feature wall tile that catches the eye. Save on hidden items: use standard laminate or polyurethane cabinet boxes, standard white wet-wall tiles for non-feature walls, and off-the-shelf mirror cabinets."
-        ]
+        ],
+        image: "/gallery/interior-5.jpg",
+        imageCaption: "Figure 3.1: An editorial high-low mix bathroom styling layout featuring a custom mirror cabinet and standard tile backing."
       },
       {
         heading: "The Invisible Costs: Waterproofing & Prep",
         paragraphs: [
           "The biggest mistake homeowners make is allocating 100% of their budget to visible finishes. In QLD, the highest source of building disputes is water leaks. If your bathroom waterproofing fails, you will have to strip the tiles and start again — nullifying any savings.",
           "Ensure your budget allocates at least $2,000-$3,500 for professional waterproofing by a QBCC-licensed contractor. Rushing the screed or membrane drying times to save labor costs will always lead to long-term structural issues."
-        ]
+        ],
+        image: "/images/old_bathroom_before.png",
+        imageCaption: "Figure 3.2: Moisture and structural rot discovered behind old sheeting during demolition highlight the risk of improper waterproofing."
       },
       {
         heading: "Labor and Inflation Trends in QLD (2026)",
