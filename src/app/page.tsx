@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import HeroInteractiveCard from "@/components/HeroInteractiveCard";
 
 const trustRow = [
   { value: "Max 3", label: "quotes — never sold to 10" },
@@ -167,71 +168,11 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: AI chat card */}
-            <div style={{ position: "relative" }}>
-              <div style={{ background: "rgba(255,255,255,0.96)", borderRadius: 24, padding: 24, boxShadow: "0 32px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1)" }}>
-                {/* Chat header */}
-                <div style={{ display: "flex", alignItems: "center", gap: 12, paddingBottom: 16, borderBottom: "1px solid #f0f0f0", marginBottom: 18 }}>
-                  <div style={{ width: 40, height: 40, borderRadius: "50%", background: "linear-gradient(135deg, #0e4440, #1f7a72)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.1rem" }}>🌊</div>
-                  <div>
-                    <div style={{ fontWeight: 800, fontSize: "0.95rem", color: "var(--slate-dark)", lineHeight: 1 }}>CoastAI</div>
-                    <div style={{ fontSize: "0.72rem", color: "var(--ocean-500)", fontWeight: 600, marginTop: 3, display: "flex", alignItems: "center", gap: 5 }}>
-                      <span style={{ width: 7, height: 7, background: "#22c55e", borderRadius: "50%", display: "inline-block" }}></span>
-                      Designing your space
-                    </div>
-                  </div>
-                </div>
-
-                {/* User photo message */}
-                <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 16 }}>
-                  <div style={{ maxWidth: "80%" }}>
-                    <div style={{ borderRadius: "18px 18px 4px 18px", overflow: "hidden" }}>
-                      <Image
-                        src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=80&auto=format&fit=crop"
-                        alt="Your bathroom"
-                        width={400}
-                        height={130}
-                        style={{ width: "100%", height: 130, objectFit: "cover", display: "block" }}
-                        unoptimized
-                      />
-                    </div>
-                    <div style={{ background: "var(--ocean-500)", color: "white", padding: "10px 16px", borderRadius: "16px 16px 4px 16px", fontSize: "0.83rem", marginTop: 8, lineHeight: 1.5 }}>
-                      Can you modernise our main bathroom? Budget around $30k.
-                    </div>
-                  </div>
-                </div>
-
-                {/* AI reply */}
-                <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
-                  <div style={{ flexShrink: 0, width: 28, height: 28, borderRadius: "50%", background: "linear-gradient(135deg, #0e4440, #1f7a72)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.8rem" }}>🌊</div>
-                  <div style={{ background: "#f8faf9", border: "1px solid #e0eeec", padding: "12px 16px", borderRadius: "4px 16px 16px 16px", fontSize: "0.83rem", color: "var(--slate-mid)", lineHeight: 1.65 }}>
-                    Love it. Here&rsquo;s a warm coastal concept — floating vanity, large-format tiles, matte black tapware. For a full reno at this size in QLD, expect{" "}
-                    <strong style={{ color: "var(--ocean-700)" }}>$28k–$38k</strong>. Want me to line up <strong>3 licensed local tradies</strong> to quote it?
-                  </div>
-                </div>
-
-                {/* Concept chips */}
-                <div style={{ display: "flex", gap: 7, marginBottom: 18, paddingLeft: 38, flexWrap: "wrap" }}>
-                  {["🪵 Warm coastal", "🛁 Floating vanity", "⬛ Matte black", "💡 $28k–$38k"].map((c) => (
-                    <span key={c} style={{ background: "white", border: "1px solid #d0e8e5", color: "var(--ocean-600)", borderRadius: "50px", padding: "5px 12px", fontSize: "0.72rem", fontWeight: 700 }}>{c}</span>
-                  ))}
-                </div>
-
-                {/* CTA inside card */}
-                <Link href="/quote" id="hero-card-cta" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "linear-gradient(135deg, var(--gold), var(--gold-light))", color: "white", padding: "14px", borderRadius: 14, fontWeight: 800, fontSize: "0.92rem", textDecoration: "none", boxShadow: "0 6px 20px rgba(201,151,42,0.4)" }}>
-                  Yes — match me with 3 licensed tradies →
-                </Link>
-              </div>
-
-              {/* Floating verified badge */}
-              <div style={{ position: "absolute", bottom: -20, left: -20, background: "white", borderRadius: 16, padding: "12px 16px", boxShadow: "0 12px 40px rgba(0,0,0,0.2)", display: "flex", alignItems: "center", gap: 10, border: "1px solid rgba(0,0,0,0.06)" }} className="hero-float">
-                <span style={{ fontSize: "1.4rem" }}>✅</span>
-                <div>
-                  <div style={{ fontWeight: 800, fontSize: "0.8rem", color: "var(--slate-dark)", lineHeight: 1 }}>QBCC Verified</div>
-                  <div style={{ fontSize: "0.68rem", color: "var(--slate-light)", marginTop: 3 }}>Licence checked on every tradie</div>
-                </div>
-              </div>
+            {/* Right: AI Interactive Showcase Card */}
+            <div>
+              <HeroInteractiveCard />
             </div>
+
           </div>
         </div>
 
