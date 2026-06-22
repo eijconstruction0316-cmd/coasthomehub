@@ -196,7 +196,7 @@ export default function Home() {
                       />
                     </div>
                     <div style={{ background: "var(--ocean-500)", color: "white", padding: "10px 16px", borderRadius: "16px 16px 4px 16px", fontSize: "0.83rem", marginTop: 8, lineHeight: 1.5 }}>
-                      Can you modernise our main bathroom? Budget around $20k.
+                      Can you modernise our main bathroom? Budget around $30k.
                     </div>
                   </div>
                 </div>
@@ -206,13 +206,13 @@ export default function Home() {
                   <div style={{ flexShrink: 0, width: 28, height: 28, borderRadius: "50%", background: "linear-gradient(135deg, #0e4440, #1f7a72)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.8rem" }}>🌊</div>
                   <div style={{ background: "#f8faf9", border: "1px solid #e0eeec", padding: "12px 16px", borderRadius: "4px 16px 16px 16px", fontSize: "0.83rem", color: "var(--slate-mid)", lineHeight: 1.65 }}>
                     Love it. Here&rsquo;s a warm coastal concept — floating vanity, large-format tiles, matte black tapware. For a full reno at this size in QLD, expect{" "}
-                    <strong style={{ color: "var(--ocean-700)" }}>$18k–$24k</strong>. Want me to line up <strong>3 licensed local tradies</strong> to quote it?
+                    <strong style={{ color: "var(--ocean-700)" }}>$28k–$38k</strong>. Want me to line up <strong>3 licensed local tradies</strong> to quote it?
                   </div>
                 </div>
 
                 {/* Concept chips */}
                 <div style={{ display: "flex", gap: 7, marginBottom: 18, paddingLeft: 38, flexWrap: "wrap" }}>
-                  {["🪵 Warm coastal", "🛁 Floating vanity", "⬛ Matte black", "💡 $18k–$24k"].map((c) => (
+                  {["🪵 Warm coastal", "🛁 Floating vanity", "⬛ Matte black", "💡 $28k–$38k"].map((c) => (
                     <span key={c} style={{ background: "white", border: "1px solid #d0e8e5", color: "var(--ocean-600)", borderRadius: "50px", padding: "5px 12px", fontSize: "0.72rem", fontWeight: 700 }}>{c}</span>
                   ))}
                 </div>

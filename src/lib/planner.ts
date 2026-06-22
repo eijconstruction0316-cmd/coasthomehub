@@ -61,7 +61,7 @@ const questions: Record<PlannerProjectType, PlannerQuestion[]> = {
       id: "budget",
       text: "Do you have a budget range in mind?",
       helper: "A rough range is enough. If unsure, say that.",
-      placeholder: "$18k to $28k, but flexible",
+      placeholder: "$28k to $42k, but flexible",
       required: true,
     },
     {
@@ -105,7 +105,7 @@ const questions: Record<PlannerProjectType, PlannerQuestion[]> = {
       id: "budget",
       text: "What budget range should the plan work within?",
       helper: "If unsure, say whether you want budget, mid-range, or premium.",
-      placeholder: "$35k to $55k",
+      placeholder: "$45k to $70k",
       required: true,
     },
     {
@@ -149,7 +149,7 @@ const questions: Record<PlannerProjectType, PlannerQuestion[]> = {
       id: "budget",
       text: "Do you have a target budget or quality level?",
       helper: "Square metres and product grade drive the range.",
-      placeholder: "$12k to $18k, mid-range product",
+      placeholder: "$16k to $26k, mid-range product",
       required: true,
     },
     {
@@ -193,7 +193,7 @@ const questions: Record<PlannerProjectType, PlannerQuestion[]> = {
       id: "budget",
       text: "Do you have a budget range?",
       helper: "If unsure, say whether you want quick refresh or premium finish.",
-      placeholder: "$6k to $10k",
+      placeholder: "$9k to $16k",
       required: true,
     },
     {
@@ -237,7 +237,7 @@ const questions: Record<PlannerProjectType, PlannerQuestion[]> = {
       id: "budget",
       text: "What budget range should the plan target?",
       helper: "Outdoor scopes can vary widely, so a rough range helps.",
-      placeholder: "$20k to $35k",
+      placeholder: "$30k to $55k",
       required: true,
     },
     {

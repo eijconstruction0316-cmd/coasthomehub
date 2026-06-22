@@ -213,23 +213,23 @@ const posts: Record<string, {
     date: "May 22, 2025",
     readTime: "9 min read",
     author: "James Whitfield, EIJ Construction",
-    intro: "2025 pricing for bathroom renovations across Queensland — from a basic refresh to a luxury master ensuite. We've surveyed dozens of licensed tradies to give you real numbers, not vague estimates.",
+    intro: "2026 pricing for bathroom renovations across Queensland — from a basic refresh to a luxury master ensuite. We've surveyed dozens of licensed tradies to give you real numbers, not vague estimates.",
     sections: [
       {
-        heading: "Basic Bathroom Refresh: $3,000–$8,000",
-        body: "This covers re-siliconing, re-grouting, replacing a vanity, new tapware, and a toilet. No structural changes, no new tiling. Great for investment properties or pre-sale preparation. 3–5 day turnaround.",
+        heading: "Basic Bathroom Refresh: $12,000–$18,000",
+        body: "This covers re-siliconing, re-grouting, replacing a vanity, new tapware, and a toilet. No structural changes, no new tiling. Great for investment properties or pre-sale preparation. Labour alone now runs $80–$120/hr for a licensed tiler or plumber in SEQ. 3–5 day turnaround.",
       },
       {
-        heading: "Mid-Range Renovation: $8,000–$18,000",
-        body: "Full strip-out, new waterproofing, new floor and wall tiles (standard range), new vanity and toilet, frameless shower screen, and new tapware. Most family bathrooms fall into this range. 2–4 week project.",
+        heading: "Mid-Range Renovation: $18,000–$38,000",
+        body: "Full strip-out, new waterproofing, new floor and wall tiles (standard range), new vanity and toilet, frameless shower screen, and new tapware. Material costs are up 20–25% since 2022. Most family bathrooms fall into this range. 2–4 week project.",
       },
       {
-        heading: "Premium Renovation: $18,000–$35,000",
-        body: "Large format tiles, feature tile walls, freestanding bath, floor-to-ceiling tiling, premium tapware and fixtures, custom vanity, underfloor heating, and designer finishes. 4–8 week project.",
+        heading: "Premium Renovation: $38,000–$65,000",
+        body: "Large format tiles, feature tile walls, freestanding bath, floor-to-ceiling tiling, premium tapware and fixtures, custom vanity, underfloor heating, and designer finishes. Gold Coast and Sunshine Coast command a 5–10% regional premium over Brisbane. 4–8 week project.",
       },
       {
-        heading: "Luxury Master Ensuite: $35,000+",
-        body: "High-end stone, custom joinery, rainhead shower, heated towel rails, smart mirror, dual vanity, freestanding bath, and premium imported fixtures. These projects can run 10–14 weeks with the right tradie.",
+        heading: "Luxury Master Ensuite: $65,000+",
+        body: "High-end stone, custom joinery, rainhead shower, heated towel rails, smart mirror, dual vanity, freestanding bath, and premium imported fixtures. With current labour shortages in SEQ, premium tradies book out 8–12 weeks. These projects can run 10–14 weeks with the right tradie.",
       },
       {
         heading: "What Drives Up the Cost",
