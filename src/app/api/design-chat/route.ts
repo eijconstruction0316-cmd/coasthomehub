@@ -57,9 +57,16 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  // Build Gemini contents array (all messages including the last).
-  // Gemini uses "user"/"model" roles (not "assistant").
-  const contents = messages.map((m) => {
+  // 비용 절감: 최근 8개 메시지만 Gemini에 전송.
+  // 첫 메시지(사진 포함 가능)는 항상 보존, 나머지는 최신 순으로 자름.
+  const CONTEXT_LIMIT = 8;
+  const trimmed =
+    messages.length > CONTEXT_LIMIT
+      ? [messages[0], ...messages.slice(-(CONTEXT_LIMIT - 1))]
+      : messages;
+
+  // Build Gemini contents array. Gemini uses "user"/"model" roles (not "assistant").
+  const contents = trimmed.map((m) => {
     const parts: GeminiPart[] = [];
     for (const img of m.images ?? []) {
       if (img.data) parts.push({ inlineData: { mimeType: img.media_type, data: img.data } });

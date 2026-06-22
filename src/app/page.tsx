@@ -489,6 +489,9 @@ export default function Home() {
             <Link href="/quote" className="btn-gold" id="final-cta" style={{ fontSize: "1.05rem", padding: "16px 40px" }}>📸 Design my space — free</Link>
             <Link href="/tradies" style={{ display: "inline-flex", alignItems: "center", padding: "15px 36px", borderRadius: "50px", fontWeight: 600, fontSize: "1rem", textDecoration: "none", color: "rgba(255,255,255,0.85)", border: "2px solid rgba(255,255,255,0.3)", transition: "var(--transition)" }} id="final-tradie" className="btn-outline-white">I&rsquo;m a tradie →</Link>
           </div>
+          <p style={{ marginTop: 40, fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", maxWidth: 600, margin: "40px auto 0", lineHeight: 1.7 }}>
+            CoastHomeHub uses best efforts to connect homeowners with up to 3 QBCC-licensed local tradies but does not guarantee tradie availability, specific services, or response times. AI cost estimates are indicative ballpark figures only — not formal quotes. Home Warranty Insurance applies only where the tradie holds the relevant QBCC licence class for that work. <Link href="/terms" style={{ color: "rgba(255,255,255,0.4)", textDecoration: "underline" }}>Terms&nbsp;&amp;&nbsp;Conditions apply.</Link>
+          </p>
         </div>
       </section>
     </>

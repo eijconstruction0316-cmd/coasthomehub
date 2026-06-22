@@ -62,7 +62,9 @@ export async function POST(req: NextRequest) {
   const hasPhoto = messages.some((m) => m.hasPhoto);
   const photoCount = messages.reduce((sum, m) => sum + (m.imageCount ?? (m.hasPhoto ? 1 : 0)), 0);
 
-  const conversationText = messages
+  // 비용 절감: 최대 20개 메시지만 분석 (요약에는 충분한 컨텍스트).
+  const capped = messages.slice(-20);
+  const conversationText = capped
     .map((m) => `${m.role === "user" ? "Homeowner" : "CoastAI"}: ${m.text}`)
     .join("\n\n");
 

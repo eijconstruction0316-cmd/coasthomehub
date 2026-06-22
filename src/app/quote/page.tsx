@@ -442,6 +442,13 @@ export default function QuotePage() {
           }
         `}</style>
       </section>
+
+      {/* ACL Disclaimer */}
+      <section style={{ background: "var(--off-white)", borderTop: "1px solid var(--sand-200)", padding: "20px 24px" }}>
+        <p style={{ fontSize: "0.7rem", color: "var(--slate-light)", maxWidth: 720, margin: "0 auto", lineHeight: 1.75, textAlign: "center" }}>
+          <strong>Important:</strong> CoastHomeHub uses best efforts to match your request with up to 3 QBCC-licensed tradies but does not guarantee tradie availability, minimum quote numbers, or response times. AI-generated cost estimates are indicative only and are not formal quotes — only a licensed tradie can provide a binding quotation. Matching with a licensed contractor helps preserve your eligibility for Queensland Home Warranty Insurance, but coverage depends on the nature and value of the work. CoastHomeHub is not a building contractor and does not supervise or warrant any tradie&apos;s work. <a href="/terms" style={{ color: "var(--ocean-500)", textDecoration: "underline" }}>Full Terms &amp; Conditions</a>.
+        </p>
+      </section>
     </>
   );
 }

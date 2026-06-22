@@ -57,6 +57,9 @@ export default function DesignPage() {
             </span>
           ))}
         </div>
+        <p style={{ fontSize: "0.68rem", color: "var(--slate-light)", opacity: 0.7, maxWidth: 560, margin: "18px auto 0", lineHeight: 1.7, textAlign: "center" }}>
+          AI cost estimates are indicative ballpark figures only — not formal quotes. Tradie matching is subject to availability. <a href="/terms" style={{ color: "var(--ocean-400)" }}>Terms apply.</a>
+        </p>
       </div>
     </section>
   );

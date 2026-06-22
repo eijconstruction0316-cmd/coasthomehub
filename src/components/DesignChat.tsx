@@ -77,18 +77,11 @@ export default function DesignChat() {
   const [submitError, setSubmitError] = useState("");
   const [contact, setContact] = useState<ContactForm>({ name: "", email: "", phone: "", suburb: "" });
 
-  // Subscription / quota state (localStorage)
-  const [quotesUsed, setQuotesUsed] = useState(() =>
-    typeof window === "undefined"
-      ? 0
-      : Number(localStorage.getItem("chub_quotes_used") ?? 0)
-  );
-  const [subscribed, setSubscribed] = useState(() =>
-    typeof window === "undefined"
-      ? false
-      : localStorage.getItem("chub_access") === "unlocked"
-  );
+  // Subscription / quota state — httpOnly 쿠키 기반 (서버사이드, localStorage 우회 불가)
+  const [quotesUsed, setQuotesUsed] = useState(0);
+  const [subscribed, setSubscribed] = useState(false);
   const [loadingCheckout, setLoadingCheckout] = useState(false);
+  const [quotaLoaded, setQuotaLoaded] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -96,13 +89,23 @@ export default function DesignChat() {
   const started = messages.length > 0;
   const aiReplies = messages.filter((m) => m.role === "assistant" && m.text.length > 0).length;
   const showBriefButton = aiReplies >= 2;
-  const atQuotaLimit = !subscribed && quotesUsed >= FREE_QUOTA;
+  const atQuotaLimit = quotaLoaded && !subscribed && quotesUsed >= FREE_QUOTA;
 
-  // Hydrate from localStorage + handle post-payment redirect
+  // 서버에서 쿼터 로드 + 결제 후 리다이렉트 처리
+  useEffect(() => {
+    fetch("/api/quota")
+      .then((r) => r.json())
+      .then((d) => {
+        setQuotesUsed(d.used ?? 0);
+        setSubscribed(d.subscribed ?? false);
+        setQuotaLoaded(true);
+      })
+      .catch(() => setQuotaLoaded(true));
+  }, []);
+
   useEffect(() => {
     if (searchParams.get("unlocked") === "1") {
-      localStorage.setItem("chub_access", "unlocked");
-      window.setTimeout(() => setSubscribed(true), 0);
+      setSubscribed(true);
       router.replace("/design");
     }
   }, [searchParams, router]);
@@ -220,10 +223,14 @@ export default function DesignChat() {
 
       if (!sendRes.ok) throw new Error("Could not send emails");
 
-      // Increment usage counter
-      const newCount = quotesUsed + 1;
-      localStorage.setItem("chub_quotes_used", String(newCount));
-      setQuotesUsed(newCount);
+      // 서버사이드 httpOnly 쿠키 카운터 증가
+      const qRes = await fetch("/api/quota", { method: "POST" });
+      if (qRes.ok) {
+        const q = await qRes.json();
+        setQuotesUsed(q.used ?? quotesUsed + 1);
+      } else {
+        setQuotesUsed((n) => n + 1);
+      }
 
       setSubmitted(true);
       setShowModal(false);
