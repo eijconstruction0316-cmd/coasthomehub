@@ -1,6 +1,7 @@
 import { createHmac, randomUUID } from "crypto";
 import { mkdir, readFile, rename, writeFile } from "fs/promises";
 import type { PlannerAnswer, PlannerBrief, PlannerPhoto, PlannerProjectType } from "./planner";
+import { sql } from "./db";
 
 // PDF 다운로드 URL에 포함되는 단방향 접근 토큰.
 // DB 저장 없이 서버에서 검증 가능 (id → HMAC 결정론적).
@@ -68,7 +69,24 @@ async function writeDatabase(data: PlannerDatabase) {
   await rename(tempFile, file);
 }
 
-export async function savePlannerBrief(input: Omit<PlannerBriefRecord, "id" | "createdAt">) {
+export async function savePlannerBrief(input: Omit<PlannerBriefRecord, "id" | "createdAt">): Promise<PlannerBriefRecord> {
+  if (sql) {
+    const id = randomUUID();
+    const [row] = await sql`
+      INSERT INTO planner_briefs (id, project_type, answers, photos, brief)
+      VALUES (${id}, ${input.projectType}, ${sql.json(input.answers)}, ${sql.json(input.photos)}, ${sql.json(input.brief)})
+      RETURNING id, created_at
+    `;
+    return {
+      id: row.id,
+      createdAt: new Date(row.created_at).toISOString(),
+      projectType: input.projectType,
+      answers: input.answers,
+      photos: input.photos,
+      brief: input.brief,
+    };
+  }
+
   const database = await readDatabase();
   const record: PlannerBriefRecord = {
     id: randomUUID(),
@@ -80,7 +98,27 @@ export async function savePlannerBrief(input: Omit<PlannerBriefRecord, "id" | "c
   return record;
 }
 
-export async function getPlannerBrief(id: string) {
+export async function getPlannerBrief(id: string): Promise<PlannerBriefRecord | null> {
+  if (sql) {
+    const rows = await sql`
+      SELECT id, created_at, project_type, answers, photos, brief
+      FROM planner_briefs
+      WHERE id = ${id}
+    `;
+    if (rows.length === 0) return null;
+    const row = rows[0];
+    
+    // Explicit type mapping for JSONB fields
+    return {
+      id: row.id,
+      createdAt: new Date(row.created_at).toISOString(),
+      projectType: row.project_type as PlannerProjectType,
+      answers: typeof row.answers === "string" ? JSON.parse(row.answers) : (row.answers as PlannerAnswer[]),
+      photos: typeof row.photos === "string" ? JSON.parse(row.photos) : (row.photos as PlannerPhoto[]),
+      brief: typeof row.brief === "string" ? JSON.parse(row.brief) : (row.brief as PlannerBrief),
+    };
+  }
+
   const database = await readDatabase();
   return database.briefs[id] ?? null;
 }
