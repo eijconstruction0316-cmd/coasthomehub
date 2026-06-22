@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import HeroInteractiveCard from "@/components/HeroInteractiveCard";
+import { getPublishedMagazineArticles } from "@/lib/magazineCms";
 
 const trustRow = [
   { value: "Max 3", label: "quotes — never sold to 10" },
@@ -65,23 +66,6 @@ const trustStack = [
   { icon: "👷", accent: "#c9972a", title: "Built by a Licensed Builder", desc: "Founded and vetted by EIJ Construction — a QBCC-licensed QLD builder, not a faceless tech platform." },
 ];
 
-const designHub = [
-  {
-    img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&auto=format&fit=crop",
-    tag: "Design Trends",
-    title: "What's actually selling in QLD homes for 2026",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80&auto=format&fit=crop",
-    tag: "DIY Guide",
-    title: "Re-seal your own shower — the licensed way",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80&auto=format&fit=crop",
-    tag: "Cost Guide",
-    title: "Why renovation costs what it costs in QLD",
-  },
-];
 
 const testimonials = [
   {
@@ -105,6 +89,7 @@ const testimonials = [
 ];
 
 export default function Home() {
+  const latestArticles = getPublishedMagazineArticles().slice(0, 3);
   return (
     <>
       {/* ───────────────── HERO ───────────────── */}
@@ -235,6 +220,161 @@ export default function Home() {
         `}</style>
       </section>
 
+      {/* ───────────────── FEATURED CURATION ───────────────── */}
+      <section className="section" style={{ background: "var(--off-white)", borderBottom: "1px solid var(--sand-200)" }}>
+        <div className="container-lg">
+          <div style={{ textAlign: "center", marginBottom: 56 }}>
+            <div className="badge" style={{ marginBottom: 18 }}>Premium Gallery</div>
+            <h2 style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)", marginBottom: 14, letterSpacing: "-0.02em" }}>
+              Queensland Renovation Curation
+            </h2>
+            <p style={{ color: "var(--slate-light)", fontSize: "1.05rem", maxWidth: 600, margin: "0 auto" }}>
+              Explore real style concepts, custom materials and ballpark budgets designed specifically for South East QLD coastal living.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: 30 }} className="curation-grid">
+            {[
+              {
+                img: "/images/luxury_kitchen.png",
+                title: "The Coastal Kitchen Pavilion",
+                suburb: "Noosa Heads",
+                style: "Warm Coastal Modern",
+                budget: "$65k - $95k",
+                desc: "Featuring a marble waterfall island benchtop, brushed brass tapware, and sage timber cabinetry."
+              },
+              {
+                img: "/images/outdoor_living.png",
+                title: "The Alfresco Pavilion Deck",
+                suburb: "Sunshine Coast",
+                style: "Resort Alfresco",
+                budget: "$28k - $48k",
+                desc: "High-end composite wood decking with a sleek integrated louvre pergola and poolside flow."
+              },
+              {
+                img: "/images/coastal_living_room.png",
+                title: "The Cathedral Ceiling Lounge",
+                suburb: "Burleigh Heads",
+                style: "Organic Modern",
+                budget: "$75k - $110k",
+                desc: "High cathedral ceiling with exposed timber roof trusses, neutral linen, and indoor-outdoor sliding glass."
+              },
+              {
+                img: "/images/master_bedroom.png",
+                title: "The Master Bedroom Sanctuary",
+                suburb: "Robina",
+                style: "Sage Linen Retreat",
+                budget: "$14k - $24k",
+                desc: "Natural linen bedding, custom light rattan woven headboard, and soft earthy sage-green accents."
+              }
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="card"
+                style={{
+                  overflow: "hidden",
+                  borderRadius: "24px",
+                  background: "white",
+                  boxShadow: "var(--shadow-sm)",
+                  transition: "var(--transition)",
+                  display: "flex",
+                  flexDirection: "column",
+                  height: "100%"
+                }}
+              >
+                <div style={{ position: "relative", overflow: "hidden", height: 280 }} className="img-container">
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    style={{ objectFit: "cover", transition: "transform 0.5s ease" }}
+                    className="curation-img"
+                    unoptimized
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: 12,
+                      left: 12,
+                      background: "rgba(10, 31, 30, 0.75)",
+                      backdropFilter: "blur(8px)",
+                      color: "white",
+                      padding: "6px 14px",
+                      borderRadius: 50,
+                      fontSize: "0.72rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.05em",
+                      textTransform: "uppercase"
+                    }}
+                  >
+                    📍 {item.suburb}
+                  </div>
+                </div>
+                
+                <div style={{ padding: 24, display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1 }}>
+                  <div>
+                    <span
+                      style={{
+                        fontSize: "0.7rem",
+                        fontWeight: 800,
+                        textTransform: "uppercase",
+                        color: "var(--ocean-500)",
+                        letterSpacing: "0.05em",
+                        display: "block",
+                        marginBottom: 6
+                      }}
+                    >
+                      {item.style}
+                    </span>
+                    <h3 style={{ fontSize: "1.1rem", color: "var(--slate-dark)", marginBottom: 8, fontWeight: 800 }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ fontSize: "0.83rem", color: "var(--slate-light)", lineHeight: 1.6, marginBottom: 16 }}>
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      paddingTop: 16,
+                      borderTop: "1px solid var(--sand-200)"
+                    }}
+                  >
+                    <div>
+                      <span style={{ fontSize: "0.68rem", color: "var(--slate-light)", display: "block" }}>Est. Budget</span>
+                      <strong style={{ fontSize: "0.95rem", color: "var(--gold)", fontWeight: 800 }}>{item.budget}</strong>
+                    </div>
+                    <Link
+                      href="/quote"
+                      style={{
+                        fontSize: "0.8rem",
+                        fontWeight: 700,
+                        color: "var(--ocean-500)",
+                        textDecoration: "none",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 4
+                      }}
+                      className="hover-arrow"
+                    >
+                      Plan this →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <style>{`
+          .curation-img:hover { transform: scale(1.05); }
+          .hover-arrow:hover { color: var(--ocean-600) !important; text-decoration: underline !important; }
+        `}</style>
+      </section>
+
       {/* ───────────────── WHY DIFFERENT ───────────────── */}
       <section className="section" style={{ background: "linear-gradient(160deg, #0a1f1e 0%, #0e3a36 100%)" }}>
         <div className="container-lg">
@@ -330,15 +470,16 @@ export default function Home() {
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
-            {designHub.map((p) => (
-              <Link key={p.title} href="/magazine" className="card" style={{ overflow: "hidden", textDecoration: "none", display: "block" }}>
+            {latestArticles.map((article) => (
+              <Link key={article.slug} href={`/magazine/${article.slug}`} className="card" style={{ overflow: "hidden", textDecoration: "none", display: "block" }}>
                 <div style={{ height: 200, overflow: "hidden", position: "relative" }}>
-                  <Image src={p.img} alt={p.title} width={600} height={200} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.5s ease" }} className="hub-img" unoptimized />
+                  <Image src={article.heroImage} alt={article.title} width={600} height={200} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.5s ease" }} className="hub-img" unoptimized />
                   <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(14,68,64,0.3) 0%, transparent 60%)" }} />
                 </div>
                 <div style={{ padding: "22px 24px" }}>
-                  <span style={{ display: "inline-block", background: "var(--ocean-50)", color: "var(--ocean-600)", border: "1px solid var(--ocean-100)", borderRadius: "50px", padding: "4px 12px", fontSize: "0.72rem", fontWeight: 700, marginBottom: 10 }}>{p.tag}</span>
-                  <h3 style={{ fontSize: "1.05rem", lineHeight: 1.45, color: "var(--slate-dark)" }}>{p.title}</h3>
+                  <span style={{ display: "inline-block", background: "var(--ocean-50)", color: "var(--ocean-600)", border: "1px solid var(--ocean-100)", borderRadius: "50px", padding: "4px 12px", fontSize: "0.72rem", fontWeight: 700, marginBottom: 10 }}>{article.type}</span>
+                  <h3 style={{ fontSize: "1.05rem", lineHeight: 1.45, color: "var(--slate-dark)" }}>{article.title}</h3>
+                  <p style={{ color: "var(--slate-light)", fontSize: "0.82rem", marginTop: 6, lineClamp: 2, WebkitLineClamp: 2, display: "-webkit-box", WebkitBoxOrient: "vertical", overflow: "hidden" }}>{article.excerpt}</p>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: 14, fontSize: "0.85rem", fontWeight: 700, color: "var(--ocean-500)" }}>Read →</span>
                 </div>
               </Link>
