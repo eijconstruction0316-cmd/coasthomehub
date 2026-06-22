@@ -491,8 +491,8 @@ export const magazineArticles: MagazineArticle[] = [
           "In contemporary design, luxury is defined by the conversation between natural textures and architectural glass. Tasmanian Oak offers a warm, honey-toned grain that feels soft and grounded. When paired with the sharp, vertical lines of fluted glass, it creates a striking balance of texture and light refraction.",
           "To keep this look editorial, avoid heavy black metal frames. Opt for frameless or minimal brass/gold brackets. This allows the glass texture and timber grain to remain the central design elements, keeping the space open and serene."
         ],
-        image: "/gallery/interior-6.jpg",
-        imageCaption: "Figure 1.1: Fluted glass panels refract soft natural morning light, creating privacy without losing space in this ensuite layout."
+        image: "/images/brushed_brass_macro.png",
+        imageCaption: "Figure 1.1: A detailed macro close-up of custom brushed gold fixtures mounted against Osmo-sealed warm Tasmanian Oak timber."
       },
       {
         heading: "The Construction Reality (QBCC & AS 1288 Standards)",
@@ -500,8 +500,8 @@ export const magazineArticles: MagazineArticle[] = [
           "While timber brings high-end aesthetics, raw hardwood in wet areas is a major liability under QLD's high humidity. Tasmanian Oak used in vanities or wall features must be double-sealed with marine-grade polyurethane or Osmo oil. Proper mechanical ventilation is mandatory to prevent mold and timber warping.",
           "Furthermore, any glass panel installed in a wet area must comply with Australian Standard AS 1288. For frameless shower screens, this means using a minimum of 10mm toughened safety glass. Ensure your QBCC-licensed glazier provides a certificate of compliance upon installation."
         ],
-        image: "/images/modern_bathroom_after.png",
-        imageCaption: "Figure 1.2: A finished QLD ensuite showcasing double-sealed Tasmanian Oak timber grain offset by brushed brass fittings."
+        image: "/images/waterproofing_detail.png",
+        imageCaption: "Figure 1.2: The intersection of 10mm safety fluted glass, sage wall tiles, and a brass floor waste drain complying with QLD AS 3740/1288 standards."
       },
       {
         heading: "Get the Look: Trade Specifications",
@@ -560,8 +560,8 @@ export const magazineArticles: MagazineArticle[] = [
           "The goal for this Noosa Heads pavilion home was to erase the boundary between the kitchen and the outdoor entertaining deck. The original 1990s layout was enclosed, blocking the sun and isolating the cook from the family area.",
           "Drawing inspiration from minimalist European design, we planned a wide island bench in light limestone-look quartz, contrasted with matte black cabinetry and integrated timber shelves. The highlight is the wide servery window that folds completely open to the alfresco dining space."
         ],
-        image: "/images/luxury_kitchen.png",
-        imageCaption: "Figure 2.1: The completed Noosa Heads kitchen showing the wide limestone waterfall island, opening onto the coastal deck."
+        image: "/images/noosa_servery_window.png",
+        imageCaption: "Figure 2.1: Kinfolk-style wide-angle shot of the completed Noosa pavilion kitchen bifold servery window opening onto the outdoor deck."
       },
       {
         heading: "The Structural Challenge (Structural Steel & Permits)",
