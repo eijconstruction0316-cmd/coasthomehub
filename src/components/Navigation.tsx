@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/services", label: "Services" },
   { href: "/inspiration", label: "Inspiration" },
   { href: "/projects", label: "Projects" },
+  { href: "/directory", label: "Find Tradies 🔍" },
   { href: "/design", label: "✨ AI Designer" },
   { href: "/magazine", label: "📖 Magazine" },
   { href: "/tradies", label: "For Tradies 🔧" },

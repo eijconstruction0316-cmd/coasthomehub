@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import PartnershipBanner from "@/components/PartnershipBanner";
+import TradieDashboardDemo from "@/components/TradieDashboardDemo";
 
 export const metadata: Metadata = {
   title: "List Your Trade Business | CoastHomeHub for Tradies",
@@ -148,6 +149,20 @@ export default function TradiesPage() {
           </div>
         </div>
         <style>{`@media(max-width:768px){.steps-grid{grid-template-columns:1fr 1fr!important;}}`}</style>
+      </section>
+
+      {/* Interactive Portal Demo */}
+      <section className="section" style={{ background: "white", paddingBottom: 64 }}>
+        <div className="container-lg">
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <div className="badge" style={{ marginBottom: 16, display: "inline-flex" }}>Interactive Experience</div>
+            <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.6rem)", marginBottom: 12 }}>Try the Lead Dashboard Demo</h2>
+            <p style={{ color: "var(--slate-light)", fontSize: "1rem", maxWidth: 580, margin: "0 auto" }}>
+              Experience exactly how you will view QLD leads, unlock details using credits, and send direct proposals. Click around below!
+            </p>
+          </div>
+          <TradieDashboardDemo />
+        </div>
       </section>
 
       {/* Access */}
