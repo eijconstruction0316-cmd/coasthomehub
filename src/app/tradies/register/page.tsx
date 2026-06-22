@@ -68,7 +68,15 @@ const plans = [
     tagline: "Maximum visibility & brand authority",
     color: "#92650a",
     badge: "👑 ELITE",
-    features: ["Everything in Growth", "Magazine interview opportunity (quarterly)", "Homeowner newsletter feature (monthly)", "Dedicated onboarding call", "Priority search placement", "No commission ever"],
+    features: [
+      "Everything in Growth",
+      "Unlimited project portfolio uploads (Post Job Listings)",
+      "Magazine interview opportunity (quarterly)",
+      "Homeowner newsletter feature (monthly)",
+      "Dedicated onboarding call",
+      "Priority search placement",
+      "No commission ever"
+    ],
   },
 ];
 

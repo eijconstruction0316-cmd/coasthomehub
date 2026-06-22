@@ -233,6 +233,7 @@ export default function TradiesPage() {
               <ul style={{ listStyle: "none", marginBottom: 28, display: "flex", flexDirection: "column", gap: 10, flex: 1 }}>
                 {[
                   "Everything in Growth",
+                  "📝 Unlimited project portfolio uploads (Post Job Listings)",
                   "📰 Magazine interview opportunity (quarterly)",
                   "📧 Homeowner newsletter feature (monthly)",
                   "📞 Dedicated onboarding call",

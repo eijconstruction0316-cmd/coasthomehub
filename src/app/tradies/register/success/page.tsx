@@ -3,7 +3,7 @@ import Link from "next/link";
 const planDetails: Record<string, { name: string; price: number; tagline: string }> = {
   founding: { name: "Founding Member", price: 149, tagline: "Unlimited matching leads for launch partners" },
   growth: { name: "Growth", price: 249, tagline: "Up to 30 leads/month" },
-  elite: { name: "Elite", price: 399, tagline: "Unlimited matching leads" },
+  elite: { name: "Elite", price: 399, tagline: "Unlimited matching leads + Portfolio uploads" },
   starter: { name: "Starter", price: 99, tagline: "Up to 5 leads/month" },
   pro: { name: "Pro", price: 179, tagline: "Up to 20 leads/month" },
   premium: { name: "Premium", price: 299, tagline: "Unlimited leads" },
