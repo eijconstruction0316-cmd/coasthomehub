@@ -36,7 +36,7 @@ export default function LocationsPage() {
               Local renovation planning across Queensland
             </h1>
             <p style={{ color: "rgba(255,255,255,0.76)", fontSize: "1.05rem", lineHeight: 1.75, fontFamily: "Outfit, sans-serif" }}>
-              Programmatic local landing pages for bathroom renovation, kitchen renovation, painting and flooring across Brisbane, Gold Coast, Sunshine Coast, Noosa and Toowoomba.
+              Programmatic local landing pages for carpentry, plumbing, electrical, tiling, waterproofing and painting across Brisbane, Gold Coast, Sunshine Coast, Noosa and Toowoomba.
             </p>
           </div>
         </div>

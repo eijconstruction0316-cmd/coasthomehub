@@ -20,6 +20,7 @@ const drawerLinks = [
   { href: "/inspiration", label: "Inspiration Gallery" },
   { href: "/projects", label: "Completed Projects" },
   { href: "/directory", label: "Find Tradies Directory" },
+  { href: "/suppliers", label: "B2B Buyers Club" },
   { href: "/cost-guides", label: "Renovation Cost Guides" },
   { href: "/design", label: "AI Designer Chat" },
   { href: "/tools", label: "Renovation Estimators (2D)" },

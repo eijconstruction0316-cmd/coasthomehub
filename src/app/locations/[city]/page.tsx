@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
 
   return {
     title: `${city.name} Renovation Services | CoastHomeHub`,
-    description: `Local renovation planning guides for bathroom renovation, kitchen renovation, painting and flooring in ${city.name}.`,
+    description: `Local renovation planning guides for carpentry, plumbing, electrical, tiling, waterproofing and painting in ${city.name}.`,
     alternates: { canonical: `https://coasthomehub.com.au/locations/${city.slug}` },
   };
 }
