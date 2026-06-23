@@ -4,22 +4,29 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/inspiration", label: "Inspiration" },
+const primaryLinks = [
+  { href: "/magazine", label: "Magazine" },
+  { href: "/design", label: "AI Designer" },
+  { href: "/cost-guides", label: "Cost Guides" },
+  { href: "/directory", label: "Find Tradies" },
   { href: "/projects", label: "Projects" },
-  { href: "/directory", label: "Find Tradies 🔍" },
-  { href: "/cost-guides", label: "📊 Cost Guides" },
-  { href: "/design", label: "✨ AI Designer" },
-  { href: "/magazine", label: "📖 Magazine" },
-  { href: "/tradies", label: "For Tradies 🔧" },
-  { href: "/quote", label: "Get a Quote" },
+];
+
+const drawerLinks = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services & Scope" },
+  { href: "/inspiration", label: "Inspiration Gallery" },
+  { href: "/projects", label: "Completed Projects" },
+  { href: "/directory", label: "Find Tradies Directory" },
+  { href: "/cost-guides", label: "Renovation Cost Guides" },
+  { href: "/design", label: "AI Renovation Planner" },
+  { href: "/magazine", label: "Editorial Magazine" },
+  { href: "/tradies", label: "For Contractors (B2B Portal)" },
 ];
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -28,155 +35,305 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close drawer on path change
+  useEffect(() => {
+    setDrawerOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when drawer is open
+  useEffect(() => {
+    if (drawerOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [drawerOpen]);
+
   return (
-    <nav
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
-        transition: "all 0.4s ease",
-        background: scrolled
-          ? "rgba(255,255,255,0.95)"
-          : "rgba(255,255,255,0.15)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        borderBottom: scrolled
-          ? "1px solid rgba(26,35,50,0.08)"
-          : "1px solid rgba(255,255,255,0.2)",
-        boxShadow: scrolled ? "0 4px 24px rgba(26,35,50,0.1)" : "none",
-        padding: scrolled ? "12px 0" : "20px 0",
-      }}
-    >
-      <div
-        className="container-lg"
+    <>
+      <nav
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          transition: "all 0.4s cubic-bezier(0.25, 1, 0.5, 1)",
+          background: scrolled
+            ? "rgba(255,255,255,0.92)"
+            : "rgba(255,255,255,0.15)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          borderBottom: scrolled
+            ? "1px solid rgba(26,35,50,0.06)"
+            : "1px solid rgba(255,255,255,0.12)",
+          boxShadow: scrolled ? "0 4px 30px rgba(26,35,50,0.05)" : "none",
+          padding: scrolled ? "10px 0" : "18px 0",
         }}
       >
-        {/* Logo */}
-        <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-          <Image
-            src="/logo.svg"
-            alt="CoastHomeHub"
-            width={180}
-            height={50}
-            priority
-            style={{ height: 44, width: "auto" }}
-          />
-        </Link>
-
-        {/* Desktop Nav Links */}
         <div
+          className="container-lg"
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "8px",
+            justifyContent: "space-between",
           }}
-          className="desktop-nav"
         >
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            const isQuote = link.href === "/quote";
-            if (isQuote) {
+          {/* Logo */}
+          <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+            <Image
+              src="/logo.svg"
+              alt="CoastHomeHub"
+              width={170}
+              height={44}
+              priority
+              style={{ height: scrolled ? 36 : 42, width: "auto", transition: "all 0.3s ease" }}
+            />
+          </Link>
+
+          {/* Desktop Nav Links (Simplified) */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+            }}
+            className="desktop-nav"
+          >
+            {primaryLinks.map((link) => {
+              const isActive = pathname === link.href;
               return (
-                <Link key={link.href} href={link.href} className="btn-primary" style={{ padding: "10px 24px", fontSize: "0.9rem" }}>
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  style={{
+                    padding: "8px 16px",
+                    borderRadius: "50px",
+                    fontWeight: isActive ? 700 : 500,
+                    fontSize: "0.92rem",
+                    textDecoration: "none",
+                    color: isActive ? "var(--ocean-600)" : "var(--slate-mid)",
+                    background: isActive ? "var(--ocean-50)" : "transparent",
+                    transition: "var(--transition-fast)",
+                  }}
+                >
                   {link.label}
                 </Link>
               );
-            }
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
+            })}
+
+            {/* Menu drawer button */}
+            <button
+              onClick={() => setDrawerOpen(true)}
+              style={{
+                padding: "8px 18px",
+                marginLeft: 8,
+                borderRadius: "50px",
+                fontWeight: 700,
+                fontSize: "0.88rem",
+                background: "var(--ocean-700)",
+                border: "none",
+                color: "white",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                boxShadow: "var(--shadow-sm)",
+                transition: "var(--transition-fast)"
+              }}
+              className="menu-button-hover"
+            >
+              <span>Menu</span>
+              <span style={{ fontSize: "0.78rem" }}>☰</span>
+            </button>
+          </div>
+
+          {/* Hamburger (Mobile menu trigger) */}
+          <button
+            id="mobile-menu-toggle"
+            onClick={() => setDrawerOpen(true)}
+            style={{
+              display: "none",
+              flexDirection: "column",
+              gap: "5px",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px",
+            }}
+            aria-label="Toggle menu"
+            className="hamburger"
+          >
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
                 style={{
-                  padding: "8px 16px",
-                  borderRadius: "50px",
-                  fontWeight: isActive ? 700 : 500,
-                  fontSize: "0.95rem",
-                  textDecoration: "none",
-                  color: isActive ? "var(--ocean-600)" : "var(--slate-mid)",
-                  background: isActive ? "var(--ocean-50)" : "transparent",
+                  display: "block",
+                  width: 24,
+                  height: 2,
+                  background: "var(--slate-dark)",
+                  borderRadius: 2,
                   transition: "var(--transition-fast)",
                 }}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+              />
+            ))}
+          </button>
         </div>
 
-        {/* Hamburger - Mobile */}
-        <button
-          id="mobile-menu-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            display: "none",
-            flexDirection: "column",
-            gap: "5px",
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            padding: "8px",
-          }}
-          aria-label="Toggle menu"
-          className="hamburger"
-        >
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              style={{
-                display: "block",
-                width: 24,
-                height: 2,
-                background: "var(--slate-dark)",
-                borderRadius: 2,
-                transition: "var(--transition-fast)",
-              }}
-            />
-          ))}
-        </button>
-      </div>
+        <style>{`
+          @media (max-width: 900px) {
+            .desktop-nav { display: none !important; }
+            .hamburger { display: flex !important; }
+          }
+          .menu-button-hover:hover {
+            transform: translateY(-1px);
+            background: var(--ocean-600) !important;
+            boxShadow: var(--shadow-md) !important;
+          }
+        `}</style>
+      </nav>
 
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div
-          style={{
-            background: "white",
-            borderTop: "1px solid var(--sand-200)",
-            padding: "16px 24px",
-          }}
-        >
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                display: "block",
-                padding: "12px 0",
-                fontWeight: 500,
-                color: pathname === link.href ? "var(--ocean-500)" : "var(--slate-dark)",
-                textDecoration: "none",
-                borderBottom: "1px solid var(--sand-100)",
-                fontSize: "1rem",
-              }}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
+      {/* Slide-out Overlay Drawer */}
+      {drawerOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            onClick={() => setDrawerOpen(false)}
+            style={{
+              position: "fixed",
+              inset: 0,
+              background: "rgba(10, 31, 30, 0.42)",
+              backdropFilter: "blur(6px)",
+              WebkitBackdropFilter: "blur(6px)",
+              zIndex: 1099,
+              animation: "fadeIn 0.4s ease forwards"
+            }}
+          />
+
+          {/* Sidebar Drawer container */}
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              right: 0,
+              bottom: 0,
+              width: "100%",
+              maxWidth: 480,
+              background: "var(--sand-50)",
+              zIndex: 1100,
+              borderLeft: "1px solid var(--sand-200)",
+              padding: "48px 40px",
+              boxShadow: "var(--shadow-xl)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              overflowY: "auto",
+              animation: "slideIn 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards"
+            }}
+          >
+            {/* Top Row: Close */}
+            <div>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 36 }}>
+                <span style={{ fontSize: "0.78rem", fontWeight: 800, color: "var(--gold)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                  CoastHomeHub Directory
+                </span>
+                <button
+                  onClick={() => setDrawerOpen(false)}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    fontSize: "1.4rem",
+                    cursor: "pointer",
+                    color: "var(--slate-dark)",
+                    padding: 8
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Drawer Links */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                {drawerLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      style={{
+                        fontFamily: "'Outfit', sans-serif",
+                        fontSize: "1.35rem",
+                        fontWeight: isActive ? 800 : 500,
+                        color: isActive ? "var(--ocean-600)" : "var(--slate-dark)",
+                        textDecoration: "none",
+                        transition: "var(--transition-fast)",
+                        paddingLeft: isActive ? 12 : 0,
+                        borderLeft: isActive ? "3px solid var(--gold)" : "none"
+                      }}
+                      className="drawer-link-hover"
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Bottom Row: B2B Club Promos & Quick Action */}
+            <div style={{ marginTop: 40, paddingTop: 28, borderTop: "1px solid var(--sand-200)" }}>
+              <div style={{
+                background: "linear-gradient(135deg, var(--ocean-700) 0%, var(--ocean-600) 100%)",
+                borderRadius: 12,
+                padding: 20,
+                color: "white"
+              }}>
+                <span style={{ fontSize: "0.68rem", fontWeight: 800, color: "var(--gold-light)", display: "block", marginBottom: 4 }}>
+                  EXCLUSIVE WHOLESALE BENEFIT
+                </span>
+                <h5 style={{ color: "white", fontSize: "0.9rem", fontWeight: 800, margin: "0 0 6px" }}>
+                  B2B Buyers Club Access
+                </h5>
+                <p style={{ fontSize: "0.74rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.4, margin: "0 0 12px" }}>
+                  Work with verified CoastHomeHub contractors to receive up to 10% off at Reece, Laminex & Beaumont.
+                </p>
+                <Link href="/directory" style={{
+                  display: "inline-block",
+                  background: "var(--gold)",
+                  color: "white",
+                  textDecoration: "none",
+                  fontWeight: 800,
+                  fontSize: "0.74rem",
+                  padding: "6px 14px",
+                  borderRadius: 50
+                }}>
+                  Find a Partner
+                </Link>
+              </div>
+              <p style={{ color: "var(--slate-light)", fontSize: "0.72rem", textAlign: "center", marginTop: 24, margin: "24px 0 0 0" }}>
+                © 2026 CoastHomeHub. Licensed builder verified.
+              </p>
+            </div>
+          </div>
+
+          <style jsx global>{`
+            @keyframes fadeIn {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+            @keyframes slideIn {
+              from { transform: translateX(100%); }
+              to { transform: translateX(0); }
+            }
+            .drawer-link-hover:hover {
+              color: var(--ocean-500) !important;
+              transform: translateX(4px);
+            }
+          `}</style>
+        </>
       )}
-
-      <style>{`
-        @media (max-width: 768px) {
-          .desktop-nav { display: none !important; }
-          .hamburger { display: flex !important; }
-        }
-      `}</style>
-    </nav>
+    </>
   );
 }

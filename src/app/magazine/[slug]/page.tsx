@@ -197,14 +197,20 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
               <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 18, padding: "38px 38px 44px", boxShadow: "var(--shadow-sm)" }}>
                 {article.sections.map((section, sIdx) => (
                   <section key={sIdx} style={{ marginBottom: 36 }}>
-                    <h2 style={{ fontSize: "1.45rem", color: "var(--slate-dark)", marginBottom: 14, fontWeight: 800 }}>
+                    <h2 className="editorial-heading-serif" style={{ fontSize: "1.6rem", marginBottom: 16, borderBottom: "1px solid var(--sand-100)", paddingBottom: 8 }}>
                       {section.heading}
                     </h2>
-                    {section.paragraphs.map((paragraph, pIdx) => (
-                      <p key={pIdx} style={{ color: "var(--slate-mid)", fontSize: "1rem", lineHeight: 1.82, marginBottom: 14 }}>
-                        {paragraph}
-                      </p>
-                    ))}
+                    {section.paragraphs.map((paragraph, pIdx) => {
+                      const isFirstParagraph = sIdx === 0 && pIdx === 0;
+                      return (
+                        <p
+                          key={pIdx}
+                          className={isFirstParagraph ? "editorial-paragraph editorial-dropcap" : "editorial-paragraph"}
+                        >
+                          {paragraph}
+                        </p>
+                      );
+                    })}
                     {section.bullets && (
                       <ul style={{ paddingLeft: 22, display: "grid", gap: 8, color: "var(--slate-mid)", lineHeight: 1.65, marginBottom: 16 }}>
                         {section.bullets.map((bullet, bIdx) => <li key={bIdx}>{bullet}</li>)}

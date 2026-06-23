@@ -108,7 +108,7 @@ export const magazineArticles: MagazineArticle[] = [
     publishedAt: "2026-01-08",
     updatedAt: "2026-06-22",
     author: "CoastHomeHub Editorial",
-    tags: ["Bathroom", "Coastal", "Materials", "Style"],
+    tags: ["Bathroom", "Coastal", "Materials", "Style Guide"],
     featured: true,
     status: "published",
     seo: {
@@ -125,36 +125,49 @@ export const magazineArticles: MagazineArticle[] = [
         heading: "Why This Style Works In South East Queensland",
         paragraphs: [
           "Coastal minimalism suits Queensland light because it keeps surfaces calm while adding texture through timber, stone-look porcelain, brushed fixtures and soft greens.",
-          "The best versions avoid bright blue-white finishes and use warmer neutrals that stay softer in strong daylight.",
+          "The best versions avoid bright blue-white finishes and use warmer neutrals that stay softer in strong daylight. The goal is to capture the light refraction without creating a clinical or sterile look."
         ],
+        quote: "Minimalism is not about deleting; it is about calibrating. A single brass detail next to warm Tasmanian Oak carries more design weight than ten mismatched fixtures.",
+        quoteAuthor: "EIJ Construction Pty Ltd"
       },
       {
-        heading: "Core Materials",
-        paragraphs: ["The look depends on restraint. Choose fewer materials and let the detail sit in texture, grout, fixture finish and lighting."],
-        bullets: [
-          "Large-format porcelain floor tiles with slip resistance",
-          "Timber-look vanity or warm white cabinetry",
-          "Brushed nickel, chrome or aged brass tapware",
-          "Micro texture wall tile or vertical stack feature tile",
-        ],
-      },
-      {
-        heading: "Planning Notes",
+        heading: "Core Materials & Specifications",
         paragraphs: [
-          "Keep plumbing locations stable if budget is tight. Spend more on waterproofing, tile set-out and ventilation before decorative upgrades.",
+          "The look depends on restraint. Choose fewer materials and let the detail sit in texture, grout, fixture finish and lighting. Slip resistance is a primary technical parameter that must not be neglected."
         ],
+        bullets: [
+          "Large-format porcelain floor tiles with slip resistance (P3/P4 rating)",
+          "Timber-look vanity or warm white cabinetry (HMR sub-base)",
+          "Brushed nickel, chrome or aged brass tapware with high WELS rating",
+          "Micro texture wall tile or vertical stack feature tile with matching grout lines"
+        ],
+        aside: {
+          title: "Wet Area Tile Slip and Layout Index",
+          text: "For QLD residential bathroom floors, specify Beaumont Tiles or Reece Porcelain with the following characteristics:",
+          list: [
+            "Floor Tiles: Minimum P3 slip resistance rating (P4 for outdoor/spa zones)",
+            "Grout: Epoxy or polyurethane-based to prevent moisture stains and mold",
+            "Substrate prep: 12mm minimum fiber cement underlay over floor joists"
+          ]
+        }
       },
+      {
+        heading: "Planning Notes & Trade Sequencing",
+        paragraphs: [
+          "Keep plumbing locations stable if budget is tight. Spend more on waterproofing, tile set-out and ventilation before decorative upgrades. An active mechanical exhaust fan must be sized correctly according to the room volume to prevent timber warping."
+        ]
+      }
     ],
     faq: [
       {
         question: "Is coastal minimalism expensive?",
-        answer: "It can be mid-range if plumbing stays put and the material palette is controlled. Custom stone, niche lighting and premium tapware push the budget up.",
+        answer: "It can be mid-range if plumbing stays put and the material palette is controlled. Custom stone, niche lighting and premium tapware push the budget up."
       },
       {
         question: "What is the main mistake to avoid?",
-        answer: "Using too many beach-themed accents. The style works better when coastal cues come from texture, light and durable materials.",
-      },
-    ],
+        answer: "Using too many beach-themed accents. The style works better when coastal cues come from texture, light and durable materials."
+      }
+    ]
   },
   {
     slug: "warm-coastal-kitchen-refresh-guide",
@@ -169,7 +182,7 @@ export const magazineArticles: MagazineArticle[] = [
     publishedAt: "2026-02-12",
     updatedAt: "2026-06-22",
     author: "CoastHomeHub Editorial",
-    tags: ["Kitchen", "Coastal", "Cabinetry"],
+    tags: ["Kitchen", "Coastal", "Cabinetry", "Style Guide"],
     status: "published",
     seo: {
       title: "Warm Coastal Kitchen Refresh Guide | CoastHomeHub",
@@ -184,32 +197,45 @@ export const magazineArticles: MagazineArticle[] = [
       {
         heading: "The Refresh Strategy",
         paragraphs: [
-          "A refresh works when the kitchen layout is serviceable but tired. Cabinet fronts, benchtops, splashback, lighting and handles can shift the room without a full rebuild.",
+          "A refresh works when the kitchen layout is serviceable but tired. Cabinet fronts, benchtops, splashback, lighting and handles can shift the room without a full rebuild. This keeps construction waste low and reduces the overall timeline to under two weeks."
         ],
+        quote: "A kitchen refresh must prioritize the workflow. Upgrading only the cabinet fronts while leaving a broken work triangle is a missed opportunity.",
+        quoteAuthor: "Noosa Coastal Carpentry & Decks"
       },
       {
-        heading: "Material Direction",
-        paragraphs: ["Queensland kitchens need finishes that handle humidity, fingerprints and strong daylight."],
-        bullets: [
-          "Warm white or muted green cabinetry",
-          "Porcelain or engineered stone-look surfaces",
-          "Powder-coated or brushed hardware",
-          "Layered task lighting rather than one central light",
+        heading: "Material Direction and Humidity Resistance",
+        paragraphs: [
+          "Queensland kitchens need finishes that handle humidity, fingerprints and strong daylight. Low-cost alternatives often peel at the seams under constant coastal moisture."
         ],
+        bullets: [
+          "Warm white or muted green cabinetry (polyurethane coated)",
+          "Porcelain or engineered stone-look surfaces (reconstituted quartz)",
+          "Powder-coated or brushed hardware with anti-tarnish coating",
+          "Layered task lighting rather than one central ceiling light"
+        ],
+        aside: {
+          title: "Kitchen Joinery Material Specifications",
+          text: "Queensland's high humidity requires cabinetry materials that resist swelling. Select standard-complying options:",
+          list: [
+            "Carcass: High moisture resistant (HMR) particleboard with 1mm ABS edges",
+            "Fronts: Laminex high pressure laminate or polyurethane-painted MR MDF",
+            "Adhesives: PUR (Polyurethane) glue line to prevent water-wicking at seams"
+          ]
+        }
       },
       {
         heading: "When To Go Full Renovation",
         paragraphs: [
-          "Move beyond refresh if the work triangle is poor, appliances are undersized, water damage is present, or storage cannot be fixed with cabinetry changes.",
-        ],
-      },
+          "Move beyond refresh if the work triangle is poor, appliances are undersized, water damage is present, or storage cannot be fixed with cabinetry changes. If structural load-bearing walls must be removed, certifier approval is mandatory."
+        ]
+      }
     ],
     faq: [
       {
         question: "Can I keep the existing cabinetry boxes?",
-        answer: "Often yes, if the carcasses are square, dry and structurally sound. A site inspection should confirm this before ordering fronts.",
-      },
-    ],
+        answer: "Often yes, if the carcasses are square, dry and structurally sound. A site inspection should confirm this before ordering fronts."
+      }
+    ]
   },
   {
     slug: "burleigh-bathroom-project-story",
@@ -239,35 +265,46 @@ export const magazineArticles: MagazineArticle[] = [
     },
     sections: [
       {
-        heading: "The Starting Point",
+        heading: "The Starting Point & Defect Discovery",
         paragraphs: [
-          "The homeowner had a tired bathroom with a leaking vanity wall, poor ventilation and a shower layout that made the room feel smaller than it was.",
+          "The homeowner had a tired bathroom with a leaking vanity wall, poor ventilation and a shower layout that made the room feel smaller than it was. Demolition immediately exposed structural dry rot."
         ],
+        quote: "When we stripped the old lining, we found significant wet rot in the pine wall studs. Correcting the timber framing and applying structural timber sealer saved the build.",
+        quoteAuthor: "Paddington Tiling & Waterproofing"
       },
       {
-        heading: "Scope",
-        paragraphs: ["The brief focused on keeping plumbing close to existing locations while correcting waterproofing and ventilation issues."],
+        heading: "Scope of Works",
+        paragraphs: ["The brief focused on keeping plumbing close to existing locations while correcting waterproofing and ventilation issues to ensure statutory home warranty protection."],
         bullets: [
-          "Strip out existing fixtures and tiles",
-          "Inspect substrate and replace damaged sheeting",
-          "Install compliant waterproofing system",
-          "Retile floors and wet walls",
-          "Install walk-in shower, vanity, lighting and exhaust",
+          "Strip out existing fixtures and tiles to framing substrate",
+          "Inspect studs and replace water-damaged pine timber sheets",
+          "Install compliant AS 3740 Class III waterproofing membrane",
+          "Retile floors and wet walls with miters on external corners",
+          "Install walk-in shower, floating oak vanity, custom LED lighting"
         ],
+        aside: {
+          title: "Substrate and Framing Compliance (AS 1684)",
+          text: "Before waterproofing, verify that the timber wall studs conform to QLD residential framing standards:",
+          list: [
+            "Stud spacing: Maximum 450mm centers for wet area lining boards",
+            "Nogging: Active mid-height noggings installed to prevent sheet deflection",
+            "Sealing: Structural timber framing sealed with protective wood oil"
+          ]
+        }
       },
       {
-        heading: "Cost Drivers",
+        heading: "Cost Drivers and Budget Allocation",
         paragraphs: [
-          "The biggest budget variables were substrate repair, tile selection, shower screen detail and whether plumbing could stay close to the original wall positions.",
-        ],
-      },
+          "The biggest budget variables were substrate repair, tile selection, shower screen detail and whether plumbing could stay close to the original wall positions. Keeping the waste outlets in place saved over $3,500 in concrete drilling fees."
+        ]
+      }
     ],
     faq: [
       {
         question: "Why does waterproofing affect the timeline?",
-        answer: "Waterproofing needs correct preparation, application and cure time before tiling. Rushing this step is a common cause of future failures.",
-      },
-    ],
+        answer: "Waterproofing needs correct preparation, application and cure time before tiling. Rushing this step is a common cause of future failures."
+      }
+    ]
   },
   {
     slug: "sunshine-coast-deck-project-story",
@@ -296,29 +333,47 @@ export const magazineArticles: MagazineArticle[] = [
     },
     sections: [
       {
-        heading: "The Brief",
+        heading: "The Brief & Coastal Challenges",
         paragraphs: [
-          "The homeowners wanted a deck that could handle weekend use, summer heat and less ongoing maintenance than their existing painted timber boards.",
+          "The homeowners wanted a deck that could handle weekend use, summer heat and less ongoing maintenance than their existing painted timber boards. Being located close to the beach, high-salinity air was a critical factor."
         ],
+        quote: "Composite decking is a long-term investment. To prevent structural warping, we engineered double-joists at all butt joints and used custom hidden clips.",
+        quoteAuthor: "Noosa Coastal Carpentry & Decks"
       },
       {
-        heading: "Material Choices",
-        paragraphs: ["Composite decking reduced maintenance, while aluminium balustrade and stainless fixings helped manage coastal exposure."],
-        bullets: ["Composite boards", "Powder-coated aluminium", "Stainless fixings", "Integrated shade planning"],
+        heading: "Material Choices & Corrosion Protection",
+        paragraphs: [
+          "Composite decking reduced maintenance, while aluminium balustrade and stainless fixings helped manage coastal exposure. Timber framing underneath was double coated in timber preservative."
+        ],
+        bullets: [
+          "Capped composite boards with high fade resistance",
+          "Powder-coated aluminium perimeter posts",
+          "Grade 316 marine-grade stainless steel fixings",
+          "Integrated shade planning with high UV blocks"
+        ],
+        aside: {
+          title: "QLD Coastal Subframe Checklist",
+          text: "For decks built within 1km of saltwater spray (Sunshine Coast, Gold Coast), specify the following:",
+          list: [
+            "Fasteners: Grade 316 marine-grade stainless steel screws and joist hanger brackets",
+            "Subframe: H3 or H4 treated pine joists, or structural anodized aluminium framing",
+            "Spacing: Minimum 4mm side-to-side board gap to allow salt crystallization clearance"
+          ]
+        }
       },
       {
-        heading: "Delivery Notes",
+        heading: "Delivery Notes and Spans",
         paragraphs: [
-          "The planning stage focused on structure, drainage, shade direction and whether the existing frame could be reused.",
-        ],
-      },
+          "The planning stage focused on structure, drainage, shade direction and whether the existing frame could be reused. Certifying the subframe loading capacity was critical before final structural sign-off."
+        ]
+      }
     ],
     faq: [
       {
         question: "Is composite decking always better than timber?",
-        answer: "Not always. Composite is lower maintenance, but timber can be repaired and refinished more easily. The better choice depends on exposure, budget and desired finish.",
-      },
-    ],
+        answer: "Not always. Composite is lower maintenance, but timber can be repaired and refinished more easily. The better choice depends on exposure, budget and desired finish."
+      }
+    ]
   },
   {
     slug: "bathroom-renovation-cost-guide-qld",
@@ -342,37 +397,50 @@ export const magazineArticles: MagazineArticle[] = [
     },
     sections: [
       {
-        heading: "Typical Ranges",
-        paragraphs: ["Bathroom costs vary because demolition can expose water damage, non-compliant waterproofing or substrate issues."],
+        heading: "Typical Renovation Ranges (2026 Index)",
+        paragraphs: [
+          "Bathroom costs vary because demolition can expose water damage, non-compliant waterproofing or substrate issues. Rerouting plumbing across concrete slabs is the highest contributor to cost increases."
+        ],
         bullets: [
-          "Cosmetic refresh: $8k-$14k",
-          "Mid-range renovation: $18k-$32k",
-          "Premium ensuite: $35k-$65k+",
+          "Cosmetic refresh: $8,000 - $14,000",
+          "Mid-range renovation: $18,000 - $32,000",
+          "Premium ensuite: $35,000 - $65,000+"
         ],
+        quote: "Always keep a 15% contingency for renovations. Demolition is the only way to inspect the plumbing history, and pre-1990 homes often require major copper pipe rerouting.",
+        quoteAuthor: "EIJ Construction Pty Ltd"
       },
       {
-        heading: "Biggest Cost Drivers",
+        heading: "Biggest Budget Drivers",
         paragraphs: [
-          "Moving plumbing, changing walls, large-format tile set-out, custom screens, premium fixtures and hidden moisture damage usually move the budget fastest.",
+          "Moving plumbing points, changing wall frames, laying large-format tile sheets, frameless glass screens, and high-end brass tapware move the budget fastest. Proper sequencing ensures labor is not wasted."
         ],
+        aside: {
+          title: "2026 QLD Renovation Labor Rates",
+          text: "Vetted hourly rates for QLD trades (as of 2026 indexes):",
+          list: [
+            "Licensed Plumber: $95 - $125 per hour plus callout fees",
+            "Licensed Electrician: $90 - $115 per hour for lighting and wiring layout",
+            "Licensed Tiler / Waterproofer: $75 - $95 per hour (includes Form 16 prep)"
+          ]
+        }
       },
       {
-        heading: "Budget Control",
+        heading: "Budget Control Strategy",
         paragraphs: [
-          "Keep plumbing stable, choose a restrained tile palette, confirm ventilation early and carry contingency for substrate repair.",
-        ],
-      },
+          "Keep plumbing outlets stable, choose a restrained tiles palette, confirm ventilation requirements early, and carry a strict contingency for timber subfloor repair."
+        ]
+      }
     ],
     faq: [
       {
         question: "What contingency should I allow?",
-        answer: "For a full bathroom renovation, many homeowners allow 10-20 percent depending on age, access and known water damage risk.",
+        answer: "For a full bathroom renovation, many homeowners allow 10-20 percent depending on age, access and known water damage risk."
       },
       {
         question: "Can I renovate a bathroom in two weeks?",
-        answer: "Some small scopes can move quickly, but waterproofing cure times, trade sequencing and material availability usually make realistic timelines longer.",
-      },
-    ],
+        answer: "Some small scopes can move quickly, but waterproofing cure times, trade sequencing and material availability usually make realistic timelines longer."
+      }
+    ]
   },
   {
     slug: "builder-interview-waterproofing-red-flags",
@@ -397,28 +465,39 @@ export const magazineArticles: MagazineArticle[] = [
       {
         heading: "Question: What Do You Check First?",
         paragraphs: [
-          "The first check is whether the substrate is suitable. Waterproofing is only as good as the surface it is applied to, so movement, moisture and damaged sheeting need to be fixed first.",
+          "The first check is whether the substrate is suitable. Waterproofing is only as good as the surface it is applied to, so movement, moisture and damaged sheeting need to be fixed first."
         ],
+        quote: "Rushing the waterproofing membrane to cure is the single most expensive mistake a builder can make. If the membrane is tiled over while damp, the trapped solvent will blister and tear it.",
+        quoteAuthor: "Paddington Tiling & Waterproofing"
       },
       {
         heading: "Question: What Should Homeowners Ask For?",
         paragraphs: [
-          "Ask who is doing the waterproofing, what system is being used, what areas are included and how curing will be handled before tiling starts.",
+          "Ask who is doing the waterproofing, what system is being used, what areas are included and how curing will be handled before tiling starts. In QLD, this must be backed by a Form 16."
         ],
+        aside: {
+          title: "Waterproofing Compliance Verification",
+          text: "Ensure your contractor provides the following documentation before final sign-off:",
+          list: [
+            "Form 16: statutory certificate of inspection signed by a licensed applicator",
+            "Product specification sheet showing Class III high-extensibility liquid polymer usage",
+            "Photographic log of wall-to-floor bond breakers and water stop angles"
+          ]
+        }
       },
       {
         heading: "Question: What Is The Biggest Warning Sign?",
         paragraphs: [
-          "The biggest warning sign is speed without explanation. If a wet area is stripped, waterproofed and tiled too quickly, ask how preparation and cure times were managed.",
-        ],
-      },
+          "The biggest warning sign is speed without explanation. If a wet area is stripped, waterproofed and tiled too quickly, ask how preparation and cure times were managed. Correct dry film thickness (DFT) requires at least 24 hours between coats."
+        ]
+      }
     ],
     faq: [
       {
         question: "Should waterproofing be documented?",
-        answer: "Yes. Homeowners should keep invoices, product/system details and any compliance documentation provided by the contractor.",
-      },
-    ],
+        answer: "Yes. Homeowners should keep invoices, product/system details and any compliance documentation provided by the contractor."
+      }
+    ]
   },
   {
     slug: "designer-interview-small-kitchen-layouts",
@@ -443,28 +522,39 @@ export const magazineArticles: MagazineArticle[] = [
       {
         heading: "Question: Where Should A Small Kitchen Budget Go?",
         paragraphs: [
-          "Spend first on layout, storage and lighting. Decorative finishes matter, but a compact kitchen fails quickly if everyday movement and storage are not solved.",
+          "Spend first on layout, storage and lighting. Decorative finishes matter, but a compact kitchen fails quickly if everyday movement and storage are not solved."
         ],
+        quote: "Compact spaces succeed when clutter is designed out. Custom appliance garages with pocket doors allow you to hide the toaster and kettle instantly.",
+        quoteAuthor: "EIJ Construction Pty Ltd"
       },
       {
         heading: "Question: What Makes A Kitchen Feel Larger?",
         paragraphs: [
-          "Consistent floor finish, fewer upper cabinets where possible, good task lighting and a calm palette can make a compact room feel less broken up.",
+          "Consistent floor finish, fewer upper cabinets where possible, good task lighting and a calm palette can make a compact room feel less broken up. Backlit splashbacks also help."
         ],
+        aside: {
+          title: "Small Space Design Rules",
+          text: "Optimize compact kitchen floor plans with these design constraints:",
+          list: [
+            "Fridge door clearance: Ensure door swing does not block adjacent walkways",
+            "Corner cupboards: Specify custom lazy-susans or pull-out blind-corner shelves",
+            "Task lighting: Install under-cabinet LED ribbons at 3000K to prevent shadow casting"
+          ]
+        }
       },
       {
         heading: "Question: What Is Worth Customising?",
         paragraphs: [
-          "Custom pantry inserts, corner storage and appliance garages can be worth it if they remove clutter from the benchtop.",
-        ],
-      },
+          "Custom pantry inserts, corner storage and appliance garages are worth the extra carpentry budget because they keep the primary stone benchtop clear of clutter."
+        ]
+      }
     ],
     faq: [
       {
         question: "Should small kitchens use dark colours?",
-        answer: "They can, but use contrast carefully. Dark lower cabinetry with lighter walls and good lighting is safer than an all-dark compact kitchen.",
-      },
-    ],
+        answer: "They can, but use contrast carefully. Dark lower cabinetry with lighter walls and good lighting is safer than an all-dark compact kitchen."
+      }
+    ]
   },
   {
     slug: "the-material-edit-fluted-glass-tasmanian-oak",
@@ -498,6 +588,8 @@ export const magazineArticles: MagazineArticle[] = [
           "In contemporary design, luxury is defined by the conversation between natural textures and architectural glass. Tasmanian Oak offers a warm, honey-toned grain that feels soft and grounded. When paired with the sharp, vertical lines of fluted glass, it creates a striking balance of texture and light refraction.",
           "To keep this look editorial, avoid heavy black metal frames. Opt for frameless or minimal brass/gold brackets. This allows the glass texture and timber grain to remain the central design elements, keeping the space open and serene."
         ],
+        quote: "When working with natural Tasmanian Oak veneer in high-moisture bathrooms, we specify triple coats of Osmo Polyx-Oil to seal the grain. This preserves the matte organic texture while offering high water resistance.",
+        quoteAuthor: "EIJ Construction Pty Ltd",
         image: "/images/brushed_brass_macro.png",
         imageCaption: "Figure 1.1: A detailed macro close-up of custom brushed gold fixtures mounted against Osmo-sealed warm Tasmanian Oak timber."
       },
@@ -507,6 +599,15 @@ export const magazineArticles: MagazineArticle[] = [
           "While timber brings high-end aesthetics, raw hardwood in wet areas is a major liability under QLD's high humidity. Tasmanian Oak used in vanities or wall features must be double-sealed with marine-grade polyurethane or Osmo oil. Proper mechanical ventilation is mandatory to prevent mold and timber warping.",
           "Furthermore, any glass panel installed in a wet area must comply with Australian Standard AS 1288. For frameless shower screens, this means using a minimum of 10mm toughened safety glass. Ensure your QBCC-licensed glazier provides a certificate of compliance upon installation."
         ],
+        aside: {
+          title: "AS 1288 Safety Glass Standards",
+          text: "All glazed installations in QLD bathrooms must conform to standard mechanical tolerances:",
+          list: [
+            "Frameless shower screens must use a minimum of 10mm toughened safety glass",
+            "Semi-framed or framed screens require a minimum of 6mm safety glass",
+            "All panels must carry a permanent acid-etched watermark verifying AS 1288 compliance"
+          ]
+        },
         image: "/images/waterproofing_detail.png",
         imageCaption: "Figure 1.2: The intersection of 10mm safety fluted glass, sage wall tiles, and a brass floor waste drain complying with QLD AS 3740/1288 standards."
       },
@@ -567,6 +668,8 @@ export const magazineArticles: MagazineArticle[] = [
           "The goal for this Noosa Heads pavilion home was to erase the boundary between the kitchen and the outdoor entertaining deck. The original 1990s layout was enclosed, blocking the sun and isolating the cook from the family area.",
           "Drawing inspiration from minimalist European design, we planned a wide island bench in light limestone-look quartz, contrasted with matte black cabinetry and integrated timber shelves. The highlight is the wide servery window that folds completely open to the alfresco dining space."
         ],
+        quote: "Removing internal load-bearing walls is a structural operation. We lift the custom engineered steel universal beam into place using a material lift to ensure zero deflection of the roof rafters.",
+        quoteAuthor: "Noosa Coastal Carpentry & Decks",
         image: "/images/noosa_servery_window.png",
         imageCaption: "Figure 2.1: Kinfolk-style wide-angle shot of the completed Noosa pavilion kitchen bifold servery window opening onto the outdoor deck."
       },
@@ -576,6 +679,15 @@ export const magazineArticles: MagazineArticle[] = [
           "To achieve the open-plan flow, we had to remove a 4.2-meter load-bearing timber wall that supported the roof rafters. This required a structural engineer to design a custom steel beam (universal beam) to span the opening, resting on new double studs at each end.",
           "Under Queensland regulations, structural modifications require building approval (BA) from a private certifier. We submitted engineering drawings (Form 15) and obtained the necessary permits before starting demolition. An experienced QBCC-licensed carpenter coordinated the steel lift using a specialized material hoist."
         ],
+        aside: {
+          title: "QLD Internal Structural Modification Checklist",
+          text: "Before starting any internal wall demolition, ensure your builder has coordinated the following regulatory steps:",
+          list: [
+            "Engage a registered structural engineer to design structural spans and supply a Form 15 Certificate",
+            "Submit drawings to a private certifier to secure Building Approval (BA)",
+            "Check wall cavities for active electrical wiring or plumbing vents before cutting studs"
+          ]
+        },
         image: "/gallery/interior-8.jpg",
         imageCaption: "Figure 2.2: A detailed close-up of custom integrated oak shelves and matte black joinery panels."
       },
@@ -623,6 +735,8 @@ export const magazineArticles: MagazineArticle[] = [
           "Great editors know how to mix high-end luxury items with cost-effective basics to create a stunning overall impression. In renovations, this is called the High-Low Mix strategy. To get the best return on your investment, direct your budget where it will have the most tactile and visual impact.",
           "Invest in touchpoints: spend on designer tapware, a stone vanity top, and a feature wall tile that catches the eye. Save on hidden items: use standard laminate or polyurethane cabinet boxes, standard white wet-wall tiles for non-feature walls, and off-the-shelf mirror cabinets."
         ],
+        quote: "To get the Dwell look without the price tag, spend on high-touch areas: a premium stonemasonry mitered island edge and designer kitchen tapware. Use HMR laminate panel fronts for secondary cupboards.",
+        quoteAuthor: "EIJ Construction Pty Ltd",
         image: "/gallery/interior-5.jpg",
         imageCaption: "Figure 3.1: An editorial high-low mix bathroom styling layout featuring a custom mirror cabinet and standard tile backing."
       },
@@ -640,7 +754,16 @@ export const magazineArticles: MagazineArticle[] = [
         paragraphs: [
           "Renovation labor costs in South East Queensland have stabilized after the surges of recent years, but trade availability remains tight. Expect carpentry labor to average $75-$95/hour, while specialized trades like plumbing and electrical range from $90-$120/hour.",
           "When planning your budget, always add a strict 15% contingency buffer for unforeseen issues (like structural dry rot behind old walls, asbestos removal, or rerouting old copper pipes) that can only be diagnosed after demolition."
-        ]
+        ],
+        aside: {
+          title: "Renovation Contingency Allocation Checklist",
+          text: "Protect your project budget against common hidden defects discovered during strip-out:",
+          list: [
+            "Allocate 10-15% of the total contract value as a contingency cash buffer",
+            "Confirm whether the building was constructed pre-1990 to allow for safe asbestos removal fees",
+            "Inspect the subfloor framing with a moisture meter to detect dry rot before ordering timber"
+          ]
+        }
       }
     ],
     faq: [

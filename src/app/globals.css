@@ -324,3 +324,86 @@ h1, h2, h3, h4, h5, h6 {
   h1 { font-size: clamp(2rem, 8vw, 3.5rem); }
   h2 { font-size: clamp(1.6rem, 6vw, 2.5rem); }
 }
+
+/* Luxury Editorial Styles (Dwell & Vogue Living inspired) */
+.editorial-heading-serif {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ocean-700);
+}
+
+.editorial-paragraph {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  letter-spacing: 0.005em;
+  color: var(--slate-mid);
+  margin-bottom: 24px;
+}
+
+/* Dropcap layout */
+.editorial-dropcap::first-letter {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 4.25rem;
+  float: left;
+  line-height: 0.82;
+  margin-top: 6px;
+  margin-right: 12px;
+  font-weight: 700;
+  color: var(--ocean-600);
+  text-transform: uppercase;
+}
+
+/* Asymmetric editorial cards */
+.editorial-card {
+  background: white;
+  border: 1px solid var(--sand-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(26, 35, 50, 0.04);
+  transition: var(--transition-slow);
+}
+
+.editorial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(26, 35, 50, 0.1);
+  border-color: var(--sand-300);
+}
+
+.editorial-card-img-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.editorial-card-img {
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.editorial-card:hover .editorial-card-img {
+  transform: scale(1.06);
+}
+
+/* Smooth page load animation */
+.page-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Sticky specifications badge grid */
+.spec-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.spec-chip {
+  background: var(--sand-50);
+  border: 1px solid var(--sand-200);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--slate-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
