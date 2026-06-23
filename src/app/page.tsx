@@ -532,6 +532,96 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ───────────────── CORA'S EDITORIAL SHORTS ───────────────── */}
+      <section style={{ background: "#0a1f1e", padding: "80px 0", borderBottom: "3px double var(--sand-300)" }}>
+        <div className="container-lg">
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <span style={{ fontSize: "0.74rem", fontWeight: 800, color: "var(--gold-light)", letterSpacing: "0.08em", textTransform: "uppercase", display: "block", marginBottom: 6, fontFamily: "Outfit, sans-serif" }}>
+              ✦ Cora&apos;s Video Curation
+            </span>
+            <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.95rem", margin: 0, fontWeight: 500, color: "white" }}>
+              코라의 비디오 에디트 (Cora&apos;s Editorial Shorts)
+            </h2>
+            <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.95rem", marginTop: 10, maxWidth: 540, margin: "10px auto 0", fontFamily: "Outfit, sans-serif" }}>
+              코스트홈허브의 에디터 코라가 들려주는 실용적인 홈 스타일링, 시공 안전 상식, 그리고 예산 전략을 쇼츠 영상으로 만나보세요.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: 24 }} className="shorts-grid">
+            {[
+              {
+                id: "dQw4w9WgXcQ", // 여기에 실제 YouTube Shorts 비디오 ID를 입력하세요. (예: dQw4w9WgXcQ)
+                title: "방수 공사 3대 위험 신호",
+                category: "시공 안전",
+                desc: "욕실 타일 시공 전 반드시 확인해야 할 부실 방수 체크포인트.",
+                articleLink: "/magazine/builder-interview-waterproofing-red-flags"
+              },
+              {
+                id: "dQw4w9WgXcQ",
+                title: "리모델링 예산 분배 기술",
+                category: "예산 전략",
+                desc: "돈을 집중해야 할 터치포인트와 아껴도 되는 품목 믹스 매치.",
+                articleLink: "/magazine/the-2026-qld-renovation-budget-blueprint"
+              },
+              {
+                id: "dQw4w9WgXcQ",
+                title: "플루티드 글라스 & 오크 조합",
+                category: "스타일 매치",
+                desc: "태즈매니안 오크와 ribbed 유리를 결합한 프리미엄 욕실 스타일링.",
+                articleLink: "/magazine/the-material-edit-fluted-glass-tasmanian-oak"
+              },
+              {
+                id: "dQw4w9WgXcQ",
+                title: "코스트홈허브가 존재하는 이유",
+                category: "철학 & 미션",
+                desc: "집주인과 기술자 사이의 신뢰와 투명한 정보 생태계를 만드는 첫걸음.",
+                articleLink: "/about"
+              }
+            ].map((short, idx) => (
+              <div key={idx} style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 4, overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
+                {/* 9:16 Aspect Ratio Iframe Container */}
+                <div style={{ position: "relative", width: "100%", aspectRatio: "9/16", background: "black", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${short.id}?rel=0&modestbranding=1`}
+                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title={short.title}
+                  />
+                </div>
+                
+                {/* Text description under the video */}
+                <div style={{ padding: 20, flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                  <div>
+                    <span style={{ fontSize: "0.62rem", fontWeight: 800, color: "var(--gold-light)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", padding: "2px 8px", borderRadius: 2, textTransform: "uppercase", letterSpacing: "0.04em", fontFamily: "Outfit, sans-serif" }}>
+                      {short.category}
+                    </span>
+                    <h3 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.05rem", color: "white", margin: "12px 0 6px", fontWeight: 600, lineHeight: 1.35 }}>
+                      {short.title}
+                    </h3>
+                    <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.5, margin: "0 0 16px", fontFamily: "Outfit, sans-serif" }}>
+                      {short.desc}
+                    </p>
+                  </div>
+                  <Link href={short.articleLink} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: "0.78rem", fontWeight: 700, color: "var(--gold-light)", textDecoration: "none", fontFamily: "Outfit, sans-serif" }}>
+                    매거진 칼럼 읽기 →
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <style dangerouslySetInnerHTML={{ __html: `
+          @media (max-width: 600px) {
+            .shorts-grid {
+              grid-template-columns: 1fr !important;
+              max-width: 320px;
+              margin: 0 auto;
+            }
+          }
+        `}} />
+      </section>
+
       {/* ───────────────── WEEKLY NEWSLETTER ───────────────── */}
       <section style={{ background: "#0c2422", padding: "80px 24px", borderBottom: "3px double var(--sand-300)" }}>
         <div className="container-md" style={{ textAlign: "center" }}>
