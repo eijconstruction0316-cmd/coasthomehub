@@ -147,12 +147,12 @@ export default function TradieDashboardDemo() {
   return (
     <div
       style={{
-        background: "linear-gradient(160deg, var(--slate-dark) 0%, var(--slate-mid) 100%)",
-        borderRadius: "var(--radius-xl)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        boxShadow: "var(--shadow-xl)",
-        padding: "32px",
-        color: "white",
+        background: "var(--sand-50)",
+        borderRadius: 4,
+        border: "1px solid var(--sand-300)",
+        boxShadow: "0 4px 24px rgba(26, 35, 50, 0.03)",
+        padding: "40px",
+        color: "var(--slate-dark)",
         fontFamily: "Outfit, sans-serif",
         maxWidth: 1040,
         margin: "0 auto",
@@ -164,27 +164,27 @@ export default function TradieDashboardDemo() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          borderBottom: "1px solid rgba(255,255,255,0.12)",
-          paddingBottom: 20,
+          borderBottom: "3px double var(--sand-300)",
+          paddingBottom: 24,
           marginBottom: 24,
           flexWrap: "wrap",
-          gap: 16,
+          gap: 20,
         }}
       >
         <div>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.08)", padding: "4px 12px", borderRadius: 50, fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-300)" }}>
-            🟢 INTERACTIVE PORTAL DEMO (ELITE PLAN)
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "var(--ocean-50)", padding: "4px 10px", borderRadius: 2, fontSize: "0.68rem", fontWeight: 800, color: "var(--ocean-700)", border: "1px solid var(--ocean-100)", letterSpacing: "0.05em" }}>
+            ✦ INTERACTIVE PORTAL DEMO // ELITE PARTNER
           </div>
-          <h3 style={{ color: "white", fontSize: "1.35rem", margin: "6px 0 0" }}>Welcome back, EIJ Construction</h3>
+          <h3 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.6rem", fontWeight: 600, color: "var(--slate-dark)", margin: "8px 0 0" }}>Welcome back, EIJ Construction</h3>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <div style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "var(--radius-lg)", padding: "10px 20px", textAlign: "right" }}>
-            <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.5)", display: "block" }}>ACCOUNT TYPE</span>
-            <span style={{ fontWeight: 800, color: "var(--gold-light)", fontSize: "0.95rem" }}>👑 Elite Partner</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "10px 18px", textAlign: "right" }}>
+            <span style={{ fontSize: "0.62rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.04em", fontWeight: 700 }}>ACCOUNT TYPE</span>
+            <span style={{ fontWeight: 800, color: "var(--gold)", fontSize: "0.88rem", fontFamily: "Outfit, sans-serif" }}>👑 Elite Partner</span>
           </div>
-          <div style={{ background: "linear-gradient(135deg, var(--ocean-600), var(--ocean-500))", borderRadius: "var(--radius-lg)", padding: "10px 20px", boxShadow: "0 4px 14px rgba(31,122,114,0.3)" }}>
-            <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.7)", display: "block", fontWeight: 600 }}>AVAILABLE CREDITS</span>
-            <span style={{ fontWeight: 900, color: "white", fontSize: "1.2rem" }}>🪙 {credits}</span>
+          <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "10px 18px", textAlign: "right" }}>
+            <span style={{ fontSize: "0.62rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.04em", fontWeight: 700 }}>AVAILABLE CREDITS</span>
+            <span style={{ fontWeight: 800, color: "var(--ocean-600)", fontSize: "1.1rem", fontFamily: "Lora, Georgia, serif" }}>🪙 {credits}</span>
           </div>
         </div>
       </div>
@@ -193,46 +193,47 @@ export default function TradieDashboardDemo() {
       <div
         style={{
           display: "flex",
-          gap: 10,
-          marginBottom: 28,
-          borderBottom: "1px solid rgba(255,255,255,0.08)",
-          paddingBottom: 12,
+          gap: 16,
+          marginBottom: 32,
+          borderBottom: "1px solid var(--sand-300)",
+          paddingBottom: 0,
           overflowX: "auto",
         }}
       >
         {[
-          { id: "leads", label: "🪙 Leads Board", count: leads.length },
-          { id: "buyers", label: "🤝 Buyers Club", badge: "10% Off" },
-          { id: "portfolio", label: "📸 Portfolio Tags", badge: "Archipro" },
-          { id: "seo", label: "📈 Google SEO Report", badge: "Live" },
+          { id: "leads", label: "Leads Board", count: leads.length },
+          { id: "buyers", label: "Buyers Club", badge: "10% Off" },
+          { id: "portfolio", label: "Portfolio Tags", badge: "Archipro" },
+          { id: "seo", label: "Google SEO Report", badge: "Live" },
         ].map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as any)}
             style={{
-              padding: "10px 20px",
-              borderRadius: "50px",
+              padding: "12px 4px",
               border: "none",
-              background: activeTab === tab.id ? "var(--ocean-500)" : "rgba(255,255,255,0.05)",
-              color: "white",
+              borderBottom: activeTab === tab.id ? "2px solid var(--ocean-600)" : "2px solid transparent",
+              background: "transparent",
+              color: activeTab === tab.id ? "var(--slate-dark)" : "var(--slate-light)",
               fontWeight: 700,
-              fontSize: "0.88rem",
+              fontSize: "0.85rem",
               cursor: "pointer",
               whiteSpace: "nowrap",
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
-              transition: "all 0.2s ease",
+              transition: "var(--transition-fast)",
+              fontFamily: "Outfit, sans-serif",
             }}
           >
             <span>{tab.label}</span>
             {tab.count !== undefined && (
-              <span style={{ background: "rgba(255,255,255,0.2)", fontSize: "0.7rem", padding: "2px 6px", borderRadius: 50 }}>
+              <span style={{ background: activeTab === tab.id ? "var(--ocean-50)" : "var(--sand-100)", color: activeTab === tab.id ? "var(--ocean-700)" : "var(--slate-mid)", fontSize: "0.72rem", padding: "2px 8px", borderRadius: 2, fontWeight: 800, border: activeTab === tab.id ? "1px solid var(--ocean-200)" : "1px solid var(--sand-200)" }}>
                 {tab.count}
               </span>
             )}
             {tab.badge && (
-              <span style={{ background: "var(--gold)", color: "white", fontSize: "0.6rem", padding: "1px 6px", borderRadius: 50, fontWeight: 900 }}>
+              <span style={{ background: activeTab === tab.id ? "var(--gold)" : "var(--sand-300)", color: activeTab === tab.id ? "white" : "var(--slate-mid)", fontSize: "0.62rem", padding: "2px 6px", borderRadius: 2, fontWeight: 800, letterSpacing: "0.02em" }}>
                 {tab.badge}
               </span>
             )}
@@ -242,10 +243,10 @@ export default function TradieDashboardDemo() {
 
       {/* ── TAB CONTENT: LEADS BOARD ── */}
       {activeTab === "leads" && (
-        <div style={{ display: "grid", gridTemplateColumns: "360px 1fr", gap: 28 }} className="demo-grid-wrap">
+        <div style={{ display: "grid", gridTemplateColumns: "380px 1fr", gap: 32 }} className="demo-grid-wrap">
           {/* Left Side: Lead Feed */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--slate-light)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 4 }}>
               Active Renovation Leads ({leads.length})
             </span>
             {leads.map((lead) => {
@@ -255,35 +256,36 @@ export default function TradieDashboardDemo() {
                   key={lead.id}
                   onClick={() => setSelectedLeadId(lead.id)}
                   style={{
-                    border: isSelected ? "2px solid var(--ocean-400)" : "1px solid rgba(255,255,255,0.08)",
-                    borderRadius: "var(--radius-lg)",
-                    padding: "16px 18px",
-                    background: isSelected ? "rgba(31,122,114,0.18)" : "rgba(255,255,255,0.03)",
+                    border: isSelected ? "1px solid var(--ocean-600)" : "1px solid var(--sand-300)",
+                    borderRadius: "4px",
+                    padding: "20px 22px",
+                    background: isSelected ? "white" : "rgba(255,255,255,0.5)",
+                    boxShadow: isSelected ? "var(--shadow-sm)" : "none",
                     cursor: "pointer",
                     textAlign: "left",
                     width: "100%",
                     transition: "var(--transition-fast)",
                   }}
                 >
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-                    <span style={{ color: "var(--ocean-300)", fontWeight: 700, fontSize: "0.78rem" }}>📍 {lead.suburb}</span>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8, alignItems: "center" }}>
+                    <span style={{ color: "var(--ocean-600)", fontWeight: 700, fontSize: "0.8rem", fontFamily: "Outfit, sans-serif" }}>📍 {lead.suburb}</span>
                     {lead.isLocked ? (
-                      <span style={{ fontSize: "0.72rem", background: "rgba(245,158,11,0.15)", color: "var(--gold-light)", padding: "2px 8px", borderRadius: 50, fontWeight: 700 }}>
-                        🔒 Locked ({lead.creditsCost} c)
+                      <span style={{ fontSize: "0.68rem", background: "var(--sand-100)", color: "var(--sand-50)", padding: "3px 8px", borderRadius: 2, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.02em" }}>
+                        🔒 Locked
                       </span>
                     ) : (
-                      <span style={{ fontSize: "0.72rem", background: "rgba(34,197,94,0.15)", color: "#4ade80", padding: "2px 8px", borderRadius: 50, fontWeight: 700 }}>
+                      <span style={{ fontSize: "0.68rem", background: "var(--ocean-50)", color: "var(--ocean-600)", padding: "3px 8px", borderRadius: 2, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.02em" }}>
                         🔓 Unlocked
                       </span>
                     )}
                   </div>
-                  <h4 style={{ color: "white", fontSize: "0.95rem", fontWeight: 800, margin: "0 0 4px" }}>{lead.category}</h4>
-                  <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.78rem", lineClamp: 1, WebkitLineClamp: 1, display: "-webkit-box", WebkitBoxOrient: "vertical", overflow: "hidden", margin: "0 0 10px" }}>
+                  <h4 style={{ fontFamily: "Lora, Georgia, serif", color: "var(--slate-dark)", fontSize: "1.05rem", fontWeight: 600, margin: "0 0 6px" }}>{lead.category}</h4>
+                  <p style={{ color: "var(--slate-light)", fontSize: "0.82rem", lineClamp: 2, WebkitLineClamp: 2, display: "-webkit-box", WebkitBoxOrient: "vertical", overflow: "hidden", margin: "0 0 14px", lineHeight: 1.5 }}>
                     {lead.description}
                   </p>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 8 }}>
-                    <span style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.4)" }}>Estimated Budget</span>
-                    <span style={{ color: "var(--gold-light)", fontWeight: 800, fontSize: "0.85rem" }}>{lead.budget}</span>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid var(--sand-200)", paddingTop: 10 }}>
+                    <span style={{ fontSize: "0.74rem", color: "var(--slate-light)" }}>Estimated Budget</span>
+                    <span style={{ fontFamily: "Lora, Georgia, serif", color: "var(--gold)", fontWeight: 600, fontSize: "0.92rem" }}>{lead.budget}</span>
                   </div>
                 </button>
               );
@@ -291,27 +293,27 @@ export default function TradieDashboardDemo() {
           </div>
 
           {/* Right Side: Lead Details */}
-          <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "var(--radius-xl)", padding: 24, minHeight: 460, position: "relative" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", borderBottom: "1px solid rgba(255,255,255,0.08)", paddingBottom: 16, marginBottom: 20 }}>
+          <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: "4px", padding: "32px", minHeight: 460, position: "relative", boxShadow: "var(--shadow-sm)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", borderBottom: "3px double var(--sand-300)", paddingBottom: 20, marginBottom: 24 }}>
               <div>
-                <span style={{ color: "var(--ocean-300)", fontSize: "0.82rem", fontWeight: 700 }}>{activeLead.category}</span>
-                <h2 style={{ fontSize: "1.4rem", margin: "4px 0 0", color: "white" }}>{activeLead.suburb}</h2>
+                <span style={{ color: "var(--ocean-500)", fontSize: "0.78rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em" }}>{activeLead.category}</span>
+                <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.6rem", fontWeight: 600, margin: "6px 0 0", color: "var(--slate-dark)" }}>{activeLead.suburb}</h2>
               </div>
               <div style={{ textAlign: "right" }}>
-                <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", display: "block" }}>Est. Job Value</span>
-                <strong style={{ fontSize: "1.2rem", color: "var(--gold)", fontWeight: 900 }}>{activeLead.budget}</strong>
+                <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block" }}>EST. JOB VALUE</span>
+                <strong style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.4rem", color: "var(--gold)", fontWeight: 600 }}>{activeLead.budget}</strong>
               </div>
             </div>
 
-            <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.92rem", lineHeight: 1.7, marginBottom: 20 }}>
+            <p style={{ fontFamily: "Lora, Georgia, serif", color: "var(--slate-mid)", fontSize: "1.02rem", lineHeight: 1.8, marginBottom: 28 }}>
               {activeLead.description}
             </p>
 
             {activeLead.isLocked ? (
-              <div style={{ background: "rgba(10,31,30,0.88)", border: "1px dashed rgba(61,153,144,0.3)", borderRadius: "var(--radius-lg)", padding: "36px 24px", textAlign: "center", backdropFilter: "blur(4px)", marginTop: 20 }}>
-                <div style={{ fontSize: "2.8rem", marginBottom: 12 }}>🔒</div>
-                <h3 style={{ color: "white", fontSize: "1.1rem", marginBottom: 6, fontWeight: 800 }}>Contact Details Locked</h3>
-                <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.82rem", maxWidth: 360, margin: "0 auto 20px", lineHeight: 1.6 }}>
+              <div style={{ background: "var(--sand-50)", border: "1px dashed var(--sand-300)", borderRadius: "4px", padding: "48px 32px", textAlign: "center", marginTop: 24 }}>
+                <div style={{ fontSize: "2.4rem", marginBottom: 16 }}>🔒</div>
+                <h3 style={{ fontFamily: "Lora, Georgia, serif", color: "var(--slate-dark)", fontSize: "1.2rem", marginBottom: 8, fontWeight: 600 }}>Contact Details Locked</h3>
+                <p style={{ color: "var(--slate-light)", fontSize: "0.85rem", maxWidth: 400, margin: "0 auto 28px", lineHeight: 1.6 }}>
                   Unlock this lead using your monthly credits. You will gain immediate access to client&apos;s name, phone, email, and detailed room photos.
                 </p>
                 <button
@@ -320,73 +322,74 @@ export default function TradieDashboardDemo() {
                   style={{
                     background: "linear-gradient(135deg, var(--gold), var(--gold-light))",
                     border: "none",
-                    borderRadius: "50px",
-                    padding: "12px 36px",
+                    borderRadius: "4px",
+                    padding: "13px 36px",
                     color: "white",
                     fontWeight: 800,
-                    fontSize: "0.95rem",
+                    fontSize: "0.92rem",
                     cursor: "pointer",
-                    boxShadow: "0 4px 16px rgba(201,151,42,0.3)",
+                    boxShadow: "0 4px 12px rgba(201,151,42,0.25)",
                     transition: "var(--transition)",
+                    fontFamily: "Outfit, sans-serif",
                   }}
                 >
                   {unlocking ? "⏳ Verifying QBCC Class..." : `🔑 Unlock Lead — ${activeLead.creditsCost} Credits`}
                 </button>
               </div>
             ) : (
-              <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 12, padding: "16px 20px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, background: "var(--sand-50)", border: "1px solid var(--sand-200)", borderRadius: "4px", padding: "20px 24px" }}>
                   <div>
-                    <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", display: "block" }}>CONTACT NAME</span>
-                    <strong style={{ color: "white", fontSize: "0.95rem" }}>👤 {activeLead.clientName}</strong>
+                    <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.02em" }}>CONTACT NAME</span>
+                    <strong style={{ color: "var(--slate-dark)", fontSize: "0.92rem" }}>👤 {activeLead.clientName}</strong>
                   </div>
                   <div>
-                    <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", display: "block" }}>PHONE NUMBER</span>
-                    <a href={`tel:${activeLead.clientPhone}`} style={{ color: "var(--ocean-300)", fontSize: "0.95rem", textDecoration: "none", fontWeight: 700 }}>
+                    <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.02em" }}>PHONE NUMBER</span>
+                    <a href={`tel:${activeLead.clientPhone}`} style={{ color: "var(--ocean-600)", fontSize: "0.92rem", textDecoration: "none", fontWeight: 700 }}>
                       📞 {activeLead.clientPhone}
                     </a>
                   </div>
-                  <div style={{ gridColumn: "span 2", borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 10, marginTop: 4 }}>
-                    <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", display: "block" }}>EMAIL ADDRESS</span>
-                    <a href={`mailto:${activeLead.clientEmail}`} style={{ color: "var(--ocean-300)", fontSize: "0.95rem", textDecoration: "none" }}>
+                  <div style={{ gridColumn: "span 2", borderTop: "1px solid var(--sand-200)", paddingTop: 12, marginTop: 4 }}>
+                    <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.02em" }}>EMAIL ADDRESS</span>
+                    <a href={`mailto:${activeLead.clientEmail}`} style={{ color: "var(--ocean-600)", fontSize: "0.92rem", textDecoration: "none", fontWeight: 600 }}>
                       ✉️ {activeLead.clientEmail}
                     </a>
                   </div>
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
                   <div>
-                    <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", display: "block", marginBottom: 6 }}>CUSTOMER BEFORE PHOTO</span>
-                    <div style={{ position: "relative", height: 140, borderRadius: 10, overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block", marginBottom: 8, letterSpacing: "0.02em" }}>CUSTOMER BEFORE PHOTO</span>
+                    <div style={{ position: "relative", height: 160, borderRadius: "4px", overflow: "hidden", border: "1px solid var(--sand-200)" }}>
                       <Image src={activeLead.beforeImage} alt="Before" fill style={{ objectFit: "cover" }} unoptimized />
                     </div>
                   </div>
                   <div>
-                    <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", display: "block", marginBottom: 6 }}>AI DESIGN CONCEPT</span>
-                    <div style={{ position: "relative", height: 140, borderRadius: 10, overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block", marginBottom: 8, letterSpacing: "0.02em" }}>AI DESIGN CONCEPT</span>
+                    <div style={{ position: "relative", height: 160, borderRadius: "4px", overflow: "hidden", border: "1px solid var(--sand-200)" }}>
                       <Image src={activeLead.afterImage} alt="AI Concept" fill style={{ objectFit: "cover" }} unoptimized />
                     </div>
                   </div>
                 </div>
 
-                <div style={{ background: "rgba(61,153,144,0.08)", border: "1px solid rgba(61,153,144,0.15)", borderRadius: 12, padding: "16px 20px" }}>
-                  <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "var(--ocean-300)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 8 }}>
+                <div style={{ background: "rgba(240, 249, 248, 0.6)", border: "1px solid var(--ocean-100)", borderRadius: "4px", padding: "20px" }}>
+                  <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-700)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 10 }}>
                     ✦ AI Recommended Project Materials
                   </span>
-                  <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 6, margin: 0, padding: 0 }}>
+                  <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 8, margin: 0, padding: 0 }}>
                     {activeLead.aiSpecs.map((spec) => (
-                      <li key={spec} style={{ display: "flex", gap: 8, fontSize: "0.82rem", color: "rgba(255,255,255,0.85)" }}>
-                        <span style={{ color: "var(--gold-light)", fontWeight: 700 }}>✔</span>{spec}
+                      <li key={spec} style={{ display: "flex", gap: 10, fontSize: "0.85rem", color: "var(--slate-mid)", alignItems: "center" }}>
+                        <span style={{ color: "var(--ocean-600)", fontWeight: 700 }}>✦</span><span>{spec}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <form onSubmit={handleSendProposal} style={{ display: "flex", flexDirection: "column", gap: 10, borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 16 }}>
-                  <label style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", fontWeight: 600 }} htmlFor="proposalText">
+                <form onSubmit={handleSendProposal} style={{ display: "flex", flexDirection: "column", gap: 12, borderTop: "1px solid var(--sand-200)", paddingTop: 20 }}>
+                  <label style={{ fontSize: "0.78rem", color: "var(--slate-light)", fontWeight: 700 }} htmlFor="proposalText">
                     Send Direct Quote Proposal / Message
                   </label>
-                  <div style={{ display: "flex", gap: 10 }}>
+                  <div style={{ display: "flex", gap: 12 }}>
                     <input
                       id="proposalText"
                       type="text"
@@ -396,12 +399,12 @@ export default function TradieDashboardDemo() {
                       required
                       style={{
                         flex: 1,
-                        background: "rgba(255,255,255,0.05)",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                        borderRadius: "50px",
-                        padding: "10px 20px",
-                        color: "white",
-                        fontSize: "0.85rem",
+                        background: "white",
+                        border: "1px solid var(--sand-300)",
+                        borderRadius: "4px",
+                        padding: "12px 16px",
+                        color: "var(--slate-dark)",
+                        fontSize: "0.88rem",
                         fontFamily: "Outfit, sans-serif",
                       }}
                     />
@@ -409,15 +412,16 @@ export default function TradieDashboardDemo() {
                       type="submit"
                       disabled={proposalSent}
                       style={{
-                        background: "var(--ocean-500)",
+                        background: "var(--ocean-600)",
                         border: "none",
-                        borderRadius: "50px",
-                        padding: "10px 24px",
+                        borderRadius: "4px",
+                        padding: "12px 24px",
                         color: "white",
                         fontWeight: 700,
-                        fontSize: "0.85rem",
+                        fontSize: "0.88rem",
                         cursor: "pointer",
                         whiteSpace: "nowrap",
+                        fontFamily: "Outfit, sans-serif",
                       }}
                     >
                       {proposalSent ? "Sending..." : "Send Proposal"}
@@ -432,18 +436,18 @@ export default function TradieDashboardDemo() {
 
       {/* ── TAB CONTENT: B2B BUYERS CLUB ── */}
       {activeTab === "buyers" && (
-        <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "var(--radius-xl)", padding: 28 }}>
-          <div style={{ marginBottom: 24 }}>
-            <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-300)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 6 }}>
+        <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: "4px", padding: "32px", boxShadow: "var(--shadow-sm)" }}>
+          <div style={{ marginBottom: 28, borderBottom: "3px double var(--sand-300)", paddingBottom: 20 }}>
+            <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-600)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 6 }}>
               B2B Material Buyers Club Portal
             </span>
-            <h3 style={{ color: "white", fontSize: "1.45rem", margin: 0 }}>Direct Supplier Integration & Wholesaling</h3>
-            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.88rem", marginTop: 4 }}>
+            <h3 style={{ fontFamily: "Lora, Georgia, serif", color: "var(--slate-dark)", fontSize: "1.5rem", fontWeight: 600, margin: 0 }}>Direct Supplier Integration & Wholesaling</h3>
+            <p style={{ color: "var(--slate-light)", fontSize: "0.88rem", marginTop: 6 }}>
               As an Elite Partner, get 10% direct trade discounts at major suppliers. Place orders instantly with free delivery directly to your active construction site.
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
             {MOCK_MATERIALS.map((mat) => {
               const qty = orderQuantity[mat.id] || 1;
               const tradePrice = mat.retailPrice * (1 - mat.tradeDiscount / 100);
@@ -451,28 +455,28 @@ export default function TradieDashboardDemo() {
               const totalSavings = mat.retailPrice * (mat.tradeDiscount / 100) * qty;
 
               return (
-                <div key={mat.id} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "var(--radius-lg)", padding: 22, display: "flex", flexDirection: "column", justifySelf: "stretch" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
-                    <span style={{ fontSize: "0.7rem", color: "var(--gold-light)", fontWeight: 700, background: "rgba(201,151,42,0.15)", padding: "2px 8px", borderRadius: 50 }}>
+                <div key={mat.id} style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", borderRadius: "4px", padding: 24, display: "flex", flexDirection: "column", justifySelf: "stretch" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+                    <span style={{ fontSize: "0.68rem", color: "var(--gold)", fontWeight: 800, background: "white", padding: "4px 10px", borderRadius: 2, border: "1px solid var(--sand-300)", letterSpacing: "0.02em" }}>
                       {mat.brand}
                     </span>
-                    <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)" }}>Code: {mat.code}</span>
+                    <span style={{ fontSize: "0.72rem", color: "var(--slate-light)" }}>Code: {mat.code}</span>
                   </div>
-                  <h4 style={{ fontSize: "0.95rem", fontWeight: 800, margin: "0 0 12px", color: "white", minHeight: 40 }}>{mat.name}</h4>
+                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.05rem", fontWeight: 600, margin: "0 0 16px", color: "var(--slate-dark)", minHeight: 48, lineHeight: 1.4 }}>{mat.name}</h4>
                   
-                  <div style={{ background: "rgba(255,255,255,0.02)", padding: 12, borderRadius: 8, marginBottom: 16 }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", marginBottom: 4 }}>
+                  <div style={{ background: "white", padding: 16, borderRadius: "4px", border: "1px solid var(--sand-200)", marginBottom: 18 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.8rem", color: "var(--slate-light)", marginBottom: 6 }}>
                       <span>Retail Price:</span>
                       <span style={{ textDecoration: "line-through" }}>${mat.retailPrice} AUD</span>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.88rem", fontWeight: 800, color: "white" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.9rem", fontWeight: 800, color: "var(--slate-dark)" }}>
                       <span>Trade Member Price:</span>
-                      <span style={{ color: "#4ade80" }}>${tradePrice.toFixed(2)} AUD</span>
+                      <span style={{ color: "var(--ocean-600)" }}>${tradePrice.toFixed(2)} AUD</span>
                     </div>
                   </div>
 
-                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-                    <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.5)" }}>Quantity:</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+                    <span style={{ fontSize: "0.8rem", color: "var(--slate-light)" }}>Quantity:</span>
                     <input
                       type="number"
                       min="1"
@@ -480,17 +484,18 @@ export default function TradieDashboardDemo() {
                       value={qty}
                       onChange={(e) => setOrderQuantity(prev => ({ ...prev, [mat.id]: parseInt(e.target.value) || 1 }))}
                       style={{
-                        width: 54,
-                        background: "rgba(255,255,255,0.08)",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                        borderRadius: 6,
-                        color: "white",
-                        padding: "4px 8px",
+                        width: 58,
+                        background: "white",
+                        border: "1px solid var(--sand-300)",
+                        borderRadius: 4,
+                        color: "var(--slate-dark)",
+                        padding: "6px 8px",
                         textAlign: "center",
                         fontSize: "0.85rem",
+                        fontFamily: "Outfit, sans-serif",
                       }}
                     />
-                    <span style={{ fontSize: "0.72rem", color: "var(--gold-light)", fontWeight: 700 }}>
+                    <span style={{ fontSize: "0.75rem", color: "var(--gold)", fontWeight: 700 }}>
                       💾 Save ${totalSavings.toFixed(2)}
                     </span>
                   </div>
@@ -500,15 +505,16 @@ export default function TradieDashboardDemo() {
                     disabled={orderingMatId !== null}
                     style={{
                       marginTop: "auto",
-                      padding: "10px",
-                      background: "linear-gradient(135deg, var(--ocean-600), var(--ocean-500))",
+                      padding: "12px",
+                      background: "var(--ocean-600)",
                       border: "none",
-                      borderRadius: 8,
+                      borderRadius: "4px",
                       color: "white",
                       fontWeight: 700,
                       fontSize: "0.82rem",
                       cursor: "pointer",
                       transition: "all 0.2s ease",
+                      fontFamily: "Outfit, sans-serif",
                     }}
                   >
                     {orderingMatId === mat.id ? "⏳ Securing Wholesale Allocation..." : `Order & Ship — $${totalPrice.toFixed(2)}`}
@@ -522,11 +528,11 @@ export default function TradieDashboardDemo() {
 
       {/* ── TAB CONTENT: PORTFOLIO TAGGING ── */}
       {activeTab === "portfolio" && (
-        <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "var(--radius-xl)", padding: 28 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 32 }} className="demo-grid-wrap">
+        <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: "4px", padding: "32px", boxShadow: "var(--shadow-sm)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1.15fr 0.85fr", gap: 36 }} className="demo-grid-wrap">
             {/* Interactive Image Panel */}
             <div>
-              <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "var(--ocean-300)", textTransform: "uppercase", display: "block", marginBottom: 12 }}>
+              <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-600)", textTransform: "uppercase", display: "block", marginBottom: 12, letterSpacing: "0.04em" }}>
                 Archipro-style Project Curation (Click Image to Add Tags)
               </span>
               
@@ -535,11 +541,11 @@ export default function TradieDashboardDemo() {
                 style={{
                   position: "relative",
                   width: "100%",
-                  height: 340,
-                  borderRadius: 18,
+                  height: 380,
+                  borderRadius: "4px",
                   overflow: "hidden",
                   cursor: taggingMode ? "crosshair" : "default",
-                  border: taggingMode ? "2px dashed var(--gold)" : "1px solid rgba(255,255,255,0.12)",
+                  border: taggingMode ? "2px dashed var(--gold)" : "1px solid var(--sand-200)",
                 }}
               >
                 <Image src="/images/luxury_kitchen.png" alt="Portfolio Spec" fill style={{ objectFit: "cover" }} unoptimized />
@@ -560,7 +566,7 @@ export default function TradieDashboardDemo() {
                   >
                     <div style={{ position: "relative" }} className="tag-wrapper">
                       {/* Pulse point */}
-                      <div style={{ width: 22, height: 22, borderRadius: "50%", background: "var(--gold)", border: "3px solid white", boxShadow: "0 2px 8px rgba(0,0,0,0.35)", animation: "pulse 2s infinite" }} />
+                      <div style={{ width: 20, height: 20, borderRadius: "50%", background: "var(--gold)", border: "2px solid white", boxShadow: "0 2px 8px rgba(0,0,0,0.35)", animation: "pulse 2s infinite" }} />
                       {/* Tag Card */}
                       <div
                         style={{
@@ -568,9 +574,9 @@ export default function TradieDashboardDemo() {
                           left: "50%",
                           bottom: 28,
                           transform: "translateX(-50%)",
-                          background: "rgba(10,31,30,0.92)",
-                          border: "1.5px solid var(--gold)",
-                          borderRadius: 8,
+                          background: "var(--slate-dark)",
+                          border: "1px solid var(--gold)",
+                          borderRadius: 2,
                           padding: "6px 12px",
                           color: "white",
                           fontSize: "0.72rem",
@@ -586,23 +592,23 @@ export default function TradieDashboardDemo() {
                   </div>
                 ))}
               </div>
-              <span style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.45)", display: "block", marginTop: 8, textAlign: "center" }}>
+              <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block", marginTop: 10, textAlign: "center", fontStyle: "italic" }}>
                 Hover over the gold dots to view integrated material specifications.
               </span>
             </div>
 
             {/* Tag Control Board */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 20, justifyContent: "center" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 24, justifyContent: "center" }}>
               <div>
-                <span style={{ fontSize: "0.7rem", color: "var(--ocean-300)", fontWeight: 800 }}>ARCHIPRO BRAND EXPOSURE</span>
-                <h4 style={{ color: "white", fontSize: "1.25rem", margin: "4px 0 0" }}>Interactive Material Tags</h4>
-                <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.82rem", lineHeight: 1.6, marginTop: 8 }}>
+                <span style={{ fontSize: "0.68rem", color: "var(--ocean-600)", fontWeight: 800, letterSpacing: "0.04em" }}>ARCHIPRO BRAND EXPOSURE</span>
+                <h4 style={{ fontFamily: "Lora, Georgia, serif", color: "var(--slate-dark)", fontSize: "1.3rem", fontWeight: 600, margin: "6px 0 0" }}>Interactive Material Tags</h4>
+                <p style={{ color: "var(--slate-light)", fontSize: "0.82rem", lineHeight: 1.65, marginTop: 8 }}>
                   Elite members can tag material codes directly in their portfolio photos. When homeowners click a tag, it links to our affiliate B2B suppliers, earning you **3% affiliate profit share** on purchases.
                 </p>
               </div>
 
-              <div style={{ background: "rgba(255,255,255,0.03)", padding: 18, borderRadius: 12, border: "1px solid rgba(255,255,255,0.06)" }}>
-                <label style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", fontWeight: 700, display: "block", marginBottom: 8 }}>
+              <div style={{ background: "var(--sand-50)", padding: 20, borderRadius: "4px", border: "1px solid var(--sand-200)" }}>
+                <label style={{ fontSize: "0.78rem", color: "var(--slate-dark)", fontWeight: 800, display: "block", marginBottom: 10, textTransform: "uppercase", letterSpacing: "0.02em" }}>
                   Add Material Tag Simulator
                 </label>
                 <div style={{ display: "flex", gap: 10, marginBottom: 10 }}>
@@ -613,12 +619,13 @@ export default function TradieDashboardDemo() {
                     onChange={(e) => setNewTagName(e.target.value)}
                     style={{
                       flex: 1,
-                      background: "rgba(255,255,255,0.05)",
-                      border: "1px solid rgba(255,255,255,0.1)",
-                      borderRadius: 8,
-                      padding: "8px 14px",
-                      color: "white",
-                      fontSize: "0.8rem",
+                      background: "white",
+                      border: "1px solid var(--sand-300)",
+                      borderRadius: 4,
+                      padding: "10px 14px",
+                      color: "var(--slate-dark)",
+                      fontSize: "0.82rem",
+                      fontFamily: "Outfit, sans-serif",
                     }}
                   />
                   <button
@@ -627,29 +634,30 @@ export default function TradieDashboardDemo() {
                     style={{
                       background: "var(--gold)",
                       border: "none",
-                      borderRadius: 8,
+                      borderRadius: 4,
                       color: "white",
                       fontWeight: 700,
                       fontSize: "0.8rem",
-                      padding: "0 16px",
+                      padding: "0 18px",
                       cursor: "pointer",
+                      fontFamily: "Outfit, sans-serif",
                     }}
                   >
                     Place Tag
                   </button>
                 </div>
                 {taggingMode && (
-                  <div style={{ fontSize: "0.75rem", color: "var(--gold-light)", fontWeight: 700 }}>
+                  <div style={{ fontSize: "0.75rem", color: "var(--gold)", fontWeight: 700 }}>
                     ⚡ Now, click anywhere on the left kitchen photo to place the tag point!
                   </div>
                 )}
               </div>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.4)" }}>CURRENT PHOTO TAGS</span>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <span style={{ fontSize: "0.7rem", color: "var(--slate-light)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.02em" }}>CURRENT PHOTO TAGS</span>
                 {portfolioTags.map((t, idx) => (
-                  <div key={idx} style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", padding: "6px 12px", borderRadius: 6, fontSize: "0.78rem", color: "rgba(255,255,255,0.8)" }}>
-                    📍 {t.label}
+                  <div key={idx} style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", padding: "8px 12px", borderRadius: 4, fontSize: "0.78rem", color: "var(--slate-mid)", fontFamily: "Outfit, sans-serif" }}>
+                    ✦ {t.label}
                   </div>
                 ))}
               </div>
@@ -661,42 +669,42 @@ export default function TradieDashboardDemo() {
 
       {/* ── TAB CONTENT: SEO & MARKETING REPORT ── */}
       {activeTab === "seo" && (
-        <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "var(--radius-xl)", padding: 28 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 32 }} className="demo-grid-wrap">
+        <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: "4px", padding: "32px", boxShadow: "var(--shadow-sm)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1.25fr 0.75fr", gap: 36 }} className="demo-grid-wrap">
             {/* SEO Data Board */}
             <div>
-              <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-300)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 6 }}>
+              <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-600)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 6 }}>
                 Google Search Engine Optimization Visibility
               </span>
-              <h3 style={{ color: "white", fontSize: "1.45rem", margin: "0 0 20px" }}>Local Organic Traffic Report</h3>
+              <h3 style={{ fontFamily: "Lora, Georgia, serif", color: "var(--slate-dark)", fontSize: "1.5rem", fontWeight: 600, margin: "0 0 24px" }}>Local Organic Traffic Report</h3>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14, marginBottom: 28 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 32 }}>
                 {[
                   { label: "Google Impressions", value: "14,820", trend: "+24% MoM" },
                   { label: "Profile Clicks", value: "920", trend: "+18% MoM" },
                   { label: "Est. Lead Value Sav.", value: "$2,760", trend: "Based on $30/lead CAC" },
                 ].map((stat) => (
-                  <div key={stat.label} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "16px 20px" }}>
-                    <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.45)", display: "block" }}>{stat.label}</span>
-                    <strong style={{ fontSize: "1.25rem", color: "white", display: "block", margin: "4px 0" }}>{stat.value}</strong>
-                    <span style={{ fontSize: "0.68rem", color: "#4ade80", fontWeight: 700 }}>{stat.trend}</span>
+                  <div key={stat.label} style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", borderRadius: 4, padding: "18px" }}>
+                    <span style={{ fontSize: "0.7rem", color: "var(--slate-light)", display: "block" }}>{stat.label}</span>
+                    <strong style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.35rem", color: "var(--slate-dark)", display: "block", margin: "6px 0" }}>{stat.value}</strong>
+                    <span style={{ fontSize: "0.68rem", color: "var(--ocean-600)", fontWeight: 700 }}>{stat.trend}</span>
                   </div>
                 ))}
               </div>
 
               {/* Keywords SEO table */}
               <div>
-                <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", display: "block", marginBottom: 12 }}>
+                <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--slate-light)", textTransform: "uppercase", display: "block", marginBottom: 12, letterSpacing: "0.02em" }}>
                   Active Google Ranking Keywords for EIJ Construction
                 </span>
-                <div style={{ background: "rgba(255,255,255,0.01)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden" }}>
+                <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 4, overflow: "hidden" }}>
                   <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem", textAlign: "left" }}>
                     <thead>
-                      <tr style={{ background: "rgba(255,255,255,0.05)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-                        <th style={{ padding: "10px 14px" }}>Keyword</th>
-                        <th style={{ padding: "10px 14px" }}>Google Rank</th>
-                        <th style={{ padding: "10px 14px" }}>Monthly Volume</th>
-                        <th style={{ padding: "10px 14px" }}>Click CTR</th>
+                      <tr style={{ background: "var(--sand-50)", borderBottom: "1px solid var(--sand-200)" }}>
+                        <th style={{ padding: "12px 16px", color: "var(--slate-dark)", fontWeight: 800 }}>Keyword</th>
+                        <th style={{ padding: "12px 16px", color: "var(--slate-dark)", fontWeight: 800 }}>Google Rank</th>
+                        <th style={{ padding: "12px 16px", color: "var(--slate-dark)", fontWeight: 800 }}>Monthly Volume</th>
+                        <th style={{ padding: "12px 16px", color: "var(--slate-dark)", fontWeight: 800 }}>Click CTR</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -706,11 +714,11 @@ export default function TradieDashboardDemo() {
                         { kw: "Licensed Kitchen Builder Broadbeach", rank: "#1", vol: "290", ctr: "24.1%" },
                         { kw: "QLD Compliant Waterproofing", rank: "#5", vol: "1,120", ctr: "4.5%" },
                       ].map((item, idx) => (
-                        <tr key={idx} style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-                          <td style={{ padding: "10px 14px", fontWeight: 700 }}>{item.kw}</td>
-                          <td style={{ padding: "10px 14px", color: "var(--gold-light)" }}>{item.rank}</td>
-                          <td style={{ padding: "10px 14px" }}>{item.vol} /mo</td>
-                          <td style={{ padding: "10px 14px", color: "#4ade80" }}>{item.ctr}</td>
+                        <tr key={idx} style={{ borderBottom: "1px solid var(--sand-200)" }}>
+                          <td style={{ padding: "12px 16px", fontWeight: 700, color: "var(--slate-dark)" }}>{item.kw}</td>
+                          <td style={{ padding: "12px 16px", color: "var(--gold)", fontWeight: 700 }}>{item.rank}</td>
+                          <td style={{ padding: "12px 16px" }}>{item.vol} /mo</td>
+                          <td style={{ padding: "12px 16px", color: "var(--ocean-600)", fontWeight: 700 }}>{item.ctr}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -721,22 +729,22 @@ export default function TradieDashboardDemo() {
             </div>
 
             {/* SEO Strategy Panel */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 16, justifyContent: "center" }}>
-              <div style={{ background: "rgba(61,153,144,0.08)", border: "1px solid rgba(61,153,144,0.15)", borderRadius: 12, padding: "20px 24px" }}>
-                <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "var(--ocean-300)", textTransform: "uppercase", display: "block", marginBottom: 8 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20, justifyContent: "center" }}>
+              <div style={{ background: "rgba(240, 249, 248, 0.75)", border: "1px solid var(--ocean-100)", borderRadius: 4, padding: "24px" }}>
+                <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-700)", textTransform: "uppercase", display: "block", marginBottom: 8, letterSpacing: "0.02em" }}>
                   ✦ How We Rank Your Profile
                 </span>
-                <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.6, margin: 0 }}>
+                <p style={{ fontSize: "0.82rem", color: "var(--slate-mid)", lineHeight: 1.7, margin: 0 }}>
                   We auto-generate schema-structured **Project Story Pages** from your portfolio uploads. These are dynamically index-registered on Google Search using QLD suburb keywords. 
                   <br /><br />
                   This bypasses the need for high marketing budgets — organic leads flow directly to your profile based on your local area.
                 </p>
               </div>
 
-              <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", padding: "18px 20px", borderRadius: 12 }}>
-                <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.4)", display: "block" }}>LIVE PROFILE CANONICAL URL</span>
-                <a href="/directory/t-1" target="_blank" style={{ color: "var(--ocean-300)", fontSize: "0.85rem", textDecoration: "none", fontWeight: 700, display: "block", marginTop: 4 }}>
-                  🔗 coasthomehub.com.au/directory/t-1
+              <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", padding: "20px", borderRadius: 4 }}>
+                <span style={{ fontSize: "0.68rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.02em" }}>LIVE PROFILE CANONICAL URL</span>
+                <a href="/directory/t-1" target="_blank" style={{ color: "var(--ocean-600)", fontSize: "0.85rem", textDecoration: "none", fontWeight: 700, display: "block", marginTop: 6, borderBottom: "1px dashed var(--ocean-400)", width: "fit-content" }}>
+                  coasthomehub.com.au/directory/t-1
                 </a>
               </div>
             </div>
@@ -753,6 +761,7 @@ export default function TradieDashboardDemo() {
         @media (max-width: 820px) {
           .demo-grid-wrap {
             grid-template-columns: 1fr !important;
+            gap: 28px !important;
           }
         }
       `}} />

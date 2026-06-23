@@ -115,43 +115,43 @@ export default function Home() {
         <div style={{ position: "absolute", top: "50%", left: "38%", width: 300, height: 300, background: "radial-gradient(circle, rgba(61,153,144,0.1) 0%, transparent 65%)", borderRadius: "50%", pointerEvents: "none" }} />
 
         <div className="container-lg" style={{ position: "relative", zIndex: 1, width: "100%" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: "72px", alignItems: "center" }} className="hero-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "1.15fr 0.85fr", gap: "80px", alignItems: "center" }} className="hero-grid">
 
             {/* Left: Text */}
             <div>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 50, padding: "7px 16px", marginBottom: 28 }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 4, padding: "8px 18px", marginBottom: 32 }}>
                 <span style={{ color: "var(--gold-light)", fontSize: "0.85rem" }}>✦</span>
-                <span style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}>AI-powered · Licensed QLD tradies only</span>
+                <span style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.78rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "Outfit, sans-serif" }}>AI-powered · Licensed QLD tradies only</span>
               </div>
 
-              <h1 style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.2rem)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.05, marginBottom: 24, color: "white" }}>
+              <h1 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "clamp(2.8rem, 6vw, 4.4rem)", fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: 28, color: "white" }}>
                 See your renovation
                 <br />
-                <span style={{ background: "linear-gradient(135deg, #e8b84b, #f5d282)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+                <span style={{ background: "linear-gradient(135deg, #e8b84b, #f5d282)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", fontStyle: "italic", fontWeight: 400 }}>
                   before you spend a dollar.
                 </span>
               </h1>
 
-              <p style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.75, marginBottom: 40, maxWidth: 500 }}>
+              <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "1.1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.8, marginBottom: 44, maxWidth: 500 }}>
                 Upload a photo of your space. Our AI designs it, gives you a real QLD price, then matches you with{" "}
-                <strong style={{ color: "rgba(255,255,255,0.95)", fontWeight: 700 }}>up to 3 verified licensed tradies</strong> — never sold to ten.
+                <strong style={{ color: "white", fontWeight: 700 }}>up to 3 verified licensed tradies</strong> — never sold to ten.
               </p>
 
-              <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-                <Link href="/quote" className="btn-gold" id="hero-start-ai" style={{ fontSize: "1.05rem", padding: "15px 36px" }}>
+              <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+                <Link href="/quote" className="btn-gold" id="hero-start-ai" style={{ fontSize: "0.95rem", padding: "16px 36px", borderRadius: "4px" }}>
                   📸 Design my space with AI →
                 </Link>
-                <Link href="/projects" style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "rgba(255,255,255,0.85)", padding: "14px 30px", borderRadius: "50px", fontWeight: 600, fontSize: "1rem", textDecoration: "none", border: "2px solid rgba(255,255,255,0.25)", transition: "var(--transition)" }} id="hero-browse" className="btn-outline-white">
+                <Link href="/projects" style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "rgba(255,255,255,0.9)", padding: "15px 32px", borderRadius: "4px", fontWeight: 600, fontSize: "0.95rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.3)", transition: "var(--transition)" }} id="hero-browse" className="btn-outline-white">
                   Browse real projects
                 </Link>
               </div>
 
               {/* Trust strip */}
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, auto)", gap: 32, marginTop: 48, paddingTop: 32, borderTop: "1px solid rgba(255,255,255,0.12)" }} className="hero-trust">
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, auto)", gap: 24, marginTop: 56, paddingTop: 36, borderTop: "3px double rgba(255,255,255,0.15)" }} className="hero-trust">
                 {trustRow.map((s) => (
                   <div key={s.label}>
-                    <div style={{ fontWeight: 900, fontSize: "1.4rem", color: "var(--gold-light)", lineHeight: 1 }}>{s.value}</div>
-                    <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.55)", marginTop: 5, maxWidth: 130 }}>{s.label}</div>
+                    <div style={{ fontFamily: "Lora, Georgia, serif", fontWeight: 600, fontSize: "1.5rem", color: "var(--gold-light)", lineHeight: 1 }}>{s.value}</div>
+                    <div style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.5)", marginTop: 6, maxWidth: 130, fontFamily: "Outfit, sans-serif", letterSpacing: "0.01em" }}>{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -166,13 +166,13 @@ export default function Home() {
         </div>
 
         <style>{`
-          .btn-outline-white:hover { background: rgba(255,255,255,0.12) !important; border-color: rgba(255,255,255,0.5) !important; }
+          .btn-outline-white:hover { background: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.6) !important; }
           @media (max-width: 880px) {
             .hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
             .hero-float { display: none !important; }
           }
           @media (max-width: 520px) {
-            .hero-trust { grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
+            .hero-trust { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
           }
         `}</style>
       </section>
@@ -197,31 +197,31 @@ export default function Home() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0, marginTop: 56, position: "relative" }} className="steps-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginTop: 56, position: "relative" }} className="steps-grid">
             {/* Connector line */}
-            <div style={{ position: "absolute", top: 36, left: "12.5%", right: "12.5%", height: 2, background: "linear-gradient(90deg, var(--ocean-100), var(--ocean-200), var(--ocean-100))", zIndex: 0, display: "none" }} className="steps-connector" />
+            <div style={{ position: "absolute", top: 30, left: "12.5%", right: "12.5%", height: 1, background: "var(--sand-300)", zIndex: 0, display: "none" }} className="steps-connector" />
 
             {steps.map((s, i) => (
-              <div key={s.step} style={{ padding: "0 14px", position: "relative", zIndex: 1 }}>
-                {/* Step number circle */}
-                <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
-                  <div style={{ width: 72, height: 72, borderRadius: "50%", background: i % 2 === 0 ? "linear-gradient(135deg, #0e4440, #1f7a72)" : "linear-gradient(135deg, #b8820a, var(--gold-light))", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.6rem", boxShadow: i % 2 === 0 ? "0 8px 24px rgba(31,122,114,0.35)" : "0 8px 24px rgba(201,151,42,0.35)", position: "relative" }}>
+              <div key={s.step} style={{ padding: "0 8px", position: "relative", zIndex: 1 }}>
+                {/* Step number square */}
+                <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
+                  <div style={{ width: 60, height: 60, borderRadius: 4, background: "white", border: "1px solid var(--sand-300)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.4rem", position: "relative", boxShadow: "0 2px 8px rgba(0,0,0,0.02)" }}>
                     {s.icon}
-                    <div style={{ position: "absolute", top: -4, right: -4, width: 22, height: 22, background: "white", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.6rem", fontWeight: 900, color: "var(--slate-dark)", boxShadow: "0 2px 8px rgba(0,0,0,0.12)" }}>{s.step}</div>
+                    <div style={{ position: "absolute", top: -6, right: -6, width: 20, height: 20, background: "var(--slate-dark)", color: "white", borderRadius: 2, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.65rem", fontWeight: 800 }}>{s.step}</div>
                   </div>
                 </div>
 
                 <div style={{ textAlign: "center" }}>
-                  <span style={{ display: "inline-block", fontSize: "0.68rem", fontWeight: 800, letterSpacing: "0.04em", textTransform: "uppercase", color: s.tag === "Free" ? "var(--ocean-500)" : "var(--gold)", background: s.tag === "Free" ? "var(--ocean-50)" : "#fdf6e8", border: `1px solid ${s.tag === "Free" ? "var(--ocean-100)" : "#f0dcae"}`, padding: "4px 10px", borderRadius: "50px", marginBottom: 12 }}>{s.tag}</span>
-                  <h3 style={{ fontSize: "1.05rem", marginBottom: 10, color: "var(--slate-dark)" }}>{s.title}</h3>
-                  <p style={{ fontSize: "0.87rem", color: "var(--slate-light)", lineHeight: 1.7 }}>{s.desc}</p>
+                  <span style={{ display: "inline-block", fontSize: "0.65rem", fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase", color: s.tag === "Free" ? "var(--ocean-600)" : "var(--gold)", background: s.tag === "Free" ? "var(--ocean-50)" : "#fdf6e8", border: `1px solid ${s.tag === "Free" ? "var(--ocean-200)" : "#f0dcae"}`, padding: "3px 8px", borderRadius: 2, marginBottom: 10 }}>{s.tag}</span>
+                  <h3 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.05rem", fontWeight: 600, marginBottom: 8, color: "var(--slate-dark)" }}>{s.title}</h3>
+                  <p style={{ fontSize: "0.82rem", color: "var(--slate-light)", lineHeight: 1.6 }}>{s.desc}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div style={{ textAlign: "center", marginTop: 52 }}>
-            <Link href="/quote" className="btn-gold" id="how-cta" style={{ fontSize: "1.05rem", padding: "15px 36px" }}>📸 Start with a photo — it&rsquo;s free</Link>
+          <div style={{ textAlign: "center", marginTop: 44 }}>
+            <Link href="/quote" className="btn-gold" id="how-cta" style={{ fontSize: "0.95rem", padding: "14px 32px", borderRadius: "4px" }}>📸 Start with a photo — it&rsquo;s free</Link>
           </div>
         </div>
         <style>{`
@@ -260,14 +260,14 @@ export default function Home() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: 30 }} className="curation-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 32 }} className="curation-grid">
             {[
               {
                 img: "/images/luxury_kitchen.png",
                 title: "The Coastal Kitchen Pavilion",
                 suburb: "Noosa Heads",
                 style: "Warm Coastal Modern",
-                budget: "$65k - $95k",
+                budget: "$65,000 - $95,000",
                 desc: "Featuring a marble waterfall island benchtop, brushed brass tapware, and sage timber cabinetry."
               },
               {
@@ -275,7 +275,7 @@ export default function Home() {
                 title: "The Alfresco Pavilion Deck",
                 suburb: "Sunshine Coast",
                 style: "Resort Alfresco",
-                budget: "$28k - $48k",
+                budget: "$28,000 - $48,000",
                 desc: "High-end composite wood decking with a sleek integrated louvre pergola and poolside flow."
               },
               {
@@ -283,7 +283,7 @@ export default function Home() {
                 title: "The Cathedral Ceiling Lounge",
                 suburb: "Burleigh Heads",
                 style: "Organic Modern",
-                budget: "$75k - $110k",
+                budget: "$75,000 - $110,000",
                 desc: "High cathedral ceiling with exposed timber roof trusses, neutral linen, and indoor-outdoor sliding glass."
               },
               {
@@ -291,32 +291,32 @@ export default function Home() {
                 title: "The Master Bedroom Sanctuary",
                 suburb: "Robina",
                 style: "Sage Linen Retreat",
-                budget: "$14k - $24k",
+                budget: "$14,000 - $24,000",
                 desc: "Natural linen bedding, custom light rattan woven headboard, and soft earthy sage-green accents."
               }
             ].map((item) => (
               <div
                 key={item.title}
-                className="card"
+                className="editorial-card"
                 style={{
                   overflow: "hidden",
-                  borderRadius: "24px",
+                  borderRadius: "4px",
                   background: "white",
-                  boxShadow: "var(--shadow-sm)",
+                  border: "1px solid var(--sand-300)",
                   transition: "var(--transition)",
                   display: "flex",
                   flexDirection: "column",
                   height: "100%"
                 }}
               >
-                <div style={{ position: "relative", overflow: "hidden", height: 280 }} className="img-container">
+                <div style={{ position: "relative", overflow: "hidden", height: 260 }} className="editorial-card-img-wrap">
                   <Image
                     src={item.img}
                     alt={item.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 25vw"
-                    style={{ objectFit: "cover", transition: "transform 0.5s ease" }}
-                    className="curation-img"
+                    style={{ objectFit: "cover" }}
+                    className="editorial-card-img"
                     unoptimized
                   />
                   <div
@@ -324,14 +324,14 @@ export default function Home() {
                       position: "absolute",
                       bottom: 12,
                       left: 12,
-                      background: "rgba(10, 31, 30, 0.75)",
-                      backdropFilter: "blur(8px)",
+                      background: "rgba(10, 31, 30, 0.85)",
+                      backdropFilter: "blur(4px)",
                       color: "white",
                       padding: "6px 14px",
-                      borderRadius: 50,
-                      fontSize: "0.72rem",
+                      borderRadius: 2,
+                      fontSize: "0.68rem",
                       fontWeight: 700,
-                      letterSpacing: "0.05em",
+                      letterSpacing: "0.06em",
                       textTransform: "uppercase"
                     }}
                   >
@@ -343,21 +343,21 @@ export default function Home() {
                   <div>
                     <span
                       style={{
-                        fontSize: "0.7rem",
+                        fontSize: "0.68rem",
                         fontWeight: 800,
                         textTransform: "uppercase",
-                        color: "var(--ocean-500)",
-                        letterSpacing: "0.05em",
+                        color: "var(--ocean-600)",
+                        letterSpacing: "0.08em",
                         display: "block",
-                        marginBottom: 6
+                        marginBottom: 8
                       }}
                     >
                       {item.style}
                     </span>
-                    <h3 style={{ fontSize: "1.1rem", color: "var(--slate-dark)", marginBottom: 8, fontWeight: 800 }}>
+                    <h3 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.15rem", color: "var(--slate-dark)", marginBottom: 10, fontWeight: 600, lineHeight: 1.4 }}>
                       {item.title}
                     </h3>
-                    <p style={{ fontSize: "0.83rem", color: "var(--slate-light)", lineHeight: 1.6, marginBottom: 16 }}>
+                    <p style={{ fontSize: "0.84rem", color: "var(--slate-light)", lineHeight: 1.6, marginBottom: 16 }}>
                       {item.desc}
                     </p>
                   </div>
@@ -372,23 +372,24 @@ export default function Home() {
                     }}
                   >
                     <div>
-                      <span style={{ fontSize: "0.68rem", color: "var(--slate-light)", display: "block" }}>Est. Budget</span>
-                      <strong style={{ fontSize: "0.95rem", color: "var(--gold)", fontWeight: 800 }}>{item.budget}</strong>
+                      <span style={{ fontSize: "0.65rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.02em" }}>Est. Budget</span>
+                      <strong style={{ fontFamily: "Lora, Georgia, serif", fontSize: "0.95rem", color: "var(--gold)", fontWeight: 600 }}>{item.budget}</strong>
                     </div>
                     <Link
                       href="/quote"
                       style={{
-                        fontSize: "0.8rem",
+                        fontSize: "0.82rem",
                         fontWeight: 700,
-                        color: "var(--ocean-500)",
+                        color: "var(--ocean-600)",
                         textDecoration: "none",
                         display: "inline-flex",
                         alignItems: "center",
-                        gap: 4
+                        gap: 4,
+                        letterSpacing: "0.02em"
                       }}
                       className="hover-arrow"
                     >
-                      Plan this →
+                      Plan space →
                     </Link>
                   </div>
                 </div>
@@ -397,8 +398,7 @@ export default function Home() {
           </div>
         </div>
         <style>{`
-          .curation-img:hover { transform: scale(1.05); }
-          .hover-arrow:hover { color: var(--ocean-600) !important; text-decoration: underline !important; }
+          .hover-arrow:hover { color: var(--ocean-700) !important; text-decoration: underline !important; }
         `}</style>
       </section>
 
@@ -420,16 +420,16 @@ export default function Home() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, maxWidth: 960, margin: "0 auto" }} className="compare-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, maxWidth: 960, margin: "0 auto" }} className="compare-grid">
             {/* Old way */}
-            <div style={{ padding: "36px 32px", borderRadius: 24, background: "rgba(255,80,80,0.05)", border: "1px solid rgba(255,80,80,0.2)" }}>
+            <div style={{ padding: "36px 32px", borderRadius: 4, background: "rgba(255,255,255,0.01)", border: "1px solid rgba(255,255,255,0.1)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 24 }}>
-                <div style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(255,80,80,0.15)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1rem" }}>✕</div>
-                <span style={{ fontSize: "0.82rem", fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase", color: "#ff8f8f" }}>Typical quote sites</span>
+                <span style={{ color: "#ff8f8f", fontWeight: 800, fontSize: "0.85rem", fontFamily: "Lora, Georgia, serif" }}>✕</span>
+                <span style={{ fontSize: "0.74rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", fontFamily: "Outfit, sans-serif" }}>Typical quote platforms</span>
               </div>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 16 }}>
                 {oldWay.map((t) => (
-                  <li key={t} style={{ display: "flex", gap: 12, alignItems: "flex-start", fontSize: "0.93rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.55 }}>
+                  <li key={t} style={{ display: "flex", gap: 12, alignItems: "flex-start", fontSize: "0.88rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.55 }}>
                     <span style={{ color: "#ff6b6b", fontWeight: 800, flexShrink: 0, marginTop: 2 }}>—</span>{t}
                   </li>
                 ))}
@@ -437,15 +437,15 @@ export default function Home() {
             </div>
 
             {/* Our way */}
-            <div style={{ padding: "36px 32px", borderRadius: 24, background: "linear-gradient(160deg, rgba(31,122,114,0.25), rgba(14,68,64,0.15))", border: "1px solid rgba(61,153,144,0.4)", boxShadow: "0 16px 48px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)" }}>
+            <div style={{ padding: "36px 32px", borderRadius: 4, background: "rgba(31,122,114,0.08)", border: "1px solid var(--gold)", boxShadow: "0 4px 20px rgba(0,0,0,0.15)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 24 }}>
-                <div style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(61,153,144,0.25)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1rem" }}>✓</div>
-                <span style={{ fontSize: "0.82rem", fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--ocean-300)" }}>The CoastHomeHub way</span>
+                <span style={{ color: "var(--gold-light)", fontWeight: 800, fontSize: "0.85rem" }}>✦</span>
+                <span style={{ fontSize: "0.74rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--gold-light)", fontFamily: "Outfit, sans-serif" }}>The CoastHomeHub way</span>
               </div>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 16 }}>
                 {newWay.map((t) => (
-                  <li key={t} style={{ display: "flex", gap: 12, alignItems: "flex-start", fontSize: "0.93rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.55 }}>
-                    <span style={{ color: "var(--gold-light)", fontWeight: 800, flexShrink: 0, marginTop: 2 }}>✓</span>{t}
+                  <li key={t} style={{ display: "flex", gap: 12, alignItems: "flex-start", fontSize: "0.88rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.55 }}>
+                    <span style={{ color: "var(--gold-light)", fontWeight: 800, flexShrink: 0, marginTop: 2 }}>✦</span>{t}
                   </li>
                 ))}
               </ul>
@@ -563,17 +563,17 @@ export default function Home() {
       {/* ───────────────── FOR TRADIES ───────────────── */}
       <section className="section-sm" style={{ background: "white" }}>
         <div className="container-lg">
-          <div style={{ borderRadius: 28, background: "linear-gradient(140deg, #0a1f1e 0%, #0e4440 60%, #1f7a72 100%)", padding: "52px 48px", display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 36, alignItems: "center", overflow: "hidden", position: "relative" }} className="tradie-band">
-            <div style={{ position: "absolute", top: "-30%", right: "-5%", width: 400, height: 400, background: "radial-gradient(circle, rgba(201,151,42,0.12) 0%, transparent 65%)", borderRadius: "50%", pointerEvents: "none" }} />
+          <div style={{ borderRadius: 4, background: "#0e4440", padding: "52px 48px", display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 36, alignItems: "center", overflow: "hidden", position: "relative" }} className="tradie-band">
+            <div style={{ position: "absolute", top: "-30%", right: "-5%", width: 400, height: 400, background: "radial-gradient(circle, rgba(201,151,42,0.08) 0%, transparent 65%)", borderRadius: "50%", pointerEvents: "none" }} />
             <div style={{ position: "relative", zIndex: 1 }}>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 50, padding: "7px 16px", marginBottom: 20 }}>
-                <span style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.05em" }}>🔧 For Licensed Tradies</span>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 2, padding: "6px 14px", marginBottom: 20 }}>
+                <span style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>🔧 For Licensed Tradies</span>
               </div>
-              <h2 style={{ color: "white", fontSize: "clamp(1.7rem, 3.5vw, 2.4rem)", marginBottom: 16, lineHeight: 1.2, letterSpacing: "-0.02em" }}>Warm, pre-qualified leads. Never junk.</h2>
-              <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "1rem", lineHeight: 1.75, marginBottom: 28, maxWidth: 500 }}>
+              <h2 style={{ color: "white", fontSize: "clamp(1.7rem, 3.5vw, 2.4rem)", marginBottom: 16, lineHeight: 1.2, letterSpacing: "-0.02em", fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>Warm, pre-qualified leads. Never junk.</h2>
+              <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.92rem", lineHeight: 1.75, marginBottom: 28, maxWidth: 500 }}>
                 Every lead is a real homeowner who&rsquo;s already chatted with our AI and committed to their job — scoped, photographed, ready to quote. Flat monthly membership. No commission. No per-lead gouging.
               </p>
-              <Link href="/tradies" className="btn-gold" id="tradie-band-cta" style={{ fontSize: "1.02rem", padding: "15px 32px" }}>List my business →</Link>
+              <Link href="/tradies" className="btn-gold" id="tradie-band-cta" style={{ fontSize: "0.95rem", padding: "14px 32px", borderRadius: "4px" }}>List my business →</Link>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, position: "relative", zIndex: 1 }} className="tradie-band-stats">
               {[
@@ -581,9 +581,9 @@ export default function Home() {
                 { t: "Max 3 quotes", d: "You're not racing 10 others" },
                 { t: "Licensed-only", d: "A platform that protects your reputation" },
               ].map((s) => (
-                <div key={s.t} style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 16, padding: "16px 20px", backdropFilter: "blur(8px)" }}>
-                  <div style={{ fontWeight: 800, color: "white", fontSize: "0.97rem" }}>{s.t}</div>
-                  <div style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.65)", marginTop: 4 }}>{s.d}</div>
+                <div key={s.t} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 2, padding: "16px 20px" }}>
+                  <div style={{ fontWeight: 800, color: "white", fontSize: "0.92rem", fontFamily: "Outfit, sans-serif" }}>{s.t}</div>
+                  <div style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.55)", marginTop: 4 }}>{s.d}</div>
                 </div>
               ))}
             </div>
