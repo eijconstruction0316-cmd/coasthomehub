@@ -330,14 +330,14 @@ export default function Home() {
               </p>
               
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginTop: 24 }}>
-                <Link href="/planner" style={{ textDecoration: "none", background: "var(--ocean-50)", border: "1px solid var(--ocean-200)", borderRadius: 4, padding: "16px", display: "block" }}>
-                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "0.95rem", color: "var(--ocean-700)", margin: "0 0 4px", fontWeight: 700 }}>AI Room Planner →</h4>
+                <Link href="/design" style={{ textDecoration: "none", background: "var(--ocean-50)", border: "1px solid var(--ocean-200)", borderRadius: 4, padding: "16px", display: "block" }}>
+                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "0.95rem", color: "var(--ocean-700)", margin: "0 0 4px", fontWeight: 700 }}>AI Designer Chat →</h4>
                   <p style={{ fontSize: "0.74rem", color: "var(--slate-mid)", margin: 0, fontFamily: "Outfit, sans-serif" }}>Upload photos for 3D concepts</p>
                 </Link>
-                <div style={{ background: "var(--off-white)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "16px" }}>
-                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "0.95rem", color: "var(--slate-dark)", margin: "0 0 4px", fontWeight: 700 }}>ROI Calculator</h4>
-                  <p style={{ fontSize: "0.74rem", color: "var(--slate-mid)", margin: 0, fontFamily: "Outfit, sans-serif" }}>Compare local value upgrades</p>
-                </div>
+                <Link href="/tools" style={{ textDecoration: "none", background: "var(--ocean-50)", border: "1px solid var(--ocean-200)", borderRadius: 4, padding: "16px", display: "block" }}>
+                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "0.95rem", color: "var(--ocean-700)", margin: "0 0 4px", fontWeight: 700 }}>2D Renovation Tools →</h4>
+                  <p style={{ fontSize: "0.74rem", color: "var(--slate-mid)", margin: 0, fontFamily: "Outfit, sans-serif" }}>Bathroom, Kitchen &amp; Deck Planners</p>
+                </Link>
               </div>
             </div>
 

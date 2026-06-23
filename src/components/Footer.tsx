@@ -13,6 +13,7 @@ const resources = [
   { label: "Project Stories", href: "/projects" },
   { label: "Service Areas", href: "/locations" },
   { label: "DIY Guides", href: "/blog/diy" },
+  { label: "2D Renovation Tools", href: "/tools" },
   { label: "AI Planner", href: "/planner" },
 ];
 

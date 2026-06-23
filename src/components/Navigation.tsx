@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 const primaryLinks = [
   { href: "/magazine", label: "Magazine" },
   { href: "/design", label: "AI Designer" },
+  { href: "/tools", label: "2D Planners" },
   { href: "/cost-guides", label: "Cost Guides" },
   { href: "/directory", label: "Find Tradies" },
   { href: "/projects", label: "Projects" },
@@ -19,7 +20,8 @@ const drawerLinks = [
   { href: "/projects", label: "Completed Projects" },
   { href: "/directory", label: "Find Tradies Directory" },
   { href: "/cost-guides", label: "Renovation Cost Guides" },
-  { href: "/design", label: "AI Renovation Planner" },
+  { href: "/design", label: "AI Designer Chat" },
+  { href: "/tools", label: "Renovation Estimators (2D)" },
   { href: "/magazine", label: "Editorial Magazine" },
   { href: "/tradies", label: "For Contractors (B2B Portal)" },
 ];
