@@ -154,19 +154,158 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
             
             {/* Left Column: Image and Main Article Content */}
             <div>
-              {/* Massive Hero Visual Asset */}
-              <div
-                style={{
-                  height: "min(48vw, 460px)",
-                  minHeight: 250,
-                  backgroundImage: `url(${article.heroImage})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  borderRadius: 18,
-                  marginBottom: 32,
-                  boxShadow: "var(--shadow-lg)",
-                }}
-              />
+              {/* Asymmetric Multi-Angle Lookbook Gallery */}
+              {article.lookbook ? (
+                <div style={{ marginBottom: 36 }}>
+                  <span style={{
+                    fontSize: "0.74rem",
+                    fontWeight: 800,
+                    color: "var(--gold)",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    display: "block",
+                    marginBottom: 12
+                  }}>
+                    📐 Design Portfolio // Multi-Angle Perspectives
+                  </span>
+                  
+                  <div className="lookbook-asymmetric-grid" style={{
+                    display: "grid",
+                    gridTemplateColumns: "1.2fr 0.8fr",
+                    gap: 16,
+                    alignItems: "stretch"
+                  }}>
+                    {/* Main Wide Angle Shot */}
+                    <div style={{
+                      position: "relative",
+                      borderRadius: 14,
+                      overflow: "hidden",
+                      border: "1px solid var(--sand-200)",
+                      boxShadow: "var(--shadow-md)",
+                      height: 380,
+                      cursor: "zoom-in"
+                    }} className="lookbook-frame">
+                      <Image
+                        src={article.lookbook.wideAngle}
+                        alt="Wide Angle Perspective"
+                        fill
+                        style={{ objectFit: "cover" }}
+                        className="editorial-card-img"
+                        unoptimized
+                      />
+                      <div style={{
+                        position: "absolute",
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        background: "linear-gradient(to top, rgba(0,0,0,0.65), transparent)",
+                        padding: "16px 20px",
+                        color: "white"
+                      }}>
+                        <span style={{ fontSize: "0.65rem", fontWeight: 800, color: "var(--gold-light)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 2 }}>
+                          Angle 01 // Wide Perspective
+                        </span>
+                        <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.9)", margin: 0 }}>
+                          {article.lookbook.captions.wideAngle}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Right Stack for Details */}
+                    <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gap: 16 }} className="lookbook-side-stack">
+                      
+                      {/* Detail Shot */}
+                      <div style={{
+                        position: "relative",
+                        borderRadius: 12,
+                        overflow: "hidden",
+                        border: "1px solid var(--sand-200)",
+                        boxShadow: "var(--shadow-sm)",
+                        cursor: "zoom-in",
+                        height: "100%",
+                        minHeight: 180
+                      }} className="lookbook-frame">
+                        <Image
+                          src={article.lookbook.detailShot}
+                          alt="Detail Perspective"
+                          fill
+                          style={{ objectFit: "cover" }}
+                          className="editorial-card-img"
+                          unoptimized
+                        />
+                        <div style={{
+                          position: "absolute",
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          background: "linear-gradient(to top, rgba(0,0,0,0.65), transparent)",
+                          padding: "10px 14px",
+                          color: "white"
+                        }}>
+                          <span style={{ fontSize: "0.6rem", fontWeight: 800, color: "var(--gold-light)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 2 }}>
+                            Angle 02 // Close-Up Detail
+                          </span>
+                          <p style={{ fontSize: "0.74rem", color: "rgba(255,255,255,0.9)", margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                            {article.lookbook.captions.detailShot}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Material Spec / Substrate Shot */}
+                      <div style={{
+                        position: "relative",
+                        borderRadius: 12,
+                        overflow: "hidden",
+                        border: "1px solid var(--sand-200)",
+                        boxShadow: "var(--shadow-sm)",
+                        cursor: "zoom-in",
+                        height: "100%",
+                        minHeight: 180
+                      }} className="lookbook-frame">
+                        <Image
+                          src={article.lookbook.materialSpec}
+                          alt="Material Specification"
+                          fill
+                          style={{ objectFit: "cover" }}
+                          className="editorial-card-img"
+                          unoptimized
+                        />
+                        <div style={{
+                          position: "absolute",
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          background: "linear-gradient(to top, rgba(0,0,0,0.65), transparent)",
+                          padding: "10px 14px",
+                          color: "white"
+                        }}>
+                          <span style={{ fontSize: "0.6rem", fontWeight: 800, color: "var(--gold-light)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 2 }}>
+                            Angle 03 // Technical Spec
+                          </span>
+                          <p style={{ fontSize: "0.74rem", color: "rgba(255,255,255,0.9)", margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                            {article.lookbook.captions.materialSpec}
+                          </p>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                /* Fallback Hero Visual Asset */
+                <div
+                  style={{
+                    height: "min(48vw, 460px)",
+                    minHeight: 250,
+                    backgroundImage: `url(${article.heroImage})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    borderRadius: 18,
+                    marginBottom: 32,
+                    boxShadow: "var(--shadow-lg)",
+                  }}
+                />
+              )}
 
               {/* Mobile Specs Widget */}
               <div className="mobile-specs-widget" style={{ display: "none", marginBottom: 24 }}>
@@ -555,10 +694,29 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
             display: block !important;
           }
         }
+        @media (max-width: 768px) {
+          .lookbook-asymmetric-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .lookbook-side-stack {
+            grid-template-rows: auto !important;
+            gap: 16px !important;
+          }
+          .lookbook-frame {
+            height: 240px !important;
+          }
+        }
         .btn-hover-effect:hover {
           background: var(--ocean-600) !important;
           color: white !important;
           border-color: var(--ocean-600) !important;
+        }
+        .lookbook-frame {
+          transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+        .lookbook-frame:hover {
+          transform: translateY(-2px);
+          border-color: var(--gold) !important;
         }
       `}} />
     </>

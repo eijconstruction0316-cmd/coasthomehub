@@ -60,6 +60,16 @@ export type MagazineArticle = {
   };
   sections: MagazineSection[];
   faq: MagazineFaq[];
+  lookbook?: {
+    wideAngle: string;
+    detailShot: string;
+    materialSpec: string;
+    captions: {
+      wideAngle: string;
+      detailShot: string;
+      materialSpec: string;
+    };
+  };
 };
 
 export const contentTypeRegistry: Record<MagazineContentType, {
@@ -167,7 +177,17 @@ export const magazineArticles: MagazineArticle[] = [
         question: "What is the main mistake to avoid?",
         answer: "Using too many beach-themed accents. The style works better when coastal cues come from texture, light and durable materials."
       }
-    ]
+    ],
+    lookbook: {
+      wideAngle: "/gallery/interior-1.jpg",
+      detailShot: "/images/microcement_backlit_mirror.png",
+      materialSpec: "/images/brushed_brass_macro.png",
+      captions: {
+        wideAngle: "Main perspective: Seamless warm sand tiles with custom oak timber vanity.",
+        detailShot: "Detail shot: Warm backlit round mirror against textured microcement.",
+        materialSpec: "Material specification: Macro view of brushed brass fittings."
+      }
+    }
   },
   {
     slug: "warm-coastal-kitchen-refresh-guide",
@@ -304,7 +324,17 @@ export const magazineArticles: MagazineArticle[] = [
         question: "Why does waterproofing affect the timeline?",
         answer: "Waterproofing needs correct preparation, application and cure time before tiling. Rushing this step is a common cause of future failures."
       }
-    ]
+    ],
+    lookbook: {
+      wideAngle: "/gallery/interior-2.jpg",
+      detailShot: "/images/waterproofing_detail.png",
+      materialSpec: "/images/old_bathroom_before.png",
+      captions: {
+        wideAngle: "Main perspective: The completed organic bathroom ensuite overhaul.",
+        detailShot: "Detail shot: Fluted safety glass shower screen and brass drainage trim.",
+        materialSpec: "Work in progress: Water damage discovered on stud wall during strip-out."
+      }
+    }
   },
   {
     slug: "sunshine-coast-deck-project-story",
@@ -633,7 +663,17 @@ export const magazineArticles: MagazineArticle[] = [
         question: "Does fluted glass require more cleaning?",
         answer: "No. The textured ribbed surface actually hides water spots and fingerprints much better than clear glass, making it both beautiful and low-maintenance."
       }
-    ]
+    ],
+    lookbook: {
+      wideAngle: "/gallery/interior-3.jpg",
+      detailShot: "/images/brushed_brass_macro.png",
+      materialSpec: "/images/waterproofing_detail.png",
+      captions: {
+        wideAngle: "Main perspective: Tasmanian Oak and ribbed glass ensuite styling.",
+        detailShot: "Fixture specification: Brushed gold macro details.",
+        materialSpec: "AS 1288 screen bracket fixing into Sage stack tiles."
+      }
+    }
   },
   {
     slug: "noosa-pavilion-kitchen-transformation",
@@ -707,7 +747,17 @@ export const magazineArticles: MagazineArticle[] = [
         question: "What is a Form 15 in QLD construction?",
         answer: "A Form 15 is a Certificate of Design Compliance. It is issued by the structural engineer to certify that the proposed steel beam design complies with the Building Code of Australia (BCA)."
       }
-    ]
+    ],
+    lookbook: {
+      wideAngle: "/images/noosa_servery_window.png",
+      detailShot: "/images/luxury_kitchen.png",
+      materialSpec: "/gallery/interior-8.jpg",
+      captions: {
+        wideAngle: "Main perspective: Custom bifold window opening onto the alfresco deck.",
+        detailShot: "Interior view: Waterfall-edge limestone island and integrated black cabinetry.",
+        materialSpec: "Joinery specification: Solid oak floating shelving integration."
+      }
+    }
   },
   {
     slug: "the-2026-qld-renovation-budget-blueprint",
@@ -1010,7 +1060,17 @@ export const magazineArticles: MagazineArticle[] = [
         question: "How do I clean travertine pool surrounds?",
         answer: "Pressure wash the stone once or twice a year with a mild pH-neutral stone cleaner. Avoid acidic cleaners as they will permanently etch the calcium carbonate structure of the travertine."
       }
-    ]
+    ],
+    lookbook: {
+      wideAngle: "/images/pool_travertine_coping.png",
+      detailShot: "/images/outdoor_living.png",
+      materialSpec: "/images/composite_decking_detail.png",
+      captions: {
+        wideAngle: "Main perspective: Drop-face mitered travertine pool coping and glass balustrades.",
+        detailShot: "Alfresco lounge: Travertine paved pathway leading to the pool entry.",
+        materialSpec: "Transition detail: Composite deck meeting travertine coping joints."
+      }
+    }
   },
   {
     slug: "microcement-and-backlit-mirrors-ensuite-guide",
@@ -1083,7 +1143,17 @@ export const magazineArticles: MagazineArticle[] = [
         question: "Can you apply microcement over existing tiles?",
         answer: "Yes. Provided the existing tiles are structurally sound, flat, and not leaking, a specialized epoxy primer and mesh can be applied to bond the microcement directly over the old tiles without demolition."
       }
-    ]
+    ],
+    lookbook: {
+      wideAngle: "/images/microcement_backlit_mirror.png",
+      detailShot: "/gallery/interior-3.jpg",
+      materialSpec: "/images/waterproofing_membrane_detail.png",
+      captions: {
+        wideAngle: "Main perspective: Microcement vanity wall featuring backlit round amber LED mirror.",
+        detailShot: "Ensuite view: Grout-free floor-to-ceiling render with integrated stone vanity.",
+        materialSpec: "Technical view: Class III liquid waterproofing membrane application over bond breakers."
+      }
+    }
   }
 ];
 
