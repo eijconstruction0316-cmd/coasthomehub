@@ -16,6 +16,7 @@ const primaryLinks = [
 const drawerLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services & Scope" },
+  { href: "/about", label: "Company Corner" },
   { href: "/inspiration", label: "Inspiration Gallery" },
   { href: "/projects", label: "Completed Projects" },
   { href: "/directory", label: "Find Tradies Directory" },

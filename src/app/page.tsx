@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import HeroInteractiveCard from "@/components/HeroInteractiveCard";
 import { getPublishedMagazineArticles } from "@/lib/magazineCms";
 import LiveSuburbTracker from "@/components/LiveSuburbTracker";
 import RenovationCostCalculator from "@/components/RenovationCostCalculator";
@@ -24,9 +23,9 @@ export default function Home() {
       {/* ───────────────── MAGAZINE COVER HERO ───────────────── */}
       <section
         style={{
-          background: "#0c2422",
-          paddingTop: "124px",
-          paddingBottom: "80px",
+          background: "linear-gradient(rgba(12, 36, 34, 0.76), rgba(12, 36, 34, 0.94)), url('/images/hero_carpenter_sunset.png') no-repeat center center / cover",
+          paddingTop: "150px",
+          paddingBottom: "100px",
           position: "relative",
           overflow: "hidden",
           borderBottom: "3px double var(--sand-300)",
@@ -40,11 +39,11 @@ export default function Home() {
               <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.06)", border: "1px solid var(--sand-300)", borderRadius: 2, padding: "8px 18px", marginBottom: 28 }}>
                 <span style={{ color: "var(--gold-light)", fontSize: "0.85rem" }}>✦</span>
                 <span style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "Outfit, sans-serif" }}>
-                  Australia&apos;s Trusted Home & Trade Magazine
+                  Australia&apos;s Home &amp; Trade Knowledge Platform
                 </span>
               </div>
 
-              <h1 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "clamp(2.4rem, 6.5vw, 4.4rem)", fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1.08, marginBottom: 24, color: "white" }}>
+              <h1 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "clamp(2.4rem, 6.5vw, 4.4rem)", fontWeight: 550, letterSpacing: "-0.02em", lineHeight: 1.08, marginBottom: 24, color: "white" }}>
                 Expert Advice.
                 <br />
                 Vetted Trades.
@@ -55,49 +54,161 @@ export default function Home() {
               </h1>
 
               <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "1.12rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.8, marginBottom: 40, maxWidth: 540 }}>
-                Building trust between homeowners and trades through transparent builder-led guidelines, verified QBCC status verifications, and premium styling guides.
+                Honest guidance. Trusted trades. Better homes for all Australians.
               </p>
 
               <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-                <Link href="/magazine" className="btn-gold" style={{ fontSize: "0.95rem", padding: "16px 36px", borderRadius: "4px" }}>
-                  ✦ Read the Magazine
+                <Link href="/magazine" className="btn-gold" style={{ fontSize: "0.95rem", padding: "16px 36px", borderRadius: "4px", textDecoration: "none" }}>
+                  Read the Magazine ›
                 </Link>
                 <Link href="/directory" style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "rgba(255,255,255,0.9)", padding: "15px 32px", borderRadius: "4px", fontWeight: 600, fontSize: "0.95rem", textDecoration: "none", border: "1px solid var(--sand-300)", transition: "var(--transition)" }} className="btn-outline-white">
-                  Browse Vetted Directory
+                  Find Trusted Trades
                 </Link>
               </div>
 
-              {/* Sub-Brand Strip */}
-              <div style={{ display: "flex", gap: 40, marginTop: 48, paddingTop: 32, borderTop: "3px double var(--sand-300)" }} className="hero-trust">
+              {/* Trust Indicators Strip */}
+              <div style={{ display: "flex", gap: 32, marginTop: 48, paddingTop: 32, borderTop: "1px solid rgba(255,255,255,0.15)" }} className="hero-trust">
                 {[
-                  { value: "100% Vetted", label: "Active QBCC Trades Only" },
-                  { value: "Zero Lead Spam", label: "Max 3 Quotes Dispatched" },
+                  { value: "100% Vetted", label: "QBCC Active Trades Only" },
+                  { value: "No Spam", label: "Max 3 Quotes Dispatched" },
                   { value: "Supplier Checked", label: "Bunnings & Laminex Partners" }
                 ].map((s) => (
-                  <div key={s.label}>
-                    <div style={{ fontFamily: "Lora, Georgia, serif", fontWeight: 600, fontSize: "1.35rem", color: "var(--gold-light)", lineHeight: 1 }}>{s.value}</div>
-                    <div style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.5)", marginTop: 6, fontFamily: "Outfit, sans-serif" }}>{s.label}</div>
+                  <div key={s.label} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <span style={{ color: "var(--gold-light)", fontSize: "1.4rem" }}>✦</span>
+                    <div>
+                      <div style={{ fontFamily: "Lora, Georgia, serif", fontWeight: 600, fontSize: "1.1rem", color: "var(--gold-light)", lineHeight: 1.1 }}>{s.value}</div>
+                      <div style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.5)", marginTop: 4, fontFamily: "Outfit, sans-serif", fontWeight: 500, letterSpacing: "0.02em" }}>{s.label}</div>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right: Quick Planner card */}
-            <div>
-              <HeroInteractiveCard />
+            {/* Right: Play Button / Our Story */}
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }} className="hero-play-col">
+              <div style={{ position: "relative", textAlign: "center" }}>
+                <Link
+                  href="/about"
+                  style={{
+                    width: 90,
+                    height: 90,
+                    borderRadius: "50%",
+                    border: "2px solid var(--gold-light)",
+                    background: "rgba(12, 36, 34, 0.4)",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                    textDecoration: "none",
+                    transition: "var(--transition-fast)",
+                    boxShadow: "0 0 20px rgba(232, 184, 75, 0.2)",
+                  }}
+                  className="play-button"
+                >
+                  <span style={{ fontSize: "1.8rem", color: "var(--gold-light)", marginLeft: 6 }}>▶</span>
+                </Link>
+                
+                {/* Handdrawn Arrow styling */}
+                <div style={{ position: "absolute", left: "105px", top: "10px", width: 120, textAlign: "left", pointerEvents: "none" }} className="our-story-arrow">
+                  <span style={{ fontFamily: "Lora, serif", fontStyle: "italic", fontSize: "1.15rem", color: "rgba(255,255,255,0.9)", display: "block", marginBottom: 2 }}>
+                    Our Story
+                  </span>
+                  {/* Curved Arrow vector */}
+                  <svg width="40" height="25" viewBox="0 0 40 25" fill="none">
+                    <path d="M5 5 C 15 15, 25 15, 32 12" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" strokeDasharray="3 3" />
+                    <path d="M30 8 L 33 12 L 29 14" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <style>{`
           .btn-outline-white:hover { background: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.6) !important; }
+          .play-button:hover { transform: scale(1.05); background: rgba(232, 184, 75, 0.15) !important; }
           @media (max-width: 880px) {
             .hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+            .hero-play-col { order: -1; margin-bottom: 20px; }
+            .our-story-arrow { display: none !important; }
           }
           @media (max-width: 520px) {
             .hero-trust { flexDirection: column !important; gap: 20px !important; }
           }
         `}</style>
+      </section>
+
+      {/* ───────────────── SECTION 2: EVERYTHING YOU NEED ───────────────── */}
+      <section style={{ background: "#0a1f1e", color: "white", padding: "80px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="container-lg">
+          <div style={{ display: "grid", gridTemplateColumns: "0.8fr 1.2fr", gap: 56, alignItems: "start" }} className="everything-grid">
+            
+            {/* Left Column: Description & Action */}
+            <div>
+              <span style={{ fontSize: "0.72rem", fontWeight: 850, color: "var(--gold-light)", display: "block", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 12, fontFamily: "Outfit, sans-serif" }}>
+                ✦ Integrated Directory
+              </span>
+              <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "clamp(2rem, 4vw, 2.8rem)", fontWeight: 500, lineHeight: 1.2, color: "white", marginBottom: 20 }}>
+                Everything You Need.
+                <br />
+                <span style={{ color: "var(--gold-light)" }}>In One Place.</span>
+              </h2>
+              <p style={{ color: "rgba(255,255,255,0.76)", fontSize: "0.98rem", lineHeight: 1.7, marginBottom: 36, fontFamily: "Outfit, sans-serif" }}>
+                From planning to completion, we connect homeowners with the right knowledge, the right people, and the right products.
+              </p>
+              <Link href="/directory" className="btn-outline-white" style={{ borderRadius: 4, display: "inline-flex", alignItems: "center", gap: 6, fontSize: "0.92rem", padding: "14px 32px", textDecoration: "none", color: "white", border: "1px solid rgba(255,255,255,0.3)" }}>
+                Explore All Guides
+              </Link>
+            </div>
+
+            {/* Right Column: 2x3 Grid */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }} className="everything-cards-grid">
+              {[
+                { title: "Home & Trade Magazine", desc: "Expert stories. Vetted insight. Accurate experience.", href: "/magazine" },
+                { title: "Find Trusted Trades", desc: "QBCC verified. Local. Reviewed by clients.", href: "/directory" },
+                { title: "Cost Guides", desc: "Verified pricing. Detailed projects. Accurate numbers.", href: "/cost-guides" },
+                { title: "Supplier Guides", desc: "Products, comparisons and expert picks.", href: "/suppliers" },
+                { title: "AI & Design Tools", desc: "Plan smarter. Design better.", href: "/tools" },
+                { title: "Project Inspiration", desc: "Vetted homes. Beautiful transformations.", href: "/inspiration" },
+              ].map((card) => (
+                <Link
+                  key={card.title}
+                  href={card.href}
+                  style={{
+                    background: "rgba(255,255,255,0.02)",
+                    border: "1px solid rgba(232, 184, 75, 0.15)",
+                    borderRadius: 4,
+                    padding: 24,
+                    textDecoration: "none",
+                    display: "block",
+                    transition: "all 0.2s ease",
+                  }}
+                  className="everything-card"
+                >
+                  <div style={{ color: "var(--gold-light)", fontSize: "1.2rem", marginBottom: 12 }}>✦</div>
+                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.1rem", color: "white", fontWeight: 600, marginBottom: 8 }}>
+                    {card.title}
+                  </h4>
+                  <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.82rem", lineHeight: 1.5, margin: 0, fontFamily: "Outfit, sans-serif" }}>
+                    {card.desc}
+                  </p>
+                </Link>
+              ))}
+            </div>
+
+          </div>
+        </div>
+        <style dangerouslySetInnerHTML={{ __html: `
+          @media (max-width: 820px) {
+            .everything-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+            .everything-cards-grid { grid-template-columns: 1fr !important; }
+          }
+          .everything-card:hover {
+            background: rgba(255,255,255,0.06) !important;
+            border-color: var(--gold-light) !important;
+            transform: translateY(-2px);
+          }
+        `}} />
       </section>
 
       {/* ───────────────── EDITORIAL FEATURED COLUMNS ───────────────── */}
@@ -106,14 +217,18 @@ export default function Home() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 44, borderBottom: "3px double var(--sand-300)", paddingBottom: 16 }}>
             <div>
               <span style={{ fontSize: "0.74rem", fontWeight: 800, color: "var(--gold)", letterSpacing: "0.08em", textTransform: "uppercase", display: "block", marginBottom: 6, fontFamily: "Outfit, sans-serif" }}>
-                ✦ Current Edition
+                ✦ The Latest from the Magazine
               </span>
-              <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.9rem", margin: 0, fontWeight: 500, color: "var(--slate-dark)" }}>
-                Featured Stories & Insights
+              <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "2.2rem", margin: 0, fontWeight: 600, color: "var(--slate-dark)", lineHeight: 1.15 }}>
+                Expert Stories.
+                <br />
+                Vetted Lessons.
+                <br />
+                <span style={{ color: "var(--gold)" }}>Trusted Value.</span>
               </h2>
             </div>
-            <Link href="/magazine" style={{ textDecoration: "none", fontSize: "0.85rem", fontWeight: 700, color: "var(--ocean-600)", fontFamily: "Outfit, sans-serif" }} className="hover-arrow">
-              View All Articles →
+            <Link href="/magazine" style={{ textDecoration: "none", fontSize: "0.85rem", fontWeight: 700, color: "var(--ocean-600)", fontFamily: "Outfit, sans-serif", borderBottom: "1px solid var(--ocean-600)", paddingBottom: 2 }} className="hover-arrow">
+              VIEW ALL ARTICLES
             </Link>
           </div>
 
@@ -457,68 +572,122 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───────────────── WHY COASTHOMEHUB EXISTS ───────────────── */}
-      <section style={{ background: "#0d221f", color: "white", padding: "80px 0", borderBottom: "3px double var(--sand-300)" }}>
+      {/* ───────────────── SECTION 4: OUR MISSION & PHILOSOPHY ───────────────── */}
+      <section style={{ background: "#0c2422", color: "white", padding: "80px 0", borderBottom: "3px double var(--sand-300)", position: "relative", overflow: "hidden" }}>
         <div className="container-lg">
-          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 56, alignItems: "start" }} className="philosophy-home-grid">
+          
+          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr 0.9fr", gap: 40, alignItems: "start" }} className="philosophy-layout-grid">
             
-            {/* Left: Philosophy description */}
-            <div>
-              <div className="badge" style={{ marginBottom: 20, display: "inline-flex", background: "rgba(255,255,255,0.06)", borderColor: "var(--sand-300)", color: "#e8b84b", borderRadius: 2 }}>
-                ✦ Our Purpose
-              </div>
-              <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.5rem)", marginBottom: 24, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "white" }}>
-                Why CoastHomeHub Exists
+            {/* Left: Our Mission */}
+            <div style={{ paddingRight: 16 }}>
+              <span style={{ fontSize: "0.68rem", fontWeight: 800, color: "var(--gold-light)", display: "block", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 12, fontFamily: "Outfit, sans-serif" }}>
+                ✦ Our Mission
+              </span>
+              <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "clamp(1.8rem, 4vw, 2.5rem)", fontWeight: 500, lineHeight: 1.15, color: "white", marginBottom: 20 }}>
+                Building Trust.
+                <br />
+                <span style={{ color: "var(--gold-light)" }}>Building Better Homes.</span>
               </h2>
-              <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "1.05rem", lineHeight: 1.8, marginBottom: 20, fontFamily: "Outfit, sans-serif" }}>
-                CoastHomeHub was born from more than a decade of experience in the Australian construction industry.
+              <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.95rem", lineHeight: 1.7, marginBottom: 20, fontFamily: "Outfit, sans-serif" }}>
+                We exist to bridge the gap between homeowners, trades and suppliers through transparent information, honest advice and a commitment to raising standards across the industry.
               </p>
-              <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.95rem", lineHeight: 1.75, marginBottom: 20, fontFamily: "Outfit, sans-serif" }}>
-                We saw homeowners confused by quotes, trades frustrated by misunderstandings, and great workmanship often overlooked.
-              </p>
-              <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.95rem", lineHeight: 1.75, marginBottom: 36, fontFamily: "Outfit, sans-serif" }}>
-                We created CoastHomeHub to bring transparency, trust, and practical knowledge to the people building, renovating, and improving Australian homes.
-              </p>
-              <Link href="/about" className="btn-gold" style={{ borderRadius: 4, display: "inline-flex", alignItems: "center", gap: 6, fontSize: "0.92rem", padding: "12px 28px", textDecoration: "none" }}>
-                About → Our Story
-              </Link>
+              <cite style={{ display: "block", fontSize: "0.85rem", color: "var(--gold-light)", fontWeight: 700, fontStyle: "normal", textTransform: "uppercase", letterSpacing: "0.05em", fontFamily: "Outfit, sans-serif" }}>
+                — Founder
+              </cite>
             </div>
 
-            {/* Right: The 3 Pillars of EIJ/CoastHomeHub philosophy */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+            {/* Middle: 3 Pillars */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {[
                 {
-                  title: "1. Investing in Future Talent",
-                  desc: "We support education and training programs for the next generation of building designers, tilers, plumbers, and carpenters in Queensland."
+                  title: "Investing in Future Talent",
+                  desc: "Supporting education and training for the next generation of building designers and trade specialists."
                 },
                 {
-                  title: "2. Supporting Those Who Need It",
-                  desc: "We pledge to actively give back by offering design and repair coordination help to Queensland families and homeowners facing structural hardship."
+                  title: "Supporting Those Who Need It",
+                  desc: "Giving back to the community by helping families and homeowners facing structural hardship."
                 },
                 {
-                  title: "3. Rewarding Great Trades",
-                  desc: "We build features to showcase and reward local trade professionals who consistently deliver outstanding work, safety, and client satisfaction."
+                  title: "Rewarding Great Trades",
+                  desc: "Recognising and rewarding local trade professionals who consistently deliver outstanding work."
                 }
-              ].map(p => (
-                <div key={p.title} style={{ borderBottom: "1px dashed rgba(255,255,255,0.15)", paddingBottom: 20 }}>
-                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.1rem", color: "var(--gold-light)", margin: "0 0 8px 0", fontWeight: 600 }}>
-                    {p.title}
+              ].map((p, idx) => (
+                <div key={p.title} style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 4, padding: 20 }}>
+                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.02rem", color: "var(--gold-light)", margin: "0 0 6px 0", fontWeight: 600 }}>
+                    {idx + 1}. {p.title}
                   </h4>
-                  <p style={{ fontSize: "0.88rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.65, margin: 0, fontFamily: "Outfit, sans-serif" }}>
+                  <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.5, margin: 0, fontFamily: "Outfit, sans-serif" }}>
                     {p.desc}
                   </p>
                 </div>
               ))}
             </div>
 
+            {/* Right: Founder image and script banner */}
+            <div style={{ position: "relative", height: 380, borderRadius: 4, overflow: "hidden", border: "1px solid rgba(232, 184, 75, 0.2)" }} className="philosophy-image-col">
+              <Image
+                src="/images/founder_portrait.png"
+                alt="James Whitfield - Founder"
+                fill
+                style={{ objectFit: "cover" }}
+                unoptimized
+              />
+              {/* Gold script banner overlay */}
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(12, 36, 34, 0.95))", padding: "32px 24px", textAlign: "center" }}>
+                <span style={{ fontFamily: "Lora, Georgia, serif", fontStyle: "italic", fontSize: "1.2rem", color: "var(--gold-light)", display: "block", marginBottom: 2 }}>
+                  Built by Experience.
+                </span>
+                <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.6)", display: "block", fontFamily: "Outfit, sans-serif" }}>
+                  Driven by Purpose. CoastHomeHub
+                </span>
+              </div>
+            </div>
+
           </div>
+
+          {/* Stats Bar */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 56, paddingTop: 40, borderTop: "1px solid rgba(255,255,255,0.15)", flexWrap: "wrap", gap: 24 }} className="stats-bar">
+            <div style={{ display: "flex", gap: 40, flexWrap: "wrap" }} className="stats-numbers">
+              {[
+                { value: "10+", label: "Years in the Industry" },
+                { value: "10,000+", label: "Projects Experience" },
+                { value: "500+", label: "Trusted Trades" },
+                { value: "1", label: "Mission: Better Homes" },
+              ].map(st => (
+                <div key={st.label}>
+                  <div style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.8rem", fontWeight: 700, color: "var(--gold-light)", lineHeight: 1 }}>
+                    {st.value}
+                  </div>
+                  <div style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.5)", marginTop: 6, fontFamily: "Outfit, sans-serif", textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                    {st.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Australia map strip */}
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ textAlign: "right" }}>
+                <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "white", display: "block", fontFamily: "Outfit, sans-serif" }}>
+                  Proudly Australian.
+                </span>
+                <span style={{ fontSize: "0.74rem", color: "rgba(255,255,255,0.5)", display: "block", fontFamily: "Outfit, sans-serif" }}>
+                  Here to stay.
+                </span>
+              </div>
+              <div style={{ fontSize: "1.8rem", color: "var(--gold-light)" }}>🇦🇺</div>
+            </div>
+          </div>
+
         </div>
         <style dangerouslySetInnerHTML={{ __html: `
-          @media (max-width: 820px) {
-            .philosophy-home-grid {
-              grid-template-columns: 1fr !important;
-              gap: 40px !important;
-            }
+          @media (max-width: 900px) {
+            .philosophy-layout-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+            .philosophy-image-col { height: 320px !important; }
+          }
+          @media (max-width: 600px) {
+            .stats-bar { flex-direction: column !important; align-items: flex-start !important; }
+            .stats-numbers { gap: 20px !important; }
           }
         `}} />
       </section>
