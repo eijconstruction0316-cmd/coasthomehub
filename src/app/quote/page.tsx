@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import LocationInput from "@/components/LocationInput";
 
 const jobTypes = [
   "Waterproofing",
@@ -12,27 +13,6 @@ const jobTypes = [
   "General Home Repair",
   "Design Consultation",
   "Other",
-];
-
-const locations = [
-  "Gold Coast North (Coomera, Hope Island)",
-  "Gold Coast Central (Surfers Paradise, Robina)",
-  "Gold Coast South (Burleigh, Coolangatta)",
-  "Gold Coast Hinterland",
-  "Tweed Heads & Northern NSW",
-  "Logan & Springwood",
-  "Redland City (Capalaba, Cleveland)",
-  "Ipswich & West Brisbane",
-  "Brisbane CBD & Inner Suburbs",
-  "Brisbane North (Chermside, North Lakes)",
-  "Brisbane South (Sunnybank, Mt Gravatt)",
-  "Brisbane East & Bayside",
-  "Moreton Bay Region",
-  "Sunshine Coast South (Caloundra)",
-  "Sunshine Coast Central (Maroochydore, Buderim)",
-  "Sunshine Coast North (Coolum, Noosa)",
-  "Sunshine Coast Hinterland",
-  "Other QLD / Regional",
 ];
 
 export default function QuotePage() {
@@ -79,7 +59,7 @@ export default function QuotePage() {
       <div
         style={{
           minHeight: "100vh",
-          background: "linear-gradient(160deg, var(--ocean-50) 0%, var(--sand-50) 100%)",
+          background: "var(--off-white)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -87,24 +67,24 @@ export default function QuotePage() {
         }}
       >
         <div style={{ textAlign: "center", padding: "48px 32px", maxWidth: 500 }}>
-          <div style={{ fontSize: "4rem", marginBottom: 24 }}>✅</div>
-          <h2 style={{ fontSize: "2rem", marginBottom: 16, color: "var(--ocean-600)" }}>
-            Quote Request Received!
+          <div style={{ fontSize: "3rem", marginBottom: 24, color: "var(--gold)" }}>✦</div>
+          <h2 style={{ fontSize: "2.2rem", marginBottom: 16, color: "var(--ocean-700)", fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>
+            Quote Request Received
           </h2>
-          <p style={{ color: "var(--slate-light)", fontSize: "1.05rem", lineHeight: 1.7, marginBottom: 32 }}>
+          <p style={{ color: "var(--slate-mid)", fontSize: "1.02rem", lineHeight: 1.7, marginBottom: 32, fontFamily: "Outfit, sans-serif" }}>
             Thanks, <strong>{form.name}</strong>! We&apos;ll review your request and connect you with up to 3 QBCC-licensed local tradies within <strong>7 days</strong>.
           </p>
           <div
             style={{
               background: "white",
-              borderRadius: "var(--radius-lg)",
+              borderRadius: 4,
               padding: "24px",
-              border: "1px solid var(--sand-200)",
+              border: "1px solid var(--sand-300)",
               marginBottom: 32,
               textAlign: "left",
             }}
           >
-            <h4 style={{ marginBottom: 12, fontSize: "0.9rem", color: "var(--slate-light)", textTransform: "uppercase", letterSpacing: "0.05em" }}>Your Request Summary</h4>
+            <h4 style={{ marginBottom: 12, fontSize: "0.8rem", color: "var(--slate-light)", textTransform: "uppercase", letterSpacing: "0.05em", fontFamily: "Outfit, sans-serif" }}>Your Request Summary</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {[
                 ["Job Type", form.jobType],
@@ -130,27 +110,28 @@ export default function QuotePage() {
       {/* Hero */}
       <section
         style={{
-          background: "linear-gradient(160deg, var(--ocean-50) 0%, var(--sand-50) 100%)",
-          paddingTop: 120,
-          paddingBottom: 64,
+          background: "#0c2422",
+          borderBottom: "3px double var(--sand-300)",
+          paddingTop: 140,
+          paddingBottom: 74,
           textAlign: "center",
         }}
       >
         <div className="container-md">
-          <div className="badge" style={{ marginBottom: 20, display: "inline-flex" }}>
+          <div className="badge" style={{ marginBottom: 20, display: "inline-flex", background: "rgba(255, 255, 255, 0.05)", borderColor: "var(--sand-300)", color: "#e8b84b", borderRadius: 2 }}>
             Free — No Obligation
           </div>
-          <h1 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", marginBottom: 16 }}>
+          <h1 style={{ fontSize: "clamp(2.2rem, 5vw, 3.2rem)", marginBottom: 16, color: "white", fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>
             Ready for Real Quotes?
           </h1>
-          <p style={{ color: "var(--slate-light)", fontSize: "1.05rem", maxWidth: 520, margin: "0 auto 20px" }}>
+          <p style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "1.05rem", maxWidth: 520, margin: "0 auto 20px", fontFamily: "Outfit, sans-serif", lineHeight: 1.6 }}>
             Tell us about your renovation and we&apos;ll match you with up to 3 QBCC-licensed local tradies — at no cost to you, with no obligation.
           </p>
           <Link
             href="/design"
-            style={{ fontSize: "0.85rem", color: "var(--ocean-500)", fontWeight: 600, textDecoration: "none" }}
+            style={{ fontSize: "0.85rem", color: "var(--gold)", fontWeight: 600, textDecoration: "none", fontFamily: "Outfit, sans-serif" }}
           >
-            ✨ Haven&apos;t designed your space yet? Chat with CoastAI first →
+            ✦ Haven&apos;t designed your space yet? Chat with CoastAI first →
           </Link>
         </div>
       </section>
@@ -172,10 +153,10 @@ export default function QuotePage() {
               onSubmit={handleSubmit}
               style={{
                 background: "white",
-                borderRadius: "var(--radius-xl)",
+                borderRadius: 4,
                 padding: "40px",
-                boxShadow: "var(--shadow-md)",
-                border: "1px solid rgba(26,35,50,0.06)",
+                boxShadow: "var(--shadow-sm)",
+                border: "1px solid var(--sand-300)",
               }}
             >
               {/* Step indicator */}
@@ -185,9 +166,8 @@ export default function QuotePage() {
                     key={s}
                     style={{
                       flex: 1,
-                      height: 4,
-                      borderRadius: 2,
-                      background: step >= s ? "var(--ocean-400)" : "var(--sand-200)",
+                      height: 3,
+                      background: step >= s ? "var(--ocean-600)" : "var(--sand-200)",
                       transition: "var(--transition)",
                     }}
                   />
@@ -196,7 +176,7 @@ export default function QuotePage() {
 
               {step === 1 && (
                 <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                  <h3 style={{ fontSize: "1.3rem" }}>Step 1: Tell Us About Your Job</h3>
+                  <h3 style={{ fontSize: "1.3rem", fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>Step 1: Tell Us About Your Job</h3>
 
                   <div className="form-group">
                     <label className="form-label" htmlFor="jobType">Type of Work *</label>
@@ -217,19 +197,13 @@ export default function QuotePage() {
 
                   <div className="form-group">
                     <label className="form-label" htmlFor="location">Your Location *</label>
-                    <select
+                    <LocationInput
                       id="location"
-                      name="location"
-                      className="form-input"
                       value={form.location}
-                      onChange={handleChange}
+                      onChange={(val) => setForm((prev) => ({ ...prev, location: val }))}
+                      placeholder="Enter suburb or address..."
                       required
-                    >
-                      <option value="">Select your area...</option>
-                      {locations.map((l) => (
-                        <option key={l} value={l}>{l}</option>
-                      ))}
-                    </select>
+                    />
                   </div>
 
                   <div className="form-group">
@@ -280,8 +254,8 @@ export default function QuotePage() {
 
               {step === 2 && (
                 <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                  <h3 style={{ fontSize: "1.3rem" }}>Step 2: Your Contact Details</h3>
-                  <p style={{ color: "var(--slate-light)", fontSize: "0.9rem" }}>
+                  <h3 style={{ fontSize: "1.3rem", fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>Step 2: Your Contact Details</h3>
+                  <p style={{ color: "var(--slate-mid)", fontSize: "0.88rem", fontFamily: "Outfit, sans-serif" }}>
                     We&apos;ll only share your details with matched tradies — never for spam or marketing.
                   </p>
 
@@ -348,13 +322,13 @@ export default function QuotePage() {
                   </div>
 
                   {error && (
-                    <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 8, padding: "12px 16px", color: "#dc2626", fontSize: "0.875rem" }}>
-                      ⚠️ {error}
+                    <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 4, padding: "12px 16px", color: "#dc2626", fontSize: "0.875rem", fontFamily: "Outfit, sans-serif" }}>
+                      ✦ {error}
                     </div>
                   )}
 
-                  <p style={{ fontSize: "0.78rem", color: "var(--slate-light)" }}>
-                    🔒 Your information is safe. We never sell your data to third parties.
+                  <p style={{ fontSize: "0.78rem", color: "var(--slate-light)", fontFamily: "Outfit, sans-serif" }}>
+                    ✦ Your information is safe. We never sell your data to third parties.
                   </p>
                 </div>
               )}
@@ -365,16 +339,17 @@ export default function QuotePage() {
               {/* What you get */}
               <div
                 style={{
-                  background: "linear-gradient(135deg, var(--ocean-600), var(--ocean-500))",
-                  borderRadius: "var(--radius-lg)",
+                  background: "var(--ocean-700)",
+                  border: "1px solid var(--sand-300)",
+                  borderRadius: 4,
                   padding: "28px",
                   color: "white",
                 }}
               >
-                <h4 style={{ color: "white", marginBottom: 16, fontSize: "1.1rem" }}>
-                  ✅ What You Get
+                <h4 style={{ color: "white", marginBottom: 16, fontSize: "1.1rem", fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>
+                  ✦ What You Get
                 </h4>
-                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
+                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10, paddingLeft: 0 }}>
                   {[
                     "Up to 3 matched local quotes",
                     "QBCC-licensed tradies only",
@@ -382,8 +357,8 @@ export default function QuotePage() {
                     "100% free — no obligation",
                     "Your details stay private",
                   ].map((item) => (
-                    <li key={item} style={{ display: "flex", gap: 10, fontSize: "0.9rem", color: "rgba(255,255,255,0.9)" }}>
-                      <span>✓</span>
+                    <li key={item} style={{ display: "flex", gap: 10, fontSize: "0.88rem", color: "rgba(255,255,255,0.9)", fontFamily: "Outfit, sans-serif" }}>
+                      <span style={{ color: "var(--gold)" }}>✦</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -395,18 +370,19 @@ export default function QuotePage() {
                 className="card"
                 style={{
                   padding: "22px",
-                  background: "linear-gradient(135deg, var(--sand-50), white)",
-                  border: "1px solid var(--sand-200)",
+                  background: "white",
+                  border: "1px solid var(--sand-300)",
+                  borderRadius: 4,
                 }}
               >
-                <div style={{ fontSize: "1.6rem", marginBottom: 8 }}>✨</div>
-                <h4 style={{ fontSize: "0.95rem", marginBottom: 8 }}>Not sure what you need?</h4>
-                <p style={{ fontSize: "0.84rem", color: "var(--slate-light)", lineHeight: 1.6, marginBottom: 14 }}>
+                <div style={{ fontSize: "1.5rem", marginBottom: 8, color: "var(--gold)" }}>✦</div>
+                <h4 style={{ fontSize: "0.95rem", marginBottom: 8, fontFamily: "Lora, Georgia, serif", fontWeight: 600 }}>Not sure what you need?</h4>
+                <p style={{ fontSize: "0.84rem", color: "var(--slate-mid)", lineHeight: 1.6, marginBottom: 14, fontFamily: "Outfit, sans-serif" }}>
                   Chat with CoastAI first — upload a photo of your space and get a design concept plus a realistic QLD ballpark, free.
                 </p>
                 <Link
                   href="/design"
-                  style={{ fontWeight: 700, color: "var(--ocean-500)", textDecoration: "none", fontSize: "0.88rem" }}
+                  style={{ fontWeight: 700, color: "var(--ocean-600)", textDecoration: "none", fontSize: "0.88rem", fontFamily: "Outfit, sans-serif" }}
                 >
                   Try CoastAI →
                 </Link>
@@ -417,18 +393,19 @@ export default function QuotePage() {
                 className="card"
                 style={{
                   padding: "22px",
-                  background: "var(--sand-50)",
-                  border: "1px solid var(--sand-200)",
+                  background: "white",
+                  border: "1px solid var(--sand-300)",
+                  borderRadius: 4,
                 }}
               >
-                <div style={{ fontSize: "1.6rem", marginBottom: 8 }}>✉️</div>
-                <h4 style={{ fontSize: "0.95rem", marginBottom: 8 }}>Prefer Email?</h4>
-                <p style={{ fontSize: "0.84rem", color: "var(--slate-light)", lineHeight: 1.6, marginBottom: 12 }}>
+                <div style={{ fontSize: "1.5rem", marginBottom: 8, color: "var(--gold)" }}>✦</div>
+                <h4 style={{ fontSize: "0.95rem", marginBottom: 8, fontFamily: "Lora, Georgia, serif", fontWeight: 600 }}>Prefer Email?</h4>
+                <p style={{ fontSize: "0.84rem", color: "var(--slate-mid)", lineHeight: 1.6, marginBottom: 12, fontFamily: "Outfit, sans-serif" }}>
                   Mon–Sat 7am–5pm. We reply within one business day.
                 </p>
                 <a
                   href="mailto:info@coasthomehub.com.au"
-                  style={{ fontWeight: 700, color: "var(--ocean-500)", textDecoration: "none", fontSize: "0.92rem" }}
+                  style={{ fontWeight: 700, color: "var(--ocean-600)", textDecoration: "none", fontSize: "0.92rem", fontFamily: "Outfit, sans-serif" }}
                 >
                   info@coasthomehub.com.au
                 </a>

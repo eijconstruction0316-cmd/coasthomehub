@@ -29,7 +29,7 @@ const LOCAL_CONTRACTORS = [
     rating: 4.9,
     reviewsCount: 128,
     location: "Gold Coast & South Brisbane",
-    b2bBenefit: "🎁 Elite Sponsor: 10% Off Reece & Laminex",
+    b2bBenefit: "✦ Elite Sponsor: 10% Off Reece & Laminex",
     tags: ["bathroom", "kitchen", "waterproofing", "renovation", "marble", "stone", "cabinetry", "structural", "style guide"]
   },
   {
@@ -40,7 +40,7 @@ const LOCAL_CONTRACTORS = [
     rating: 4.85,
     reviewsCount: 64,
     location: "Sunshine Coast & Noosa",
-    b2bBenefit: "🎁 Partner: 5% Off Colorbond & Osmo",
+    b2bBenefit: "✦ Partner: 5% Off Colorbond & Osmo",
     tags: ["outdoor", "decking", "hardwood", "composite", "pool", "landscaping"]
   },
   {
@@ -51,7 +51,7 @@ const LOCAL_CONTRACTORS = [
     rating: 4.95,
     reviewsCount: 92,
     location: "Brisbane CBD & West Brisbane",
-    b2bBenefit: "🎁 Partner: 5% Off Beaumont Tiles",
+    b2bBenefit: "✦ Partner: 5% Off Beaumont Tiles",
     tags: ["bathroom", "waterproofing", "as 3740", "microcement", "tiling", "stone"]
   },
   {
@@ -62,7 +62,7 @@ const LOCAL_CONTRACTORS = [
     rating: 4.7,
     reviewsCount: 45,
     location: "Gold Coast & Tweed Heads",
-    b2bBenefit: "🎁 Safety Glass compliant with AS 1288",
+    b2bBenefit: "✦ Safety Glass compliant with AS 1288",
     tags: ["glass", "fluted glass", "pool", "landscaping", "bathroom", "shower screen"]
   }
 ];
@@ -126,23 +126,23 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
 
       <article style={{ background: "var(--off-white)", minHeight: "100vh" }}>
         {/* Dynamic Editorial Hero section */}
-        <section style={{ background: "linear-gradient(160deg,#0a1f1e,#155e58)", padding: "124px 0 54px" }}>
+        <section style={{ background: "#0c2422", borderBottom: "3px double var(--sand-300)", padding: "124px 0 54px" }}>
           <div className="container-lg">
-            <div style={{ display: "flex", gap: 8, color: "rgba(255,255,255,0.64)", fontSize: "0.82rem", marginBottom: 22, flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: 8, color: "rgba(255,255,255,0.64)", fontSize: "0.82rem", marginBottom: 22, flexWrap: "wrap", fontFamily: "Outfit, sans-serif" }}>
               <Link href="/magazine" style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontWeight: 700 }}>Magazine</Link>
               <span>/</span>
               <span>{article.type}</span>
             </div>
-            <div className="badge" style={{ background: "rgba(255,255,255,0.12)", borderColor: "rgba(255,255,255,0.2)", color: "#e8b84b", marginBottom: 16 }}>
+            <div className="badge" style={{ background: "rgba(255,255,255,0.06)", borderColor: "var(--sand-300)", color: "#e8b84b", marginBottom: 16, borderRadius: 2 }}>
               {article.type}
             </div>
-            <h1 style={{ color: "white", fontSize: "clamp(2rem,5vw,3.35rem)", lineHeight: 1.08, marginBottom: 16 }}>
+            <h1 style={{ color: "white", fontSize: "clamp(2rem,5vw,3.35rem)", lineHeight: 1.08, marginBottom: 16, fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>
               {article.title}
             </h1>
-            <p style={{ color: "rgba(255,255,255,0.76)", fontSize: "1.08rem", lineHeight: 1.7, marginBottom: 20 }}>
+            <p style={{ color: "rgba(255,255,255,0.76)", fontSize: "1.08rem", lineHeight: 1.7, marginBottom: 20, fontFamily: "Outfit, sans-serif" }}>
               {article.subtitle}
             </p>
-            <p style={{ color: "rgba(255,255,255,0.58)", fontSize: "0.88rem" }}>
+            <p style={{ color: "rgba(255,255,255,0.58)", fontSize: "0.88rem", fontFamily: "Outfit, sans-serif" }}>
               {article.author} · {article.readTime} · Updated {new Date(article.updatedAt).toLocaleDateString("en-AU")}
             </p>
           </div>
@@ -164,9 +164,10 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
                     display: "block",
-                    marginBottom: 12
+                    marginBottom: 12,
+                    fontFamily: "Outfit, sans-serif"
                   }}>
-                    📐 Design Portfolio // Multi-Angle Perspectives
+                    ✦ Design Portfolio // Multi-Angle Perspectives
                   </span>
                   
                   <div className="lookbook-asymmetric-grid" style={{
@@ -178,9 +179,9 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                     {/* Main Wide Angle Shot */}
                     <div style={{
                       position: "relative",
-                      borderRadius: 14,
+                      borderRadius: 4,
                       overflow: "hidden",
-                      border: "1px solid var(--sand-200)",
+                      border: "1px solid var(--sand-300)",
                       boxShadow: "var(--shadow-md)",
                       height: 380,
                       cursor: "zoom-in"
@@ -198,14 +199,14 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                         bottom: 0,
                         left: 0,
                         right: 0,
-                        background: "linear-gradient(to top, rgba(0,0,0,0.65), transparent)",
+                        background: "linear-gradient(to top, rgba(0,0,0,0.7), transparent)",
                         padding: "16px 20px",
                         color: "white"
                       }}>
-                        <span style={{ fontSize: "0.65rem", fontWeight: 800, color: "var(--gold-light)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 2 }}>
+                        <span style={{ fontSize: "0.65rem", fontWeight: 800, color: "var(--gold-light)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 2, fontFamily: "Outfit, sans-serif" }}>
                           Angle 01 // Wide Perspective
                         </span>
-                        <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.9)", margin: 0 }}>
+                        <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.9)", margin: 0, fontFamily: "Outfit, sans-serif" }}>
                           {article.lookbook.captions.wideAngle}
                         </p>
                       </div>
@@ -217,9 +218,9 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                       {/* Detail Shot */}
                       <div style={{
                         position: "relative",
-                        borderRadius: 12,
+                        borderRadius: 4,
                         overflow: "hidden",
-                        border: "1px solid var(--sand-200)",
+                        border: "1px solid var(--sand-300)",
                         boxShadow: "var(--shadow-sm)",
                         cursor: "zoom-in",
                         height: "100%",
@@ -238,14 +239,14 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                           bottom: 0,
                           left: 0,
                           right: 0,
-                          background: "linear-gradient(to top, rgba(0,0,0,0.65), transparent)",
+                          background: "linear-gradient(to top, rgba(0,0,0,0.7), transparent)",
                           padding: "10px 14px",
                           color: "white"
                         }}>
-                          <span style={{ fontSize: "0.6rem", fontWeight: 800, color: "var(--gold-light)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 2 }}>
+                          <span style={{ fontSize: "0.6rem", fontWeight: 800, color: "var(--gold-light)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 2, fontFamily: "Outfit, sans-serif" }}>
                             Angle 02 // Close-Up Detail
                           </span>
-                          <p style={{ fontSize: "0.74rem", color: "rgba(255,255,255,0.9)", margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                          <p style={{ fontSize: "0.74rem", color: "rgba(255,255,255,0.9)", margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", fontFamily: "Outfit, sans-serif" }}>
                             {article.lookbook.captions.detailShot}
                           </p>
                         </div>
@@ -254,9 +255,9 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                       {/* Material Spec / Substrate Shot */}
                       <div style={{
                         position: "relative",
-                        borderRadius: 12,
+                        borderRadius: 4,
                         overflow: "hidden",
-                        border: "1px solid var(--sand-200)",
+                        border: "1px solid var(--sand-300)",
                         boxShadow: "var(--shadow-sm)",
                         cursor: "zoom-in",
                         height: "100%",
@@ -275,14 +276,14 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                           bottom: 0,
                           left: 0,
                           right: 0,
-                          background: "linear-gradient(to top, rgba(0,0,0,0.65), transparent)",
+                          background: "linear-gradient(to top, rgba(0,0,0,0.7), transparent)",
                           padding: "10px 14px",
                           color: "white"
                         }}>
-                          <span style={{ fontSize: "0.6rem", fontWeight: 800, color: "var(--gold-light)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 2 }}>
+                          <span style={{ fontSize: "0.6rem", fontWeight: 800, color: "var(--gold-light)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 2, fontFamily: "Outfit, sans-serif" }}>
                             Angle 03 // Technical Spec
                           </span>
-                          <p style={{ fontSize: "0.74rem", color: "rgba(255,255,255,0.9)", margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                          <p style={{ fontSize: "0.74rem", color: "rgba(255,255,255,0.9)", margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", fontFamily: "Outfit, sans-serif" }}>
                             {article.lookbook.captions.materialSpec}
                           </p>
                         </div>
@@ -300,31 +301,75 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                     backgroundImage: `url(${article.heroImage})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    borderRadius: 18,
+                    borderRadius: 4,
+                    border: "1px solid var(--sand-300)",
                     marginBottom: 32,
                     boxShadow: "var(--shadow-lg)",
                   }}
                 />
               )}
 
+              {/* YouTube Video Embed if present */}
+              {article.video && (
+                <div style={{ marginBottom: 32 }} className="magazine-video-container">
+                  <span style={{
+                    fontSize: "0.74rem",
+                    fontWeight: 800,
+                    color: "var(--gold)",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    display: "block",
+                    marginBottom: 12,
+                    fontFamily: "Outfit, sans-serif"
+                  }}>
+                    ✦ Video Tutorial // {article.video.title}
+                  </span>
+                  <div style={{
+                    position: "relative",
+                    paddingBottom: "56.25%", /* 16:9 Aspect Ratio */
+                    height: 0,
+                    overflow: "hidden",
+                    borderRadius: 4,
+                    border: "1px solid var(--sand-300)",
+                    boxShadow: "var(--shadow-md)",
+                    background: "#000"
+                  }}>
+                    <iframe
+                      src={`https://www.youtube.com/embed/${article.video.youtubeId}`}
+                      title={article.video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        border: 0
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+
               {/* Mobile Specs Widget */}
               <div className="mobile-specs-widget" style={{ display: "none", marginBottom: 24 }}>
                 {article.projectMeta && (
-                  <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 16, padding: "18px 22px", display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 14 }}>
-                    <span><strong>Location:</strong><br />{article.projectMeta.location}</span>
-                    <span><strong>Budget:</strong><br />{article.projectMeta.budgetRange}</span>
-                    <span><strong>Timeline:</strong><br />{article.projectMeta.timeline}</span>
-                    <span><strong>Type:</strong><br />{article.projectMeta.projectType}</span>
+                  <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "18px 22px", display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 14 }}>
+                    <span style={{ fontFamily: "Outfit, sans-serif", fontSize: "0.85rem" }}><strong>Location:</strong><br />{article.projectMeta.location}</span>
+                    <span style={{ fontFamily: "Outfit, sans-serif", fontSize: "0.85rem" }}><strong>Budget:</strong><br />{article.projectMeta.budgetRange}</span>
+                    <span style={{ fontFamily: "Outfit, sans-serif", fontSize: "0.85rem" }}><strong>Timeline:</strong><br />{article.projectMeta.timeline}</span>
+                    <span style={{ fontFamily: "Outfit, sans-serif", fontSize: "0.85rem" }}><strong>Type:</strong><br />{article.projectMeta.projectType}</span>
                   </div>
                 )}
                 {article.styleMeta && (
-                  <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 16, padding: "18px 22px", marginTop: 12 }}>
+                  <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "18px 22px", marginTop: 12 }}>
                     <div style={{ display: "flex", gap: 10, marginBottom: 8 }}>
                       {article.styleMeta.palette.map((color) => (
                         <span key={color} style={{ width: 20, height: 20, borderRadius: "50%", background: color, border: "2px solid white", boxShadow: "0 0 0 1px var(--sand-200)" }} />
                       ))}
                     </div>
-                    <p style={{ color: "var(--slate-mid)", fontSize: "0.85rem", lineHeight: 1.5 }}>
+                    <p style={{ color: "var(--slate-mid)", fontSize: "0.85rem", lineHeight: 1.5, fontFamily: "Outfit, sans-serif" }}>
                       <strong>Style For:</strong> {article.styleMeta.bestFor}<br />
                       <strong>Cost Tier:</strong> {article.styleMeta.costLevel}
                     </p>
@@ -333,10 +378,10 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
               </div>
 
               {/* Main Content Body */}
-              <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 18, padding: "38px 38px 44px", boxShadow: "var(--shadow-sm)" }}>
+              <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "38px 38px 44px", boxShadow: "var(--shadow-sm)" }}>
                 {article.sections.map((section, sIdx) => (
                   <section key={sIdx} style={{ marginBottom: 36 }}>
-                    <h2 className="editorial-heading-serif" style={{ fontSize: "1.6rem", marginBottom: 16, borderBottom: "1px solid var(--sand-100)", paddingBottom: 8 }}>
+                    <h2 className="editorial-heading-serif" style={{ fontSize: "1.6rem", marginBottom: 16, borderBottom: "1px solid var(--sand-100)", paddingBottom: 8, fontFamily: "Lora, Georgia, serif", fontWeight: 600 }}>
                       {section.heading}
                     </h2>
                     {section.paragraphs.map((paragraph, pIdx) => {
@@ -351,7 +396,7 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                       );
                     })}
                     {section.bullets && (
-                      <ul style={{ paddingLeft: 22, display: "grid", gap: 8, color: "var(--slate-mid)", lineHeight: 1.65, marginBottom: 16 }}>
+                      <ul style={{ paddingLeft: 22, display: "grid", gap: 8, color: "var(--slate-mid)", lineHeight: 1.65, marginBottom: 16, fontFamily: "Outfit, sans-serif", listStyleType: "square" }}>
                         {section.bullets.map((bullet, bIdx) => <li key={bIdx}>{bullet}</li>)}
                       </ul>
                     )}
@@ -363,7 +408,7 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                         padding: "18px 26px",
                         borderLeft: "4px solid var(--gold)",
                         background: "var(--sand-50)",
-                        borderRadius: "0 12px 12px 0"
+                        borderRadius: 0
                       }}>
                         <p style={{
                           fontFamily: "'Lora', Georgia, serif",
@@ -383,7 +428,8 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                             color: "var(--slate-light)",
                             textTransform: "uppercase",
                             letterSpacing: "0.05em",
-                            fontStyle: "normal"
+                            fontStyle: "normal",
+                            fontFamily: "Outfit, sans-serif"
                           }}>
                             — {section.quoteAuthor}
                           </cite>
@@ -395,9 +441,9 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                     {section.aside && (
                       <aside style={{
                         margin: "30px 0",
-                        background: "linear-gradient(135deg, var(--sand-50) 0%, #faf5ec 100%)",
-                        border: "1px solid var(--sand-200)",
-                        borderRadius: 16,
+                        background: "var(--sand-50)",
+                        border: "1px solid var(--sand-300)",
+                        borderRadius: 4,
                         padding: "24px 28px",
                         boxShadow: "var(--shadow-sm)"
                       }}>
@@ -408,15 +454,17 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                           marginBottom: 10,
                           display: "flex",
                           alignItems: "center",
-                          gap: 8
+                          gap: 8,
+                          fontFamily: "Lora, Georgia, serif"
                         }}>
-                          📋 {section.aside.title}
+                          ✦ {section.aside.title}
                         </h4>
                         <p style={{
                           fontSize: "0.92rem",
                           color: "var(--slate-mid)",
                           lineHeight: 1.6,
-                          marginBottom: 12
+                          marginBottom: 12,
+                          fontFamily: "Outfit, sans-serif"
                         }}>
                           {section.aside.text}
                         </p>
@@ -427,7 +475,9 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                             gap: 6,
                             color: "var(--slate-mid)",
                             fontSize: "0.88rem",
-                            lineHeight: 1.55
+                            lineHeight: 1.55,
+                            fontFamily: "Outfit, sans-serif",
+                            listStyleType: "square"
                           }}>
                             {section.aside.list.map((item, idx) => (
                               <li key={idx}>{item}</li>
@@ -440,7 +490,7 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                     {/* Embedded Section Image */}
                     {section.image && (
                       <div style={{ marginTop: 28, marginBottom: 28 }}>
-                        <div style={{ position: "relative", height: "min(38vw, 360px)", minHeight: 200, width: "100%", borderRadius: 12, overflow: "hidden", border: "1px solid var(--sand-200)", boxShadow: "var(--shadow-sm)" }}>
+                        <div style={{ position: "relative", height: "min(38vw, 360px)", minHeight: 200, width: "100%", borderRadius: 4, overflow: "hidden", border: "1px solid var(--sand-300)", boxShadow: "var(--shadow-sm)" }}>
                           <Image
                             src={section.image}
                             alt={section.imageCaption || section.heading}
@@ -451,7 +501,7 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                           />
                         </div>
                         {section.imageCaption && (
-                          <p style={{ color: "var(--slate-light)", fontSize: "0.8rem", marginTop: 8, fontStyle: "italic", textAlign: "center" }}>
+                          <p style={{ color: "var(--slate-light)", fontSize: "0.8rem", marginTop: 8, fontStyle: "italic", textAlign: "center", fontFamily: "Outfit, sans-serif" }}>
                             {section.imageCaption}
                           </p>
                         )}
@@ -462,17 +512,17 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
 
                 {/* FAQ Accordion Section */}
                 {article.faq.length > 0 && (
-                  <section style={{ borderTop: "1px solid var(--sand-200)", paddingTop: 32, marginTop: 24 }}>
-                    <h2 style={{ fontSize: "1.45rem", color: "var(--slate-dark)", marginBottom: 18, fontWeight: 800 }}>
+                  <section style={{ borderTop: "1px solid var(--sand-300)", paddingTop: 32, marginTop: 24 }}>
+                    <h2 style={{ fontSize: "1.45rem", color: "var(--slate-dark)", marginBottom: 18, fontWeight: 600, fontFamily: "Lora, Georgia, serif" }}>
                       Frequently Asked Questions
                     </h2>
                     <div style={{ display: "grid", gap: 16 }}>
                       {article.faq.map((item) => (
-                        <div key={item.question} style={{ background: "var(--off-white)", border: "1px solid var(--sand-200)", borderRadius: 12, padding: "18px 20px" }}>
-                          <h3 style={{ fontSize: "1rem", color: "var(--slate-dark)", marginBottom: 8, fontWeight: 700 }}>
-                            {item.question}
+                        <div key={item.question} style={{ background: "var(--off-white)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "18px 20px" }}>
+                          <h3 style={{ fontSize: "1rem", color: "var(--slate-dark)", marginBottom: 8, fontWeight: 700, fontFamily: "Lora, Georgia, serif" }}>
+                            ✦ {item.question}
                           </h3>
-                          <p style={{ color: "var(--slate-light)", fontSize: "0.92rem", lineHeight: 1.65 }}>
+                          <p style={{ color: "var(--slate-light)", fontSize: "0.92rem", lineHeight: 1.65, fontFamily: "Outfit, sans-serif" }}>
                             {item.answer}
                           </p>
                         </div>
@@ -484,30 +534,30 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
 
               {/* Mobile Contractor Spotlights */}
               <div className="mobile-contractors-section" style={{ display: "none", marginTop: 32 }}>
-                <h3 style={{ fontSize: "1.3rem", fontWeight: 800, marginBottom: 16 }}>
-                  👷 Vetted QLD Contractor Matches
+                <h3 style={{ fontSize: "1.3rem", fontWeight: 800, marginBottom: 16, fontFamily: "Lora, Georgia, serif" }}>
+                  ✦ Vetted QLD Contractor Matches
                 </h3>
                 {matchedTrades.map((c) => (
-                  <div key={c.id} style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 16, padding: 20, marginBottom: 16, boxShadow: "var(--shadow-sm)" }}>
+                  <div key={c.id} style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: 20, marginBottom: 16, boxShadow: "var(--shadow-sm)" }}>
                     <div style={{ display: "flex", gap: 6, alignItems: "center", marginBottom: 8 }}>
-                      <span style={{ background: "rgba(34,197,94,0.1)", color: "#16a34a", padding: "2px 8px", borderRadius: 50, fontSize: "0.68rem", fontWeight: 800 }}>
-                        🛡️ QBCC ACTIVE
+                      <span style={{ background: "rgba(34,197,94,0.1)", color: "#16a34a", padding: "2px 8px", borderRadius: 2, fontSize: "0.68rem", fontWeight: 800 }}>
+                        QBCC ACTIVE
                       </span>
                       <span style={{ fontSize: "0.72rem", color: "var(--slate-light)" }}>{c.qbcc.split(" ")[0]}</span>
                     </div>
-                    <h4 style={{ fontSize: "1.02rem", fontWeight: 800, margin: "0 0 4px" }}>{c.name}</h4>
-                    <p style={{ fontSize: "0.82rem", color: "var(--slate-light)", marginBottom: 8 }}>{c.category} · {c.location}</p>
-                    <div style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 12 }}>
-                      <span style={{ color: "#f59e0b" }}>★</span>
+                    <h4 style={{ fontSize: "1.02rem", fontWeight: 800, margin: "0 0 4px", fontFamily: "Lora, Georgia, serif" }}>{c.name}</h4>
+                    <p style={{ fontSize: "0.82rem", color: "var(--slate-light)", marginBottom: 8, fontFamily: "Outfit, sans-serif" }}>{c.category} · {c.location}</p>
+                    <div style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 12, fontFamily: "Outfit, sans-serif" }}>
+                      <span style={{ color: "#f59e0b" }}>✦</span>
                       <strong style={{ fontSize: "0.82rem" }}>{c.rating}</strong>
                       <span style={{ fontSize: "0.82rem", color: "var(--slate-light)" }}>({c.reviewsCount} reviews)</span>
                     </div>
                     {c.b2bBenefit && (
-                      <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", borderRadius: 8, padding: "8px 10px", fontSize: "0.76rem", color: "var(--ocean-600)", fontWeight: 700, marginBottom: 12 }}>
+                      <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: 2, padding: "8px 10px", fontSize: "0.76rem", color: "var(--ocean-600)", fontWeight: 700, marginBottom: 12, fontFamily: "Outfit, sans-serif" }}>
                         {c.b2bBenefit}
                       </div>
                     )}
-                    <Link href={`/directory/${c.id}`} className="btn-primary" style={{ display: "block", textAlign: "center", textDecoration: "none", fontSize: "0.85rem", padding: "12px" }}>
+                    <Link href={`/directory/${c.id}`} className="btn-primary" style={{ display: "block", textAlign: "center", textDecoration: "none", fontSize: "0.85rem", padding: "12px", borderRadius: 4 }}>
                       View Showroom & Get Quote
                     </Link>
                   </div>
@@ -520,13 +570,13 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
               
               {/* Spec Card */}
               {(article.projectMeta || article.styleMeta) && (
-                <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 16, padding: 24, boxShadow: "var(--shadow-sm)" }}>
-                  <h4 style={{ fontSize: "0.8rem", color: "var(--slate-light)", letterSpacing: "0.06em", textTransform: "uppercase", fontWeight: 800, marginBottom: 16, borderBottom: "1px solid var(--sand-100)", paddingBottom: 10 }}>
-                    📋 Design Specifications
+                <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: 24, boxShadow: "var(--shadow-sm)" }}>
+                  <h4 style={{ fontSize: "0.8rem", color: "var(--slate-light)", letterSpacing: "0.06em", textTransform: "uppercase", fontWeight: 800, marginBottom: 16, borderBottom: "1px solid var(--sand-100)", paddingBottom: 10, fontFamily: "Outfit, sans-serif" }}>
+                    ✦ Design Specifications
                   </h4>
 
                   {article.projectMeta && (
-                    <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 20, fontSize: "0.88rem" }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 20, fontSize: "0.88rem", fontFamily: "Outfit, sans-serif" }}>
                       <div>
                         <span style={{ color: "var(--slate-light)" }}>Location:</span>
                         <p style={{ fontWeight: 700, color: "var(--slate-dark)", marginTop: 2 }}>{article.projectMeta.location}</p>
@@ -543,7 +593,7 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                   )}
 
                   {article.styleMeta && (
-                    <div style={{ fontSize: "0.88rem" }}>
+                    <div style={{ fontSize: "0.88rem", fontFamily: "Outfit, sans-serif" }}>
                       <span style={{ color: "var(--slate-light)", display: "block", marginBottom: 6 }}>Color Palette:</span>
                       <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
                         {article.styleMeta.palette.map((color) => (
@@ -560,19 +610,19 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
               )}
 
               {/* Vetted Trades List */}
-              <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 16, padding: 24, boxShadow: "var(--shadow-sm)" }}>
-                <h4 style={{ fontSize: "0.8rem", color: "var(--slate-light)", letterSpacing: "0.06em", textTransform: "uppercase", fontWeight: 800, marginBottom: 16, borderBottom: "1px solid var(--sand-100)", paddingBottom: 10 }}>
-                  👷 Vetted QLD Contractor Matches
+              <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: 24, boxShadow: "var(--shadow-sm)" }}>
+                <h4 style={{ fontSize: "0.8rem", color: "var(--slate-light)", letterSpacing: "0.06em", textTransform: "uppercase", fontWeight: 800, marginBottom: 16, borderBottom: "1px solid var(--sand-100)", paddingBottom: 10, fontFamily: "Outfit, sans-serif" }}>
+                  ✦ Vetted QLD Contractor Matches
                 </h4>
-                <p style={{ fontSize: "0.78rem", color: "var(--slate-light)", marginBottom: 16, lineHeight: 1.45 }}>
+                <p style={{ fontSize: "0.78rem", color: "var(--slate-light)", marginBottom: 16, lineHeight: 1.45, fontFamily: "Outfit, sans-serif" }}>
                   Homeowners reading this guide can directly hire our verified QBCC partners specializing in this design style:
                 </p>
 
                 {matchedTrades.map((c) => (
                   <div key={c.id} style={{
-                    background: "var(--sand-50)",
-                    border: "1px solid var(--sand-200)",
-                    borderRadius: 12,
+                    background: "white",
+                    border: "1px solid var(--sand-300)",
+                    borderRadius: 4,
                     padding: 14,
                     marginBottom: 12,
                     fontSize: "0.82rem"
@@ -582,34 +632,36 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                         background: "rgba(34,197,94,0.1)",
                         color: "#16a34a",
                         padding: "1px 6px",
-                        borderRadius: 50,
+                        borderRadius: 2,
                         fontSize: "0.62rem",
-                        fontWeight: 800
+                        fontWeight: 800,
+                        fontFamily: "Outfit, sans-serif"
                       }}>
-                        🛡️ QBCC ACTIVE
+                        QBCC ACTIVE
                       </span>
                     </div>
-                    <h5 style={{ fontSize: "0.88rem", fontWeight: 800, margin: "0 0 2px" }}>
+                    <h5 style={{ fontSize: "0.88rem", fontWeight: 800, margin: "0 0 2px", fontFamily: "Lora, Georgia, serif" }}>
                       {c.name}
                     </h5>
-                    <p style={{ fontSize: "0.74rem", color: "var(--slate-light)", marginBottom: 6 }}>
+                    <p style={{ fontSize: "0.74rem", color: "var(--slate-light)", marginBottom: 6, fontFamily: "Outfit, sans-serif" }}>
                       {c.category.split(" & ")[0]}
                     </p>
-                    <div style={{ display: "flex", alignItems: "center", gap: 3, marginBottom: 8 }}>
-                      <span style={{ color: "#f59e0b", fontSize: "0.76rem" }}>★</span>
+                    <div style={{ display: "flex", alignItems: "center", gap: 3, marginBottom: 8, fontFamily: "Outfit, sans-serif" }}>
+                      <span style={{ color: "#f59e0b", fontSize: "0.76rem" }}>✦</span>
                       <strong>{c.rating}</strong>
                       <span style={{ color: "var(--slate-light)", fontSize: "0.72rem" }}>({c.reviewsCount})</span>
                     </div>
                     {c.b2bBenefit && (
                       <div style={{
-                        background: "white",
-                        border: "1px solid var(--sand-200)",
-                        borderRadius: 6,
+                        background: "var(--sand-50)",
+                        border: "1px solid var(--sand-300)",
+                        borderRadius: 2,
                         padding: "6px 8px",
                         fontSize: "0.72rem",
                         color: "var(--ocean-600)",
                         fontWeight: 700,
-                        marginBottom: 8
+                        marginBottom: 8,
+                        fontFamily: "Outfit, sans-serif"
                       }}>
                         {c.b2bBenefit}
                       </div>
@@ -617,14 +669,14 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
                     <Link href={`/directory/${c.id}`} style={{
                       display: "block",
                       textAlign: "center",
-                      background: "linear-gradient(135deg, var(--ocean-600), var(--ocean-50))",
-                      color: "var(--ocean-700)",
-                      border: "1px solid var(--ocean-300)",
+                      background: "var(--ocean-700)",
+                      color: "white",
+                      border: "none",
                       textDecoration: "none",
                       fontWeight: 800,
                       fontSize: "0.76rem",
                       padding: "8px",
-                      borderRadius: 50,
+                      borderRadius: 4,
                       transition: "var(--transition)"
                     }} className="btn-hover-effect">
                       View Showroom
@@ -635,25 +687,27 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
 
               {/* B2B Club Advert */}
               <div style={{
-                background: "linear-gradient(135deg, var(--ocean-700) 0%, var(--ocean-600) 100%)",
-                borderRadius: 16,
+                background: "var(--ocean-700)",
+                border: "1px solid var(--sand-300)",
+                borderRadius: 4,
                 padding: 24,
                 color: "white",
                 boxShadow: "var(--shadow-md)"
               }}>
-                <div style={{ fontSize: "1.8rem", marginBottom: 10 }}>🎁</div>
-                <h4 style={{ color: "white", fontSize: "0.95rem", fontWeight: 800, marginBottom: 6 }}>
+                <div style={{ fontSize: "1rem", color: "var(--gold-light)", fontWeight: "bold", marginBottom: 10 }}>✦ B2B</div>
+                <h4 style={{ color: "white", fontSize: "0.95rem", fontWeight: 800, marginBottom: 6, fontFamily: "Lora, Georgia, serif" }}>
                   B2B wholesale discounts
                 </h4>
-                <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.45, marginBottom: 14 }}>
+                <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.45, marginBottom: 14, fontFamily: "Outfit, sans-serif" }}>
                   Connect with any verified partner on CoastHomeHub and get up to 10% off wholesale orders at Reece plumbing, Laminex, and Beaumont Tiles.
                 </p>
                 <Link href="/directory" style={{
                   display: "inline-block",
-                  color: "#e8b84b",
+                  color: "var(--gold-light)",
                   fontWeight: 800,
                   fontSize: "0.8rem",
-                  textDecoration: "none"
+                  textDecoration: "none",
+                  fontFamily: "Outfit, sans-serif"
                 }}>
                   Explore Directory →
                 </Link>
@@ -664,8 +718,8 @@ export default async function MagazineArticlePage({ params }: ArticlePageProps) 
 
           {/* Related Reading Grid */}
           {related.length > 0 && (
-            <section style={{ marginTop: 56, borderTop: "1px solid var(--sand-200)", paddingTop: 40 }}>
-              <h2 style={{ fontSize: "1.55rem", marginBottom: 22, fontWeight: 800 }}>Related reading</h2>
+            <section style={{ marginTop: 56, borderTop: "1px solid var(--sand-300)", paddingTop: 40 }}>
+              <h2 style={{ fontSize: "1.55rem", marginBottom: 22, fontWeight: 600, fontFamily: "Lora, Georgia, serif" }}>Related reading</h2>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))", gap: 24 }}>
                 {related.map((item) => <MagazineArticleCard key={item.slug} article={item} compact />)}
               </div>

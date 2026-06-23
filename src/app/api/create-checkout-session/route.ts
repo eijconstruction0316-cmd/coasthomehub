@@ -2,6 +2,7 @@ import Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { tradieCheckoutSchema } from "@/lib/apiSchemas";
 import { logError, logWarn } from "@/lib/logger";
+import { verifyAbnAndLicence } from "@/lib/licenceVerifier";
 import {
   getAppUrl,
   isProduction,
@@ -58,6 +59,15 @@ export async function POST(req: NextRequest) {
       services,
       areas,
     } = parsed.data;
+
+    // Server-side ABN and QBCC licence check before checkout session is created
+    const verification = await verifyAbnAndLicence(abn, licenceNumber, businessName);
+    if (!verification.success) {
+      return NextResponse.json(
+        { error: `Licence verification failed: ${verification.logs[verification.logs.length - 1]}` },
+        { status: 400 }
+      );
+    }
 
     const priceId = priceIds[plan];
     const details = planDetails[plan];

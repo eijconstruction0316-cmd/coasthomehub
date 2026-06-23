@@ -48,12 +48,12 @@ export default function LiveSuburbTracker() {
   return (
     <div
       style={{
-        background: "linear-gradient(135deg, #071615 0%, #0c2b28 100%)",
-        border: "1px solid rgba(61, 153, 144, 0.25)",
-        borderRadius: "24px",
+        background: "#0c2b28",
+        border: "1px solid var(--sand-300)",
+        borderRadius: "4px",
         padding: "24px 32px",
         color: "white",
-        boxShadow: "0 12px 36px rgba(0, 0, 0, 0.3)",
+        boxShadow: "0 12px 36px rgba(0, 0, 0, 0.15)",
       }}
     >
       <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: "32px", alignItems: "center" }} className="tracker-grid">
@@ -61,8 +61,8 @@ export default function LiveSuburbTracker() {
         {/* Left: Ticker Match Display */}
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
-            <span style={{ display: "inline-block", width: "8px", height: "8px", background: "#10b981", borderRadius: "50%", animation: "ping 1.5s infinite" }} className="ping-dot" />
-            <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-300)", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+            <span style={{ display: "inline-block", width: "6px", height: "6px", background: "#10b981", borderRadius: "1px" }} className="ping-dot" />
+            <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-300)", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "Outfit, sans-serif" }}>
               Live QLD Matching Feed
             </span>
           </div>
@@ -76,14 +76,14 @@ export default function LiveSuburbTracker() {
               transition: "all 0.5s ease",
             }}
           >
-            <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "white", lineHeight: 1.4 }}>
-              📍 {currentMatch.suburb} &middot; <span style={{ color: "var(--gold-light)" }}>{currentMatch.type}</span>
+            <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "white", lineHeight: 1.4, fontFamily: "Lora, Georgia, serif", fontStyle: "italic" }}>
+              ✦ {currentMatch.suburb} {" // "} <span style={{ color: "var(--gold-light)", fontStyle: "normal" }}>{currentMatch.type}</span>
             </div>
             <div style={{ display: "flex", gap: "12px", alignItems: "center", marginTop: "8px" }}>
-              <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.6)" }}>
+              <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.6)", fontFamily: "Outfit, sans-serif" }}>
                 Budget: <strong>{currentMatch.budget}</strong>
               </span>
-              <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.6)" }}>
+              <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.6)", fontFamily: "Outfit, sans-serif" }}>
                 &bull; {currentMatch.timeAgo}
               </span>
               <span
@@ -92,10 +92,11 @@ export default function LiveSuburbTracker() {
                   fontWeight: 800,
                   textTransform: "uppercase",
                   padding: "2px 8px",
-                  borderRadius: "4px",
+                  borderRadius: "2px",
                   background: currentMatch.status === "Completed" ? "rgba(16,185,129,0.2)" : "rgba(31,122,114,0.3)",
                   color: currentMatch.status === "Completed" ? "#10b981" : "var(--ocean-200)",
                   border: `1px solid ${currentMatch.status === "Completed" ? "rgba(16,185,129,0.3)" : "rgba(31,122,114,0.5)"}`,
+                  letterSpacing: "0.02em"
                 }}
               >
                 {currentMatch.status}
@@ -105,20 +106,20 @@ export default function LiveSuburbTracker() {
         </div>
 
         {/* Right: Stats Counter Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", borderLeft: "1px solid rgba(255,255,255,0.1)", paddingLeft: "32px" }} className="tracker-stats-col">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", borderLeft: "1px solid var(--sand-300)", paddingLeft: "32px" }} className="tracker-stats-col">
           <div>
-            <div style={{ fontSize: "1.45rem", fontWeight: 900, color: "var(--gold-light)" }}>
+            <div style={{ fontSize: "1.45rem", fontWeight: 900, color: "var(--gold-light)", fontFamily: "Outfit, sans-serif" }}>
               {activeCount}
             </div>
-            <div style={{ fontSize: "0.68rem", color: "rgba(255,255,255,0.5)", marginTop: "4px", lineHeight: 1.2 }}>
+            <div style={{ fontSize: "0.68rem", color: "rgba(255,255,255,0.5)", marginTop: "4px", lineHeight: 1.2, fontFamily: "Outfit, sans-serif" }}>
               Active local projects this month
             </div>
           </div>
           <div>
-            <div style={{ fontSize: "1.45rem", fontWeight: 900, color: "white" }}>
+            <div style={{ fontSize: "1.45rem", fontWeight: 900, color: "white", fontFamily: "Outfit, sans-serif" }}>
               118
             </div>
-            <div style={{ fontSize: "0.68rem", color: "rgba(255,255,255,0.5)", marginTop: "4px", lineHeight: 1.2 }}>
+            <div style={{ fontSize: "0.68rem", color: "rgba(255,255,255,0.5)", marginTop: "4px", lineHeight: 1.2, fontFamily: "Outfit, sans-serif" }}>
               Verified QBCC-licensed trades
             </div>
           </div>
@@ -136,7 +137,7 @@ export default function LiveSuburbTracker() {
         }
         @media (max-width: 760px) {
           .tracker-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
-          .tracker-stats-col { border-left: none !important; padding-left: 0 !important; border-top: 1px solid rgba(255,255,255,0.1) !important; paddingTop: 20px !important; }
+          .tracker-stats-col { border-left: none !important; padding-left: 0 !important; border-top: 1px solid var(--sand-300) !important; padding-top: 20px !important; }
         }
       `}</style>
     </div>

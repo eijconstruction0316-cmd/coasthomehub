@@ -80,11 +80,11 @@ export default function MagazinePage() {
                   position: "relative",
                   height: "min(40vw, 440px)",
                   minHeight: 280,
-                  borderRadius: 12,
+                  borderRadius: 4,
                   overflow: "hidden",
                   marginBottom: 20,
-                  border: "1px solid var(--sand-200)",
-                  boxShadow: "var(--shadow-md)"
+                  border: "1px solid var(--sand-300)",
+                  boxShadow: "var(--shadow-sm)"
                 }}>
                   <Image
                     src={coverStory.heroImage}
@@ -99,7 +99,7 @@ export default function MagazinePage() {
                 </div>
                 <div style={{ padding: "0 10px" }}>
                   <span style={{ color: "var(--gold)", fontSize: "0.78rem", fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase", display: "block", marginBottom: 8 }}>
-                    ★ Cover Story · {coverStory.category} · {coverStory.readTime}
+                    ✦ Cover Story · {coverStory.category} · {coverStory.readTime}
                   </span>
                   <h2 style={{
                     fontFamily: "'Lora', Georgia, serif",
@@ -170,11 +170,11 @@ export default function MagazinePage() {
       <section style={{ background: "white", padding: "32px 0", borderBottom: "1px solid var(--sand-200)" }}>
         <div className="container-lg">
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center" }}>
-            <span style={{ background: "var(--ocean-50)", color: "var(--ocean-600)", border: "1px solid var(--ocean-200)", padding: "8px 18px", borderRadius: 50, fontSize: "0.82rem", fontWeight: 700 }}>
+            <span style={{ background: "var(--ocean-50)", color: "var(--ocean-600)", border: "1px solid var(--ocean-200)", padding: "8px 18px", borderRadius: 2, fontSize: "0.82rem", fontWeight: 700, fontFamily: "Outfit, sans-serif" }}>
               All Publications
             </span>
             {contentTypes.map((type) => (
-              <span key={type} style={{ background: "var(--sand-50)", color: "var(--slate-mid)", border: "1px solid var(--sand-200)", padding: "8px 18px", borderRadius: 50, fontSize: "0.82rem", fontWeight: 500 }}>
+              <span key={type} style={{ background: "var(--sand-50)", color: "var(--slate-mid)", border: "1px solid var(--sand-300)", padding: "8px 18px", borderRadius: 2, fontSize: "0.82rem", fontWeight: 500, fontFamily: "Outfit, sans-serif" }}>
                 {type}
               </span>
             ))}
@@ -207,14 +207,14 @@ export default function MagazinePage() {
               if (index === 2) {
                 return (
                   <div key="interspersed-quote" style={{
-                    background: "linear-gradient(135deg, var(--ocean-700) 0%, var(--ocean-600) 100%)",
+                    background: "var(--ocean-700)",
                     borderRadius: varRadiusLarge(),
                     padding: "36px 32px",
                     color: "white",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
-                    border: "1px solid var(--ocean-800)",
+                    border: "1px solid var(--sand-300)",
                     boxShadow: "var(--shadow-sm)",
                     minHeight: 280
                   }}>
@@ -229,8 +229,8 @@ export default function MagazinePage() {
                     }}>
                       Waterproofing is the single most critical structural step in QLD renovations. Rushing AS 3740 compliance will always nullify your home warranty protection.
                     </p>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "0.78rem" }}>
-                      <span style={{ color: "var(--gold-light)", fontWeight: 700 }}>👷 VERIFIED BUILDER INSPECTION</span>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "0.78rem", fontFamily: "Outfit, sans-serif" }}>
+                      <span style={{ color: "var(--gold-light)", fontWeight: 700 }}>✦ VERIFIED BUILDER INSPECTION</span>
                       <span style={{ color: "rgba(255,255,255,0.6)" }}>QBCC-1102941</span>
                     </div>
                   </div>
@@ -270,5 +270,5 @@ export default function MagazinePage() {
 }
 
 function varRadiusLarge() {
-  return "20px";
+  return "4px";
 }

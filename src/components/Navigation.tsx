@@ -28,6 +28,10 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
+  const transparentOverHero = pathname === "/" && !scrolled;
+  const navLinkColor = transparentOverHero ? "rgba(255,255,255,0.78)" : "var(--slate-mid)";
+  const navActiveColor = transparentOverHero ? "white" : "var(--ocean-700)";
+  const navActiveBackground = transparentOverHero ? "rgba(255,255,255,0.10)" : "var(--ocean-50)";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -37,7 +41,8 @@ export default function Navigation() {
 
   // Close drawer on path change
   useEffect(() => {
-    setDrawerOpen(false);
+    const timer = window.setTimeout(() => setDrawerOpen(false), 0);
+    return () => window.clearTimeout(timer);
   }, [pathname]);
 
   // Lock body scroll when drawer is open
@@ -62,15 +67,15 @@ export default function Navigation() {
           right: 0,
           zIndex: 1000,
           transition: "all 0.4s cubic-bezier(0.25, 1, 0.5, 1)",
-          background: scrolled
-            ? "rgba(255,255,255,0.92)"
-            : "rgba(255,255,255,0.15)",
+          background: transparentOverHero
+            ? "rgba(255,255,255,0.15)"
+            : "rgba(255,255,255,0.92)",
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
-          borderBottom: scrolled
-            ? "1px solid rgba(26,35,50,0.06)"
-            : "1px solid rgba(255,255,255,0.12)",
-          boxShadow: scrolled ? "0 4px 30px rgba(26,35,50,0.05)" : "none",
+          borderBottom: transparentOverHero
+            ? "1px solid rgba(255,255,255,0.12)"
+            : "1px solid rgba(26,35,50,0.06)",
+          boxShadow: transparentOverHero ? "none" : "0 4px 30px rgba(26,35,50,0.05)",
           padding: scrolled ? "10px 0" : "18px 0",
         }}
       >
@@ -111,12 +116,12 @@ export default function Navigation() {
                   href={link.href}
                   style={{
                     padding: "8px 16px",
-                    borderRadius: "50px",
+                    borderRadius: "4px",
                     fontWeight: isActive ? 700 : 500,
                     fontSize: "0.92rem",
                     textDecoration: "none",
-                    color: isActive ? "var(--ocean-600)" : "var(--slate-mid)",
-                    background: isActive ? "var(--ocean-50)" : "transparent",
+                    color: isActive ? navActiveColor : navLinkColor,
+                    background: isActive ? navActiveBackground : "transparent",
                     transition: "var(--transition-fast)",
                   }}
                 >
@@ -131,9 +136,10 @@ export default function Navigation() {
               style={{
                 padding: "8px 18px",
                 marginLeft: 8,
-                borderRadius: "50px",
+                borderRadius: "4px",
                 fontWeight: 700,
-                fontSize: "0.88rem",
+                fontSize: "0.85rem",
+                letterSpacing: "0.08em",
                 background: "var(--ocean-700)",
                 border: "none",
                 color: "white",
@@ -142,12 +148,13 @@ export default function Navigation() {
                 alignItems: "center",
                 gap: 8,
                 boxShadow: "var(--shadow-sm)",
-                transition: "var(--transition-fast)"
+                transition: "var(--transition-fast)",
+                textTransform: "uppercase"
               }}
               className="menu-button-hover"
             >
               <span>Menu</span>
-              <span style={{ fontSize: "0.78rem" }}>☰</span>
+              <span style={{ fontSize: "0.78rem" }}>✦</span>
             </button>
           </div>
 
@@ -174,8 +181,8 @@ export default function Navigation() {
                   display: "block",
                   width: 24,
                   height: 2,
-                  background: "var(--slate-dark)",
-                  borderRadius: 2,
+                  background: transparentOverHero ? "white" : "var(--slate-dark)",
+                  borderRadius: 0,
                   transition: "var(--transition-fast)",
                 }}
               />
@@ -191,7 +198,7 @@ export default function Navigation() {
           .menu-button-hover:hover {
             transform: translateY(-1px);
             background: var(--ocean-600) !important;
-            boxShadow: var(--shadow-md) !important;
+            box-shadow: var(--shadow-md) !important;
           }
         `}</style>
       </nav>
@@ -238,7 +245,7 @@ export default function Navigation() {
             <div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 36 }}>
                 <span style={{ fontSize: "0.78rem", fontWeight: 800, color: "var(--gold)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-                  CoastHomeHub Directory
+                  ✦ CoastHomeHub Directory
                 </span>
                 <button
                   onClick={() => setDrawerOpen(false)}
@@ -285,15 +292,16 @@ export default function Navigation() {
             {/* Bottom Row: B2B Club Promos & Quick Action */}
             <div style={{ marginTop: 40, paddingTop: 28, borderTop: "1px solid var(--sand-200)" }}>
               <div style={{
-                background: "linear-gradient(135deg, var(--ocean-700) 0%, var(--ocean-600) 100%)",
-                borderRadius: 12,
+                background: "var(--ocean-700)",
+                border: "1px solid var(--sand-300)",
+                borderRadius: 4,
                 padding: 20,
                 color: "white"
               }}>
-                <span style={{ fontSize: "0.68rem", fontWeight: 800, color: "var(--gold-light)", display: "block", marginBottom: 4 }}>
-                  EXCLUSIVE WHOLESALE BENEFIT
+                <span style={{ fontSize: "0.68rem", fontWeight: 800, color: "var(--gold-light)", display: "block", marginBottom: 4, letterSpacing: "0.06em" }}>
+                  ✦ EXCLUSIVE WHOLESALE BENEFIT
                 </span>
-                <h5 style={{ color: "white", fontSize: "0.9rem", fontWeight: 800, margin: "0 0 6px" }}>
+                <h5 style={{ color: "white", fontSize: "0.9rem", fontWeight: 800, margin: "0 0 6px", fontFamily: "Lora, Georgia, serif" }}>
                   B2B Buyers Club Access
                 </h5>
                 <p style={{ fontSize: "0.74rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.4, margin: "0 0 12px" }}>
@@ -306,10 +314,10 @@ export default function Navigation() {
                   textDecoration: "none",
                   fontWeight: 800,
                   fontSize: "0.74rem",
-                  padding: "6px 14px",
-                  borderRadius: 50
+                  padding: "8px 16px",
+                  borderRadius: 4
                 }}>
-                  Find a Partner
+                  Find a Partner →
                 </Link>
               </div>
               <p style={{ color: "var(--slate-light)", fontSize: "0.72rem", textAlign: "center", marginTop: 24, margin: "24px 0 0 0" }}>

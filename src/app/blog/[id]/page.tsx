@@ -6,7 +6,6 @@ const posts: Record<string, {
   id: number;
   tag: string;
   title: string;
-  emoji: string;
   color: string;
   date: string;
   readTime: string;
@@ -20,8 +19,7 @@ const posts: Record<string, {
     id: 1,
     tag: "2025 Trends",
     title: "Top 10 Australian Home Design Trends for 2025",
-    emoji: "🏠",
-    color: "var(--ocean-400)",
+    color: "var(--ocean-700)",
     date: "June 12, 2025",
     readTime: "5 min read",
     author: "James Whitfield, EIJ Construction",
@@ -80,8 +78,7 @@ const posts: Record<string, {
     id: 2,
     tag: "DIY Guide",
     title: "How to Re-Seal Your Shower (Step by Step)",
-    emoji: "🚿",
-    color: "var(--sand-500)",
+    color: "var(--ocean-700)",
     date: "June 8, 2025",
     readTime: "8 min read",
     author: "James Whitfield, EIJ Construction",
@@ -128,8 +125,7 @@ const posts: Record<string, {
     id: 3,
     tag: "Buyer's Guide",
     title: "Choosing the Right Waterproofing for QLD's Climate",
-    emoji: "🌧️",
-    color: "#7c3aed",
+    color: "var(--ocean-700)",
     date: "June 3, 2025",
     readTime: "6 min read",
     author: "James Whitfield, EIJ Construction",
@@ -140,8 +136,8 @@ const posts: Record<string, {
         body: "Brisbane and the Gold Coast receive over 1,000mm of rainfall annually, with high summer humidity regularly exceeding 80%. Combined with UV index levels that degrade materials faster than cooler climates, the wrong waterproofing product will fail prematurely — sometimes within 2–3 years.",
       },
       {
-        heading: "Wet Area Waterproofing (Bathrooms & Showers)",
-        body: "Australian Standard AS 3740 mandates specific waterproofing requirements for wet areas. In QLD, you must use a compliant membrane system applied by a licensed waterproofer. Sheet membranes (e.g. Laykold, Gripset) or liquid-applied systems are both compliant when installed correctly.",
+        heading: "Refined Area Waterproofing (Bathrooms & Showers)",
+        body: "Australian Standard AS 3740 mandates specific waterproofing requirements for wet areas. In QLD, you must use a compliant membrane system applied by a licensed waterproofer. Sheet membranes or liquid-applied systems are both compliant when installed correctly.",
       },
       {
         heading: "Balcony & Deck Waterproofing",
@@ -168,8 +164,7 @@ const posts: Record<string, {
     id: 4,
     tag: "Design Trends",
     title: "Coastal Minimalism: The Queensland Interior Look for 2025",
-    emoji: "🌊",
-    color: "#0891b2",
+    color: "var(--ocean-700)",
     date: "May 28, 2025",
     readTime: "7 min read",
     author: "James Whitfield, EIJ Construction",
@@ -208,8 +203,7 @@ const posts: Record<string, {
     id: 5,
     tag: "Cost Guide",
     title: "How Much Does a Bathroom Renovation Cost in QLD? (2025 Prices)",
-    emoji: "💰",
-    color: "#16a34a",
+    color: "var(--ocean-700)",
     date: "May 22, 2025",
     readTime: "9 min read",
     author: "James Whitfield, EIJ Construction",
@@ -252,8 +246,7 @@ const posts: Record<string, {
     id: 6,
     tag: "DIY Guide",
     title: "Tiling Your Own Bathroom: What You Need to Know Before You Start",
-    emoji: "🧱",
-    color: "#d97706",
+    color: "var(--ocean-700)",
     date: "May 15, 2025",
     readTime: "10 min read",
     author: "James Whitfield, EIJ Construction",
@@ -292,8 +285,7 @@ const posts: Record<string, {
     id: 7,
     tag: "Renovation Costs",
     title: "Why Is Renovation So Expensive in QLD? An Honest Answer to “The Neighbour Got It Half Price”",
-    emoji: "💰",
-    color: "var(--gold)",
+    color: "var(--ocean-700)",
     date: "June 21, 2026",
     readTime: "6 min read",
     author: "James Whitfield, EIJ Construction",
@@ -333,8 +325,7 @@ const posts: Record<string, {
     id: 8,
     tag: "DIY Guide",
     title: "How to Re-Grout Bathroom Tiles (Step by Step)",
-    emoji: "🪣",
-    color: "#0891b2",
+    color: "var(--ocean-700)",
     date: "June 14, 2026",
     readTime: "9 min read",
     author: "James Whitfield, EIJ Construction",
@@ -386,8 +377,7 @@ const posts: Record<string, {
     id: 9,
     tag: "DIY Guide",
     title: "Fix a Running Toilet in Under an Hour (Replace the Fill Valve & Flapper)",
-    emoji: "🚽",
-    color: "#16a34a",
+    color: "var(--ocean-700)",
     date: "June 10, 2026",
     readTime: "7 min read",
     author: "James Whitfield, EIJ Construction",
@@ -435,8 +425,7 @@ const posts: Record<string, {
     id: 10,
     tag: "DIY Guide",
     title: "Painting Your Home Interior in Queensland: Products, Prep, and Getting a Professional Finish",
-    emoji: "🖌️",
-    color: "#d97706",
+    color: "var(--ocean-700)",
     date: "June 7, 2026",
     readTime: "11 min read",
     author: "James Whitfield, EIJ Construction",
@@ -506,70 +495,73 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
       {/* Hero */}
       <section
         style={{
-          background: `linear-gradient(160deg, ${post.color}20 0%, var(--sand-50) 100%)`,
+          background: "#0c2422",
+          borderBottom: "3px double var(--sand-300)",
           paddingTop: 120,
           paddingBottom: 64,
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* Decorative large emoji */}
-        <div style={{ position: "absolute", right: "5%", top: "50%", transform: "translateY(-50%)", fontSize: "10rem", opacity: 0.08, pointerEvents: "none", userSelect: "none" }}>
-          {post.emoji}
+        {/* Decorative print-style water mark */}
+        <div style={{ position: "absolute", right: "5%", top: "50%", transform: "translateY(-50%)", fontSize: "10rem", color: "var(--sand-300)", opacity: 0.05, pointerEvents: "none", userSelect: "none", fontFamily: "Lora, Georgia, serif" }}>
+          ✦
         </div>
         <div className="container-md" style={{ position: "relative" }}>
-          <Link href="/blog" style={{ color: "var(--ocean-500)", fontSize: "0.875rem", fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 24 }}>
+          <Link href="/blog" style={{ color: "var(--gold)", fontSize: "0.875rem", fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 24, fontFamily: "Outfit, sans-serif" }}>
             ← Back to All Articles
           </Link>
+          <br />
           <div style={{ display: "flex", gap: 10, marginBottom: 16, flexWrap: "wrap", alignItems: "center" }}>
-            <span style={{ fontSize: "1.8rem" }}>{post.emoji}</span>
-            <span style={{ display: "inline-block", background: `${post.color}18`, color: post.color, border: `1px solid ${post.color}35`, borderRadius: "50px", padding: "4px 14px", fontSize: "0.78rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-              {post.tag}
+            <span style={{ display: "inline-block", background: "rgba(255,255,255,0.06)", color: "#e8b84b", border: "1px solid var(--sand-300)", borderRadius: 2, padding: "4px 14px", fontSize: "0.78rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", fontFamily: "Outfit, sans-serif" }}>
+              ✦ {post.tag}
             </span>
           </div>
-          <h1 style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", marginBottom: 20, lineHeight: 1.2, maxWidth: 680 }}>
+          <h1 style={{ fontSize: "clamp(1.8rem, 5vw, 2.8rem)", marginBottom: 20, lineHeight: 1.2, maxWidth: 680, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "white" }}>
             {post.title}
           </h1>
-          <div style={{ display: "flex", gap: 20, alignItems: "center", color: "var(--slate-light)", fontSize: "0.875rem", flexWrap: "wrap" }}>
-            <span>✍️ {post.author}</span>
-            <span>📅 {post.date}</span>
-            <span>⏱ {post.readTime}</span>
+          <div style={{ display: "flex", gap: 20, alignItems: "center", color: "rgba(255,255,255,0.64)", fontSize: "0.875rem", flexWrap: "wrap", fontFamily: "Outfit, sans-serif" }}>
+            <span>Author: {post.author}</span>
+            <span>·</span>
+            <span>Published: {post.date}</span>
+            <span>·</span>
+            <span>{post.readTime}</span>
           </div>
         </div>
       </section>
 
       {/* Article body */}
-      <section style={{ background: "white", padding: "48px 0 80px" }}>
+      <section style={{ background: "var(--off-white)", padding: "48px 0 80px" }}>
         <div className="container-md">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: 56, alignItems: "flex-start" }} className="article-grid">
             {/* Content */}
-            <div>
+            <div style={{ background: "white", padding: "38px 38px 44px", border: "1px solid var(--sand-300)", borderRadius: 4, boxShadow: "var(--shadow-sm)" }}>
               {/* Intro */}
-              <p style={{ fontSize: "1.1rem", lineHeight: 1.8, color: "var(--slate-mid)", marginBottom: 40, fontWeight: 500, borderLeft: `4px solid ${post.color}`, paddingLeft: 20 }}>
+              <p style={{ fontSize: "1.1rem", lineHeight: 1.8, color: "var(--slate-dark)", marginBottom: 40, fontWeight: 500, borderLeft: `4px solid var(--gold)`, paddingLeft: 20, fontFamily: "Outfit, sans-serif" }}>
                 {post.intro}
               </p>
 
               {/* Sections */}
               {post.sections.map((section) => (
                 <div key={section.heading} style={{ marginBottom: 36 }}>
-                  <h2 style={{ fontSize: "1.2rem", marginBottom: 12, color: "var(--slate-dark)" }}>
-                    {section.heading}
+                  <h2 style={{ fontSize: "1.45rem", marginBottom: 12, color: "var(--slate-dark)", fontFamily: "Lora, Georgia, serif", fontWeight: 500, borderBottom: "1px solid var(--sand-100)", paddingBottom: 6 }}>
+                    ✦ {section.heading}
                   </h2>
-                  <p style={{ color: "var(--slate-mid)", lineHeight: 1.8, fontSize: "0.95rem", whiteSpace: "pre-line" }}>
+                  <p style={{ color: "var(--slate-mid)", lineHeight: 1.8, fontSize: "0.95rem", whiteSpace: "pre-line", fontFamily: "Outfit, sans-serif" }}>
                     {section.body}
                   </p>
                 </div>
               ))}
 
               {/* Tips box */}
-              <div style={{ background: "var(--ocean-50)", border: "1px solid var(--ocean-100)", borderRadius: "var(--radius-lg)", padding: "28px 32px", marginTop: 48, marginBottom: 48 }}>
-                <h3 style={{ color: "var(--ocean-700)", fontSize: "1.05rem", marginBottom: 16 }}>
-                  💡 Expert Tips from EIJ Construction
+              <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "28px 32px", marginTop: 48, marginBottom: 48 }}>
+                <h3 style={{ color: "var(--ocean-700)", fontSize: "1.1rem", marginBottom: 16, fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>
+                  ✦ Expert Tips from EIJ Construction
                 </h3>
-                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
+                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10, padding: 0 }}>
                   {post.tips.map((tip) => (
-                    <li key={tip} style={{ display: "flex", gap: 10, fontSize: "0.9rem", color: "var(--ocean-700)" }}>
-                      <span style={{ fontWeight: 700, color: "var(--ocean-400)", marginTop: 2 }}>→</span>
+                    <li key={tip} style={{ display: "flex", gap: 10, fontSize: "0.9rem", color: "var(--slate-mid)", fontFamily: "Outfit, sans-serif" }}>
+                      <span style={{ fontWeight: 700, color: "var(--gold)", marginTop: 1 }}>✦</span>
                       <span>{tip}</span>
                     </li>
                   ))}
@@ -577,15 +569,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
               </div>
 
               {/* Author CTA */}
-              <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", borderRadius: "var(--radius-lg)", padding: "28px 32px", display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
-                <div style={{ width: 60, height: 60, background: "linear-gradient(135deg, var(--ocean-500), var(--ocean-400))", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.8rem", flexShrink: 0 }}>
-                  👷
+              <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "28px 32px", display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
+                <div style={{ width: 60, height: 60, background: "var(--ocean-700)", borderRadius: 2, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.4rem", color: "var(--gold)", flexShrink: 0 }}>
+                  ✦
                 </div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 700, marginBottom: 4 }}>Written by James Whitfield</div>
-                  <div style={{ fontSize: "0.85rem", color: "var(--slate-light)" }}>QBCC-licensed waterproofing specialist & founder of EIJ Construction. Gold Coast · Sunshine Coast · SEQ.</div>
+                  <div style={{ fontWeight: 700, marginBottom: 4, fontFamily: "Lora, Georgia, serif", fontSize: "1.05rem", color: "var(--slate-dark)" }}>Written by James Whitfield</div>
+                  <div style={{ fontSize: "0.85rem", color: "var(--slate-light)", fontFamily: "Outfit, sans-serif" }}>QBCC-licensed waterproofing specialist & founder of EIJ Construction. Gold Coast · Sunshine Coast · SEQ.</div>
                 </div>
-                <Link href="/quote" className="btn-primary" style={{ fontSize: "0.875rem", padding: "10px 20px", whiteSpace: "nowrap" }} id="article-get-quote">
+                <Link href="/quote" className="btn-primary" style={{ fontSize: "0.875rem", padding: "10px 20px", whiteSpace: "nowrap", borderRadius: 4 }} id="article-get-quote">
                   Get a Free Quote
                 </Link>
               </div>
@@ -593,55 +585,55 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
 
             {/* Sidebar */}
             <div style={{ display: "flex", flexDirection: "column", gap: 20, position: "sticky", top: 96 }}>
-              <div style={{ background: "linear-gradient(135deg, var(--ocean-600), var(--ocean-500))", borderRadius: "var(--radius-lg)", padding: 24, color: "white" }}>
-                <h4 style={{ color: "white", marginBottom: 12, fontSize: "1rem" }}>Need a Tradie?</h4>
-                <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.85rem", lineHeight: 1.6, marginBottom: 16 }}>
+              <div style={{ background: "var(--ocean-700)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: 24, color: "white", boxShadow: "var(--shadow-md)" }}>
+                <h4 style={{ color: "white", marginBottom: 12, fontSize: "1.1rem", fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>Need a Tradie?</h4>
+                <p style={{ color: "rgba(255,255,255,0.76)", fontSize: "0.85rem", lineHeight: 1.6, marginBottom: 16, fontFamily: "Outfit, sans-serif" }}>
                   Get a free quote from a licensed QLD professional within 24 hours.
                 </p>
-                <Link href="/quote" style={{ display: "block", background: "white", color: "var(--ocean-600)", padding: "11px 20px", borderRadius: "50px", fontWeight: 700, fontSize: "0.875rem", textDecoration: "none", textAlign: "center" }} id="sidebar-get-quote">
+                <Link href="/quote" style={{ display: "block", background: "var(--gold)", color: "var(--ocean-700)", padding: "11px 20px", borderRadius: 4, fontWeight: 800, fontSize: "0.875rem", textDecoration: "none", textAlign: "center", fontFamily: "Outfit, sans-serif" }} id="sidebar-get-quote">
                   Get Free Quote →
                 </Link>
               </div>
 
-              <div className="card" style={{ padding: 20 }}>
-                <h4 style={{ fontSize: "0.9rem", marginBottom: 14 }}>📖 More Articles</h4>
+              <div className="card" style={{ padding: 20, borderRadius: 4, border: "1px solid var(--sand-300)", background: "white" }}>
+                <h4 style={{ fontSize: "0.9rem", marginBottom: 14, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>✦ More Articles</h4>
                 <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                   {related.map((r) => r && (
                     <Link key={r.id} href={`/blog/${r.id}`} style={{ display: "flex", gap: 10, textDecoration: "none", alignItems: "flex-start" }}>
-                      <span style={{ fontSize: "1.2rem" }}>{r.emoji}</span>
-                      <span style={{ fontSize: "0.8rem", color: "var(--slate-mid)", lineHeight: 1.4, fontWeight: 500 }}>{r.title}</span>
+                      <span style={{ fontSize: "0.8rem", color: "var(--gold)" }}>✦</span>
+                      <span style={{ fontSize: "0.8rem", color: "var(--slate-mid)", lineHeight: 1.4, fontWeight: 500, fontFamily: "Outfit, sans-serif" }}>{r.title}</span>
                     </Link>
                   ))}
                 </div>
               </div>
 
-              <div className="card" style={{ padding: 20, background: "var(--sand-50)", border: "1px solid var(--sand-200)" }}>
-                <h4 style={{ fontSize: "0.9rem", marginBottom: 10 }}>🗺️ Service Areas</h4>
-                <p style={{ fontSize: "0.8rem", color: "var(--slate-light)", lineHeight: 1.6 }}>
+              <div className="card" style={{ padding: 20, background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: 4 }}>
+                <h4 style={{ fontSize: "0.9rem", marginBottom: 10, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>✦ Service Areas</h4>
+                <p style={{ fontSize: "0.8rem", color: "var(--slate-light)", lineHeight: 1.6, fontFamily: "Outfit, sans-serif" }}>
                   Gold Coast · Tweed Heads · Logan · Brisbane · Sunshine Coast · Noosa
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <style>{`@media(max-width:800px){.article-grid{grid-template-columns:1fr!important;}}`}</style>
+        <style dangerouslySetInnerHTML={{ __html: `@media(max-width:800px){.article-grid{grid-template-columns:1fr!important;}}` }} />
       </section>
 
       {/* Related Articles */}
-      <section style={{ background: "var(--off-white)", padding: "64px 0" }}>
+      <section style={{ background: "white", borderTop: "1px solid var(--sand-200)", padding: "64px 0" }}>
         <div className="container-lg">
-          <h2 style={{ fontSize: "1.6rem", marginBottom: 32 }}>Related Articles</h2>
+          <h2 style={{ fontSize: "1.6rem", marginBottom: 32, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>Related Articles</h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 24 }}>
             {related.map((r) => r && (
               <Link key={r.id} href={`/blog/${r.id}`} style={{ textDecoration: "none" }}>
-                <article className="card" style={{ overflow: "hidden" }}>
-                  <div style={{ height: 120, background: `linear-gradient(135deg, ${r.color}20, ${r.color}40)`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "3rem" }}>
-                    {r.emoji}
+                <article className="card" style={{ overflow: "hidden", borderRadius: 4, border: "1px solid var(--sand-300)", background: "var(--off-white)" }}>
+                  <div style={{ height: 120, background: "var(--sand-50)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.2rem", color: "var(--gold)", borderBottom: "1px solid var(--sand-300)" }}>
+                    ✦
                   </div>
                   <div style={{ padding: "18px 20px" }}>
-                    <span style={{ fontSize: "0.72rem", fontWeight: 700, color: r.color, textTransform: "uppercase", letterSpacing: "0.05em" }}>{r.tag}</span>
-                    <h3 style={{ fontSize: "0.95rem", marginTop: 6, lineHeight: 1.4, color: "var(--slate-dark)" }}>{r.title}</h3>
-                    <p style={{ fontSize: "0.78rem", color: "var(--slate-light)", marginTop: 6 }}>⏱ {r.readTime} · {r.date}</p>
+                    <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "var(--ocean-700)", textTransform: "uppercase", letterSpacing: "0.05em", fontFamily: "Outfit, sans-serif" }}>{r.tag}</span>
+                    <h3 style={{ fontSize: "1rem", marginTop: 6, lineHeight: 1.4, color: "var(--slate-dark)", fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>{r.title}</h3>
+                    <p style={{ fontSize: "0.78rem", color: "var(--slate-light)", marginTop: 6, fontFamily: "Outfit, sans-serif" }}>⏱ {r.readTime} · {r.date}</p>
                   </div>
                 </article>
               </Link>
@@ -651,11 +643,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
       </section>
 
       {/* CTA */}
-      <section style={{ background: "linear-gradient(135deg, var(--slate-dark), var(--slate-mid))", padding: "64px 0", textAlign: "center" }}>
+      <section style={{ background: "#0c2422", borderTop: "3px double var(--sand-300)", padding: "64px 0", textAlign: "center" }}>
         <div className="container-md">
-          <h2 style={{ color: "white", fontSize: "1.8rem", marginBottom: 12 }}>Ready to Start Your Project?</h2>
-          <p style={{ color: "rgba(255,255,255,0.7)", marginBottom: 28 }}>Get a free quote from a licensed QLD tradie within 24 hours.</p>
-          <Link href="/quote" className="btn-gold" id="article-cta">Get a Free Quote →</Link>
+          <h2 style={{ color: "white", fontSize: "1.8rem", marginBottom: 12, fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>Ready to Start Your Project?</h2>
+          <p style={{ color: "rgba(255,255,255,0.76)", marginBottom: 28, fontFamily: "Outfit, sans-serif" }}>Get a free quote from a licensed QLD tradie within 24 hours.</p>
+          <Link href="/quote" className="btn-gold" id="article-cta" style={{ borderRadius: 4 }}>Get a Free Quote →</Link>
         </div>
       </section>
     </>

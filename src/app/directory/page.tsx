@@ -30,7 +30,7 @@ const TRADIE_DATA: TradieProfile[] = [
     category: "Bathroom & Kitchen Renovation",
     suburbGroup: "Gold Coast",
     image: "/images/luxury_kitchen.png",
-    b2bBenefit: "🎁 Elite Sponsor: 10% Off Reece & Laminex materials",
+    b2bBenefit: "✦ Elite Sponsor: 10% Off Reece & Laminex materials",
     description: "Specializing in high-end coastal modern home renovations. Full design-to-build service with complete project management, certified waterproofing, and custom finishes.",
     featuredProjects: [
       { title: "Noosa Servery Window Kitchen", budget: "$48,000", image: "/images/noosa_servery_window.png", tag: "Laminex Organic Ash" },
@@ -47,7 +47,7 @@ const TRADIE_DATA: TradieProfile[] = [
     category: "Decking & General Build",
     suburbGroup: "Sunshine Coast",
     image: "/images/outdoor_living.png",
-    b2bBenefit: "🎁 Partner: 5% Off Colorbond & Osmo products",
+    b2bBenefit: "✦ Partner: 5% Off Colorbond & Osmo products",
     description: "Premium timber framing, outdoor decks, pergolas, and cladding installations. Built to withstand QLD coastal weather using premium local materials.",
     featuredProjects: [
       { title: "The Resort Alfresco Pool Deck", budget: "$32,000", image: "/images/outdoor_living.png", tag: "Osmo Timber Protection" }
@@ -63,7 +63,7 @@ const TRADIE_DATA: TradieProfile[] = [
     category: "Bathroom & Tiling",
     suburbGroup: "Brisbane",
     image: "/images/modern_bathroom_after.png",
-    b2bBenefit: "🎁 Partner: 5% Off Beaumont Tiles range",
+    b2bBenefit: "✦ Partner: 5% Off Beaumont Tiles range",
     description: "High-precision tiling and wet area waterproofing complying strictly with AS 3740 standards. Specialists in stone, porcelain, and custom mosaic work.",
     featuredProjects: [
       { title: "Paddington Heritage Bathroom", budget: "$19,500", image: "/images/modern_bathroom_after.png", tag: "Beaumont Stone Tiles" }
@@ -110,13 +110,13 @@ export default function DirectoryPage() {
   return (
     <>
       {/* Hero Section */}
-      <section style={{ background: "linear-gradient(160deg, var(--slate-dark) 0%, var(--slate-mid) 100%)", paddingTop: 130, paddingBottom: 64, color: "white", textAlign: "center" }}>
+      <section style={{ background: "#0c2422", borderBottom: "3px double var(--sand-300)", paddingTop: 130, paddingBottom: 64, color: "white", textAlign: "center" }}>
         <div className="container-lg">
-          <div className="badge" style={{ marginBottom: 16, display: "inline-flex", background: "rgba(255,255,255,0.1)", color: "var(--ocean-300)" }}>
+          <div className="badge" style={{ marginBottom: 16, display: "inline-flex", background: "rgba(255,255,255,0.05)", borderColor: "var(--sand-300)", color: "#e8b84b", borderRadius: 2 }}>
             Verified Partner Directory
           </div>
-          <h1 style={{ color: "white", fontSize: "clamp(2rem, 5vw, 3.2rem)", marginBottom: 14 }}>Find Verified QLD Renovation Partners</h1>
-          <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "1.05rem", maxWidth: 640, margin: "0 auto" }}>
+          <h1 style={{ color: "white", fontSize: "clamp(2rem, 5vw, 3.2rem)", marginBottom: 14, fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>Find Verified QLD Renovation Partners</h1>
+          <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "1.05rem", maxWidth: 640, margin: "0 auto", fontFamily: "Outfit, sans-serif" }}>
             Every partner is QBCC licence verified. Explore their portfolios, material options, and B2B trade discount benefits.
           </p>
         </div>
@@ -130,10 +130,10 @@ export default function DirectoryPage() {
           <div
             style={{
               background: "white",
-              borderRadius: "var(--radius-lg)",
+              borderRadius: 4,
               padding: "20px 24px",
               boxShadow: "var(--shadow-sm)",
-              border: "1px solid var(--sand-200)",
+              border: "1px solid var(--sand-300)",
               display: "flex",
               gap: 20,
               flexWrap: "wrap",
@@ -142,7 +142,7 @@ export default function DirectoryPage() {
             }}
           >
             <div>
-              <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--slate-light)", textTransform: "uppercase", display: "block", marginBottom: 6 }}>
+              <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--slate-light)", textTransform: "uppercase", display: "block", marginBottom: 6, fontFamily: "Outfit, sans-serif" }}>
                 Service Region
               </span>
               <div style={{ display: "flex", gap: 8 }}>
@@ -152,13 +152,14 @@ export default function DirectoryPage() {
                     onClick={() => setSelectedSuburb(reg)}
                     style={{
                       padding: "8px 16px",
-                      borderRadius: 50,
-                      border: selectedSuburb === reg ? "2px solid var(--ocean-500)" : "1px solid var(--sand-300)",
+                      borderRadius: 2,
+                      border: selectedSuburb === reg ? "1px solid var(--ocean-600)" : "1px solid var(--sand-300)",
                       background: selectedSuburb === reg ? "var(--ocean-50)" : "white",
                       color: selectedSuburb === reg ? "var(--ocean-700)" : "var(--slate-mid)",
                       fontWeight: selectedSuburb === reg ? 700 : 400,
                       fontSize: "0.82rem",
                       cursor: "pointer",
+                      fontFamily: "Outfit, sans-serif"
                     }}
                   >
                     {reg}
@@ -170,7 +171,7 @@ export default function DirectoryPage() {
             <div style={{ borderLeft: "1px solid var(--sand-300)", height: 40, alignSelf: "center" }} className="filter-divider" />
 
             <div>
-              <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--slate-light)", textTransform: "uppercase", display: "block", marginBottom: 6 }}>
+              <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--slate-light)", textTransform: "uppercase", display: "block", marginBottom: 6, fontFamily: "Outfit, sans-serif" }}>
                 Trade Category
               </span>
               <div style={{ display: "flex", gap: 8 }}>
@@ -180,13 +181,14 @@ export default function DirectoryPage() {
                     onClick={() => setSelectedCategory(cat)}
                     style={{
                       padding: "8px 16px",
-                      borderRadius: 50,
-                      border: selectedCategory === cat ? "2px solid var(--gold)" : "1px solid var(--sand-300)",
+                      borderRadius: 2,
+                      border: selectedCategory === cat ? "1px solid var(--gold)" : "1px solid var(--sand-300)",
                       background: selectedCategory === cat ? "#fef9f0" : "white",
                       color: selectedCategory === cat ? "var(--gold)" : "var(--slate-mid)",
                       fontWeight: selectedCategory === cat ? 700 : 400,
                       fontSize: "0.82rem",
                       cursor: "pointer",
+                      fontFamily: "Outfit, sans-serif"
                     }}
                   >
                     {cat}
@@ -204,9 +206,9 @@ export default function DirectoryPage() {
                   key={tradie.id}
                   style={{
                     background: "white",
-                    borderRadius: "var(--radius-xl)",
-                    border: "1px solid var(--sand-200)",
-                    boxShadow: "var(--shadow-md)",
+                    borderRadius: 4,
+                    border: "1px solid var(--sand-300)",
+                    boxShadow: "var(--shadow-sm)",
                     padding: 32,
                     display: "grid",
                     gridTemplateColumns: "1fr 340px",
@@ -217,32 +219,32 @@ export default function DirectoryPage() {
                   {/* Left Column: Profile & Portfolio */}
                   <div>
                     <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-                      <span style={{ background: "rgba(34,197,94,0.1)", color: "#15803d", fontSize: "0.75rem", fontWeight: 800, padding: "4px 12px", borderRadius: 50 }}>
-                        🛡️ QBCC License Verified
+                      <span style={{ background: "rgba(34,197,94,0.1)", color: "#15803d", fontSize: "0.75rem", fontWeight: 800, padding: "4px 12px", borderRadius: 2, fontFamily: "Outfit, sans-serif" }}>
+                        ✦ QBCC License Verified
                       </span>
-                      <span style={{ fontSize: "0.78rem", color: "var(--slate-light)" }}>{tradie.qbcc}</span>
+                      <span style={{ fontSize: "0.78rem", color: "var(--slate-light)", fontFamily: "Outfit, sans-serif" }}>{tradie.qbcc}</span>
                     </div>
 
                     <Link href={`/directory/${tradie.id}`} style={{ textDecoration: "none" }}>
-                      <h2 style={{ fontSize: "1.45rem", color: "var(--slate-dark)", marginBottom: 4, cursor: "pointer" }} className="hover-name">
+                      <h2 style={{ fontSize: "1.45rem", color: "var(--slate-dark)", marginBottom: 4, cursor: "pointer", fontFamily: "Lora, Georgia, serif", fontWeight: 500 }} className="hover-name">
                         {tradie.name}
                       </h2>
                     </Link>
-                    <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 16 }}>
-                      <span style={{ color: "#f59e0b", fontSize: "1rem" }}>★</span>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 16, fontFamily: "Outfit, sans-serif" }}>
+                      <span style={{ color: "#f59e0b", fontSize: "0.9rem" }}>✦</span>
                       <strong style={{ fontSize: "0.875rem", color: "var(--slate-dark)" }}>{tradie.rating}</strong>
                       <span style={{ color: "var(--slate-light)", fontSize: "0.82rem" }}>({tradie.reviewsCount} reviews)</span>
                       <span style={{ color: "var(--sand-300)" }}>•</span>
                       <span style={{ fontSize: "0.82rem", color: "var(--slate-light)" }}>📍 {tradie.location}</span>
                     </div>
 
-                    <p style={{ color: "var(--slate-mid)", fontSize: "0.93rem", lineHeight: 1.65, marginBottom: 24 }}>
+                    <p style={{ color: "var(--slate-mid)", fontSize: "0.93rem", lineHeight: 1.65, marginBottom: 24, fontFamily: "Outfit, sans-serif" }}>
                       {tradie.description}
                     </p>
 
                     {tradie.b2bBenefit && (
-                      <div style={{ background: "var(--ocean-50)", border: "1px solid var(--ocean-100)", borderRadius: 12, padding: "14px 18px", marginBottom: 24, display: "inline-block" }}>
-                        <span style={{ fontSize: "0.85rem", color: "var(--ocean-700)", fontWeight: 700 }}>
+                      <div style={{ background: "var(--ocean-50)", border: "1px solid var(--ocean-200)", borderRadius: 2, padding: "14px 18px", marginBottom: 24, display: "inline-block" }}>
+                        <span style={{ fontSize: "0.85rem", color: "var(--ocean-700)", fontWeight: 700, fontFamily: "Outfit, sans-serif" }}>
                           {tradie.b2bBenefit}
                         </span>
                       </div>
@@ -250,22 +252,22 @@ export default function DirectoryPage() {
 
                     {/* Featured Portfolios */}
                     <div>
-                      <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "var(--slate-light)", textTransform: "uppercase", display: "block", marginBottom: 12, letterSpacing: "0.05em" }}>
-                        Featured Work & Material Tags (Archipro-style)
+                      <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "var(--slate-light)", textTransform: "uppercase", display: "block", marginBottom: 12, letterSpacing: "0.05em", fontFamily: "Outfit, sans-serif" }}>
+                        Featured Work & Material Tags
                       </span>
                       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                         {tradie.featuredProjects.map((proj) => (
-                          <div key={proj.title} style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", borderRadius: 14, overflow: "hidden" }}>
+                          <div key={proj.title} style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: 4, overflow: "hidden" }}>
                             <div style={{ position: "relative", height: 120, width: "100%" }}>
                               <Image src={proj.image} alt={proj.title} fill style={{ objectFit: "cover" }} unoptimized />
                             </div>
                             <div style={{ padding: 12 }}>
-                              <h4 style={{ fontSize: "0.85rem", fontWeight: 800, color: "var(--slate-dark)", margin: "0 0 4px" }}>{proj.title}</h4>
+                              <h4 style={{ fontSize: "0.85rem", fontWeight: 800, color: "var(--slate-dark)", margin: "0 0 4px", fontFamily: "Lora, Georgia, serif" }}>{proj.title}</h4>
                               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                <span style={{ fontSize: "0.72rem", background: "white", border: "1px solid var(--sand-300)", padding: "2px 8px", borderRadius: 50, color: "var(--ocean-600)", fontWeight: 700 }}>
-                                  🏷️ {proj.tag}
+                                <span style={{ fontSize: "0.72rem", background: "white", border: "1px solid var(--sand-300)", padding: "2px 8px", borderRadius: 2, color: "var(--ocean-600)", fontWeight: 700, fontFamily: "Outfit, sans-serif" }}>
+                                  ✦ {proj.tag}
                                 </span>
-                                <span style={{ fontSize: "0.78rem", fontWeight: 800, color: "var(--gold)" }}>{proj.budget}</span>
+                                <span style={{ fontSize: "0.78rem", fontWeight: 800, color: "var(--gold)", fontFamily: "Outfit, sans-serif" }}>{proj.budget}</span>
                               </div>
                             </div>
                           </div>
@@ -278,7 +280,7 @@ export default function DirectoryPage() {
                   {/* Right Column: Actions Sidebar */}
                   <div
                     style={{
-                      borderLeft: "1px solid var(--sand-200)",
+                      borderLeft: "1px solid var(--sand-300)",
                       paddingLeft: 32,
                       display: "flex",
                       flexDirection: "column",
@@ -288,11 +290,11 @@ export default function DirectoryPage() {
                     }}
                     className="directory-card-sidebar"
                   >
-                    <div style={{ width: 64, height: 64, background: "var(--ocean-50)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.8rem", marginBottom: 16, color: "var(--ocean-500)" }}>
-                      ✉️
+                    <div style={{ width: 64, height: 64, background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.5rem", marginBottom: 16, color: "var(--ocean-600)" }}>
+                      ✦
                     </div>
-                    <h3 style={{ fontSize: "1rem", color: "var(--slate-dark)", marginBottom: 8 }}>Ready to discuss your project?</h3>
-                    <p style={{ fontSize: "0.8rem", color: "var(--slate-light)", lineHeight: 1.5, marginBottom: 20 }}>
+                    <h3 style={{ fontSize: "1rem", color: "var(--slate-dark)", marginBottom: 8, fontFamily: "Lora, Georgia, serif", fontWeight: 600 }}>Ready to discuss your project?</h3>
+                    <p style={{ fontSize: "0.8rem", color: "var(--slate-mid)", lineHeight: 1.5, marginBottom: 20, fontFamily: "Outfit, sans-serif" }}>
                       Send an AI-scoped brief directly to {tradie.name} to receive a priority quote.
                     </p>
                     <button
@@ -301,21 +303,21 @@ export default function DirectoryPage() {
                       style={{
                         width: "100%",
                         padding: "12px 24px",
-                        background: "linear-gradient(135deg, var(--ocean-600), var(--ocean-500))",
+                        background: "var(--ocean-700)",
                         border: "none",
-                        borderRadius: "50px",
+                        borderRadius: 4,
                         color: "white",
                         fontWeight: 700,
                         fontSize: "0.9rem",
                         cursor: "pointer",
-                        boxShadow: "0 4px 12px rgba(31,122,114,0.2)",
                         transition: "var(--transition)",
+                        fontFamily: "Outfit, sans-serif"
                       }}
                     >
                       {quoteSuccessId === tradie.id ? "⏳ Connecting..." : "Direct Quote Request"}
                     </button>
                     
-                    <span style={{ fontSize: "0.7rem", color: "var(--slate-light)", marginTop: 12 }}>
+                    <span style={{ fontSize: "0.7rem", color: "var(--slate-light)", marginTop: 12, fontFamily: "Outfit, sans-serif" }}>
                       No commission fees. Direct contract with build partner.
                     </span>
                   </div>
@@ -323,10 +325,10 @@ export default function DirectoryPage() {
                 </div>
               ))
             ) : (
-              <div style={{ background: "white", borderRadius: "var(--radius-xl)", border: "1px dashed var(--sand-300)", padding: "48px", textAlign: "center" }}>
-                <span style={{ fontSize: "2rem" }}>🔍</span>
-                <h3 style={{ fontSize: "1.1rem", color: "var(--slate-dark)", margin: "12px 0 6px" }}>No build partners found</h3>
-                <p style={{ fontSize: "0.875rem", color: "var(--slate-light)", margin: 0 }}>Try clearing your filters or selecting a different service region.</p>
+              <div style={{ background: "white", borderRadius: 4, border: "1px dashed var(--sand-300)", padding: "48px", textAlign: "center" }}>
+                <span style={{ fontSize: "2rem", color: "var(--gold)" }}>✦</span>
+                <h3 style={{ fontSize: "1.1rem", color: "var(--slate-dark)", margin: "12px 0 6px", fontFamily: "Lora, Georgia, serif" }}>No build partners found</h3>
+                <p style={{ fontSize: "0.875rem", color: "var(--slate-light)", margin: 0, fontFamily: "Outfit, sans-serif" }}>Try clearing your filters or selecting a different service region.</p>
               </div>
             )}
           </div>
@@ -335,14 +337,14 @@ export default function DirectoryPage() {
       </section>
 
       {/* Directory CTA */}
-      <section style={{ background: "linear-gradient(135deg, var(--ocean-600), var(--ocean-400))", padding: "80px 0", color: "white", textAlign: "center" }}>
+      <section style={{ background: "var(--ocean-700)", borderTop: "3px double var(--sand-300)", padding: "80px 0", color: "white", textAlign: "center" }}>
         <div className="container-md">
-          <h2 style={{ color: "white", fontSize: "clamp(1.6rem, 4vw, 2.4rem)", marginBottom: 12 }}>Are you a licensed QLD building contractor?</h2>
-          <p style={{ color: "rgba(255,255,255,0.85)", marginBottom: 36, maxWidth: 520, margin: "0 auto 36px" }}>
+          <h2 style={{ color: "white", fontSize: "clamp(1.6rem, 4vw, 2.4rem)", marginBottom: 12, fontFamily: "Lora, Georgia, serif", fontWeight: 550 }}>Are you a licensed QLD building contractor?</h2>
+          <p style={{ color: "rgba(255,255,255,0.85)", marginBottom: 36, maxWidth: 520, margin: "0 auto 36px", fontFamily: "Outfit, sans-serif" }}>
             Join our premium partner directory. Feature your portfolio, tag your suppliers, and receive pre-qualified, non-commission leads.
           </p>
-          <Link href="/tradies" className="btn-gold" id="directory-cta-hub">
-            🔧 Learn More & Register
+          <Link href="/tradies" className="btn-gold" style={{ borderRadius: 4 }} id="directory-cta-hub">
+            Learn More & Register
           </Link>
         </div>
       </section>

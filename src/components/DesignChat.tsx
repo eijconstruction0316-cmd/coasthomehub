@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import LocationInput from "@/components/LocationInput";
 
 type ChatImage = { media_type: string; data: string; preview: string };
 type Msg = { role: "user" | "assistant"; text: string; images?: ChatImage[] };
@@ -10,9 +11,9 @@ type ContactForm = { name: string; email: string; phone: string; suburb: string 
 const FREE_QUOTA = 2;
 
 const STARTERS = [
-  "Modernise our main bathroom 🛁",
-  "Refresh a tired kitchen 🍳",
-  "Re-do our deck / outdoor area 🌿",
+  "Modernise our main bathroom",
+  "Refresh a tired kitchen",
+  "Re-do our deck / outdoor area",
   "Whole-home reno — where do we start?",
 ];
 
@@ -77,7 +78,7 @@ export default function DesignChat() {
   const [submitError, setSubmitError] = useState("");
   const [contact, setContact] = useState<ContactForm>({ name: "", email: "", phone: "", suburb: "" });
 
-  // Subscription / quota state — httpOnly 쿠키 기반 (서버사이드, localStorage 우회 불가)
+  // Subscription / quota state
   const [quotesUsed, setQuotesUsed] = useState(0);
   const [subscribed, setSubscribed] = useState(false);
   const [loadingCheckout, setLoadingCheckout] = useState(false);
@@ -105,7 +106,7 @@ export default function DesignChat() {
 
   useEffect(() => {
     if (searchParams.get("unlocked") === "1") {
-      setSubscribed(true);
+      setTimeout(() => setSubscribed(true), 0);
       router.replace("/design");
     }
   }, [searchParams, router]);
@@ -253,44 +254,53 @@ export default function DesignChat() {
     setPendingImages((prev) => prev.filter((_, i) => i !== idx));
   }
 
-  function field(label: string, key: keyof ContactForm, type = "text", required = false) {
+  const field = (label: string, key: keyof ContactForm, type = "text", required = false) => {
     return (
       <div style={{ marginBottom: 14 }}>
-        <label style={{ display: "block", fontSize: "0.8rem", fontWeight: 700, color: "#4a607a", marginBottom: 5 }}>
+        <label style={{ display: "block", fontSize: "0.8rem", fontWeight: 700, color: "var(--slate-mid)", marginBottom: 5, fontFamily: "Outfit, sans-serif" }}>
           {label}{required && <span style={{ color: "#ef4444" }}> *</span>}
         </label>
-        <input
-          type={type}
-          required={required}
-          value={contact[key]}
-          onChange={(e) => setContact((c) => ({ ...c, [key]: e.target.value }))}
-          style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e8dfd0", borderRadius: 10, padding: "10px 13px", fontSize: "0.92rem", fontFamily: "inherit", color: "#1a2332", outline: "none" }}
-        />
+        {key === "suburb" ? (
+          <LocationInput
+            value={contact.suburb}
+            onChange={(val) => setContact((c) => ({ ...c, suburb: val }))}
+            placeholder="E.g. Burleigh Heads, QLD"
+            required={required}
+          />
+        ) : (
+          <input
+            type={type}
+            required={required}
+            value={contact[key]}
+            onChange={(e) => setContact((c) => ({ ...c, [key]: e.target.value }))}
+            style={{ width: "100%", boxSizing: "border-box", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "10px 13px", fontSize: "0.92rem", fontFamily: "inherit", color: "var(--slate-dark)", outline: "none" }}
+          />
+        )}
       </div>
     );
   }
 
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "column", height: "100%", background: "white", borderRadius: "var(--radius-lg)", border: "1px solid var(--sand-300)", overflow: "hidden" }}>
+      <div style={{ display: "flex", flexDirection: "column", height: "100%", background: "white", borderRadius: 4, border: "1px solid var(--sand-300)", overflow: "hidden" }}>
         {/* Header */}
-        <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "16px 20px", borderBottom: "1px solid var(--sand-200)", background: "rgba(250, 248, 245, 0.8)", backdropFilter: "blur(12px)" }}>
-          <div style={{ width: 34, height: 34, borderRadius: "50%", background: "var(--ocean-600)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1rem" }}>🌊</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "16px 20px", borderBottom: "1px solid var(--sand-300)", background: "var(--sand-50)" }}>
+          <div style={{ width: 34, height: 34, borderRadius: 2, background: "var(--ocean-700)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1rem", color: "var(--gold)" }}>✦</div>
           <div>
             <div style={{ fontFamily: "Lora, Georgia, serif", fontWeight: 600, fontSize: "1.05rem", color: "var(--slate-dark)", lineHeight: 1 }}>CoastAI</div>
-            <div style={{ fontSize: "0.7rem", color: "var(--ocean-500)", fontWeight: 700, marginTop: 4, letterSpacing: "0.04em", textTransform: "uppercase" }}>● active · design concierge</div>
+            <div style={{ fontSize: "0.7rem", color: "var(--ocean-700)", fontWeight: 750, marginTop: 4, letterSpacing: "0.04em", textTransform: "uppercase" }}>✦ active · design concierge</div>
           </div>
           {started && showBriefButton && !submitted && (
             <button
               onClick={() => atQuotaLimit ? setShowPaywall(true) : setShowModal(true)}
-              style={{ marginLeft: "auto", fontSize: "0.78rem", fontWeight: 700, color: "white", background: atQuotaLimit ? "var(--sand-400)" : "linear-gradient(135deg, var(--gold), var(--gold-light))", border: "none", padding: "8px 16px", borderRadius: "4px", cursor: "pointer", whiteSpace: "nowrap", fontFamily: "Outfit, sans-serif", letterSpacing: "0.02em", boxShadow: atQuotaLimit ? "none" : "0 4px 10px rgba(201,151,42,0.2)" }}
+              style={{ marginLeft: "auto", fontSize: "0.78rem", fontWeight: 700, color: "white", background: atQuotaLimit ? "var(--sand-400)" : "var(--gold)", border: "none", padding: "8px 16px", borderRadius: "4px", cursor: "pointer", whiteSpace: "nowrap", fontFamily: "Outfit, sans-serif", letterSpacing: "0.02em" }}
             >
-              {atQuotaLimit ? "🔒 Subscribe to continue" : "📋 Get Quote Brief →"}
+              {atQuotaLimit ? "Subscribe to continue" : "Get Quote Brief →"}
             </button>
           )}
           {submitted && (
-            <div style={{ marginLeft: "auto", fontSize: "0.76rem", fontWeight: 800, color: "var(--ocean-700)", background: "var(--ocean-50)", border: "1px solid var(--ocean-100)", padding: "8px 16px", borderRadius: "4px", letterSpacing: "0.02em", textTransform: "uppercase" }}>
-              ✓ Brief Dispatched
+            <div style={{ marginLeft: "auto", fontSize: "0.76rem", fontWeight: 800, color: "var(--ocean-700)", background: "var(--ocean-50)", border: "1px solid var(--ocean-200)", padding: "8px 16px", borderRadius: "4px", letterSpacing: "0.02em", textTransform: "uppercase" }}>
+              ✦ Brief Dispatched
             </div>
           )}
         </div>
@@ -299,9 +309,9 @@ export default function DesignChat() {
         <div ref={scrollRef} style={{ flex: 1, overflowY: "auto", padding: "24px 20px", display: "flex", flexDirection: "column", gap: 20, background: "var(--off-white)" }}>
           {!started && (
             <div style={{ margin: "auto 0", textAlign: "center", padding: "16px 0" }}>
-              <div style={{ fontSize: "2.4rem", marginBottom: 12 }}>📸</div>
+              <div style={{ fontSize: "2rem", marginBottom: 12, color: "var(--gold)" }}>✦</div>
               <h3 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.3rem", fontWeight: 600, color: "var(--slate-dark)", marginBottom: 8 }}>Show me your space</h3>
-              <p style={{ color: "var(--slate-light)", fontSize: "0.88rem", lineHeight: 1.65, maxWidth: 360, margin: "0 auto 24px", fontFamily: "Outfit, sans-serif" }}>
+              <p style={{ color: "var(--slate-mid)", fontSize: "0.88rem", lineHeight: 1.65, maxWidth: 360, margin: "0 auto 24px", fontFamily: "Outfit, sans-serif" }}>
                 Upload photos and describe your dream renovation. I will create a concept scope, QLD ballpark budget, and match you with licensed local builders.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center", maxWidth: 440, margin: "0 auto" }}>
@@ -346,14 +356,14 @@ export default function DesignChat() {
                       ))}
                     </div>
                   )}
-                  <div style={{ background: "var(--ocean-600)", color: "white", padding: "12px 16px", borderRadius: "4px", fontSize: "0.88rem", lineHeight: 1.55, whiteSpace: "pre-wrap", fontFamily: "Outfit, sans-serif" }}>
+                  <div style={{ background: "var(--ocean-700)", color: "white", padding: "12px 16px", borderRadius: "4px", fontSize: "0.88rem", lineHeight: 1.55, whiteSpace: "pre-wrap", fontFamily: "Outfit, sans-serif" }}>
                     {m.text}
                   </div>
                 </div>
               </div>
             ) : (
               <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                <div style={{ flexShrink: 0, width: 30, height: 30, borderRadius: "50%", background: "var(--ocean-600)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.85rem", color: "white", marginTop: 2 }}>🌊</div>
+                <div style={{ flexShrink: 0, width: 30, height: 30, borderRadius: 2, background: "var(--ocean-700)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.85rem", color: "var(--gold)", marginTop: 2 }}>✦</div>
                 <div style={{ background: "white", border: "1px solid var(--sand-300)", padding: "16px 20px", borderRadius: "4px", fontSize: "0.95rem", color: "var(--slate-mid)", lineHeight: 1.75, maxWidth: "82%", fontFamily: "Lora, Georgia, serif", boxShadow: "0 2px 10px rgba(0,0,0,0.02)" }}>
                   {m.text ? renderRich(m.text) : (busy && i === messages.length - 1 ? <span style={{ color: "var(--ocean-400)" }}>● ● ●</span> : "")}
                 </div>
@@ -366,9 +376,9 @@ export default function DesignChat() {
             <div style={{ background: "white", border: `1px solid ${atQuotaLimit ? "var(--sand-300)" : "var(--gold)"}`, borderRadius: 4, padding: "20px 24px", textAlign: "center", marginTop: 8, boxShadow: "var(--shadow-sm)" }}>
               {atQuotaLimit ? (
                 <>
-                  <p style={{ fontSize: "0.9rem", color: "var(--slate-dark)", margin: "0 0 8px", fontWeight: 700, fontFamily: "Outfit, sans-serif" }}>🔒 You&apos;ve used your {FREE_QUOTA} free briefs</p>
+                  <p style={{ fontSize: "0.9rem", color: "var(--slate-dark)", margin: "0 0 8px", fontWeight: 700, fontFamily: "Outfit, sans-serif" }}>You&apos;ve used your {FREE_QUOTA} free briefs</p>
                   <p style={{ fontSize: "0.82rem", color: "var(--slate-light)", margin: "0 0 16px", lineHeight: 1.6, fontFamily: "Outfit, sans-serif" }}>Subscribe for $10/month to send unlimited briefs + access the full magazine.</p>
-                  <button onClick={() => setShowPaywall(true)} style={{ background: "var(--ocean-600)", color: "white", border: "none", borderRadius: "4px", padding: "12px 28px", fontWeight: 700, fontSize: "0.88rem", cursor: "pointer", fontFamily: "Outfit, sans-serif", letterSpacing: "0.02em" }}>
+                  <button onClick={() => setShowPaywall(true)} style={{ background: "var(--ocean-700)", color: "white", border: "none", borderRadius: "4px", padding: "12px 28px", fontWeight: 700, fontSize: "0.88rem", cursor: "pointer", fontFamily: "Outfit, sans-serif", letterSpacing: "0.02em" }}>
                     Unlock Unlimited Access →
                   </button>
                 </>
@@ -380,9 +390,9 @@ export default function DesignChat() {
                   {!subscribed && <p style={{ fontSize: "0.76rem", color: "var(--sand-500)", margin: "0 0 14px", fontFamily: "Outfit, sans-serif", fontWeight: 600 }}>{FREE_QUOTA - quotesUsed} free brief{FREE_QUOTA - quotesUsed !== 1 ? "s" : ""} remaining</p>}
                   <button
                     onClick={() => setShowModal(true)}
-                    style={{ background: "linear-gradient(135deg, var(--gold), var(--gold-light))", color: "white", border: "none", borderRadius: "4px", padding: "12px 28px", fontWeight: 700, fontSize: "0.88rem", cursor: "pointer", fontFamily: "Outfit, sans-serif", letterSpacing: "0.02em", boxShadow: "0 4px 12px rgba(201,151,42,0.2)" }}
+                    style={{ background: "var(--gold)", color: "white", border: "none", borderRadius: "4px", padding: "12px 28px", fontWeight: 700, fontSize: "0.88rem", cursor: "pointer", fontFamily: "Outfit, sans-serif", letterSpacing: "0.02em" }}
                   >
-                    📋 Get Quote Brief →
+                    Get Quote Brief →
                   </button>
                 </>
               )}
@@ -390,8 +400,8 @@ export default function DesignChat() {
           )}
 
           {submitted && (
-            <div style={{ background: "rgba(240, 249, 248, 0.75)", border: "1px solid var(--ocean-100)", borderRadius: 4, padding: "24px 20px", textAlign: "center" }}>
-              <div style={{ fontSize: "2rem", marginBottom: 10 }}>✅</div>
+            <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "24px 20px", textAlign: "center" }}>
+              <div style={{ fontSize: "1.5rem", marginBottom: 10, color: "var(--gold)" }}>✦</div>
               <p style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.05rem", fontWeight: 600, color: "var(--ocean-700)", margin: "0 0 8px" }}>Your brief has been sent!</p>
               <p style={{ fontSize: "0.84rem", color: "var(--slate-mid)", margin: 0, fontFamily: "Outfit, sans-serif" }}>Check your email — we&apos;ll be in touch with matched tradies soon.</p>
             </div>
@@ -409,7 +419,7 @@ export default function DesignChat() {
                   <img src={img.preview} alt={`Photo ${idx + 1}`} style={{ width: 56, height: 56, objectFit: "cover", borderRadius: 4, border: "1px solid var(--sand-300)", display: "block" }} />
                   <button
                     onClick={() => removeImage(idx)}
-                    style={{ position: "absolute", top: -6, right: -6, width: 18, height: 18, borderRadius: "50%", background: "#ef4444", color: "white", border: "none", cursor: "pointer", fontSize: "0.6rem", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1 }}
+                    style={{ position: "absolute", top: -6, right: -6, width: 18, height: 18, borderRadius: 2, background: "#ef4444", color: "white", border: "none", cursor: "pointer", fontSize: "0.6rem", fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1 }}
                   >
                     ✕
                   </button>
@@ -436,10 +446,10 @@ export default function DesignChat() {
                 onClick={() => fileRef.current?.click()}
                 aria-label="Upload photos"
                 title="Upload up to 6 photos"
-                style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 4, border: "1px solid var(--sand-300)", background: "white", cursor: "pointer", fontSize: "1.1rem", transition: "var(--transition-fast)" }}
+                style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 4, border: "1px solid var(--sand-300)", background: "white", cursor: "pointer", fontSize: "0.9rem", transition: "var(--transition-fast)" }}
                 className="upload-btn-hover"
               >
-                📷
+                ✦
               </button>
             )}
             <textarea
@@ -455,7 +465,7 @@ export default function DesignChat() {
               onClick={() => send()}
               disabled={busy || (!input.trim() && pendingImages.length === 0)}
               aria-label="Send"
-              style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 4, border: "none", background: busy || (!input.trim() && pendingImages.length === 0) ? "var(--sand-300)" : "var(--ocean-600)", color: "white", cursor: busy ? "default" : "pointer", fontSize: "1.1rem" }}
+              style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 4, border: "none", background: busy || (!input.trim() && pendingImages.length === 0) ? "var(--sand-300)" : "var(--ocean-700)", color: "white", cursor: busy ? "default" : "pointer", fontSize: "1.1rem" }}
             >
               ➤
             </button>
@@ -473,12 +483,12 @@ export default function DesignChat() {
           style={{ position: "fixed", inset: 0, background: "rgba(45,35,25,0.4)", backdropFilter: "blur(4px)", zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}
         >
           <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "36px 32px 32px", width: "100%", maxWidth: 420, boxShadow: "var(--shadow-xl)", textAlign: "center" }} className="page-fade-in">
-            <div style={{ fontSize: "2.4rem", marginBottom: 12 }}>🔒</div>
+            <div style={{ fontSize: "2rem", marginBottom: 12, color: "var(--gold)" }}>✦</div>
             <h2 style={{ fontFamily: "Lora, Georgia, serif", margin: "0 0 10px", fontSize: "1.3rem", fontWeight: 600, color: "var(--slate-dark)" }}>You&apos;ve used your {FREE_QUOTA} free briefs</h2>
-            <p style={{ color: "var(--slate-light)", fontSize: "0.85rem", lineHeight: 1.65, margin: "0 0 24px", fontFamily: "Outfit, sans-serif" }}>
+            <p style={{ color: "var(--slate-mid)", fontSize: "0.85rem", lineHeight: 1.65, margin: "0 0 24px", fontFamily: "Outfit, sans-serif" }}>
               Subscribe for <strong>$10/month AUD</strong> to send unlimited AI quote briefs and read every magazine article. Cancel anytime.
             </p>
-            <div style={{ background: "var(--ocean-50)", border: "1px solid var(--ocean-100)", borderRadius: 4, padding: "16px 20px", marginBottom: 28, textAlign: "left" }}>
+            <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "16px 20px", marginBottom: 28, textAlign: "left" }}>
               {[
                 "✦ Unlimited AI quote briefs",
                 "✦ Full magazine access (8+ articles)",
@@ -491,7 +501,7 @@ export default function DesignChat() {
             <button
               onClick={handleSubscribe}
               disabled={loadingCheckout}
-              style={{ width: "100%", background: loadingCheckout ? "var(--sand-300)" : "linear-gradient(135deg, var(--gold), var(--gold-light))", color: "white", border: "none", borderRadius: 4, padding: "14px 0", fontWeight: 700, fontSize: "0.95rem", cursor: loadingCheckout ? "default" : "pointer", fontFamily: "Outfit, sans-serif", marginBottom: 12 }}
+              style={{ width: "100%", background: loadingCheckout ? "var(--sand-300)" : "var(--gold)", color: "white", border: "none", borderRadius: 4, padding: "14px 0", fontWeight: 700, fontSize: "0.95rem", cursor: loadingCheckout ? "default" : "pointer", fontFamily: "Outfit, sans-serif", marginBottom: 12 }}
             >
               {loadingCheckout ? "Loading checkout…" : "Subscribe — $10/month AUD →"}
             </button>
@@ -532,9 +542,9 @@ export default function DesignChat() {
               <button
                 type="submit"
                 disabled={submitting || !contact.name || !contact.email}
-                style={{ width: "100%", background: submitting ? "var(--sand-300)" : "var(--ocean-600)", color: "white", border: "none", borderRadius: 4, padding: "13px 0", fontWeight: 700, fontSize: "0.92rem", cursor: submitting ? "default" : "pointer", fontFamily: "Outfit, sans-serif", marginTop: 8 }}
+                style={{ width: "100%", background: submitting ? "var(--sand-300)" : "var(--ocean-700)", color: "white", border: "none", borderRadius: 4, padding: "13px 0", fontWeight: 700, fontSize: "0.92rem", cursor: submitting ? "default" : "pointer", fontFamily: "Outfit, sans-serif", marginTop: 8 }}
               >
-                {submitting ? "Sending your brief…" : "📨 Send My Brief"}
+                {submitting ? "Sending your brief…" : "Send My Brief"}
               </button>
 
               <p style={{ fontSize: "0.72rem", color: "var(--sand-500)", textAlign: "center", margin: "14px 0 0", fontWeight: 600, fontFamily: "Outfit, sans-serif" }}>
@@ -547,14 +557,14 @@ export default function DesignChat() {
       <style dangerouslySetInnerHTML={{ __html: `
         .starter-btn-hover:hover {
           background: var(--sand-50) !important;
-          border-color: var(--ocean-500) !important;
+          border-color: var(--ocean-700) !important;
         }
         .upload-btn-hover:hover {
-          border-color: var(--sand-400) !important;
+          border-color: var(--sand-450) !important;
           background: var(--sand-50) !important;
         }
         .chat-textarea-focus:focus {
-          border-color: var(--ocean-400) !important;
+          border-color: var(--ocean-700) !important;
         }
       `}} />
     </>

@@ -64,21 +64,21 @@ export default async function LocalServicePage({ params }: LocalServicePageProps
       />
       <JsonLd data={buildFaqSchema(page.faq)} />
 
-      <section style={{ background: "linear-gradient(160deg,#0a1f1e,#155e58)", padding: "126px 0 70px" }}>
+      <section style={{ background: "#0c2422", borderBottom: "3px double var(--sand-300)", padding: "126px 0 70px" }}>
         <div className="container-lg">
           <div style={{ maxWidth: 780 }}>
-            <div className="badge" style={{ background: "rgba(255,255,255,0.12)", borderColor: "rgba(255,255,255,0.2)", color: "#e8b84b", marginBottom: 18 }}>
+            <div className="badge" style={{ background: "rgba(255,255,255,0.06)", borderColor: "var(--sand-300)", color: "#e8b84b", marginBottom: 18, borderRadius: 2 }}>
               {page.city.name} · {page.service.shortName}
             </div>
-            <h1 style={{ color: "white", fontSize: "clamp(2.1rem,5vw,3.45rem)", lineHeight: 1.1, marginBottom: 16 }}>
+            <h1 style={{ color: "white", fontSize: "clamp(2.1rem,5vw,3.45rem)", lineHeight: 1.1, marginBottom: 16, fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>
               {page.h1}
             </h1>
-            <p style={{ color: "rgba(255,255,255,0.76)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: 680 }}>
+            <p style={{ color: "rgba(255,255,255,0.76)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: 680, fontFamily: "Outfit, sans-serif" }}>
               {page.intro}
             </p>
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 30 }}>
-              <Link href="/quote" className="btn-gold">Request a quote</Link>
-              <Link href="/planner" style={{ display: "inline-flex", alignItems: "center", color: "rgba(255,255,255,0.88)", border: "2px solid rgba(255,255,255,0.24)", borderRadius: 50, padding: "12px 26px", textDecoration: "none", fontWeight: 800 }}>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 30, alignItems: "center" }}>
+              <Link href="/quote" className="btn-gold" style={{ borderRadius: 4 }}>Request a quote</Link>
+              <Link href="/planner" style={{ display: "inline-flex", alignItems: "center", color: "rgba(255,255,255,0.88)", border: "2px solid rgba(255,255,255,0.24)", borderRadius: 4, padding: "12px 26px", textDecoration: "none", fontWeight: 700, fontFamily: "Outfit, sans-serif" }}>
                 Plan with AI
               </Link>
             </div>
@@ -94,9 +94,9 @@ export default async function LocalServicePage({ params }: LocalServicePageProps
               ["Typical timeline", page.service.timeline],
               ["Service area", page.city.serviceAreaSummary],
             ].map(([label, value]) => (
-              <div key={label} style={{ background: "var(--off-white)", border: "1px solid var(--sand-200)", borderRadius: 16, padding: "20px 22px" }}>
-                <p style={{ color: "var(--gold)", fontSize: "0.74rem", fontWeight: 800, letterSpacing: ".06em", textTransform: "uppercase", marginBottom: 8 }}>{label}</p>
-                <p style={{ color: "var(--slate-mid)", fontWeight: 700, lineHeight: 1.55 }}>{value}</p>
+              <div key={label} style={{ background: "var(--off-white)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "20px 22px" }}>
+                <p style={{ color: "var(--gold)", fontSize: "0.74rem", fontWeight: 800, letterSpacing: ".06em", textTransform: "uppercase", marginBottom: 8, fontFamily: "Outfit, sans-serif" }}>✦ {label}</p>
+                <p style={{ color: "var(--slate-dark)", fontWeight: 700, lineHeight: 1.55, fontFamily: "Outfit, sans-serif" }}>{value}</p>
               </div>
             ))}
           </div>
@@ -106,38 +106,38 @@ export default async function LocalServicePage({ params }: LocalServicePageProps
       <section style={{ background: "var(--off-white)", padding: "54px 0 36px" }}>
         <div className="container-lg">
           <div style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) minmax(280px,390px)", gap: 28, alignItems: "start" }} className="local-service-grid">
-            <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 18, padding: "30px 32px", boxShadow: "var(--shadow-sm)" }}>
-              <h2 style={{ fontSize: "1.55rem", marginBottom: 14 }}>What this page covers</h2>
-              <p style={{ color: "var(--slate-light)", lineHeight: 1.75, marginBottom: 22 }}>
+            <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "30px 32px", boxShadow: "var(--shadow-sm)" }}>
+              <h2 style={{ fontSize: "1.55rem", marginBottom: 14, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>What this page covers</h2>
+              <p style={{ color: "var(--slate-light)", lineHeight: 1.75, marginBottom: 22, fontFamily: "Outfit, sans-serif" }}>
                 {page.city.intro}
               </p>
-              <h3 style={{ fontSize: "1.08rem", marginBottom: 10 }}>Typical scope</h3>
-              <ul style={{ paddingLeft: 20, display: "grid", gap: 9, color: "var(--slate-mid)", lineHeight: 1.65, marginBottom: 28 }}>
+              <h3 style={{ fontSize: "1.1rem", marginBottom: 10, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>Typical scope</h3>
+              <ul style={{ paddingLeft: 20, display: "grid", gap: 9, color: "var(--slate-mid)", lineHeight: 1.65, marginBottom: 28, fontFamily: "Outfit, sans-serif", listStyleType: "square" }}>
                 {page.service.scope.map((item) => <li key={item}>{item}</li>)}
               </ul>
-              <h3 style={{ fontSize: "1.08rem", marginBottom: 10 }}>Local considerations in {page.city.name}</h3>
-              <ul style={{ paddingLeft: 20, display: "grid", gap: 9, color: "var(--slate-mid)", lineHeight: 1.65 }}>
+              <h3 style={{ fontSize: "1.1rem", marginBottom: 10, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>Local considerations in {page.city.name}</h3>
+              <ul style={{ paddingLeft: 20, display: "grid", gap: 9, color: "var(--slate-mid)", lineHeight: 1.65, fontFamily: "Outfit, sans-serif", listStyleType: "square" }}>
                 {page.city.localConsiderations.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </div>
 
             <aside style={{ display: "grid", gap: 18 }}>
-              <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 16, padding: "22px 24px", boxShadow: "var(--shadow-sm)" }}>
-                <h3 style={{ fontSize: "1.05rem", marginBottom: 12 }}>Quality checklist</h3>
-                <ul style={{ display: "grid", gap: 9, listStyle: "none" }}>
+              <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "22px 24px", boxShadow: "var(--shadow-sm)" }}>
+                <h3 style={{ fontSize: "1.1rem", marginBottom: 12, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>Quality checklist</h3>
+                <ul style={{ display: "grid", gap: 9, listStyle: "none", padding: 0 }}>
                   {page.service.qualitySignals.map((item) => (
-                    <li key={item} style={{ display: "flex", gap: 9, color: "var(--slate-mid)", fontSize: "0.9rem", lineHeight: 1.55 }}>
-                      <span style={{ color: "var(--ocean-500)", fontWeight: 900 }}>✓</span>
+                    <li key={item} style={{ display: "flex", gap: 9, color: "var(--slate-mid)", fontSize: "0.9rem", lineHeight: 1.55, fontFamily: "Outfit, sans-serif" }}>
+                      <span style={{ color: "var(--gold)", fontWeight: 700 }}>✦</span>
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 16, padding: "22px 24px", boxShadow: "var(--shadow-sm)" }}>
-                <h3 style={{ fontSize: "1.05rem", marginBottom: 12 }}>Nearby areas</h3>
+              <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "22px 24px", boxShadow: "var(--shadow-sm)" }}>
+                <h3 style={{ fontSize: "1.1rem", marginBottom: 12, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>Nearby areas</h3>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                   {page.city.suburbs.map((suburb) => (
-                    <span key={suburb} style={{ background: "var(--off-white)", border: "1px solid var(--sand-200)", borderRadius: 50, padding: "5px 10px", color: "var(--slate-mid)", fontSize: "0.78rem", fontWeight: 700 }}>
+                    <span key={suburb} style={{ background: "var(--off-white)", border: "1px solid var(--sand-300)", borderRadius: 2, padding: "5px 10px", color: "var(--slate-mid)", fontSize: "0.78rem", fontWeight: 700, fontFamily: "Outfit, sans-serif" }}>
                       {suburb}
                     </span>
                   ))}
@@ -150,35 +150,35 @@ export default async function LocalServicePage({ params }: LocalServicePageProps
 
       <section style={{ background: "var(--off-white)", padding: "20px 0 84px" }}>
         <div className="container-lg">
-          <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 18, padding: "28px 30px", boxShadow: "var(--shadow-sm)" }}>
-            <h2 style={{ fontSize: "1.35rem", marginBottom: 18 }}>FAQ</h2>
+          <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "28px 30px", boxShadow: "var(--shadow-sm)" }}>
+            <h2 style={{ fontSize: "1.45rem", marginBottom: 18, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>FAQ</h2>
             <div style={{ display: "grid", gap: 14 }}>
               {page.faq.map((item) => (
-                <div key={item.question} style={{ background: "var(--off-white)", border: "1px solid var(--sand-200)", borderRadius: 12, padding: "16px 18px" }}>
-                  <h3 style={{ fontSize: "0.98rem", marginBottom: 7 }}>{item.question}</h3>
-                  <p style={{ color: "var(--slate-light)", fontSize: "0.9rem", lineHeight: 1.65 }}>{item.answer}</p>
+                <div key={item.question} style={{ background: "var(--off-white)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "16px 18px" }}>
+                  <h3 style={{ fontSize: "1.05rem", marginBottom: 7, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>✦ {item.question}</h3>
+                  <p style={{ color: "var(--slate-light)", fontSize: "0.9rem", lineHeight: 1.65, fontFamily: "Outfit, sans-serif" }}>{item.answer}</p>
                 </div>
               ))}
             </div>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))", gap: 18, marginTop: 26 }}>
-            <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 16, padding: "20px 22px" }}>
-              <h3 style={{ fontSize: "1rem", marginBottom: 12 }}>Same service, other areas</h3>
+            <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "20px 22px" }}>
+              <h3 style={{ fontSize: "1.1rem", marginBottom: 12, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>Same service, other areas</h3>
               <div style={{ display: "grid", gap: 8 }}>
                 {relatedCities.map((cityItem) => (
-                  <Link key={cityItem.slug} href={`/locations/${cityItem.slug}/${page.service.slug}`} style={{ color: "var(--ocean-500)", fontWeight: 700, textDecoration: "none", fontSize: "0.9rem" }}>
-                    {page.service.name} {cityItem.name} →
+                  <Link key={cityItem.slug} href={`/locations/${cityItem.slug}/${page.service.slug}`} style={{ color: "var(--ocean-700)", fontWeight: 700, textDecoration: "none", fontSize: "0.9rem", fontFamily: "Outfit, sans-serif" }}>
+                    ✦ {page.service.name} {cityItem.name} →
                   </Link>
                 ))}
               </div>
             </div>
-            <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 16, padding: "20px 22px" }}>
-              <h3 style={{ fontSize: "1rem", marginBottom: 12 }}>More services in {page.city.name}</h3>
+            <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "20px 22px" }}>
+              <h3 style={{ fontSize: "1.1rem", marginBottom: 12, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "var(--slate-dark)" }}>More services in {page.city.name}</h3>
               <div style={{ display: "grid", gap: 8 }}>
                 {relatedServices.map((serviceItem) => (
-                  <Link key={serviceItem.slug} href={`/locations/${page.city.slug}/${serviceItem.slug}`} style={{ color: "var(--ocean-500)", fontWeight: 700, textDecoration: "none", fontSize: "0.9rem" }}>
-                    {serviceItem.name} {page.city.name} →
+                  <Link key={serviceItem.slug} href={`/locations/${page.city.slug}/${serviceItem.slug}`} style={{ color: "var(--ocean-700)", fontWeight: 700, textDecoration: "none", fontSize: "0.9rem", fontFamily: "Outfit, sans-serif" }}>
+                    ✦ {serviceItem.name} {page.city.name} →
                   </Link>
                 ))}
               </div>
@@ -187,11 +187,11 @@ export default async function LocalServicePage({ params }: LocalServicePageProps
         </div>
       </section>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 860px) {
           .local-service-grid { grid-template-columns: 1fr !important; }
         }
-      `}</style>
+      `}} />
     </>
   );
 }

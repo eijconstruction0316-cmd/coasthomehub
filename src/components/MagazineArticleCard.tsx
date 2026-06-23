@@ -36,13 +36,14 @@ export default function MagazineArticleCard({ article, compact = false }: Magazi
               top: 14,
               background: "white",
               color: "var(--ocean-600)",
-              borderRadius: 50,
+              borderRadius: 2,
               padding: "4px 12px",
               fontSize: "0.68rem",
               fontWeight: 800,
               letterSpacing: ".05em",
               textTransform: "uppercase",
-              boxShadow: "var(--shadow-sm)"
+              boxShadow: "var(--shadow-sm)",
+              fontFamily: "Outfit, sans-serif"
             }}
           >
             {article.type}

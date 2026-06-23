@@ -23,16 +23,16 @@ export default function ProjectsPage() {
         ])}
       />
 
-      <section style={{ background: "linear-gradient(160deg,#0a1f1e,#155e58)", padding: "126px 0 72px" }}>
+      <section style={{ background: "#0c2422", borderBottom: "3px double var(--sand-300)", padding: "126px 0 72px" }}>
         <div className="container-lg">
           <div style={{ maxWidth: 760 }}>
-            <div className="badge" style={{ background: "rgba(255,255,255,0.12)", borderColor: "rgba(255,255,255,0.2)", color: "#e8b84b", marginBottom: 18 }}>
+            <div className="badge" style={{ background: "rgba(255,255,255,0.06)", borderColor: "var(--sand-300)", color: "#e8b84b", marginBottom: 18, borderRadius: 2 }}>
               Project stories
             </div>
-            <h1 style={{ color: "white", fontSize: "clamp(2.1rem,5vw,3.4rem)", lineHeight: 1.1, marginBottom: 16 }}>
+            <h1 style={{ color: "white", fontSize: "clamp(2.1rem,5vw,3.4rem)", lineHeight: 1.1, marginBottom: 16, fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>
               Realistic renovation stories before you start yours
             </h1>
-            <p style={{ color: "rgba(255,255,255,0.72)", fontSize: "1.05rem", lineHeight: 1.75 }}>
+            <p style={{ color: "rgba(255,255,255,0.76)", fontSize: "1.05rem", lineHeight: 1.75, fontFamily: "Outfit, sans-serif" }}>
               Project stories explain the scope, materials, cost drivers, timeline and trade sequence behind Queensland renovations.
             </p>
           </div>
@@ -46,8 +46,8 @@ export default function ProjectsPage() {
               <div key={project.slug} style={{ display: "grid", gap: 14 }}>
                 <MagazineArticleCard article={project} />
                 {project.projectMeta && (
-                  <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 14, padding: "16px 18px", boxShadow: "var(--shadow-sm)" }}>
-                    <div style={{ display: "grid", gap: 8, color: "var(--slate-mid)", fontSize: "0.86rem" }}>
+                  <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "16px 18px", boxShadow: "var(--shadow-sm)" }}>
+                    <div style={{ display: "grid", gap: 8, color: "var(--slate-mid)", fontSize: "0.86rem", fontFamily: "Outfit, sans-serif" }}>
                       <span><strong>Location:</strong> {project.projectMeta.location}</span>
                       <span><strong>Budget:</strong> {project.projectMeta.budgetRange}</span>
                       <span><strong>Timeline:</strong> {project.projectMeta.timeline}</span>

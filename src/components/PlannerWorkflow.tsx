@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { PlannerProjectType } from "@/lib/planner";
+import LocationInput from "@/components/LocationInput";
 
-type ProjectType = "Bathroom" | "Kitchen" | "Flooring" | "Painting" | "Outdoor";
+type ProjectType = PlannerProjectType;
 
 type PlannerQuestion = {
   id: string;
@@ -49,9 +51,17 @@ type PlannerResult = {
 const PROJECT_TYPES: Array<{ type: ProjectType; label: string; description: string }> = [
   { type: "Bathroom", label: "Bathroom", description: "Waterproofing, fixtures, tiling, layout and finishes." },
   { type: "Kitchen", label: "Kitchen", description: "Cabinetry, benchtops, appliance layout and services." },
-  { type: "Flooring", label: "Flooring", description: "Rooms, existing floor removal, product choice and install plan." },
-  { type: "Painting", label: "Painting", description: "Interior or exterior painting, prep, colours and finish level." },
-  { type: "Outdoor", label: "Outdoor", description: "Decks, patios, pergolas, paving and outdoor living areas." },
+  { type: "Flooring", label: "Flooring", description: "Timber, laminate, carpet, vinyl prep and install." },
+  { type: "Painting", label: "Painting", description: "Interior or exterior painting, prep, colours and finishes." },
+  { type: "Outdoor", label: "Outdoor", description: "Patios, pergolas, gazebos, external structures and seating." },
+  { type: "Waterproofing", label: "Waterproofing", description: "Shower recess, wet areas, balconies, QBCC compliance." },
+  { type: "Tiling", label: "Tiling", description: "Wall and floor tiles, screeding, splashbacks and layouts." },
+  { type: "Decking & Carpentry", label: "Decking & Carpentry", description: "Timber or composite decks, framing, doors and fit-out." },
+  { type: "Landscaping & Paving", label: "Landscaping & Paving", description: "Gardens, turfing, retaining walls, paths and driveways." },
+  { type: "Electrical & Smart Home", label: "Electrical & Smart Home", description: "Lighting layout, switchboards, smart devices and GPOs." },
+  { type: "Plumbing", label: "Plumbing", description: "Hot water systems, fixtures, drainage and pipe relocation." },
+  { type: "Roofing & Cladding", label: "Roofing & Cladding", description: "Repairs, re-roofing, gutters, downpipes and cladding." },
+  { type: "Plastering & Gyprock", label: "Plastering & Gyprock", description: "Plasterboard hanging, jointing, sanding and cornices." },
 ];
 
 function formatBytes(size: number) {
@@ -273,14 +283,23 @@ export default function PlannerWorkflow() {
                   <p style={{ color: "var(--slate-light)", fontSize: "0.85rem", lineHeight: 1.55, marginBottom: 14 }}>
                     {question.helper}
                   </p>
-                  <textarea
-                    value={answerText}
-                    onChange={(e) => setAnswerText(e.target.value)}
-                    placeholder={question.placeholder}
-                    rows={5}
-                    style={{ width: "100%", resize: "vertical", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "14px 16px", fontSize: "0.92rem", fontFamily: "inherit", color: "var(--slate-dark)", outline: "none", lineHeight: 1.6, background: "var(--sand-50)/10" }}
-                    className="form-textarea-editorial"
-                  />
+                  {question.id === "location" ? (
+                    <LocationInput
+                      value={answerText}
+                      onChange={setAnswerText}
+                      placeholder={question.placeholder}
+                      required={question.required}
+                    />
+                  ) : (
+                    <textarea
+                      value={answerText}
+                      onChange={(e) => setAnswerText(e.target.value)}
+                      placeholder={question.placeholder}
+                      rows={5}
+                      style={{ width: "100%", resize: "vertical", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "14px 16px", fontSize: "0.92rem", fontFamily: "inherit", color: "var(--slate-dark)", outline: "none", lineHeight: 1.6, background: "var(--sand-50)/10" }}
+                      className="form-textarea-editorial"
+                    />
+                  )}
                 </div>
                 <button
                   type="submit"
@@ -312,8 +331,8 @@ export default function PlannerWorkflow() {
             )}
 
             {error && (
-              <p style={{ color: "#b91c1c", background: "#fef2f2", border: "1px solid #fee2e2", borderRadius: 4, padding: "12px 14px", marginTop: 16, fontSize: "0.88rem" }}>
-                ⚠️ {error}
+              <p style={{ color: "#b91c1c", background: "#fef2f2", border: "1px solid #fee2e2", borderRadius: 4, padding: "12px 14px", marginTop: 16, fontSize: "0.88rem", fontFamily: "Outfit, sans-serif" }}>
+                ✦ {error}
               </p>
             )}
           </div>

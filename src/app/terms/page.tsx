@@ -9,17 +9,17 @@ export default function TermsPage() {
   const lastUpdated = "18 June 2025";
   return (
     <>
-      <section style={{ background: "linear-gradient(160deg, var(--sand-50) 0%, var(--ocean-50) 100%)", paddingTop: 120, paddingBottom: 48 }}>
+      <section style={{ background: "#0c2422", borderBottom: "3px double var(--sand-300)", paddingTop: 130, paddingBottom: 54 }}>
         <div className="container-md">
-          <div className="badge" style={{ marginBottom: 16, display: "inline-flex" }}>Legal</div>
-          <h1 style={{ fontSize: "clamp(2rem, 5vw, 2.8rem)", marginBottom: 12 }}>Terms of Service</h1>
-          <p style={{ color: "var(--slate-light)" }}>Last updated: {lastUpdated}</p>
+          <div className="badge" style={{ marginBottom: 16, display: "inline-flex", background: "rgba(255,255,255,0.05)", borderColor: "var(--sand-300)", color: "#e8b84b", borderRadius: 2 }}>Legal</div>
+          <h1 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", marginBottom: 12, color: "white", fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>Terms of Service</h1>
+          <p style={{ color: "rgba(255,255,255,0.7)", fontFamily: "Outfit, sans-serif" }}>Last updated: {lastUpdated}</p>
         </div>
       </section>
 
       <section style={{ background: "white", padding: "48px 0 96px" }}>
         <div className="container-md">
-          <div style={{ background: "#fff7ed", border: "1px solid #fed7aa", borderRadius: "var(--radius-md)", padding: "20px 24px", marginBottom: 40 }}>
+          <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "20px 24px", marginBottom: 40, fontFamily: "Outfit, sans-serif" }}>
             <p style={{ fontSize: "0.9rem", color: "#9a3412", margin: 0, lineHeight: 1.7 }}>
               <strong>Important:</strong> By using CoastHomeHub, you agree to these Terms. Please read them carefully. These Terms govern both homeowners (Free Users) and trade businesses (Tradie Members).
             </p>
@@ -127,9 +127,9 @@ Contact: info@coasthomehub.com.au
 EIJ Construction Pty Ltd, Brisbane QLD Australia`,
             },
           ].map((section) => (
-            <div key={section.title} style={{ marginBottom: 40, paddingBottom: 40, borderBottom: "1px solid var(--sand-200)" }}>
-              <h2 style={{ fontSize: "1.2rem", marginBottom: 16, color: "var(--slate-dark)" }}>{section.title}</h2>
-              <div style={{ whiteSpace: "pre-line", fontSize: "0.9rem", color: "var(--slate-mid)", lineHeight: 1.8 }}>
+            <div key={section.title} style={{ marginBottom: 40, paddingBottom: 40, borderBottom: "1px solid var(--sand-300)" }}>
+              <h2 style={{ fontSize: "1.25rem", marginBottom: 16, color: "var(--slate-dark)", fontFamily: "Lora, Georgia, serif", fontWeight: 600 }}>{section.title}</h2>
+              <div style={{ whiteSpace: "pre-line", fontSize: "0.9rem", color: "var(--slate-mid)", lineHeight: 1.8, fontFamily: "Outfit, sans-serif" }}>
                 {section.content}
               </div>
             </div>

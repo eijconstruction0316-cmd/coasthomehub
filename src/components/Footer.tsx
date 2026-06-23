@@ -44,15 +44,16 @@ export default function Footer() {
                 style={{
                   width: 40,
                   height: 40,
-                  background: "linear-gradient(135deg, var(--ocean-500), var(--ocean-400))",
-                  borderRadius: 10,
+                  background: "var(--slate-mid)",
+                  borderRadius: 4,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  fontSize: "1.2rem",
+                  fontSize: "1.1rem",
+                  color: "white"
                 }}
               >
-                🏠
+                ✦
               </div>
               <div>
                 <div style={{ fontWeight: 800, fontSize: "1.2rem", color: "white" }}>
@@ -73,12 +74,12 @@ export default function Footer() {
                 gap: 8,
                 background: "rgba(255,255,255,0.06)",
                 border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: 8,
+                borderRadius: 4,
                 padding: "8px 14px",
                 fontSize: "0.8rem",
               }}
             >
-              <span>✅</span>
+              <span style={{ color: "var(--gold)" }}>✦</span>
               <span style={{ color: "rgba(255,255,255,0.7)" }}>Licensed builder — QBCC verified</span>
             </div>
           </div>
@@ -137,13 +138,13 @@ export default function Footer() {
             </h4>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {[
-                { icon: "📍", text: "South East QLD — Brisbane · Gold Coast · Sunshine Coast" },
-                { icon: "✉️", text: "info@coasthomehub.com.au" },
-                { icon: "💬", text: "Live chat — ask us anything, anytime" },
-                { icon: "🕐", text: "Mon–Sat: 7am–5pm" },
+                { text: "South East QLD — Brisbane · Gold Coast · Sunshine Coast" },
+                { text: "info@coasthomehub.com.au" },
+                { text: "Live chat — ask us anything, anytime" },
+                { text: "Mon–Sat: 7am–5pm" },
               ].map((item) => (
-                <div key={item.icon} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                  <span style={{ fontSize: "0.9rem" }}>{item.icon}</span>
+                <div key={item.text} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                  <span style={{ fontSize: "0.78rem", color: "var(--gold)" }}>✦</span>
                   <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.65)" }}>{item.text}</span>
                 </div>
               ))}

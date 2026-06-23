@@ -4,164 +4,88 @@ import HeroInteractiveCard from "@/components/HeroInteractiveCard";
 import { getPublishedMagazineArticles } from "@/lib/magazineCms";
 import LiveSuburbTracker from "@/components/LiveSuburbTracker";
 import RenovationCostCalculator from "@/components/RenovationCostCalculator";
-import DesignLookbook from "@/components/DesignLookbook";
 import PartnershipBanner from "@/components/PartnershipBanner";
-
-const trustRow = [
-  { value: "Max 3", label: "quotes — never sold to 10" },
-  { value: "QBCC", label: "licensed tradies only" },
-  { value: "$300k", label: "Home Warranty protected" },
-  { value: "0", label: "junk leads · spam calls" },
-];
-
-const steps = [
-  {
-    step: "01",
-    icon: "📸",
-    title: "Show us your space",
-    desc: "Snap a photo of your room and tell our AI what you're dreaming of. Takes a minute.",
-    tag: "Free",
-  },
-  {
-    step: "02",
-    icon: "✨",
-    title: "AI designs & prices it",
-    desc: "Get a design concept and a realistic QLD ballpark cost in minutes — before you talk to anyone.",
-    tag: "Free",
-  },
-  {
-    step: "03",
-    icon: "📐",
-    title: "Lock in your design pack",
-    desc: "A clear plan, materials list and scope you can build from — and that tradies can quote accurately.",
-    tag: "When ready",
-  },
-  {
-    step: "04",
-    icon: "🤝",
-    title: "Get up to 3 licensed quotes",
-    desc: "We send your scoped brief to up to 3 verified QLD tradies. They quote, you choose. No pressure.",
-    tag: "We match",
-  },
-];
-
-const oldWay = [
-  "Your details sold to 5–10 tradies at once",
-  "Endless spam calls the moment you submit",
-  "Anyone can sign up — licensed or not",
-  "Negative reviews quietly hidden",
-  "Free to post, so lead quality is nobody's problem",
-];
-
-const newWay = [
-  "AI scopes your job before a tradie sees it",
-  "Sent to a maximum of 3 — never resold",
-  "Every tradie's QBCC licence checked & active",
-  "Honest, verified two-sided reviews",
-  "Real design + costs before you commit a cent",
-];
-
-const trustStack = [
-  { icon: "✅", accent: "#1f7a72", title: "QBCC Licence Verified", desc: "Every tradie is checked against Queensland's QBCC register — correct class, active status, no bans." },
-  { icon: "🏠", accent: "#c9972a", title: "Home Warranty Protected", desc: "We only match licensed contractors, so your statutory cover (up to $300k) stays intact." },
-  { icon: "🛡️", accent: "#1f7a72", title: "Fully Insured Tradies", desc: "Public liability and workers' comp confirmed — not your problem if something goes wrong." },
-  { icon: "⭐", accent: "#c9972a", title: "Honest Reviews", desc: "Verified jobs only, and we publish the bad with the good. No hidden ratings." },
-  { icon: "🔒", accent: "#1f7a72", title: "Secure Payments", desc: "Pay safely through Stripe. Funds for larger jobs can be held until milestones are met." },
-  { icon: "👷", accent: "#c9972a", title: "Built by a Licensed Builder", desc: "Founded and vetted by EIJ Construction — a QBCC-licensed QLD builder, not a faceless tech platform." },
-];
-
-
-const testimonials = [
-  {
-    name: "Sarah M.",
-    location: "Burleigh Heads",
-    text: "I uploaded a photo of our tired bathroom and had a design and a ballpark price the same evening. The tradie they matched us with was licensed and brilliant.",
-    rating: 5,
-  },
-  {
-    name: "Tom R.",
-    location: "Noosa",
-    text: "No spam calls, no 10 random numbers ringing. Three real quotes from licensed locals. That's exactly what I wanted.",
-    rating: 5,
-  },
-  {
-    name: "Lisa K.",
-    location: "Robina",
-    text: "The AI walked me through what the job actually involved, so I knew I wasn't being ripped off before a single tradie quoted.",
-    rating: 5,
-  },
-];
+import LicenceVerifierConsole from "@/components/LicenceVerifierConsole";
 
 export default function Home() {
-  const latestArticles = getPublishedMagazineArticles().slice(0, 3);
+  const allArticles = getPublishedMagazineArticles();
+  
+  // Find specific articles for featured slots or fallback to first items
+  const coverStory = allArticles.find(a => a.slug === "mid-century-modern-coastal-furniture-curation") || allArticles[0];
+  const featuredDIY = allArticles.find(a => a.slug === "diy-timber-deck-refinishing-guide") || allArticles[1] || allArticles[0];
+  const featuredReno = allArticles.find(a => a.slug === "microcement-and-backlit-mirrors-ensuite-guide") || allArticles[2] || allArticles[0];
+  
+  const recentArticles = allArticles.filter(
+    a => a.slug !== coverStory.slug && a.slug !== featuredDIY.slug && a.slug !== featuredReno.slug
+  ).slice(0, 3);
+
   return (
     <>
-      {/* ───────────────── HERO ───────────────── */}
+      {/* ───────────────── MAGAZINE COVER HERO ───────────────── */}
       <section
         style={{
-          minHeight: "100vh",
-          background: "linear-gradient(150deg, #0a1f1e 0%, #0e4440 40%, #155e58 100%)",
-          display: "flex",
-          alignItems: "center",
-          paddingTop: "120px",
-          paddingBottom: "100px",
+          background: "#0c2422",
+          paddingTop: "124px",
+          paddingBottom: "80px",
           position: "relative",
           overflow: "hidden",
+          borderBottom: "3px double var(--sand-300)",
         }}
       >
-        {/* Decorative orbs */}
-        <div style={{ position: "absolute", top: "10%", right: "5%", width: 560, height: 560, background: "radial-gradient(circle, rgba(61,153,144,0.22) 0%, transparent 65%)", borderRadius: "50%", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", bottom: "-5%", left: "-5%", width: 480, height: 480, background: "radial-gradient(circle, rgba(201,151,42,0.15) 0%, transparent 65%)", borderRadius: "50%", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", top: "50%", left: "38%", width: 300, height: 300, background: "radial-gradient(circle, rgba(61,153,144,0.1) 0%, transparent 65%)", borderRadius: "50%", pointerEvents: "none" }} />
-
-        <div className="container-lg" style={{ position: "relative", zIndex: 1, width: "100%" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1.15fr 0.85fr", gap: "80px", alignItems: "center" }} className="hero-grid">
-
-            {/* Left: Text */}
+        <div className="container-lg" style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: "60px", alignItems: "center" }} className="hero-grid">
+            
+            {/* Left: Brand Identity & Mission */}
             <div>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 4, padding: "8px 18px", marginBottom: 32 }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.06)", border: "1px solid var(--sand-300)", borderRadius: 2, padding: "8px 18px", marginBottom: 28 }}>
                 <span style={{ color: "var(--gold-light)", fontSize: "0.85rem" }}>✦</span>
-                <span style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.78rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "Outfit, sans-serif" }}>AI-powered · Licensed QLD tradies only</span>
+                <span style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "Outfit, sans-serif" }}>
+                  Australia&apos;s Trusted Home & Trade Magazine
+                </span>
               </div>
 
-              <h1 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "clamp(2.8rem, 6vw, 4.4rem)", fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: 28, color: "white" }}>
-                See your renovation
+              <h1 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "clamp(2.4rem, 6.5vw, 4.4rem)", fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1.08, marginBottom: 24, color: "white" }}>
+                Real Advice.
                 <br />
-                <span style={{ background: "linear-gradient(135deg, #e8b84b, #f5d282)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", fontStyle: "italic", fontWeight: 400 }}>
-                  before you spend a dollar.
+                Real Trades.
+                <br />
+                <span style={{ color: "var(--gold-light)", fontStyle: "italic", fontWeight: 400 }}>
+                  Real Homes.
                 </span>
               </h1>
 
-              <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "1.1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.8, marginBottom: 44, maxWidth: 500 }}>
-                Upload a photo of your space. Our AI designs it, gives you a real QLD price, then matches you with{" "}
-                <strong style={{ color: "white", fontWeight: 700 }}>up to 3 verified licensed tradies</strong> — never sold to ten.
+              <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "1.12rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.8, marginBottom: 40, maxWidth: 540 }}>
+                Building trust between homeowners and trades through transparent builder-led guidelines, verified QBCC status verifications, and premium styling guides.
               </p>
 
               <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-                <Link href="/quote" className="btn-gold" id="hero-start-ai" style={{ fontSize: "0.95rem", padding: "16px 36px", borderRadius: "4px" }}>
-                  📸 Design my space with AI →
+                <Link href="/magazine" className="btn-gold" style={{ fontSize: "0.95rem", padding: "16px 36px", borderRadius: "4px" }}>
+                  ✦ Read the Magazine
                 </Link>
-                <Link href="/projects" style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "rgba(255,255,255,0.9)", padding: "15px 32px", borderRadius: "4px", fontWeight: 600, fontSize: "0.95rem", textDecoration: "none", border: "1px solid rgba(255,255,255,0.3)", transition: "var(--transition)" }} id="hero-browse" className="btn-outline-white">
-                  Browse real projects
+                <Link href="/directory" style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "rgba(255,255,255,0.9)", padding: "15px 32px", borderRadius: "4px", fontWeight: 600, fontSize: "0.95rem", textDecoration: "none", border: "1px solid var(--sand-300)", transition: "var(--transition)" }} className="btn-outline-white">
+                  Browse Vetted Directory
                 </Link>
               </div>
 
-              {/* Trust strip */}
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, auto)", gap: 24, marginTop: 56, paddingTop: 36, borderTop: "3px double rgba(255,255,255,0.15)" }} className="hero-trust">
-                {trustRow.map((s) => (
+              {/* Sub-Brand Strip */}
+              <div style={{ display: "flex", gap: 40, marginTop: 48, paddingTop: 32, borderTop: "3px double var(--sand-300)" }} className="hero-trust">
+                {[
+                  { value: "100% Vetted", label: "Active QBCC Trades Only" },
+                  { value: "Zero Lead Spam", label: "Max 3 Quotes Dispatched" },
+                  { value: "Supplier Checked", label: "Bunnings & Laminex Partners" }
+                ].map((s) => (
                   <div key={s.label}>
-                    <div style={{ fontFamily: "Lora, Georgia, serif", fontWeight: 600, fontSize: "1.5rem", color: "var(--gold-light)", lineHeight: 1 }}>{s.value}</div>
-                    <div style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.5)", marginTop: 6, maxWidth: 130, fontFamily: "Outfit, sans-serif", letterSpacing: "0.01em" }}>{s.label}</div>
+                    <div style={{ fontFamily: "Lora, Georgia, serif", fontWeight: 600, fontSize: "1.35rem", color: "var(--gold-light)", lineHeight: 1 }}>{s.value}</div>
+                    <div style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.5)", marginTop: 6, fontFamily: "Outfit, sans-serif" }}>{s.label}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right: AI Interactive Showcase Card */}
+            {/* Right: Quick Planner card */}
             <div>
               <HeroInteractiveCard />
             </div>
-
           </div>
         </div>
 
@@ -169,387 +93,323 @@ export default function Home() {
           .btn-outline-white:hover { background: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.6) !important; }
           @media (max-width: 880px) {
             .hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
-            .hero-float { display: none !important; }
           }
           @media (max-width: 520px) {
-            .hero-trust { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+            .hero-trust { flexDirection: column !important; gap: 20px !important; }
           }
         `}</style>
       </section>
 
-      {/* Live Suburb Matching Tracker */}
-      <section style={{ background: "white", paddingTop: "52px", paddingBottom: "0" }}>
+      {/* ───────────────── EDITORIAL FEATURED COLUMNS ───────────────── */}
+      <section className="section" style={{ background: "white", borderBottom: "1px solid var(--sand-300)" }}>
         <div className="container-lg">
-          <LiveSuburbTracker />
-        </div>
-      </section>
-
-      {/* ───────────────── HOW IT WORKS ───────────────── */}
-      <section className="section" style={{ background: "white" }}>
-        <div className="container-lg">
-          <div style={{ textAlign: "center", marginBottom: 16 }}>
-            <div className="badge" style={{ marginBottom: 18, display: "inline-flex" }}>How It Works</div>
-            <h2 style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)", marginBottom: 14, letterSpacing: "-0.02em" }}>
-              From a phone photo to real quotes
-            </h2>
-            <p style={{ color: "var(--slate-light)", fontSize: "1.05rem", maxWidth: 520, margin: "0 auto" }}>
-              Explore for free. You only pay when you&rsquo;re ready to turn your design into real, licensed quotes.
-            </p>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 44, borderBottom: "3px double var(--sand-300)", paddingBottom: 16 }}>
+            <div>
+              <span style={{ fontSize: "0.74rem", fontWeight: 800, color: "var(--gold)", letterSpacing: "0.08em", textTransform: "uppercase", display: "block", marginBottom: 6, fontFamily: "Outfit, sans-serif" }}>
+                ✦ Current Edition
+              </span>
+              <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.9rem", margin: 0, fontWeight: 500, color: "var(--slate-dark)" }}>
+                Featured Stories & Insights
+              </h2>
+            </div>
+            <Link href="/magazine" style={{ textDecoration: "none", fontSize: "0.85rem", fontWeight: 700, color: "var(--ocean-600)", fontFamily: "Outfit, sans-serif" }} className="hover-arrow">
+              View All Articles →
+            </Link>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginTop: 56, position: "relative" }} className="steps-grid">
-            {/* Connector line */}
-            <div style={{ position: "absolute", top: 30, left: "12.5%", right: "12.5%", height: 1, background: "var(--sand-300)", zIndex: 0, display: "none" }} className="steps-connector" />
-
-            {steps.map((s, i) => (
-              <div key={s.step} style={{ padding: "0 8px", position: "relative", zIndex: 1 }}>
-                {/* Step number square */}
-                <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
-                  <div style={{ width: 60, height: 60, borderRadius: 4, background: "white", border: "1px solid var(--sand-300)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.4rem", position: "relative", boxShadow: "0 2px 8px rgba(0,0,0,0.02)" }}>
-                    {s.icon}
-                    <div style={{ position: "absolute", top: -6, right: -6, width: 20, height: 20, background: "var(--slate-dark)", color: "white", borderRadius: 2, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.65rem", fontWeight: 800 }}>{s.step}</div>
-                  </div>
-                </div>
-
-                <div style={{ textAlign: "center" }}>
-                  <span style={{ display: "inline-block", fontSize: "0.65rem", fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase", color: s.tag === "Free" ? "var(--ocean-600)" : "var(--gold)", background: s.tag === "Free" ? "var(--ocean-50)" : "#fdf6e8", border: `1px solid ${s.tag === "Free" ? "var(--ocean-200)" : "#f0dcae"}`, padding: "3px 8px", borderRadius: 2, marginBottom: 10 }}>{s.tag}</span>
-                  <h3 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.05rem", fontWeight: 600, marginBottom: 8, color: "var(--slate-dark)" }}>{s.title}</h3>
-                  <p style={{ fontSize: "0.82rem", color: "var(--slate-light)", lineHeight: 1.6 }}>{s.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ textAlign: "center", marginTop: 44 }}>
-            <Link href="/quote" className="btn-gold" id="how-cta" style={{ fontSize: "0.95rem", padding: "14px 32px", borderRadius: "4px" }}>📸 Start with a photo — it&rsquo;s free</Link>
-          </div>
-        </div>
-        <style>{`
-          @media (min-width: 901px) { .steps-connector { display: block !important; } }
-          @media (max-width: 900px) { .steps-grid { grid-template-columns: 1fr 1fr !important; gap: 40px !important; } }
-          @media (max-width: 520px) { .steps-grid { grid-template-columns: 1fr !important; } }
-        `}</style>
-      </section>
-
-      {/* Interactive Ballpark Cost Calculator */}
-      <section className="section" style={{ background: "var(--off-white)", borderTop: "1px solid var(--sand-200)", borderBottom: "1px solid var(--sand-200)", paddingBottom: "80px" }}>
-        <div className="container-lg">
-          <div style={{ textAlign: "center", marginBottom: "48px" }}>
-            <div className="badge" style={{ marginBottom: "18px" }}>Budget Tool</div>
-            <h2 style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)", letterSpacing: "-0.02em", color: "var(--slate-dark)" }}>
-              Estimate Your Renovation Budget
-            </h2>
-            <p style={{ color: "var(--slate-light)", fontSize: "1.05rem", maxWidth: "560px", margin: "0 auto" }}>
-              Get a compliant, realistic cost breakdown for construction works in South East Queensland instantly.
-            </p>
-          </div>
-          <RenovationCostCalculator />
-        </div>
-      </section>
-
-      {/* ───────────────── FEATURED CURATION ───────────────── */}
-      <section className="section" style={{ background: "var(--off-white)", borderBottom: "1px solid var(--sand-200)" }}>
-        <div className="container-lg">
-          <div style={{ textAlign: "center", marginBottom: 56 }}>
-            <div className="badge" style={{ marginBottom: 18 }}>Premium Gallery</div>
-            <h2 style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)", marginBottom: 14, letterSpacing: "-0.02em" }}>
-              Queensland Renovation Curation
-            </h2>
-            <p style={{ color: "var(--slate-light)", fontSize: "1.05rem", maxWidth: 600, margin: "0 auto" }}>
-              Explore real style concepts, custom materials and ballpark budgets designed specifically for South East QLD coastal living.
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 32 }} className="curation-grid">
-            {[
-              {
-                img: "/images/luxury_kitchen.png",
-                title: "The Coastal Kitchen Pavilion",
-                suburb: "Noosa Heads",
-                style: "Warm Coastal Modern",
-                budget: "$65,000 - $95,000",
-                desc: "Featuring a marble waterfall island benchtop, brushed brass tapware, and sage timber cabinetry."
-              },
-              {
-                img: "/images/outdoor_living.png",
-                title: "The Alfresco Pavilion Deck",
-                suburb: "Sunshine Coast",
-                style: "Resort Alfresco",
-                budget: "$28,000 - $48,000",
-                desc: "High-end composite wood decking with a sleek integrated louvre pergola and poolside flow."
-              },
-              {
-                img: "/images/coastal_living_room.png",
-                title: "The Cathedral Ceiling Lounge",
-                suburb: "Burleigh Heads",
-                style: "Organic Modern",
-                budget: "$75,000 - $110,000",
-                desc: "High cathedral ceiling with exposed timber roof trusses, neutral linen, and indoor-outdoor sliding glass."
-              },
-              {
-                img: "/images/master_bedroom.png",
-                title: "The Master Bedroom Sanctuary",
-                suburb: "Robina",
-                style: "Sage Linen Retreat",
-                budget: "$14,000 - $24,000",
-                desc: "Natural linen bedding, custom light rattan woven headboard, and soft earthy sage-green accents."
-              }
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="editorial-card"
-                style={{
-                  overflow: "hidden",
-                  borderRadius: "4px",
-                  background: "white",
-                  border: "1px solid var(--sand-300)",
-                  transition: "var(--transition)",
-                  display: "flex",
-                  flexDirection: "column",
-                  height: "100%"
-                }}
-              >
-                <div style={{ position: "relative", overflow: "hidden", height: 260 }} className="editorial-card-img-wrap">
+          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 36 }} className="editorial-main-grid">
+            
+            {/* Left: Massive Cover Story */}
+            <div style={{ borderRight: "1px solid var(--sand-200)", paddingRight: 36 }} className="cover-story-col">
+              <Link href={`/magazine/${coverStory.slug}`} style={{ textDecoration: "none", display: "block" }}>
+                <div style={{ position: "relative", height: 380, borderRadius: 4, overflow: "hidden", border: "1px solid var(--sand-300)", marginBottom: 24 }}>
                   <Image
-                    src={item.img}
-                    alt={item.title}
+                    src={coverStory.heroImage}
+                    alt={coverStory.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 25vw"
                     style={{ objectFit: "cover" }}
-                    className="editorial-card-img"
                     unoptimized
                   />
-                  <div
-                    style={{
-                      position: "absolute",
-                      bottom: 12,
-                      left: 12,
-                      background: "rgba(10, 31, 30, 0.85)",
-                      backdropFilter: "blur(4px)",
-                      color: "white",
-                      padding: "6px 14px",
-                      borderRadius: 2,
-                      fontSize: "0.68rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase"
-                    }}
-                  >
-                    📍 {item.suburb}
+                  <div style={{ position: "absolute", top: 16, left: 16, background: "var(--gold)", color: "white", padding: "4px 12px", fontSize: "0.68rem", fontWeight: 800, textTransform: "uppercase", borderRadius: 2, letterSpacing: "0.04em" }}>
+                    Cover Story
                   </div>
                 </div>
-                
-                <div style={{ padding: 24, display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1 }}>
+                <span style={{ display: "block", fontSize: "0.72rem", fontWeight: 800, textTransform: "uppercase", color: "var(--ocean-600)", letterSpacing: "0.08em", marginBottom: 8, fontFamily: "Outfit, sans-serif" }}>
+                  {coverStory.type} {" // "} {coverStory.category}
+                </span>
+                <h3 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.8rem", color: "var(--slate-dark)", marginBottom: 12, fontWeight: 600, lineHeight: 1.25 }}>
+                  {coverStory.title}
+                </h3>
+                <p style={{ fontSize: "0.95rem", color: "var(--slate-mid)", lineHeight: 1.7, marginBottom: 16, fontFamily: "Outfit, sans-serif" }}>
+                  {coverStory.excerpt}
+                </p>
+                <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--gold)", fontFamily: "Outfit, sans-serif" }}>
+                  Read Feature Column →
+                </span>
+              </Link>
+            </div>
+
+            {/* Right: Vertical Stack of DIY / Reno highlights */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+              
+              {/* DIY Slot */}
+              <div style={{ borderBottom: "1px solid var(--sand-200)", paddingBottom: 24 }}>
+                <Link href={`/magazine/${featuredDIY.slug}`} style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "100px 1fr", gap: 18, alignItems: "start" }}>
+                  <div style={{ position: "relative", height: 80, borderRadius: 2, overflow: "hidden", border: "1px solid var(--sand-300)" }}>
+                    <Image src={featuredDIY.heroImage} alt={featuredDIY.title} fill style={{ objectFit: "cover" }} unoptimized />
+                  </div>
                   <div>
-                    <span
-                      style={{
-                        fontSize: "0.68rem",
-                        fontWeight: 800,
-                        textTransform: "uppercase",
-                        color: "var(--ocean-600)",
-                        letterSpacing: "0.08em",
-                        display: "block",
-                        marginBottom: 8
-                      }}
-                    >
-                      {item.style}
+                    <span style={{ fontSize: "0.62rem", fontWeight: 800, textTransform: "uppercase", color: "var(--gold)", letterSpacing: "0.06em", display: "block", marginBottom: 4, fontFamily: "Outfit, sans-serif" }}>
+                      Featured DIY Guide
                     </span>
-                    <h3 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.15rem", color: "var(--slate-dark)", marginBottom: 10, fontWeight: 600, lineHeight: 1.4 }}>
-                      {item.title}
-                    </h3>
-                    <p style={{ fontSize: "0.84rem", color: "var(--slate-light)", lineHeight: 1.6, marginBottom: 16 }}>
-                      {item.desc}
+                    <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "0.98rem", color: "var(--slate-dark)", margin: "0 0 6px", fontWeight: 600, lineHeight: 1.35 }}>
+                      {featuredDIY.title}
+                    </h4>
+                    <p style={{ fontSize: "0.78rem", color: "var(--slate-light)", margin: 0, lineClamp: 2, WebkitLineClamp: 2, display: "-webkit-box", WebkitBoxOrient: "vertical", overflow: "hidden", fontFamily: "Outfit, sans-serif" }}>
+                      {featuredDIY.excerpt}
                     </p>
                   </div>
+                </Link>
+              </div>
 
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      paddingTop: 16,
-                      borderTop: "1px solid var(--sand-200)"
-                    }}
-                  >
-                    <div>
-                      <span style={{ fontSize: "0.65rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.02em" }}>Est. Budget</span>
-                      <strong style={{ fontFamily: "Lora, Georgia, serif", fontSize: "0.95rem", color: "var(--gold)", fontWeight: 600 }}>{item.budget}</strong>
-                    </div>
-                    <Link
-                      href="/quote"
-                      style={{
-                        fontSize: "0.82rem",
-                        fontWeight: 700,
-                        color: "var(--ocean-600)",
-                        textDecoration: "none",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 4,
-                        letterSpacing: "0.02em"
-                      }}
-                      className="hover-arrow"
-                    >
-                      Plan space →
-                    </Link>
+              {/* Renovation Slot */}
+              <div style={{ borderBottom: "1px solid var(--sand-200)", paddingBottom: 24 }}>
+                <Link href={`/magazine/${featuredReno.slug}`} style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "100px 1fr", gap: 18, alignItems: "start" }}>
+                  <div style={{ position: "relative", height: 80, borderRadius: 2, overflow: "hidden", border: "1px solid var(--sand-300)" }}>
+                    <Image src={featuredReno.heroImage} alt={featuredReno.title} fill style={{ objectFit: "cover" }} unoptimized />
                   </div>
+                  <div>
+                    <span style={{ fontSize: "0.62rem", fontWeight: 800, textTransform: "uppercase", color: "var(--ocean-600)", letterSpacing: "0.06em", display: "block", marginBottom: 4, fontFamily: "Outfit, sans-serif" }}>
+                      Featured Renovation Case
+                    </span>
+                    <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "0.98rem", color: "var(--slate-dark)", margin: "0 0 6px", fontWeight: 600, lineHeight: 1.35 }}>
+                      {featuredReno.title}
+                    </h4>
+                    <p style={{ fontSize: "0.78rem", color: "var(--slate-light)", margin: 0, lineClamp: 2, WebkitLineClamp: 2, display: "-webkit-box", WebkitBoxOrient: "vertical", overflow: "hidden", fontFamily: "Outfit, sans-serif" }}>
+                      {featuredReno.excerpt}
+                    </p>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Recent Registry Feed list */}
+              <div>
+                <h5 style={{ fontSize: "0.72rem", fontWeight: 800, textTransform: "uppercase", color: "var(--slate-light)", letterSpacing: "0.08em", marginBottom: 12, fontFamily: "Outfit, sans-serif" }}>
+                  More from the Editors
+                </h5>
+                <div style={{ display: "grid", gap: 12 }}>
+                  {recentArticles.map(a => (
+                    <Link key={a.slug} href={`/magazine/${a.slug}`} style={{ textDecoration: "none", display: "block", borderBottom: "1px dashed var(--sand-200)", paddingBottom: 10 }}>
+                      <span style={{ fontSize: "0.65rem", color: "var(--slate-light)", display: "block", fontFamily: "Outfit, sans-serif" }}>{a.type}</span>
+                      <h6 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "0.88rem", color: "var(--slate-dark)", margin: "3px 0 0", fontWeight: 600 }}>{a.title}</h6>
+                    </Link>
+                  ))}
                 </div>
               </div>
-            ))}
+
+            </div>
           </div>
         </div>
+
         <style>{`
-          .hover-arrow:hover { color: var(--ocean-700) !important; text-decoration: underline !important; }
+          @media (max-width: 768px) {
+            .editorial-main-grid { grid-template-columns: 1fr !important; }
+            .cover-story-col { border-right: none !important; padding-right: 0 !important; margin-bottom: 24px; }
+          }
         `}</style>
       </section>
 
-      {/* Design Lookbook & Compliance Selector */}
-      <section className="section" style={{ background: "white", borderBottom: "1px solid var(--sand-200)" }}>
+      {/* ───────────────── TRUST ENGINE: LIVE TRACKER & VETTING CONSOLE ───────────────── */}
+      <section className="section" style={{ background: "var(--off-white)", borderBottom: "1px solid var(--sand-300)" }}>
         <div className="container-lg">
-          <DesignLookbook />
+          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 40, alignItems: "start" }} className="trust-engine-grid">
+            
+            {/* Left: Licence verification preview */}
+            <div>
+              <div style={{ marginBottom: 28 }}>
+                <span style={{ fontSize: "0.74rem", fontWeight: 800, color: "var(--gold)", letterSpacing: "0.08em", textTransform: "uppercase", display: "block", marginBottom: 6, fontFamily: "Outfit, sans-serif" }}>
+                  ✦ Active Verifications
+                </span>
+                <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.8rem", margin: 0, fontWeight: 500, color: "var(--slate-dark)" }}>
+                  ABN & QBCC Live Licence Check
+                </h2>
+                <p style={{ color: "var(--slate-light)", fontSize: "0.88rem", marginTop: 8, fontFamily: "Outfit, sans-serif" }}>
+                  Enter any Australian Business Number or Queensland Building licence below to see the verification system in action.
+                </p>
+              </div>
+              <LicenceVerifierConsole />
+            </div>
+
+            {/* Right: Live suburb match ticker */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+              <div>
+                <span style={{ fontSize: "0.74rem", fontWeight: 800, color: "var(--ocean-600)", letterSpacing: "0.08em", textTransform: "uppercase", display: "block", marginBottom: 6, fontFamily: "Outfit, sans-serif" }}>
+                  ✦ Real-time Activity
+                </span>
+                <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.8rem", margin: 0, fontWeight: 500, color: "var(--slate-dark)" }}>
+                  Recent Quote Matches
+                </h2>
+                <p style={{ color: "var(--slate-light)", fontSize: "0.88rem", marginTop: 8, fontFamily: "Outfit, sans-serif" }}>
+                  Pre-screened home renovations matched with verified QLD building contractors this hour.
+                </p>
+              </div>
+              <LiveSuburbTracker />
+
+              {/* Dispute prevention banner */}
+              <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "20px 24px" }}>
+                <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "0.98rem", fontWeight: 700, color: "var(--ocean-700)", margin: "0 0 8px" }}>
+                  ✦ Statutory Home Warranty Information
+                </h4>
+                <p style={{ fontSize: "0.78rem", color: "var(--slate-mid)", lineHeight: 1.6, margin: 0, fontFamily: "Outfit, sans-serif" }}>
+                  In QLD, residential construction contracts valued over $3,300 must hold Home Warranty Insurance cover. CoastHomeHub strictly matches vetted active trades to guarantee your eligibility limits.
+                </p>
+              </div>
+            </div>
+
+          </div>
         </div>
+
+        <style>{`
+          @media (max-width: 880px) {
+            .trust-engine-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+          }
+        `}</style>
       </section>
 
-      {/* ───────────────── WHY DIFFERENT ───────────────── */}
-      <section className="section" style={{ background: "linear-gradient(160deg, #0a1f1e 0%, #0e3a36 100%)" }}>
+      {/* ───────────────── POPULAR SUPPLIERS SPOTLIGHT ───────────────── */}
+      <section className="section" style={{ background: "white", borderBottom: "1px solid var(--sand-300)" }}>
         <div className="container-lg">
-          <div style={{ textAlign: "center", marginBottom: 60 }}>
-            <div className="badge" style={{ marginBottom: 18, display: "inline-flex", background: "rgba(255,255,255,0.1)", color: "var(--ocean-200)", border: "1px solid rgba(255,255,255,0.15)" }}>Why CoastHomeHub</div>
-            <h2 style={{ color: "white", fontSize: "clamp(1.9rem, 4vw, 2.9rem)", marginBottom: 14, letterSpacing: "-0.02em" }}>Not another lead-spam site.</h2>
-            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "1.05rem", maxWidth: 580, margin: "0 auto" }}>
-              Most &ldquo;get a quote&rdquo; sites sell your details to whoever pays. We do the opposite — vet the tradies, protect you, and only connect serious jobs.
+          <div style={{ textAlign: "center", marginBottom: 44 }}>
+            <span style={{ fontSize: "0.74rem", fontWeight: 800, color: "var(--gold)", letterSpacing: "0.08em", textTransform: "uppercase", display: "block", marginBottom: 6, fontFamily: "Outfit, sans-serif" }}>
+              ✦ Partnered Suppliers
+            </span>
+            <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.9rem", margin: 0, fontWeight: 500, color: "var(--slate-dark)" }}>
+              Recommended Material & Product Partners
+            </h2>
+            <p style={{ color: "var(--slate-light)", fontSize: "0.95rem", marginTop: 10, maxWidth: 520, margin: "10px auto 0", fontFamily: "Outfit, sans-serif" }}>
+              Browse pre-negotiated trade discounts and product specifications from leading national hardware stores and suppliers.
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, maxWidth: 960, margin: "0 auto" }} className="compare-grid">
-            {/* Old way */}
-            <div style={{ padding: "36px 32px", borderRadius: 4, background: "rgba(255,255,255,0.01)", border: "1px solid rgba(255,255,255,0.1)" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 24 }}>
-                <span style={{ color: "#ff8f8f", fontWeight: 800, fontSize: "0.85rem", fontFamily: "Lora, Georgia, serif" }}>✕</span>
-                <span style={{ fontSize: "0.74rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", fontFamily: "Outfit, sans-serif" }}>Typical quote platforms</span>
-              </div>
-              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 16 }}>
-                {oldWay.map((t) => (
-                  <li key={t} style={{ display: "flex", gap: 12, alignItems: "flex-start", fontSize: "0.88rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.55 }}>
-                    <span style={{ color: "#ff6b6b", fontWeight: 800, flexShrink: 0, marginTop: 2 }}>—</span>{t}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <PartnershipBanner />
 
-            {/* Our way */}
-            <div style={{ padding: "36px 32px", borderRadius: 4, background: "rgba(31,122,114,0.08)", border: "1px solid var(--gold)", boxShadow: "0 4px 20px rgba(0,0,0,0.15)" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 24 }}>
-                <span style={{ color: "var(--gold-light)", fontWeight: 800, fontSize: "0.85rem" }}>✦</span>
-                <span style={{ fontSize: "0.74rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--gold-light)", fontFamily: "Outfit, sans-serif" }}>The CoastHomeHub way</span>
-              </div>
-              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 16 }}>
-                {newWay.map((t) => (
-                  <li key={t} style={{ display: "flex", gap: 12, alignItems: "flex-start", fontSize: "0.88rem", color: "rgba(255,255,255,0.9)", lineHeight: 1.55 }}>
-                    <span style={{ color: "var(--gold-light)", fontWeight: 800, flexShrink: 0, marginTop: 2 }}>✦</span>{t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-        <style>{`@media (max-width: 760px){ .compare-grid{ grid-template-columns:1fr !important; } }`}</style>
-      </section>
-
-      {/* ───────────────── TRUST STACK ───────────────── */}
-      <section className="section" style={{ background: "var(--off-white)" }}>
-        <div className="container-lg">
-          <div style={{ textAlign: "center", marginBottom: 60 }}>
-            <div className="badge" style={{ marginBottom: 18, display: "inline-flex" }}>Built on Trust</div>
-            <h2 style={{ fontSize: "clamp(1.9rem, 4vw, 2.7rem)", marginBottom: 14, letterSpacing: "-0.02em" }}>Why Queenslanders can rely on us</h2>
-            <p style={{ color: "var(--slate-light)", fontSize: "1.05rem", maxWidth: 540, margin: "0 auto" }}>
-              A renovation is a big spend. Every part of CoastHomeHub is designed to protect you — not just sell your number.
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
-            {trustStack.map((t) => (
-              <div key={t.title} className="card" style={{ padding: "28px 26px", background: "white", display: "flex", gap: 18, alignItems: "flex-start" }}>
-                <div style={{ width: 48, height: 48, borderRadius: 14, background: t.accent === "var(--ocean-500)" || t.accent === "#1f7a72" ? "var(--ocean-50)" : "#fdf6e8", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.4rem", flexShrink: 0 }}>{t.icon}</div>
-                <div>
-                  <h3 style={{ fontSize: "1rem", marginBottom: 7, color: "var(--slate-dark)" }}>{t.title}</h3>
-                  <p style={{ fontSize: "0.86rem", color: "var(--slate-light)", lineHeight: 1.7 }}>{t.desc}</p>
-                </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20, marginTop: 40 }}>
+            {[
+              { name: "Bunnings Warehouse", desc: "Wholesale hardware tools, fasteners, framing timber and fittings.", discount: "5% Trade Account" },
+              { name: "Laminex & Formica", desc: "Premium board substrate laminates and woodgrain panels.", discount: "10% Elite Voucher" },
+              { name: "Reece Plumbing", desc: "High-spec brass fittings, vanity basins and toilet ware.", discount: "Trade Account Rates" },
+              { name: "Beaumont Tiles", desc: "Certified P3/P4 slip-resistant floor tiles and epoxy grout.", discount: "5% Partner Discount" }
+            ].map(sup => (
+              <div key={sup.name} style={{ background: "var(--off-white)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "20px 24px" }}>
+                <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.05rem", color: "var(--slate-dark)", margin: "0 0 6px", fontWeight: 700 }}>{sup.name}</h4>
+                <p style={{ fontSize: "0.78rem", color: "var(--slate-mid)", lineHeight: 1.5, margin: "0 0 14px", minHeight: 45, fontFamily: "Outfit, sans-serif" }}>{sup.desc}</p>
+                <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-700)", background: "var(--ocean-50)", border: "1px solid var(--ocean-200)", padding: "4px 10px", borderRadius: 2, textTransform: "uppercase", letterSpacing: "0.02em", fontFamily: "Outfit, sans-serif" }}>
+                  {sup.discount}
+                </span>
               </div>
             ))}
           </div>
-
-          {/* Founder bar */}
-          <div style={{ marginTop: 32, padding: "24px 32px", borderRadius: 20, background: "white", border: "1px solid var(--sand-200)", display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap", justifyContent: "center", textAlign: "center" }}>
-            <span style={{ fontSize: "1.6rem" }}>🏗️</span>
-            <p style={{ fontSize: "0.93rem", color: "var(--slate-mid)", lineHeight: 1.6, margin: 0 }}>
-              Founded and vetted by <strong style={{ color: "var(--ocean-600)" }}>EIJ Construction</strong> — a QBCC-licensed Queensland builder.{" "}
-              <span style={{ color: "var(--slate-light)" }}>ABN 79&nbsp;674&nbsp;743&nbsp;545.</span>
-            </p>
-          </div>
         </div>
       </section>
 
-      {/* ───────────────── DESIGN HUB ───────────────── */}
-      <section className="section" style={{ background: "white" }}>
+      {/* ───────────────── COST CALCULATOR & AI TOOLS ───────────────── */}
+      <section className="section" style={{ background: "white", borderBottom: "1px solid var(--sand-300)" }}>
         <div className="container-lg">
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48, flexWrap: "wrap", gap: 16 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "center" }} className="tools-grid">
+            
+            {/* Left: Text */}
             <div>
-              <div className="badge" style={{ marginBottom: 14, display: "inline-flex" }}>Design Hub</div>
-              <h2 style={{ fontSize: "clamp(1.9rem, 4vw, 2.7rem)", letterSpacing: "-0.02em" }}>Get inspired (and informed) first</h2>
-              <p style={{ color: "var(--slate-light)", fontSize: "1rem", marginTop: 10, maxWidth: 520 }}>
-                Real QLD projects, honest cost guides and DIY know-how — so you make confident decisions before you spend.
+              <span style={{ fontSize: "0.74rem", fontWeight: 800, color: "var(--gold)", letterSpacing: "0.08em", textTransform: "uppercase", display: "block", marginBottom: 6, fontFamily: "Outfit, sans-serif" }}>
+                ✦ Interactive Calculators
+              </span>
+              <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.9rem", margin: 0, fontWeight: 500, color: "var(--slate-dark)" }}>
+                Renovation Cost & Estimator Tools
+              </h2>
+              <p style={{ color: "var(--slate-light)", fontSize: "0.95rem", marginTop: 12, lineHeight: 1.7, fontFamily: "Outfit, sans-serif" }}>
+                Use our dynamic tool below to obtain a realistic cost assessment for plumbing, electrical, tiling, and carpentry works in Queensland before requesting formal builder quotes.
               </p>
+              
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginTop: 24 }}>
+                <Link href="/planner" style={{ textDecoration: "none", background: "var(--ocean-50)", border: "1px solid var(--ocean-200)", borderRadius: 4, padding: "16px", display: "block" }}>
+                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "0.95rem", color: "var(--ocean-700)", margin: "0 0 4px", fontWeight: 700 }}>AI Room Planner →</h4>
+                  <p style={{ fontSize: "0.74rem", color: "var(--slate-mid)", margin: 0, fontFamily: "Outfit, sans-serif" }}>Upload photos for 3D concepts</p>
+                </Link>
+                <div style={{ background: "var(--off-white)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "16px" }}>
+                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "0.95rem", color: "var(--slate-dark)", margin: "0 0 4px", fontWeight: 700 }}>ROI Calculator</h4>
+                  <p style={{ fontSize: "0.74rem", color: "var(--slate-mid)", margin: 0, fontFamily: "Outfit, sans-serif" }}>Compare local value upgrades</p>
+                </div>
+              </div>
             </div>
-            <Link href="/magazine" className="btn-secondary" id="hub-all">All guides →</Link>
+
+            {/* Right: Active Calculator */}
+            <div>
+              <RenovationCostCalculator />
+            </div>
+
+          </div>
+        </div>
+        <style>{`
+          @media (max-width: 880px) {
+            .tools-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          }
+        `}</style>
+      </section>
+
+      {/* ───────────────── COMMUNITY QUESTIONS PREVIEW ───────────────── */}
+      <section className="section" style={{ background: "var(--off-white)", borderBottom: "1px solid var(--sand-300)" }}>
+        <div className="container-lg">
+          <div style={{ textAlign: "center", marginBottom: 44 }}>
+            <span style={{ fontSize: "0.74rem", fontWeight: 800, color: "var(--gold)", letterSpacing: "0.08em", textTransform: "uppercase", display: "block", marginBottom: 6, fontFamily: "Outfit, sans-serif" }}>
+              ✦ Open Community
+            </span>
+            <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.9rem", margin: 0, fontWeight: 500, color: "var(--slate-dark)" }}>
+              Recent Questions & DIY Discussions
+            </h2>
+            <p style={{ color: "var(--slate-light)", fontSize: "0.95rem", marginTop: 10, maxWidth: 520, margin: "10px auto 0", fontFamily: "Outfit, sans-serif" }}>
+              Ask questions anonymously or read real QLD contractor replies regarding local regulations, waterproofing, and structural work.
+            </p>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
-            {latestArticles.map((article) => (
-              <Link key={article.slug} href={`/magazine/${article.slug}`} className="card" style={{ overflow: "hidden", textDecoration: "none", display: "block" }}>
-                <div style={{ height: 200, overflow: "hidden", position: "relative" }}>
-                  <Image src={article.heroImage} alt={article.title} width={600} height={200} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.5s ease" }} className="hub-img" unoptimized />
-                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(14,68,64,0.3) 0%, transparent 60%)" }} />
+            {[
+              {
+                q: "Do I need a building permit for a timber deck on the Gold Coast?",
+                ans: "In Gold Coast City, decks under 1m high, under 10sqm, and not associated with pool safety boundaries generally do not need building approval. Vetted by Noosa Coastal Carpentry & Decks.",
+                replies: 12,
+                category: "Decking"
+              },
+              {
+                q: "What is the minimum fall to waste required for a shower screed?",
+                ans: "Under AS 3958.1 tiling standards, a minimum slope fall of 1:60 is required within a shower recess. For general wet area floors outside the shower, 1:80 is the standard. Vetted by EIJ Construction.",
+                replies: 8,
+                category: "Waterproofing"
+              },
+              {
+                q: "Can I run active LED backlit mirror wiring in zone 1 bathroom?",
+                ans: "AS/NZS 3000 rules dictate that electrical equipment in wet area zone 1 must be IPX4 rated or higher, and protected by an RCD. Low voltage 12V DC LED drivers are recommended. Vetted by Robina Smart Home Electrics.",
+                replies: 15,
+                category: "Electrical"
+              }
+            ].map((item) => (
+              <div key={item.q} style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "24px 28px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <div>
+                  <span style={{ fontSize: "0.65rem", fontWeight: 800, color: "var(--ocean-700)", background: "var(--ocean-50)", border: "1px solid var(--ocean-200)", padding: "2px 8px", borderRadius: 2, textTransform: "uppercase", letterSpacing: "0.02em", fontFamily: "Outfit, sans-serif" }}>
+                    {item.category}
+                  </span>
+                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1rem", color: "var(--slate-dark)", margin: "12px 0 8px", fontWeight: 700, lineHeight: 1.4 }}>
+                    {item.q}
+                  </h4>
+                  <p style={{ fontSize: "0.82rem", color: "var(--slate-light)", lineHeight: 1.6, margin: 0, fontStyle: "italic", fontFamily: "Outfit, sans-serif" }}>
+                    &ldquo;{item.ans}&rdquo;
+                  </p>
                 </div>
-                <div style={{ padding: "22px 24px" }}>
-                  <span style={{ display: "inline-block", background: "var(--ocean-50)", color: "var(--ocean-600)", border: "1px solid var(--ocean-100)", borderRadius: "50px", padding: "4px 12px", fontSize: "0.72rem", fontWeight: 700, marginBottom: 10 }}>{article.type}</span>
-                  <h3 style={{ fontSize: "1.05rem", lineHeight: 1.45, color: "var(--slate-dark)" }}>{article.title}</h3>
-                  <p style={{ color: "var(--slate-light)", fontSize: "0.82rem", marginTop: 6, lineClamp: 2, WebkitLineClamp: 2, display: "-webkit-box", WebkitBoxOrient: "vertical", overflow: "hidden" }}>{article.excerpt}</p>
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: 14, fontSize: "0.85rem", fontWeight: 700, color: "var(--ocean-500)" }}>Read →</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-        <style>{`.hub-img:hover { transform: scale(1.04); }`}</style>
-      </section>
-
-      {/* ───────────────── TESTIMONIALS ───────────────── */}
-      <section className="section" style={{ background: "var(--off-white)" }}>
-        <div className="container-lg">
-          <div style={{ textAlign: "center", marginBottom: 60 }}>
-            <div className="badge" style={{ marginBottom: 18, display: "inline-flex" }}>Reviews</div>
-            <h2 style={{ fontSize: "clamp(1.9rem, 4vw, 2.7rem)", marginBottom: 14, letterSpacing: "-0.02em" }}>What Queenslanders say</h2>
-            <div style={{ color: "#f59e0b", fontSize: "1.4rem", letterSpacing: 4 }}>★★★★★</div>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
-            {testimonials.map((t) => (
-              <div key={t.name} className="card" style={{ padding: "32px 28px", background: "white", border: "1px solid var(--sand-100)", position: "relative", overflow: "hidden" }}>
-                {/* Big quote mark */}
-                <div style={{ position: "absolute", top: 16, right: 20, fontSize: "5rem", color: "var(--ocean-50)", lineHeight: 1, fontFamily: "Georgia, serif", pointerEvents: "none", userSelect: "none" }}>&ldquo;</div>
-
-                <div style={{ display: "flex", gap: 3, marginBottom: 16 }}>
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <span key={i} style={{ color: "#f59e0b", fontSize: "1rem" }}>★</span>
-                  ))}
-                </div>
-                <p style={{ fontSize: "0.97rem", lineHeight: 1.75, color: "var(--slate-mid)", marginBottom: 24, position: "relative", zIndex: 1 }}>&ldquo;{t.text}&rdquo;</p>
-                <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-                  <div style={{ width: 46, height: 46, background: "linear-gradient(135deg, var(--ocean-500), var(--ocean-400))", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 800, fontSize: "1.1rem" }}>{t.name[0]}</div>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: "0.9rem", color: "var(--slate-dark)" }}>{t.name}</div>
-                    <div style={{ fontSize: "0.78rem", color: "var(--slate-light)", marginTop: 2 }}>📍 {t.location}</div>
-                  </div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid var(--sand-100)", paddingTop: 14, marginTop: 18 }}>
+                  <span style={{ fontSize: "0.74rem", color: "var(--slate-light)", fontFamily: "Outfit, sans-serif" }}>
+                    {item.replies} expert replies
+                  </span>
+                  <span style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--gold)", fontFamily: "Outfit, sans-serif" }}>
+                    View Q&A →
+                  </span>
                 </div>
               </div>
             ))}
@@ -557,61 +417,81 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Material Partners Marquee */}
-      <PartnershipBanner />
+      {/* ───────────────── WEEKLY NEWSLETTER ───────────────── */}
+      <section style={{ background: "#0c2422", padding: "80px 24px", borderBottom: "3px double var(--sand-300)" }}>
+        <div className="container-md" style={{ textAlign: "center" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 2, padding: "6px 14px", marginBottom: 20 }}>
+            <span style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "Outfit, sans-serif" }}>
+              ✦ Weekly Trade & Design Digest
+            </span>
+          </div>
+          <h2 style={{ color: "white", fontSize: "clamp(1.7rem, 4vw, 2.6rem)", marginBottom: 16, fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>
+            Get Vetted Advice, directly in your inbox.
+          </h2>
+          <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.95rem", lineHeight: 1.75, maxWidth: 520, margin: "0 auto 32px", fontFamily: "Outfit, sans-serif" }}>
+            Subscribe to receive our latest DIY timber guides, builder insights, cost-saving checklists, and local regulatory alerts.
+          </p>
 
-      {/* ───────────────── FOR TRADIES ───────────────── */}
-      <section className="section-sm" style={{ background: "white" }}>
+          <form style={{ display: "flex", gap: 10, maxWidth: 460, margin: "0 auto", flexWrap: "wrap", justifyContent: "center" }}>
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              required
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.2)",
+                borderRadius: 4,
+                padding: "12px 18px",
+                fontSize: "0.92rem",
+                color: "white",
+                outline: "none",
+                flex: 1,
+                minWidth: 260,
+                fontFamily: "Outfit, sans-serif"
+              }}
+            />
+            <button type="submit" className="btn-gold" style={{ border: "none", borderRadius: 4, padding: "12px 28px", fontSize: "0.92rem", fontWeight: 700, cursor: "pointer" }}>
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* ───────────────── FOR LICENSED TRADIES ───────────────── */}
+      <section className="section-sm" style={{ background: "white", padding: "72px 0" }}>
         <div className="container-lg">
-          <div style={{ borderRadius: 4, background: "#0e4440", padding: "52px 48px", display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 36, alignItems: "center", overflow: "hidden", position: "relative" }} className="tradie-band">
-            <div style={{ position: "absolute", top: "-30%", right: "-5%", width: 400, height: 400, background: "radial-gradient(circle, rgba(201,151,42,0.08) 0%, transparent 65%)", borderRadius: "50%", pointerEvents: "none" }} />
+          <div style={{ borderRadius: 4, background: "#0c2422", border: "1px solid var(--sand-300)", padding: "52px 48px", display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 36, alignItems: "center", overflow: "hidden", position: "relative" }} className="tradie-band">
             <div style={{ position: "relative", zIndex: 1 }}>
               <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 2, padding: "6px 14px", marginBottom: 20 }}>
-                <span style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>🔧 For Licensed Tradies</span>
+                <span style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "Outfit, sans-serif" }}>
+                  ✦ For Licensed Tradies
+                </span>
               </div>
-              <h2 style={{ color: "white", fontSize: "clamp(1.7rem, 3.5vw, 2.4rem)", marginBottom: 16, lineHeight: 1.2, letterSpacing: "-0.02em", fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>Warm, pre-qualified leads. Never junk.</h2>
-              <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.92rem", lineHeight: 1.75, marginBottom: 28, maxWidth: 500 }}>
-                Every lead is a real homeowner who&rsquo;s already chatted with our AI and committed to their job — scoped, photographed, ready to quote. Flat monthly membership. No commission. No per-lead gouging.
+              <h2 style={{ color: "white", fontSize: "clamp(1.7rem, 3.5vw, 2.4rem)", marginBottom: 16, lineHeight: 1.2, letterSpacing: "-0.02em", fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>
+                Warm, pre-qualified leads. Never junk.
+              </h2>
+              <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.92rem", lineHeight: 1.75, marginBottom: 28, maxWidth: 500, fontFamily: "Outfit, sans-serif" }}>
+                Every lead is a real homeowner who&apos;s already completed our detailed planner or design chat — fully scoped, photographed, and location-checked. Flat monthly membership. No commission. No bidding wars.
               </p>
-              <Link href="/tradies" className="btn-gold" id="tradie-band-cta" style={{ fontSize: "0.95rem", padding: "14px 32px", borderRadius: "4px" }}>List my business →</Link>
+              <Link href="/tradies" className="btn-gold" style={{ fontSize: "0.95rem", padding: "14px 32px", borderRadius: "4px" }}>
+                List my business →
+              </Link>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, position: "relative", zIndex: 1 }} className="tradie-band-stats">
               {[
-                { t: "Pre-qualified", d: "AI-scoped, paid, serious homeowners" },
+                { t: "Pre-qualified", d: "AI-scoped, photographed, serious homeowners" },
                 { t: "Max 3 quotes", d: "You're not racing 10 others" },
                 { t: "Licensed-only", d: "A platform that protects your reputation" },
               ].map((s) => (
-                <div key={s.t} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 2, padding: "16px 20px" }}>
-                  <div style={{ fontWeight: 800, color: "white", fontSize: "0.92rem", fontFamily: "Outfit, sans-serif" }}>{s.t}</div>
-                  <div style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.55)", marginTop: 4 }}>{s.d}</div>
+                <div key={s.t} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 2, padding: "16px 20px" }}>
+                  <div style={{ fontWeight: 800, color: "white", fontSize: "0.92rem", fontFamily: "Outfit, sans-serif" }}>✦ {s.t}</div>
+                  <div style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.5)", marginTop: 4, fontFamily: "Outfit, sans-serif" }}>{s.d}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
         <style>{`@media (max-width: 760px){ .tradie-band{ grid-template-columns:1fr !important; padding: 36px 28px !important; } .tradie-band-stats { display: none !important; } }`}</style>
-      </section>
-
-      {/* ───────────────── FINAL CTA ───────────────── */}
-      <section style={{ background: "linear-gradient(150deg, #0a1f1e 0%, #0e4440 100%)", padding: "96px 0", textAlign: "center", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 700, height: 700, background: "radial-gradient(circle, rgba(201,151,42,0.1) 0%, transparent 60%)", borderRadius: "50%", pointerEvents: "none" }} />
-        <div className="container-md" style={{ position: "relative", zIndex: 1 }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 50, padding: "7px 18px", marginBottom: 24 }}>
-            <span style={{ color: "var(--gold-light)", fontSize: "0.85rem" }}>✦</span>
-            <span style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.06em" }}>FREE TO START</span>
-          </div>
-          <h2 style={{ color: "white", fontSize: "clamp(2rem, 5vw, 3.2rem)", marginBottom: 18, lineHeight: 1.15, letterSpacing: "-0.03em" }}>Your dream renovation starts with a photo.</h2>
-          <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "1.1rem", marginBottom: 40, maxWidth: 480, margin: "0 auto 40px" }}>
-            See the design, know the price, and meet up to 3 licensed local tradies — all without leaving your couch.
-          </p>
-          <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/quote" className="btn-gold" id="final-cta" style={{ fontSize: "1.05rem", padding: "16px 40px" }}>📸 Design my space — free</Link>
-            <Link href="/tradies" style={{ display: "inline-flex", alignItems: "center", padding: "15px 36px", borderRadius: "50px", fontWeight: 600, fontSize: "1rem", textDecoration: "none", color: "rgba(255,255,255,0.85)", border: "2px solid rgba(255,255,255,0.3)", transition: "var(--transition)" }} id="final-tradie" className="btn-outline-white">I&rsquo;m a tradie →</Link>
-          </div>
-          <p style={{ marginTop: 40, fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", maxWidth: 600, margin: "40px auto 0", lineHeight: 1.7 }}>
-            CoastHomeHub uses best efforts to connect homeowners with up to 3 QBCC-licensed local tradies but does not guarantee tradie availability, specific services, or response times. AI cost estimates are indicative ballpark figures only — not formal quotes. Home Warranty Insurance applies only where the tradie holds the relevant QBCC licence class for that work. <Link href="/terms" style={{ color: "rgba(255,255,255,0.4)", textDecoration: "underline" }}>Terms&nbsp;&amp;&nbsp;Conditions apply.</Link>
-          </p>
-        </div>
       </section>
     </>
   );

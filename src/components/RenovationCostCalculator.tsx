@@ -112,12 +112,11 @@ export default function RenovationCostCalculator() {
   return (
     <div
       style={{
-        background: "rgba(10, 31, 30, 0.95)",
-        backdropFilter: "blur(12px)",
-        border: "1px solid rgba(61, 153, 144, 0.3)",
-        borderRadius: "28px",
+        background: "#0c2422",
+        border: "1px solid var(--sand-300)",
+        borderRadius: "4px",
         padding: "36px",
-        boxShadow: "0 24px 64px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.08)",
+        boxShadow: "0 24px 64px rgba(0, 0, 0, 0.25)",
         color: "white",
         width: "100%",
         maxWidth: "800px",
@@ -128,16 +127,16 @@ export default function RenovationCostCalculator() {
         
         {/* Left Control Panel */}
         <div>
-          <h3 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "20px", color: "var(--gold-light)" }}>
+          <h3 style={{ fontSize: "1.5rem", fontWeight: 500, marginBottom: "20px", color: "var(--gold-light)", fontFamily: "Lora, Georgia, serif" }}>
             QLD Cost Ballpark Calculator
           </h3>
-          <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.6, marginBottom: "28px" }}>
+          <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.6, marginBottom: "28px", fontFamily: "Outfit, sans-serif" }}>
             Adjust your project specs below. Calculated using 2026 South East Queensland average labor rates and AS 3740 compliance guidelines.
           </p>
 
           {/* 1. Project Type Selector */}
           <div style={{ marginBottom: "24px" }}>
-            <label style={{ display: "block", fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "8px" }}>
+            <label style={{ display: "block", fontSize: "0.72rem", fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "8px", fontFamily: "Outfit, sans-serif" }}>
               Project Space
             </label>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
@@ -152,21 +151,24 @@ export default function RenovationCostCalculator() {
                     else if (type === "Painting") setArea(120);
                   }}
                   style={{
-                    background: projectType === type ? "linear-gradient(135deg, #1f7a72, #0e4440)" : "rgba(255,255,255,0.05)",
-                    border: `1px solid ${projectType === type ? "rgba(61,153,144,0.6)" : "rgba(255,255,255,0.1)"}`,
-                    color: projectType === type ? "white" : "rgba(255,255,255,0.85)",
+                    background: projectType === type ? "var(--ocean-600)" : "rgba(255,255,255,0.05)",
+                    border: `1px solid ${projectType === type ? "var(--gold)" : "rgba(255,255,255,0.1)"}`,
+                    color: "white",
                     padding: "12px",
-                    borderRadius: "12px",
+                    borderRadius: "2px",
                     fontWeight: 700,
                     fontSize: "0.85rem",
                     cursor: "pointer",
                     transition: "all 0.25s ease",
+                    fontFamily: "Outfit, sans-serif",
+                    letterSpacing: "0.02em"
                   }}
                 >
-                  {type === "Bathroom" && "🚿 Bathroom"}
-                  {type === "Kitchen" && "🍳 Kitchen"}
-                  {type === "Decking" && "🪵 Deck / Outdoor"}
-                  {type === "Painting" && "🎨 Entire House Painting"}
+                  {projectType === type ? "✦ " : ""}
+                  {type === "Bathroom" && "Bathroom"}
+                  {type === "Kitchen" && "Kitchen"}
+                  {type === "Decking" && "Deck & Outdoor"}
+                  {type === "Painting" && "Painting"}
                 </button>
               ))}
             </div>
@@ -175,10 +177,10 @@ export default function RenovationCostCalculator() {
           {/* 2. Room Size Area Slider */}
           <div style={{ marginBottom: "28px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "8px" }}>
-              <label style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
+              <label style={{ fontSize: "0.72rem", fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", fontFamily: "Outfit, sans-serif" }}>
                 Room Area / Size
               </label>
-              <span style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--gold-light)" }}>
+              <span style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--gold-light)", fontFamily: "Outfit, sans-serif" }}>
                 {area} ㎡
               </span>
             </div>
@@ -191,14 +193,14 @@ export default function RenovationCostCalculator() {
               style={{
                 width: "100%",
                 height: "6px",
-                borderRadius: "3px",
+                borderRadius: "1px",
                 background: "rgba(255,255,255,0.15)",
                 outline: "none",
                 cursor: "pointer",
                 accentColor: "var(--gold-light)",
               }}
             />
-            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.7rem", color: "rgba(255,255,255,0.4)", marginTop: "4px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.7rem", color: "rgba(255,255,255,0.4)", marginTop: "4px", fontFamily: "Outfit, sans-serif" }}>
               <span>Min</span>
               <span>Max</span>
             </div>
@@ -206,7 +208,7 @@ export default function RenovationCostCalculator() {
 
           {/* 3. Quality Tier */}
           <div style={{ marginBottom: "16px" }}>
-            <label style={{ display: "block", fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "8px" }}>
+            <label style={{ display: "block", fontSize: "0.72rem", fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "8px", fontFamily: "Outfit, sans-serif" }}>
               Material & Finish Curation
             </label>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "8px" }}>
@@ -223,13 +225,14 @@ export default function RenovationCostCalculator() {
                     border: `1px solid ${quality === tier.key ? "var(--gold-light)" : "rgba(255,255,255,0.08)"}`,
                     color: quality === tier.key ? "var(--gold-light)" : "rgba(255,255,255,0.7)",
                     padding: "10px 8px",
-                    borderRadius: "12px",
+                    borderRadius: "2px",
                     cursor: "pointer",
                     transition: "all 0.25s ease",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
                     gap: "4px",
+                    fontFamily: "Outfit, sans-serif",
                   }}
                 >
                   <span style={{ fontWeight: 800, fontSize: "0.78rem" }}>{tier.label}</span>
@@ -244,9 +247,9 @@ export default function RenovationCostCalculator() {
         {/* Right Output Panel */}
         <div
           style={{
-            background: "rgba(255, 255, 255, 0.03)",
-            border: "1px solid rgba(255,255,255,0.06)",
-            borderRadius: "20px",
+            background: "rgba(255, 255, 255, 0.02)",
+            border: "1px solid var(--sand-300)",
+            borderRadius: "4px",
             padding: "28px",
             display: "flex",
             flexDirection: "column",
@@ -255,13 +258,13 @@ export default function RenovationCostCalculator() {
         >
           {/* Main Price Output */}
           <div style={{ textAlign: "center" }}>
-            <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-300)", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+            <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-300)", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "Outfit, sans-serif" }}>
               Ballpark Price Range
             </span>
-            <div style={{ fontSize: "clamp(1.6rem, 3vw, 2.3rem)", fontWeight: 900, color: "white", marginTop: "8px", letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: "clamp(1.6rem, 3vw, 2.3rem)", fontWeight: 500, color: "white", marginTop: "8px", letterSpacing: "-0.02em", fontFamily: "Lora, Georgia, serif" }}>
               ${cost.min.toLocaleString()} - ${cost.max.toLocaleString()}
             </div>
-            <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.45)" }}>
+            <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.45)", fontFamily: "Outfit, sans-serif" }}>
               AUD (Incl. GST)
             </span>
           </div>
@@ -269,24 +272,23 @@ export default function RenovationCostCalculator() {
           {/* Breakdown bars */}
           <div style={{ marginTop: "24px", display: "flex", flexDirection: "column", gap: "12px" }}>
             {[
-              { label: "🪓 Demolition / Prep", val: cost.breakdown.demolition, pct: 10 },
-              { label: "🛡️ Compliance & Waterproofing", val: cost.breakdown.waterproofing, pct: projectType === "Bathroom" ? 12 : 5 },
-              { label: "👷 QBCC Licensed Labor", val: cost.breakdown.labor, pct: 45 },
-              { label: "📦 Curated Materials", val: cost.breakdown.materials, pct: 30 },
-              { label: "📜 Insurances & Fees", val: cost.breakdown.fees, pct: 3 },
+              { label: "Demolition & Prep", val: cost.breakdown.demolition, pct: 10 },
+              { label: "Compliance & Waterproofing", val: cost.breakdown.waterproofing, pct: projectType === "Bathroom" ? 12 : 5 },
+              { label: "QBCC Licensed Labor", val: cost.breakdown.labor, pct: 45 },
+              { label: "Curated Materials", val: cost.breakdown.materials, pct: 30 },
+              { label: "Insurances & Fees", val: cost.breakdown.fees, pct: 3 },
             ].map((item) => (
               <div key={item.label}>
-                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.72rem", marginBottom: "4px", color: "rgba(255,255,255,0.8)" }}>
-                  <span>{item.label}</span>
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.72rem", marginBottom: "4px", color: "rgba(255,255,255,0.8)", fontFamily: "Outfit, sans-serif" }}>
+                  <span>✦ {item.label}</span>
                   <strong style={{ color: "white" }}>${item.val.toLocaleString()}</strong>
                 </div>
-                <div style={{ width: "100%", height: "4px", background: "rgba(255,255,255,0.08)", borderRadius: "2px", overflow: "hidden" }}>
+                <div style={{ width: "100%", height: "2px", background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
                   <div
                     style={{
                       width: `${item.pct}%`,
                       height: "100%",
                       background: item.label.includes("Waterproofing") ? "var(--ocean-400)" : item.label.includes("Labor") ? "var(--gold-light)" : "rgba(255,255,255,0.3)",
-                      borderRadius: "2px",
                     }}
                   />
                 </div>
@@ -301,33 +303,35 @@ export default function RenovationCostCalculator() {
                 display: "flex",
                 gap: "8px",
                 alignItems: "flex-start",
-                background: "rgba(31,122,114,0.1)",
-                border: "1px solid rgba(31,122,114,0.25)",
+                background: "rgba(255, 255, 255, 0.04)",
+                border: "1px solid var(--sand-300)",
                 padding: "10px 12px",
-                borderRadius: "10px",
+                borderRadius: "2px",
                 marginBottom: "16px",
               }}
             >
-              <span style={{ fontSize: "0.95rem" }}>🛡️</span>
-              <p style={{ fontSize: "0.68rem", color: "var(--ocean-200)", lineHeight: 1.4, margin: 0 }}>
+              <span style={{ fontSize: "0.75rem", color: "var(--gold)" }}>✦</span>
+              <p style={{ fontSize: "0.68rem", color: "var(--sand-200)", lineHeight: 1.4, margin: 0, fontFamily: "Outfit, sans-serif" }}>
                 Includes QBCC Form 15 compliance check & AS 3740 / AS 1288 materials standard check.
               </p>
             </div>
 
-            <Link href="/quote" style={{ width: "100%" }}>
+            <Link href="/quote" style={{ width: "100%", textDecoration: "none" }}>
               <button
                 className="btn-gold"
                 style={{
                   width: "100%",
                   padding: "14px",
-                  fontSize: "0.9rem",
+                  fontSize: "0.88rem",
                   fontWeight: 700,
-                  borderRadius: "12px",
+                  borderRadius: "4px",
                   cursor: "pointer",
                   textAlign: "center",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.06em"
                 }}
               >
-                📸 Snap Space & Get Quotes →
+                Design My Space & Get Quotes
               </button>
             </Link>
           </div>

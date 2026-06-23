@@ -98,6 +98,14 @@ export const plannerProjectTypeSchema = z.enum([
   "Flooring",
   "Painting",
   "Outdoor",
+  "Waterproofing",
+  "Tiling",
+  "Decking & Carpentry",
+  "Landscaping & Paving",
+  "Electrical & Smart Home",
+  "Plumbing",
+  "Roofing & Cladding",
+  "Plastering & Gyprock"
 ]);
 
 export const plannerAnswerSchema = z.object({
@@ -138,3 +146,10 @@ export const plannerBriefRequestSchema = z.object({
   answers: z.array(plannerAnswerSchema).min(3).max(8),
   photos: z.array(plannerPhotoSchema).max(8).default([]),
 }).strict();
+
+export const verifyLicenceSchema = z.object({
+  abn: z.string().min(1).max(30),
+  licenceNumber: z.string().min(1).max(30),
+  businessNameHint: z.string().max(200).optional().default(""),
+}).strict();
+

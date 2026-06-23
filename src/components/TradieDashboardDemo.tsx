@@ -172,7 +172,7 @@ export default function TradieDashboardDemo() {
         }}
       >
         <div>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "var(--ocean-50)", padding: "4px 10px", borderRadius: 2, fontSize: "0.68rem", fontWeight: 800, color: "var(--ocean-700)", border: "1px solid var(--ocean-100)", letterSpacing: "0.05em" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "var(--ocean-50)", padding: "4px 10px", borderRadius: 2, fontSize: "0.68rem", fontWeight: 800, color: "var(--ocean-700)", border: "1px solid var(--ocean-200)", letterSpacing: "0.05em" }}>
             ✦ INTERACTIVE PORTAL DEMO // ELITE PARTNER
           </div>
           <h3 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.6rem", fontWeight: 600, color: "var(--slate-dark)", margin: "8px 0 0" }}>Welcome back, EIJ Construction</h3>
@@ -180,11 +180,11 @@ export default function TradieDashboardDemo() {
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
           <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "10px 18px", textAlign: "right" }}>
             <span style={{ fontSize: "0.62rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.04em", fontWeight: 700 }}>ACCOUNT TYPE</span>
-            <span style={{ fontWeight: 800, color: "var(--gold)", fontSize: "0.88rem", fontFamily: "Outfit, sans-serif" }}>👑 Elite Partner</span>
+            <span style={{ fontWeight: 800, color: "var(--gold)", fontSize: "0.88rem", fontFamily: "Outfit, sans-serif" }}>✦ Elite Partner</span>
           </div>
           <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "10px 18px", textAlign: "right" }}>
             <span style={{ fontSize: "0.62rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.04em", fontWeight: 700 }}>AVAILABLE CREDITS</span>
-            <span style={{ fontWeight: 800, color: "var(--ocean-600)", fontSize: "1.1rem", fontFamily: "Lora, Georgia, serif" }}>🪙 {credits}</span>
+            <span style={{ fontWeight: 800, color: "var(--ocean-700)", fontSize: "1.1rem", fontFamily: "Lora, Georgia, serif" }}>✦ {credits}</span>
           </div>
         </div>
       </div>
@@ -208,11 +208,11 @@ export default function TradieDashboardDemo() {
         ].map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setActiveTab(tab.id as any)}
+            onClick={() => setActiveTab(tab.id as "leads" | "buyers" | "portfolio" | "seo")}
             style={{
               padding: "12px 4px",
               border: "none",
-              borderBottom: activeTab === tab.id ? "2px solid var(--ocean-600)" : "2px solid transparent",
+              borderBottom: activeTab === tab.id ? "2px solid var(--ocean-700)" : "2px solid transparent",
               background: "transparent",
               color: activeTab === tab.id ? "var(--slate-dark)" : "var(--slate-light)",
               fontWeight: 700,
@@ -256,7 +256,7 @@ export default function TradieDashboardDemo() {
                   key={lead.id}
                   onClick={() => setSelectedLeadId(lead.id)}
                   style={{
-                    border: isSelected ? "1px solid var(--ocean-600)" : "1px solid var(--sand-300)",
+                    border: isSelected ? "1px solid var(--ocean-700)" : "1px solid var(--sand-300)",
                     borderRadius: "4px",
                     padding: "20px 22px",
                     background: isSelected ? "white" : "rgba(255,255,255,0.5)",
@@ -268,14 +268,14 @@ export default function TradieDashboardDemo() {
                   }}
                 >
                   <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8, alignItems: "center" }}>
-                    <span style={{ color: "var(--ocean-600)", fontWeight: 700, fontSize: "0.8rem", fontFamily: "Outfit, sans-serif" }}>📍 {lead.suburb}</span>
+                    <span style={{ color: "var(--ocean-700)", fontWeight: 700, fontSize: "0.8rem", fontFamily: "Outfit, sans-serif" }}>✦ {lead.suburb}</span>
                     {lead.isLocked ? (
-                      <span style={{ fontSize: "0.68rem", background: "var(--sand-100)", color: "var(--sand-50)", padding: "3px 8px", borderRadius: 2, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.02em" }}>
-                        🔒 Locked
+                      <span style={{ fontSize: "0.68rem", background: "var(--sand-100)", color: "var(--slate-light)", padding: "3px 8px", borderRadius: 2, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.02em" }}>
+                        Locked
                       </span>
                     ) : (
-                      <span style={{ fontSize: "0.68rem", background: "var(--ocean-50)", color: "var(--ocean-600)", padding: "3px 8px", borderRadius: 2, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.02em" }}>
-                        🔓 Unlocked
+                      <span style={{ fontSize: "0.68rem", background: "var(--ocean-50)", color: "var(--ocean-700)", padding: "3px 8px", borderRadius: 2, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.02em" }}>
+                        Unlocked
                       </span>
                     )}
                   </div>
@@ -296,7 +296,7 @@ export default function TradieDashboardDemo() {
           <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: "4px", padding: "32px", minHeight: 460, position: "relative", boxShadow: "var(--shadow-sm)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", borderBottom: "3px double var(--sand-300)", paddingBottom: 20, marginBottom: 24 }}>
               <div>
-                <span style={{ color: "var(--ocean-500)", fontSize: "0.78rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em" }}>{activeLead.category}</span>
+                <span style={{ color: "var(--ocean-700)", fontSize: "0.78rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em" }}>{activeLead.category}</span>
                 <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.6rem", fontWeight: 600, margin: "6px 0 0", color: "var(--slate-dark)" }}>{activeLead.suburb}</h2>
               </div>
               <div style={{ textAlign: "right" }}>
@@ -311,7 +311,7 @@ export default function TradieDashboardDemo() {
 
             {activeLead.isLocked ? (
               <div style={{ background: "var(--sand-50)", border: "1px dashed var(--sand-300)", borderRadius: "4px", padding: "48px 32px", textAlign: "center", marginTop: 24 }}>
-                <div style={{ fontSize: "2.4rem", marginBottom: 16 }}>🔒</div>
+                <div style={{ fontSize: "1.5rem", color: "var(--gold)", marginBottom: 16 }}>✦</div>
                 <h3 style={{ fontFamily: "Lora, Georgia, serif", color: "var(--slate-dark)", fontSize: "1.2rem", marginBottom: 8, fontWeight: 600 }}>Contact Details Locked</h3>
                 <p style={{ color: "var(--slate-light)", fontSize: "0.85rem", maxWidth: 400, margin: "0 auto 28px", lineHeight: 1.6 }}>
                   Unlock this lead using your monthly credits. You will gain immediate access to client&apos;s name, phone, email, and detailed room photos.
@@ -320,15 +320,14 @@ export default function TradieDashboardDemo() {
                   onClick={handleUnlock}
                   disabled={unlocking}
                   style={{
-                    background: "linear-gradient(135deg, var(--gold), var(--gold-light))",
+                    background: "var(--gold)",
                     border: "none",
                     borderRadius: "4px",
                     padding: "13px 36px",
                     color: "white",
-                    fontWeight: 800,
+                    fontWeight: 700,
                     fontSize: "0.92rem",
                     cursor: "pointer",
-                    boxShadow: "0 4px 12px rgba(201,151,42,0.25)",
                     transition: "var(--transition)",
                     fontFamily: "Outfit, sans-serif",
                   }}
@@ -338,21 +337,21 @@ export default function TradieDashboardDemo() {
               </div>
             ) : (
               <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, background: "var(--sand-50)", border: "1px solid var(--sand-200)", borderRadius: "4px", padding: "20px 24px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: "4px", padding: "20px 24px" }}>
                   <div>
                     <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.02em" }}>CONTACT NAME</span>
-                    <strong style={{ color: "var(--slate-dark)", fontSize: "0.92rem" }}>👤 {activeLead.clientName}</strong>
+                    <strong style={{ color: "var(--slate-dark)", fontSize: "0.92rem" }}>✦ {activeLead.clientName}</strong>
                   </div>
                   <div>
                     <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.02em" }}>PHONE NUMBER</span>
-                    <a href={`tel:${activeLead.clientPhone}`} style={{ color: "var(--ocean-600)", fontSize: "0.92rem", textDecoration: "none", fontWeight: 700 }}>
-                      📞 {activeLead.clientPhone}
+                    <a href={`tel:${activeLead.clientPhone}`} style={{ color: "var(--ocean-700)", fontSize: "0.92rem", textDecoration: "none", fontWeight: 700 }}>
+                      ✦ {activeLead.clientPhone}
                     </a>
                   </div>
                   <div style={{ gridColumn: "span 2", borderTop: "1px solid var(--sand-200)", paddingTop: 12, marginTop: 4 }}>
                     <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.02em" }}>EMAIL ADDRESS</span>
-                    <a href={`mailto:${activeLead.clientEmail}`} style={{ color: "var(--ocean-600)", fontSize: "0.92rem", textDecoration: "none", fontWeight: 600 }}>
-                      ✉️ {activeLead.clientEmail}
+                    <a href={`mailto:${activeLead.clientEmail}`} style={{ color: "var(--ocean-700)", fontSize: "0.92rem", textDecoration: "none", fontWeight: 700 }}>
+                      ✦ {activeLead.clientEmail}
                     </a>
                   </div>
                 </div>
@@ -360,26 +359,26 @@ export default function TradieDashboardDemo() {
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
                   <div>
                     <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block", marginBottom: 8, letterSpacing: "0.02em" }}>CUSTOMER BEFORE PHOTO</span>
-                    <div style={{ position: "relative", height: 160, borderRadius: "4px", overflow: "hidden", border: "1px solid var(--sand-200)" }}>
+                    <div style={{ position: "relative", height: 160, borderRadius: "4px", overflow: "hidden", border: "1px solid var(--sand-300)" }}>
                       <Image src={activeLead.beforeImage} alt="Before" fill style={{ objectFit: "cover" }} unoptimized />
                     </div>
                   </div>
                   <div>
                     <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block", marginBottom: 8, letterSpacing: "0.02em" }}>AI DESIGN CONCEPT</span>
-                    <div style={{ position: "relative", height: 160, borderRadius: "4px", overflow: "hidden", border: "1px solid var(--sand-200)" }}>
+                    <div style={{ position: "relative", height: 160, borderRadius: "4px", overflow: "hidden", border: "1px solid var(--sand-300)" }}>
                       <Image src={activeLead.afterImage} alt="AI Concept" fill style={{ objectFit: "cover" }} unoptimized />
                     </div>
                   </div>
                 </div>
 
-                <div style={{ background: "rgba(240, 249, 248, 0.6)", border: "1px solid var(--ocean-100)", borderRadius: "4px", padding: "20px" }}>
+                <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: "4px", padding: "20px" }}>
                   <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-700)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 10 }}>
                     ✦ AI Recommended Project Materials
                   </span>
                   <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 8, margin: 0, padding: 0 }}>
                     {activeLead.aiSpecs.map((spec) => (
                       <li key={spec} style={{ display: "flex", gap: 10, fontSize: "0.85rem", color: "var(--slate-mid)", alignItems: "center" }}>
-                        <span style={{ color: "var(--ocean-600)", fontWeight: 700 }}>✦</span><span>{spec}</span>
+                        <span style={{ color: "var(--gold)", fontWeight: 700 }}>✦</span><span>{spec}</span>
                       </li>
                     ))}
                   </ul>
@@ -412,7 +411,7 @@ export default function TradieDashboardDemo() {
                       type="submit"
                       disabled={proposalSent}
                       style={{
-                        background: "var(--ocean-600)",
+                        background: "var(--ocean-700)",
                         border: "none",
                         borderRadius: "4px",
                         padding: "12px 24px",
@@ -438,7 +437,7 @@ export default function TradieDashboardDemo() {
       {activeTab === "buyers" && (
         <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: "4px", padding: "32px", boxShadow: "var(--shadow-sm)" }}>
           <div style={{ marginBottom: 28, borderBottom: "3px double var(--sand-300)", paddingBottom: 20 }}>
-            <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-600)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 6 }}>
+            <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-700)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 6 }}>
               B2B Material Buyers Club Portal
             </span>
             <h3 style={{ fontFamily: "Lora, Georgia, serif", color: "var(--slate-dark)", fontSize: "1.5rem", fontWeight: 600, margin: 0 }}>Direct Supplier Integration & Wholesaling</h3>
@@ -455,23 +454,23 @@ export default function TradieDashboardDemo() {
               const totalSavings = mat.retailPrice * (mat.tradeDiscount / 100) * qty;
 
               return (
-                <div key={mat.id} style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", borderRadius: "4px", padding: 24, display: "flex", flexDirection: "column", justifySelf: "stretch" }}>
+                <div key={mat.id} style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: "4px", padding: 24, display: "flex", flexDirection: "column", justifySelf: "stretch" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-                    <span style={{ fontSize: "0.68rem", color: "var(--gold)", fontWeight: 800, background: "white", padding: "4px 10px", borderRadius: 2, border: "1px solid var(--sand-300)", letterSpacing: "0.02em" }}>
+                    <span style={{ fontSize: "0.68rem", color: "var(--ocean-700)", fontWeight: 800, background: "white", padding: "4px 10px", borderRadius: 2, border: "1px solid var(--sand-300)", letterSpacing: "0.02em" }}>
                       {mat.brand}
                     </span>
                     <span style={{ fontSize: "0.72rem", color: "var(--slate-light)" }}>Code: {mat.code}</span>
                   </div>
                   <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.05rem", fontWeight: 600, margin: "0 0 16px", color: "var(--slate-dark)", minHeight: 48, lineHeight: 1.4 }}>{mat.name}</h4>
                   
-                  <div style={{ background: "white", padding: 16, borderRadius: "4px", border: "1px solid var(--sand-200)", marginBottom: 18 }}>
+                  <div style={{ background: "white", padding: 16, borderRadius: "4px", border: "1px solid var(--sand-300)", marginBottom: 18 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.8rem", color: "var(--slate-light)", marginBottom: 6 }}>
                       <span>Retail Price:</span>
                       <span style={{ textDecoration: "line-through" }}>${mat.retailPrice} AUD</span>
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.9rem", fontWeight: 800, color: "var(--slate-dark)" }}>
                       <span>Trade Member Price:</span>
-                      <span style={{ color: "var(--ocean-600)" }}>${tradePrice.toFixed(2)} AUD</span>
+                      <span style={{ color: "var(--ocean-700)" }}>${tradePrice.toFixed(2)} AUD</span>
                     </div>
                   </div>
 
@@ -496,7 +495,7 @@ export default function TradieDashboardDemo() {
                       }}
                     />
                     <span style={{ fontSize: "0.75rem", color: "var(--gold)", fontWeight: 700 }}>
-                      💾 Save ${totalSavings.toFixed(2)}
+                      Save ${totalSavings.toFixed(2)}
                     </span>
                   </div>
 
@@ -506,7 +505,7 @@ export default function TradieDashboardDemo() {
                     style={{
                       marginTop: "auto",
                       padding: "12px",
-                      background: "var(--ocean-600)",
+                      background: "var(--ocean-700)",
                       border: "none",
                       borderRadius: "4px",
                       color: "white",
@@ -532,8 +531,8 @@ export default function TradieDashboardDemo() {
           <div style={{ display: "grid", gridTemplateColumns: "1.15fr 0.85fr", gap: 36 }} className="demo-grid-wrap">
             {/* Interactive Image Panel */}
             <div>
-              <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-600)", textTransform: "uppercase", display: "block", marginBottom: 12, letterSpacing: "0.04em" }}>
-                Archipro-style Project Curation (Click Image to Add Tags)
+              <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-700)", textTransform: "uppercase", display: "block", marginBottom: 12, letterSpacing: "0.04em" }}>
+                ✦ Project Curation (Click Image to Add Tags)
               </span>
               
               <div
@@ -545,7 +544,7 @@ export default function TradieDashboardDemo() {
                   borderRadius: "4px",
                   overflow: "hidden",
                   cursor: taggingMode ? "crosshair" : "default",
-                  border: taggingMode ? "2px dashed var(--gold)" : "1px solid var(--sand-200)",
+                  border: taggingMode ? "2px dashed var(--gold)" : "1px solid var(--sand-300)",
                 }}
               >
                 <Image src="/images/luxury_kitchen.png" alt="Portfolio Spec" fill style={{ objectFit: "cover" }} unoptimized />
@@ -600,14 +599,14 @@ export default function TradieDashboardDemo() {
             {/* Tag Control Board */}
             <div style={{ display: "flex", flexDirection: "column", gap: 24, justifyContent: "center" }}>
               <div>
-                <span style={{ fontSize: "0.68rem", color: "var(--ocean-600)", fontWeight: 800, letterSpacing: "0.04em" }}>ARCHIPRO BRAND EXPOSURE</span>
+                <span style={{ fontSize: "0.68rem", color: "var(--ocean-700)", fontWeight: 800, letterSpacing: "0.04em" }}>ARCHIPRO BRAND EXPOSURE</span>
                 <h4 style={{ fontFamily: "Lora, Georgia, serif", color: "var(--slate-dark)", fontSize: "1.3rem", fontWeight: 600, margin: "6px 0 0" }}>Interactive Material Tags</h4>
                 <p style={{ color: "var(--slate-light)", fontSize: "0.82rem", lineHeight: 1.65, marginTop: 8 }}>
                   Elite members can tag material codes directly in their portfolio photos. When homeowners click a tag, it links to our affiliate B2B suppliers, earning you **3% affiliate profit share** on purchases.
                 </p>
               </div>
 
-              <div style={{ background: "var(--sand-50)", padding: 20, borderRadius: "4px", border: "1px solid var(--sand-200)" }}>
+              <div style={{ background: "var(--sand-50)", padding: 20, borderRadius: "4px", border: "1px solid var(--sand-300)" }}>
                 <label style={{ fontSize: "0.78rem", color: "var(--slate-dark)", fontWeight: 800, display: "block", marginBottom: 10, textTransform: "uppercase", letterSpacing: "0.02em" }}>
                   Add Material Tag Simulator
                 </label>
@@ -648,7 +647,7 @@ export default function TradieDashboardDemo() {
                 </div>
                 {taggingMode && (
                   <div style={{ fontSize: "0.75rem", color: "var(--gold)", fontWeight: 700 }}>
-                    ⚡ Now, click anywhere on the left kitchen photo to place the tag point!
+                    ✦ Now, click anywhere on the left kitchen photo to place the tag point!
                   </div>
                 )}
               </div>
@@ -656,7 +655,7 @@ export default function TradieDashboardDemo() {
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 <span style={{ fontSize: "0.7rem", color: "var(--slate-light)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.02em" }}>CURRENT PHOTO TAGS</span>
                 {portfolioTags.map((t, idx) => (
-                  <div key={idx} style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", padding: "8px 12px", borderRadius: 4, fontSize: "0.78rem", color: "var(--slate-mid)", fontFamily: "Outfit, sans-serif" }}>
+                  <div key={idx} style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", padding: "8px 12px", borderRadius: 4, fontSize: "0.78rem", color: "var(--slate-mid)", fontFamily: "Outfit, sans-serif" }}>
                     ✦ {t.label}
                   </div>
                 ))}
@@ -673,7 +672,7 @@ export default function TradieDashboardDemo() {
           <div style={{ display: "grid", gridTemplateColumns: "1.25fr 0.75fr", gap: 36 }} className="demo-grid-wrap">
             {/* SEO Data Board */}
             <div>
-              <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-600)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 6 }}>
+              <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-700)", textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 6 }}>
                 Google Search Engine Optimization Visibility
               </span>
               <h3 style={{ fontFamily: "Lora, Georgia, serif", color: "var(--slate-dark)", fontSize: "1.5rem", fontWeight: 600, margin: "0 0 24px" }}>Local Organic Traffic Report</h3>
@@ -684,10 +683,10 @@ export default function TradieDashboardDemo() {
                   { label: "Profile Clicks", value: "920", trend: "+18% MoM" },
                   { label: "Est. Lead Value Sav.", value: "$2,760", trend: "Based on $30/lead CAC" },
                 ].map((stat) => (
-                  <div key={stat.label} style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", borderRadius: 4, padding: "18px" }}>
+                  <div key={stat.label} style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "18px" }}>
                     <span style={{ fontSize: "0.7rem", color: "var(--slate-light)", display: "block" }}>{stat.label}</span>
                     <strong style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.35rem", color: "var(--slate-dark)", display: "block", margin: "6px 0" }}>{stat.value}</strong>
-                    <span style={{ fontSize: "0.68rem", color: "var(--ocean-600)", fontWeight: 700 }}>{stat.trend}</span>
+                    <span style={{ fontSize: "0.68rem", color: "var(--ocean-700)", fontWeight: 700 }}>{stat.trend}</span>
                   </div>
                 ))}
               </div>
@@ -697,10 +696,10 @@ export default function TradieDashboardDemo() {
                 <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--slate-light)", textTransform: "uppercase", display: "block", marginBottom: 12, letterSpacing: "0.02em" }}>
                   Active Google Ranking Keywords for EIJ Construction
                 </span>
-                <div style={{ background: "white", border: "1px solid var(--sand-200)", borderRadius: 4, overflow: "hidden" }}>
+                <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, overflow: "hidden" }}>
                   <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem", textAlign: "left" }}>
                     <thead>
-                      <tr style={{ background: "var(--sand-50)", borderBottom: "1px solid var(--sand-200)" }}>
+                      <tr style={{ background: "var(--sand-50)", borderBottom: "1px solid var(--sand-300)" }}>
                         <th style={{ padding: "12px 16px", color: "var(--slate-dark)", fontWeight: 800 }}>Keyword</th>
                         <th style={{ padding: "12px 16px", color: "var(--slate-dark)", fontWeight: 800 }}>Google Rank</th>
                         <th style={{ padding: "12px 16px", color: "var(--slate-dark)", fontWeight: 800 }}>Monthly Volume</th>
@@ -714,11 +713,11 @@ export default function TradieDashboardDemo() {
                         { kw: "Licensed Kitchen Builder Broadbeach", rank: "#1", vol: "290", ctr: "24.1%" },
                         { kw: "QLD Compliant Waterproofing", rank: "#5", vol: "1,120", ctr: "4.5%" },
                       ].map((item, idx) => (
-                        <tr key={idx} style={{ borderBottom: "1px solid var(--sand-200)" }}>
+                        <tr key={idx} style={{ borderBottom: "1px solid var(--sand-300)" }}>
                           <td style={{ padding: "12px 16px", fontWeight: 700, color: "var(--slate-dark)" }}>{item.kw}</td>
                           <td style={{ padding: "12px 16px", color: "var(--gold)", fontWeight: 700 }}>{item.rank}</td>
                           <td style={{ padding: "12px 16px" }}>{item.vol} /mo</td>
-                          <td style={{ padding: "12px 16px", color: "var(--ocean-600)", fontWeight: 700 }}>{item.ctr}</td>
+                          <td style={{ padding: "12px 16px", color: "var(--ocean-700)", fontWeight: 700 }}>{item.ctr}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -729,7 +728,7 @@ export default function TradieDashboardDemo() {
             </div>
 
             {/* SEO Strategy Panel */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 20, justifyContent: "center" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20, position: "relative" }}>
               <div style={{ background: "rgba(240, 249, 248, 0.75)", border: "1px solid var(--ocean-100)", borderRadius: 4, padding: "24px" }}>
                 <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--ocean-700)", textTransform: "uppercase", display: "block", marginBottom: 8, letterSpacing: "0.02em" }}>
                   ✦ How We Rank Your Profile
@@ -741,9 +740,9 @@ export default function TradieDashboardDemo() {
                 </p>
               </div>
 
-              <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", padding: "20px", borderRadius: 4 }}>
+              <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", padding: "20px", borderRadius: 4 }}>
                 <span style={{ fontSize: "0.68rem", color: "var(--slate-light)", display: "block", letterSpacing: "0.02em" }}>LIVE PROFILE CANONICAL URL</span>
-                <a href="/directory/t-1" target="_blank" style={{ color: "var(--ocean-600)", fontSize: "0.85rem", textDecoration: "none", fontWeight: 700, display: "block", marginTop: 6, borderBottom: "1px dashed var(--ocean-400)", width: "fit-content" }}>
+                <a href="/directory/t-1" target="_blank" style={{ color: "var(--ocean-700)", fontSize: "0.85rem", textDecoration: "none", fontWeight: 700, display: "block", marginTop: 6, borderBottom: "1px dashed var(--ocean-700)", width: "fit-content" }}>
                   coasthomehub.com.au/directory/t-1
                 </a>
               </div>
@@ -762,6 +761,8 @@ export default function TradieDashboardDemo() {
           .demo-grid-wrap {
             grid-template-columns: 1fr !important;
             gap: 28px !important;
+            display: flex !important;
+            flex-direction: column !important;
           }
         }
       `}} />

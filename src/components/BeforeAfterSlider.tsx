@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 interface BeforeAfterSliderProps {
@@ -20,9 +20,10 @@ export default function BeforeAfterSlider({
 }: BeforeAfterSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(500);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleMove = (clientX: number) => {
+  const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = clientX - rect.left;
@@ -30,21 +31,33 @@ export default function BeforeAfterSlider({
     if (percentage < 0) percentage = 0;
     if (percentage > 100) percentage = 100;
     setSliderPosition(percentage);
-  };
+  }, []);
 
-  const handleTouchMove = (e: TouchEvent) => {
+  const handleTouchMove = useCallback((e: TouchEvent) => {
     if (!isDragging) return;
     handleMove(e.touches[0].clientX);
-  };
+  }, [isDragging, handleMove]);
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!isDragging) return;
     handleMove(e.clientX);
-  };
+  }, [isDragging, handleMove]);
 
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     setIsDragging(false);
-  };
+  }, []);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
 
   useEffect(() => {
     if (isDragging) {
@@ -60,7 +73,7 @@ export default function BeforeAfterSlider({
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleMouseUp);
     };
-  }, [isDragging]);
+  }, [isDragging, handleMouseMove, handleMouseUp, handleTouchMove]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -78,8 +91,8 @@ export default function BeforeAfterSlider({
       style={{
         height,
         width: "100%",
-        borderRadius: "24px",
-        boxShadow: "0 24px 64px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.08)",
+        borderRadius: "4px",
+        boxShadow: "0 16px 40px rgba(0, 0, 0, 0.12), 0 0 0 1px var(--sand-200)",
         cursor: isDragging ? "ew-resize" : "default",
       }}
     >
@@ -94,12 +107,12 @@ export default function BeforeAfterSlider({
           style={{ objectFit: "cover", pointerEvents: "none" }}
         />
         <div
-          className="absolute left-6 top-6 px-4 py-2 text-xs font-bold tracking-wider text-white"
+          className="absolute left-4 top-4 px-3 py-1.5 text-xs font-bold tracking-wider text-white"
           style={{
-            background: "rgba(239, 68, 68, 0.75)",
-            backdropFilter: "blur(8px)",
-            borderRadius: "50px",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+            background: "rgba(220, 38, 38, 0.85)",
+            border: "1px solid var(--sand-300)",
+            borderRadius: "2px",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
           }}
         >
           {beforeLabel}
@@ -112,13 +125,13 @@ export default function BeforeAfterSlider({
         style={{
           width: `${sliderPosition}%`,
           overflow: "hidden",
-          borderRight: "1px solid rgba(255, 255, 255, 0.3)",
+          borderRight: "1px solid var(--sand-300)",
           transition: isDragging ? "none" : "width 0.1s ease-out",
         }}
       >
         <div
           style={{
-            width: containerRef.current ? `${containerRef.current.offsetWidth}px` : "500px",
+            width: `${containerWidth}px`,
             height: "100%",
             position: "relative",
           }}
@@ -133,16 +146,16 @@ export default function BeforeAfterSlider({
           />
         </div>
         <div
-          className="absolute right-6 top-6 px-4 py-2 text-xs font-bold tracking-wider text-white"
+          className="absolute right-4 top-4 px-3 py-1.5 text-xs font-bold tracking-wider text-white"
           style={{
-            background: "rgba(31, 122, 114, 0.85)",
-            backdropFilter: "blur(8px)",
-            borderRadius: "50px",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+            background: "var(--ocean-600)",
+            border: "1px solid var(--sand-300)",
+            borderRadius: "2px",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
             whiteSpace: "nowrap",
           }}
         >
-          ✨ {afterLabel}
+          {afterLabel}
         </div>
       </div>
 
@@ -151,45 +164,46 @@ export default function BeforeAfterSlider({
         className="absolute top-0 bottom-0 flex items-center justify-center"
         style={{
           left: `${sliderPosition}%`,
-          width: "2px",
-          backgroundColor: "#ffffff",
+          width: "1px",
+          backgroundColor: "var(--sand-300)",
           zIndex: 10,
           cursor: "ew-resize",
           transition: isDragging ? "none" : "left 0.1s ease-out",
-          boxShadow: "0 0 10px rgba(0,0,0,0.3)",
+          boxShadow: "0 0 8px rgba(0,0,0,0.2)",
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        {/* Handle circle */}
+        {/* Handle square (gold/brass) */}
         <div
-          className="absolute flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
+          className="absolute flex items-center justify-center transition-transform hover:scale-105 active:scale-95"
           style={{
-            width: "48px",
-            height: "48px",
-            borderRadius: "50%",
-            backgroundColor: "#ffffff",
-            border: "4px solid var(--ocean-500)",
-            boxShadow: "0 4px 16px rgba(0, 0, 0, 0.25)",
-            color: "var(--ocean-500)",
-            fontSize: "1.2rem",
+            width: "36px",
+            height: "36px",
+            borderRadius: "2px",
+            backgroundColor: "white",
+            border: "2px solid var(--gold)",
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+            color: "var(--gold)",
+            fontSize: "0.85rem",
             fontWeight: "bold",
           }}
         >
-          ↔
+          ✦
         </div>
       </div>
 
       {/* Helper text on overlay hover */}
       <div
-        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-full text-xs text-white opacity-80 pointer-events-none transition-opacity hover:opacity-0"
+        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-4 py-2 text-xs text-white opacity-85 pointer-events-none transition-opacity hover:opacity-0"
         style={{
-          background: "rgba(26, 35, 50, 0.7)",
-          backdropFilter: "blur(4px)",
+          background: "var(--slate-dark)",
+          border: "1px solid var(--sand-300)",
+          borderRadius: "2px",
           letterSpacing: "0.05em",
         }}
       >
-        Drag the slider to compare Before & After
+        ✦ Drag the slider to compare Before & After
       </div>
     </div>
   );

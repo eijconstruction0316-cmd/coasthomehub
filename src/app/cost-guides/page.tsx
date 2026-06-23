@@ -48,13 +48,13 @@ export default function CostGuidesPage() {
   return (
     <div style={{ background: "var(--off-white)", minHeight: "100vh", paddingBottom: 96 }}>
       {/* Hero */}
-      <section style={{ background: "linear-gradient(160deg, var(--slate-dark) 0%, var(--slate-mid) 100%)", paddingTop: 130, paddingBottom: 64, color: "white", textAlign: "center" }}>
+      <section style={{ background: "#0c2422", borderBottom: "3px double var(--sand-300)", paddingTop: 130, paddingBottom: 64, color: "white", textAlign: "center" }}>
         <div className="container-lg">
-          <div className="badge" style={{ marginBottom: 16, display: "inline-flex", background: "rgba(255,255,255,0.1)", color: "var(--ocean-300)" }}>
+          <div className="badge" style={{ marginBottom: 16, display: "inline-flex", background: "rgba(255,255,255,0.05)", borderColor: "var(--sand-300)", color: "#e8b84b", borderRadius: 2 }}>
             SE QLD Renovation Cost Guides
           </div>
-          <h1 style={{ color: "white", fontSize: "clamp(2rem, 5vw, 3.2rem)", marginBottom: 14 }}>Know Your Renovation Budget</h1>
-          <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "1.05rem", maxWidth: 640, margin: "0 auto" }}>
+          <h1 style={{ color: "white", fontSize: "clamp(2rem, 5vw, 3.2rem)", marginBottom: 14, fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>Know Your Renovation Budget</h1>
+          <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "1.05rem", maxWidth: 640, margin: "0 auto", fontFamily: "Outfit, sans-serif" }}>
             Explore itemized construction cost breakdowns based on 2026 QBCC labor indexes and QLD safety regulations.
           </p>
         </div>
@@ -65,22 +65,22 @@ export default function CostGuidesPage() {
         
         {/* Left Side: Navigation Links */}
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--slate-light)", textTransform: "uppercase", display: "block", marginBottom: 6, letterSpacing: "0.05em" }}>
+          <span style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--slate-light)", textTransform: "uppercase", display: "block", marginBottom: 6, letterSpacing: "0.05em", fontFamily: "Outfit, sans-serif" }}>
             Select Project Type
           </span>
           {[
-            { id: "bathroom", label: "🚿 Bathroom Renovation" },
-            { id: "kitchen", label: "🍳 Kitchen Renovation" },
-            { id: "decking", label: "🪵 Decking & Alfresco" }
+            { id: "bathroom", label: "Bathroom Renovation" },
+            { id: "kitchen", label: "Kitchen Renovation" },
+            { id: "decking", label: "Decking & Alfresco" }
           ].map((cat) => (
             <button
               key={cat.id}
-              onClick={() => setActiveCategory(cat.id as any)}
+              onClick={() => setActiveCategory(cat.id as "bathroom" | "kitchen" | "decking")}
               style={{
                 padding: "16px 20px",
-                borderRadius: "var(--radius-lg)",
-                border: "none",
-                background: activeCategory === cat.id ? "var(--ocean-500)" : "white",
+                borderRadius: 4,
+                border: "1px solid var(--sand-300)",
+                background: activeCategory === cat.id ? "var(--ocean-600)" : "white",
                 color: activeCategory === cat.id ? "white" : "var(--slate-mid)",
                 fontWeight: 700,
                 fontSize: "0.92rem",
@@ -88,19 +88,20 @@ export default function CostGuidesPage() {
                 textAlign: "left",
                 boxShadow: "var(--shadow-sm)",
                 transition: "all 0.2s ease",
+                fontFamily: "Outfit, sans-serif"
               }}
             >
-              {cat.label}
+              {activeCategory === cat.id ? "✦ " : ""}{cat.label}
             </button>
           ))}
 
           {/* AI Banner Sidebar */}
-          <div style={{ background: "linear-gradient(135deg, var(--ocean-600), var(--ocean-500))", borderRadius: "var(--radius-lg)", padding: 24, color: "white", marginTop: 20 }}>
-            <h4 style={{ color: "white", fontSize: "0.95rem", marginBottom: 8, fontWeight: 800 }}>🤖 Need Custom Budgeting?</h4>
-            <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.6, marginBottom: 16 }}>
+          <div style={{ background: "var(--ocean-700)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: 24, color: "white", marginTop: 20 }}>
+            <h4 style={{ color: "white", fontSize: "0.95rem", marginBottom: 8, fontWeight: 800, fontFamily: "Lora, Georgia, serif" }}>✦ Need Custom Budgeting?</h4>
+            <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.6, marginBottom: 16, fontFamily: "Outfit, sans-serif" }}>
               Upload your own room photos. Our AI will analyze sizes, extract materials, and output a detailed PDF budget pack.
             </p>
-            <Link href="/quote" className="btn-gold" style={{ display: "block", textAlign: "center", fontSize: "0.82rem", padding: "10px" }} id="cost-guide-ai-cta">
+            <Link href="/quote" className="btn-gold" style={{ display: "block", textAlign: "center", fontSize: "0.82rem", padding: "10px", borderRadius: 4 }} id="cost-guide-ai-cta">
               Start AI Planner →
             </Link>
           </div>
@@ -110,43 +111,43 @@ export default function CostGuidesPage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
           
           {/* Main cost sheet */}
-          <div style={{ background: "white", padding: 32, borderRadius: "var(--radius-xl)", border: "1px solid var(--sand-200)", boxShadow: "var(--shadow-sm)" }}>
-            <h2 style={{ fontSize: "1.45rem", color: "var(--slate-dark)", marginBottom: 6, fontWeight: 800 }}>{data.title}</h2>
-            <p style={{ color: "var(--slate-light)", fontSize: "0.92rem", marginBottom: 24 }}>{data.tagline}</p>
+          <div style={{ background: "white", padding: 32, borderRadius: 4, border: "1px solid var(--sand-300)", boxShadow: "var(--shadow-sm)" }}>
+            <h2 style={{ fontSize: "1.6rem", color: "var(--slate-dark)", marginBottom: 6, fontWeight: 500, fontFamily: "Lora, Georgia, serif" }}>{data.title}</h2>
+            <p style={{ color: "var(--slate-mid)", fontSize: "0.92rem", marginBottom: 24, fontFamily: "Outfit, sans-serif" }}>{data.tagline}</p>
 
             {/* Total Tiers Grid */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 32 }}>
               {[
-                { tier: "Budget / DIY Finish", val: data.totals.budget, bg: "var(--sand-50)", border: "var(--sand-200)", color: "var(--slate-dark)" },
-                { tier: "Mid-Range Tradesman", val: data.totals.mid, bg: "var(--ocean-50)", border: "var(--ocean-150)", color: "var(--ocean-700)" },
-                { tier: "Architectural Custom", val: data.totals.luxury, bg: "#fef9f0", border: "var(--gold-light)", color: "#92650a" }
+                { tier: "Budget / DIY Finish", val: data.totals.budget, bg: "var(--sand-50)", border: "var(--sand-300)", color: "var(--slate-dark)" },
+                { tier: "Mid-Range Tradesman", val: data.totals.mid, bg: "var(--ocean-50)", border: "var(--ocean-200)", color: "var(--ocean-700)" },
+                { tier: "Architectural Custom", val: data.totals.luxury, bg: "#fef9f0", border: "var(--sand-300)", color: "#92650a" }
               ].map((t) => (
-                <div key={t.tier} style={{ background: t.bg, border: `1px solid ${t.border}`, borderRadius: 12, padding: "16px 20px" }}>
-                  <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block", fontWeight: 700 }}>{t.tier}</span>
-                  <strong style={{ fontSize: "1.2rem", color: t.color, fontWeight: 900, display: "block", marginTop: 4 }}>{t.val}</strong>
+                <div key={t.tier} style={{ background: t.bg, border: `1px solid ${t.border}`, borderRadius: 4, padding: "16px 20px" }}>
+                  <span style={{ fontSize: "0.72rem", color: "var(--slate-light)", display: "block", fontWeight: 700, fontFamily: "Outfit, sans-serif" }}>{t.tier}</span>
+                  <strong style={{ fontSize: "1.2rem", color: t.color, fontWeight: 700, display: "block", marginTop: 4, fontFamily: "Lora, Georgia, serif" }}>{t.val}</strong>
                 </div>
               ))}
             </div>
 
             {/* Detailed Itemized Table */}
             <div>
-              <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "var(--slate-light)", textTransform: "uppercase", display: "block", marginBottom: 12, letterSpacing: "0.05em" }}>
+              <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "var(--slate-light)", textTransform: "uppercase", display: "block", marginBottom: 12, letterSpacing: "0.05em", fontFamily: "Outfit, sans-serif" }}>
                 Itemized Cost Breakdown (Including Labor & GST)
               </span>
-              <div style={{ border: "1px solid var(--sand-200)", borderRadius: 12, overflow: "hidden" }}>
-                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem", textAlign: "left" }}>
+              <div style={{ border: "1px solid var(--sand-300)", borderRadius: 4, overflow: "hidden" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem", textAlign: "left", fontFamily: "Outfit, sans-serif" }}>
                   <thead>
-                    <tr style={{ background: "var(--sand-50)", borderBottom: "1px solid var(--sand-200)" }}>
-                      <th style={{ padding: "12px 16px", minWidth: 160 }}>Work Component</th>
-                      <th style={{ padding: "12px 16px" }}>Standard Cost</th>
-                      <th style={{ padding: "12px 16px" }}>High-End Cost</th>
-                      <th style={{ padding: "12px 16px" }}>Scope Description</th>
+                    <tr style={{ background: "var(--sand-50)", borderBottom: "1px solid var(--sand-300)" }}>
+                      <th style={{ padding: "12px 16px", minWidth: 160, fontWeight: 700 }}>Work Component</th>
+                      <th style={{ padding: "12px 16px", fontWeight: 700 }}>Standard Cost</th>
+                      <th style={{ padding: "12px 16px", fontWeight: 700 }}>High-End Cost</th>
+                      <th style={{ padding: "12px 16px", fontWeight: 700 }}>Scope Description</th>
                     </tr>
                   </thead>
                   <tbody>
                     {data.table.map((row, idx) => (
                       <tr key={idx} style={{ borderBottom: "1px solid var(--sand-150)", background: idx % 2 === 0 ? "white" : "var(--off-white)" }}>
-                        <td style={{ padding: "14px 16px", fontWeight: 700, color: "var(--slate-dark)" }}>{row.item}</td>
+                        <td style={{ padding: "14px 16px", fontWeight: 700, color: "var(--slate-dark)", fontFamily: "Lora, Georgia, serif" }}>{row.item}</td>
                         <td style={{ padding: "14px 16px", color: "var(--slate-mid)" }}>{row.budget}</td>
                         <td style={{ padding: "14px 16px", color: "var(--gold)", fontWeight: 700 }}>{row.premium}</td>
                         <td style={{ padding: "14px 16px", color: "var(--slate-light)", fontSize: "0.8rem", lineHeight: 1.5 }}>{row.desc}</td>
@@ -160,25 +161,25 @@ export default function CostGuidesPage() {
           </div>
 
           {/* compliance standards details (WOW content) */}
-          <div style={{ background: "white", padding: 32, borderRadius: "var(--radius-xl)", border: "1px solid var(--sand-200)", boxShadow: "var(--shadow-sm)" }}>
-            <h3 style={{ fontSize: "1.2rem", color: "var(--slate-dark)", marginBottom: 16, fontWeight: 800 }}>⚠️ Critical QLD Construction Compliance</h3>
-            <p style={{ color: "var(--slate-mid)", fontSize: "0.92rem", lineHeight: 1.65, marginBottom: 20 }}>
+          <div style={{ background: "white", padding: 32, borderRadius: 4, border: "1px solid var(--sand-300)", boxShadow: "var(--shadow-sm)" }}>
+            <h3 style={{ fontSize: "1.3rem", color: "var(--slate-dark)", marginBottom: 16, fontWeight: 500, fontFamily: "Lora, Georgia, serif" }}>✦ Critical QLD Construction Compliance</h3>
+            <p style={{ color: "var(--slate-mid)", fontSize: "0.92rem", lineHeight: 1.65, marginBottom: 20, fontFamily: "Outfit, sans-serif" }}>
               Under Queensland legislation, certain waterproofing and glazing works carry severe penalties if not performed by a licensed QBCC contractor. Keep these standards in check to protect your warranty:
             </p>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="compliance-grid">
-              <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", padding: 20, borderRadius: 12 }}>
-                <h4 style={{ color: "var(--ocean-700)", fontSize: "0.95rem", fontWeight: 800, marginBottom: 8 }}>🚿 AS 3740 Waterproofing Standards</h4>
-                <ul style={{ paddingLeft: 16, margin: 0, display: "flex", flexDirection: "column", gap: 8, fontSize: "0.8rem", color: "var(--slate-mid)", lineHeight: 1.5 }}>
+              <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", padding: 20, borderRadius: 4 }}>
+                <h4 style={{ color: "var(--ocean-700)", fontSize: "0.95rem", fontWeight: 800, marginBottom: 8, fontFamily: "Lora, Georgia, serif" }}>✦ AS 3740 Waterproofing Standards</h4>
+                <ul style={{ paddingLeft: 16, margin: 0, display: "flex", flexDirection: "column", gap: 8, fontSize: "0.82rem", color: "var(--slate-mid)", lineHeight: 1.5, fontFamily: "Outfit, sans-serif" }}>
                   <li>Shower floors must be fully waterproofed with membranes extending 150mm up the walls.</li>
                   <li>All junctions (wall-to-floor, wall-to-wall) must have flexible bond breakers installed.</li>
                   <li>A certificate of compliance (Form 16) is mandatory upon completion for certifier sign-off.</li>
                 </ul>
               </div>
 
-              <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", padding: 20, borderRadius: 12 }}>
-                <h4 style={{ color: "var(--gold)", fontSize: "0.95rem", fontWeight: 800, marginBottom: 8 }}>📐 AS 1288 Glazing & Safety Codes</h4>
-                <ul style={{ paddingLeft: 16, margin: 0, display: "flex", flexDirection: "column", gap: 8, fontSize: "0.8rem", color: "var(--slate-mid)", lineHeight: 1.5 }}>
+              <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", padding: 20, borderRadius: 4 }}>
+                <h4 style={{ color: "var(--gold)", fontSize: "0.95rem", fontWeight: 800, marginBottom: 8, fontFamily: "Lora, Georgia, serif" }}>✦ AS 1288 Glazing & Safety Codes</h4>
+                <ul style={{ paddingLeft: 16, margin: 0, display: "flex", flexDirection: "column", gap: 8, fontSize: "0.82rem", color: "var(--slate-mid)", lineHeight: 1.5, fontFamily: "Outfit, sans-serif" }}>
                   <li>All glass panels in wet areas must use Grade A toughened safety glass (minimum 6mm thickness).</li>
                   <li>Frameless shower screen hinges and structural brackets must be anchor-fixed to timber studs.</li>
                   <li>Incorrect glazing void warranty cover and can cause severe liability in rental properties.</li>
@@ -188,16 +189,16 @@ export default function CostGuidesPage() {
           </div>
 
           {/* Directory CTA Card */}
-          <div style={{ background: "linear-gradient(135deg, var(--ocean-600), var(--ocean-500))", padding: "40px", borderRadius: "var(--radius-xl)", color: "white", textAlign: "center" }}>
-            <h3 style={{ color: "white", fontSize: "1.4rem", marginBottom: 12, fontWeight: 800 }}>Ready to get accurate local quotes?</h3>
-            <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.95rem", maxWidth: 520, margin: "0 auto 28px", lineHeight: 1.6 }}>
+          <div style={{ background: "var(--ocean-700)", border: "1px solid var(--sand-300)", padding: "40px", borderRadius: 4, color: "white", textAlign: "center" }}>
+            <h3 style={{ color: "white", fontSize: "1.5rem", marginBottom: 12, fontWeight: 500, fontFamily: "Lora, Georgia, serif" }}>Ready to get accurate local quotes?</h3>
+            <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.95rem", maxWidth: 520, margin: "0 auto 28px", lineHeight: 1.6, fontFamily: "Outfit, sans-serif" }}>
               Don&apos;t risk waterproofing or structural defects. Find local, QBCC-licensed building and tiling partners in our verified directory.
             </p>
             <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-              <Link href="/directory" className="btn-gold" style={{ padding: "12px 30px" }} id="cost-guide-directory-cta">
-                🔍 Browse Verified Partners
+              <Link href="/directory" className="btn-gold" style={{ padding: "12px 30px", borderRadius: 4 }} id="cost-guide-directory-cta">
+                ✦ Browse Verified Partners
               </Link>
-              <Link href="/quote" style={{ display: "inline-flex", alignItems: "center", padding: "12px 28px", borderRadius: "50px", fontWeight: 600, fontSize: "0.9rem", textDecoration: "none", color: "white", border: "2px solid rgba(255,255,255,0.25)" }} id="cost-guide-planner-cta">
+              <Link href="/quote" style={{ display: "inline-flex", alignItems: "center", padding: "12px 28px", borderRadius: 4, fontWeight: 600, fontSize: "0.9rem", textDecoration: "none", color: "white", border: "1px solid rgba(255,255,255,0.3)" }} id="cost-guide-planner-cta">
                 Start AI Design
               </Link>
             </div>

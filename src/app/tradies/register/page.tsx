@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
@@ -66,7 +66,7 @@ const plans = [
     price: 249,
     tagline: "Stand out and build your brand",
     color: "var(--ocean-500)",
-    badge: "⭐ MOST POPULAR",
+    badge: "✦ MOST POPULAR",
     features: [
       "10 free lead credits per month ($300 value)",
       "Purchase extra credits with 10% discount",
@@ -83,7 +83,7 @@ const plans = [
     price: 399,
     tagline: "Maximum visibility & brand authority",
     color: "#92650a",
-    badge: "👑 ELITE",
+    badge: "✦ ELITE PARTNER",
     features: [
       "25 free lead credits per month ($750 value)",
       "Purchase extra credits with 20% discount",
@@ -118,9 +118,58 @@ function RegisterForm() {
     description: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const [verificationStatus, setVerificationStatus] = useState<"idle" | "verifying" | "success" | "error">("idle");
+  const [verificationError, setVerificationError] = useState("");
+  interface VerifiedLicenceDetails {
+    entityName: string;
+    licenceClass: string;
+    licenceStatus: string;
+    insuranceDetail: string;
+  }
+
+  const [verifiedDetails, setVerifiedDetails] = useState<VerifiedLicenceDetails | null>(null);
+
+  const handleVerifyDetails = async () => {
+    if (!form.abn.trim() || !form.licenceNumber.trim()) {
+      setVerificationError("Please enter both ABN and QBCC Licence Number.");
+      return;
+    }
+    setVerificationStatus("verifying");
+    setVerificationError("");
+    try {
+      const res = await fetch("/api/verify-licence", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          abn: form.abn.trim(),
+          licenceNumber: form.licenceNumber.trim(),
+          businessNameHint: form.businessName.trim()
+        })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Verification failed. Check ABN checksum or QBCC number.");
+      }
+      setVerificationStatus("success");
+      setVerifiedDetails(data);
+      if (data.entityName) {
+        setForm(prev => ({ ...prev, businessName: data.entityName }));
+      }
+    } catch (err: unknown) {
+      setVerificationStatus("error");
+      setVerificationError(err instanceof Error ? err.message : "Could not verify credentials. Check inputs.");
+    }
   };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+    if (name === "abn" || name === "licenceNumber") {
+      setVerificationStatus("idle");
+      setVerifiedDetails(null);
+    }
+  };
+
 
   const toggleService = (s: string) => {
     setSelectedServices((prev) => prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]);
@@ -168,13 +217,13 @@ function RegisterForm() {
     return (
       <div style={{ minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", padding: 32 }}>
         <div style={{ textAlign: "center", maxWidth: 520 }}>
-          <div style={{ width: 72, height: 72, background: "var(--ocean-50)", border: "1px solid var(--ocean-200)", borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2.2rem", margin: "0 auto 24px" }}>✓</div>
+          <div style={{ width: 72, height: 72, background: "var(--ocean-50)", border: "1px solid var(--ocean-200)", borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.4rem", color: "var(--ocean-600)", margin: "0 auto 24px" }}>✦</div>
           <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "2rem", marginBottom: 12, color: "var(--ocean-700)", fontWeight: 500 }}>You&apos;re on the list!</h2>
-          <p style={{ color: "var(--slate-mid)", lineHeight: 1.7, fontSize: "0.95rem", marginBottom: 24 }}>
+          <p style={{ color: "var(--slate-mid)", lineHeight: 1.7, fontSize: "0.95rem", marginBottom: 24, fontFamily: "Outfit, sans-serif" }}>
             Thanks, <strong>{form.contactName}</strong>! Your application for <strong>{form.businessName}</strong> is under review. We&apos;ll verify your QLD licence within 24 hours and send your login details to <strong>{form.email}</strong>.
           </p>
           <div style={{ background: "var(--ocean-50)", border: "1px solid var(--ocean-100)", borderRadius: 4, padding: "20px 24px", marginBottom: 28, textAlign: "left" }}>
-            <h4 style={{ fontSize: "0.78rem", color: "var(--ocean-700)", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.05em", fontWeight: 800 }}>Your Registration Summary</h4>
+            <h4 style={{ fontSize: "0.78rem", color: "var(--ocean-700)", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.05em", fontWeight: 800, fontFamily: "Outfit, sans-serif" }}>Your Registration Summary</h4>
             {[
               ["Plan", `${plan.name} — $${plan.price}/month`],
               ["Services", selectedServices.join(", ") || "Not selected"],
@@ -182,8 +231,8 @@ function RegisterForm() {
               ["Contact", form.email],
             ].map(([k, v]) => (
               <div key={k} style={{ display: "flex", gap: 12, padding: "6px 0", borderBottom: "1px solid var(--ocean-100)" }}>
-                <span style={{ fontSize: "0.82rem", color: "var(--slate-light)", minWidth: 80 }}>{k}:</span>
-                <span style={{ fontSize: "0.82rem", fontWeight: 600, color: "var(--slate-dark)" }}>{v}</span>
+                <span style={{ fontSize: "0.82rem", color: "var(--slate-light)", minWidth: 80, fontFamily: "Outfit, sans-serif" }}>{k}:</span>
+                <span style={{ fontSize: "0.82rem", fontWeight: 600, color: "var(--slate-dark)", fontFamily: "Outfit, sans-serif" }}>{v}</span>
               </div>
             ))}
           </div>
@@ -199,7 +248,7 @@ function RegisterForm() {
       <div style={{ maxWidth: 600, margin: "0 auto 48px" }}>
         <div style={{ display: "flex", gap: 12, marginBottom: 12 }}>
           {[1, 2, 3].map((s) => (
-            <div key={s} style={{ flex: 1, height: 3, borderRadius: 1.5, background: step >= s ? "var(--ocean-600)" : "var(--sand-200)", transition: "var(--transition)" }} />
+            <div key={s} style={{ flex: 1, height: 3, borderRadius: 0, background: step >= s ? "var(--ocean-600)" : "var(--sand-200)", transition: "var(--transition)" }} />
           ))}
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -213,14 +262,14 @@ function RegisterForm() {
 
       <div style={{ display: "grid", gridTemplateColumns: "1.15fr 0.85fr", gap: 40, alignItems: "flex-start" }} className="register-grid">
         {/* Main form */}
-        <form onSubmit={handleSubmit} style={{ background: "white", borderRadius: 4, padding: "40px", boxShadow: "0 2px 12px rgba(26, 35, 50, 0.03)", border: "1px solid var(--sand-200)" }}>
+        <form onSubmit={handleSubmit} style={{ background: "white", borderRadius: 4, padding: "40px", boxShadow: "0 2px 12px rgba(26, 35, 50, 0.03)", border: "1px solid var(--sand-300)" }}>
 
           {/* ── STEP 1: Business Details ── */}
           {step === 1 && (
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               <div>
                 <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.5rem", fontWeight: 600, color: "var(--slate-dark)", marginBottom: 6 }}>Step 1: Business Details</h2>
-                <p style={{ color: "var(--slate-light)", fontSize: "0.82rem", letterSpacing: "0.01em" }}>All details are kept private and used only for verification.</p>
+                <p style={{ color: "var(--slate-light)", fontSize: "0.82rem", letterSpacing: "0.01em", fontFamily: "Outfit, sans-serif" }}>All details are kept private and used only for verification.</p>
               </div>
 
               {[
@@ -232,20 +281,88 @@ function RegisterForm() {
                 { name: "phone", label: "Mobile Number *", placeholder: "04XX XXX XXX" },
                 { name: "website", label: "Website (optional)", placeholder: "https://mybusiness.com.au" },
               ].map((field) => (
-                <div className="form-group" key={field.name}>
-                  <label className="form-label" htmlFor={field.name} style={{ fontFamily: "Outfit, sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "var(--slate-dark)", letterSpacing: "0.01em" }}>{field.label}</label>
-                  <input
-                    id={field.name}
-                    name={field.name}
-                    type={field.name === "email" ? "email" : field.name === "phone" ? "tel" : "text"}
-                    className="form-input"
-                    placeholder={field.placeholder}
-                    value={form[field.name as keyof typeof form]}
-                    onChange={handleChange}
-                    required={!field.label.includes("optional")}
-                    style={{ borderRadius: "4px", padding: "12px 14px", fontSize: "0.92rem", border: "1px solid var(--sand-300)" }}
-                  />
-                </div>
+                <React.Fragment key={field.name}>
+                  <div className="form-group">
+                    <label className="form-label" htmlFor={field.name} style={{ fontFamily: "Outfit, sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "var(--slate-dark)", letterSpacing: "0.01em" }}>{field.label}</label>
+                    <input
+                      id={field.name}
+                      name={field.name}
+                      type={field.name === "email" ? "email" : field.name === "phone" ? "tel" : "text"}
+                      className="form-input"
+                      placeholder={field.placeholder}
+                      value={form[field.name as keyof typeof form]}
+                      onChange={handleChange}
+                      required={!field.label.includes("optional")}
+                      disabled={field.name === "businessName" && verificationStatus === "success"}
+                      style={{ borderRadius: "4px", padding: "12px 14px", fontSize: "0.92rem", border: "1px solid var(--sand-300)" }}
+                    />
+                  </div>
+
+                  {/* Licence & ABN Vetting Panel */}
+                  {field.name === "licenceNumber" && (
+                    <div style={{
+                      background: "var(--sand-50)",
+                      border: "1px solid var(--sand-300)",
+                      borderRadius: 4,
+                      padding: "16px 20px",
+                      marginTop: 4,
+                      marginBottom: 8,
+                      display: "grid",
+                      gap: 12
+                    }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <span style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--slate-dark)" }}>
+                          Queensland Licence & ABN Vetting
+                        </span>
+                        {verificationStatus === "success" && (
+                          <span style={{ fontSize: "0.72rem", color: "#15803d", fontWeight: 800 }}>
+                            ✔ VERIFIED ACTIVE
+                          </span>
+                        )}
+                      </div>
+                      
+                      <p style={{ fontSize: "0.76rem", color: "var(--slate-mid)", lineHeight: 1.5, margin: 0 }}>
+                        We check QBCC register status and ABN checksums to maintain platform credentials.
+                      </p>
+
+                      {verificationError && (
+                        <div style={{ color: "#ef4444", fontSize: "0.76rem", fontWeight: 600 }}>
+                          ✦ {verificationError}
+                        </div>
+                      )}
+
+                      {verifiedDetails && (
+                        <div style={{ background: "white", border: "1px solid rgba(22,163,74,0.3)", borderRadius: 2, padding: "10px 12px", fontSize: "0.76rem", color: "var(--slate-mid)", display: "grid", gap: 4 }}>
+                          <div>Verified Entity: <strong style={{ color: "var(--slate-dark)" }}>{verifiedDetails.entityName}</strong></div>
+                          <div>Class: <strong style={{ color: "var(--slate-dark)" }}>{verifiedDetails.licenceClass}</strong></div>
+                          <div>Status: <strong style={{ color: "var(--slate-dark)" }}>{verifiedDetails.licenceStatus} (Active)</strong></div>
+                          <div>Insurance: <strong style={{ color: "var(--slate-dark)" }}>{verifiedDetails.insuranceDetail}</strong></div>
+                        </div>
+                      )}
+
+                      <button
+                        type="button"
+                        onClick={handleVerifyDetails}
+                        disabled={verificationStatus === "verifying" || !form.abn || !form.licenceNumber}
+                        style={{
+                          justifySelf: "start",
+                          padding: "8px 16px",
+                          fontSize: "0.78rem",
+                          fontWeight: 700,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.04em",
+                          border: "none",
+                          borderRadius: 4,
+                          background: (form.abn && form.licenceNumber && verificationStatus !== "verifying") ? "var(--ocean-700)" : "var(--sand-300)",
+                          color: "white",
+                          cursor: (form.abn && form.licenceNumber && verificationStatus !== "verifying") ? "pointer" : "default"
+                        }}
+                      >
+                        {verificationStatus === "verifying" ? "⏳ Verifying..." : "Verify Credentials"}
+                      </button>
+                    </div>
+                  )}
+                </React.Fragment>
               ))}
 
               <div className="form-group">
@@ -263,10 +380,35 @@ function RegisterForm() {
                 />
               </div>
 
-              <button type="button" className="btn-primary" style={{ alignSelf: "flex-start", borderRadius: "4px", padding: "12px 28px", fontSize: "0.92rem", background: "var(--ocean-600)", border: "none" }} id="register-step1-next"
-                onClick={() => { if (form.businessName && form.abn && form.licenceNumber && form.contactName && form.email && form.phone) setStep(2); }}>
-                Next: Services & Areas →
-              </button>
+              <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+                <button
+                  type="button"
+                  className="btn-primary"
+                  id="register-step1-next"
+                  disabled={verificationStatus !== "success"}
+                  onClick={() => {
+                    if (form.businessName && form.abn && form.licenceNumber && form.contactName && form.email && form.phone && verificationStatus === "success") {
+                      setStep(2);
+                    }
+                  }}
+                  style={{
+                    alignSelf: "flex-start",
+                    borderRadius: "4px",
+                    padding: "12px 28px",
+                    fontSize: "0.92rem",
+                    background: (form.businessName && form.abn && form.licenceNumber && form.contactName && form.email && form.phone && verificationStatus === "success") ? "var(--ocean-600)" : "var(--sand-300)",
+                    border: "none",
+                    cursor: (form.businessName && form.abn && form.licenceNumber && form.contactName && form.email && form.phone && verificationStatus === "success") ? "pointer" : "default"
+                  }}
+                >
+                  Next: Services & Areas →
+                </button>
+                {verificationStatus !== "success" && (
+                  <span style={{ fontSize: "0.78rem", color: "#dc2626", fontWeight: 650, fontFamily: "Outfit, sans-serif" }}>
+                    ✦ Please verify your ABN and QBCC licence above.
+                  </span>
+                )}
+              </div>
             </div>
           )}
 
@@ -275,7 +417,7 @@ function RegisterForm() {
             <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
               <div>
                 <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.5rem", fontWeight: 600, color: "var(--slate-dark)", marginBottom: 6 }}>Step 2: Your Services & Areas</h2>
-                <p style={{ color: "var(--slate-light)", fontSize: "0.85rem" }}>Select all that apply. You&apos;ll only receive leads matching these.</p>
+                <p style={{ color: "var(--slate-light)", fontSize: "0.85rem", fontFamily: "Outfit, sans-serif" }}>Select all that apply. You&apos;ll only receive leads matching these.</p>
               </div>
 
               <div>
@@ -290,7 +432,7 @@ function RegisterForm() {
                         onClick={() => toggleService(s)}
                         style={{
                           padding: "8px 16px",
-                          borderRadius: "4px",
+                          borderRadius: "2px",
                           border: active ? "1px solid var(--ocean-500)" : "1px solid var(--sand-300)",
                           background: active ? "var(--ocean-50)" : "white",
                           color: active ? "var(--ocean-700)" : "var(--slate-mid)",
@@ -307,7 +449,7 @@ function RegisterForm() {
                     );
                   })}
                 </div>
-                {selectedServices.length === 0 && <p style={{ fontSize: "0.78rem", color: "#ef4444", marginTop: 8 }}>Please select at least one service.</p>}
+                {selectedServices.length === 0 && <p style={{ fontSize: "0.78rem", color: "#ef4444", marginTop: 8, fontFamily: "Outfit, sans-serif" }}>Please select at least one service.</p>}
               </div>
 
               <div>
@@ -322,7 +464,7 @@ function RegisterForm() {
                         onClick={() => toggleArea(a)}
                         style={{
                           padding: "8px 16px",
-                          borderRadius: "4px",
+                          borderRadius: "2px",
                           border: active ? "1px solid var(--gold)" : "1px solid var(--sand-300)",
                           background: active ? "var(--sand-50)" : "white",
                           color: active ? "var(--gold)" : "var(--slate-mid)",
@@ -334,15 +476,15 @@ function RegisterForm() {
                         }}
                         className="service-badge-btn"
                       >
-                        {active ? "✦ " : "📍 "}{a}
+                        {active ? "✦ " : ""}{a}
                       </button>
                     );
                   })}
                 </div>
-                {selectedAreas.length === 0 && <p style={{ fontSize: "0.78rem", color: "#ef4444", marginTop: 8 }}>Please select at least one area.</p>}
+                {selectedAreas.length === 0 && <p style={{ fontSize: "0.78rem", color: "#ef4444", marginTop: 8, fontFamily: "Outfit, sans-serif" }}>Please select at least one area.</p>}
               </div>
 
-              <div style={{ display: "flex", gap: 16, flexWrap: "wrap", borderTop: "1px solid var(--sand-200)", paddingTop: 24 }}>
+              <div style={{ display: "flex", gap: 16, flexWrap: "wrap", borderTop: "1px solid var(--sand-300)", paddingTop: 24 }}>
                 <button type="button" className="btn-secondary" style={{ borderRadius: "4px", padding: "11px 24px", fontSize: "0.92rem", borderColor: "var(--sand-300)" }} onClick={() => setStep(1)} id="register-step2-back">← Back</button>
                 <button type="button" className="btn-primary" style={{ borderRadius: "4px", padding: "12px 28px", fontSize: "0.92rem", background: "var(--ocean-600)", border: "none" }} id="register-step2-next"
                   onClick={() => { if (selectedServices.length > 0 && selectedAreas.length > 0) setStep(3); }}>
@@ -357,7 +499,7 @@ function RegisterForm() {
             <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
               <div>
                 <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.5rem", fontWeight: 600, color: "var(--slate-dark)", marginBottom: 6 }}>Step 3: Choose Your Plan</h2>
-                <p style={{ color: "var(--slate-light)", fontSize: "0.85rem" }}>Flat monthly fee — no lock-in, cancel anytime.</p>
+                <p style={{ color: "var(--slate-light)", fontSize: "0.85rem", fontFamily: "Outfit, sans-serif" }}>Flat monthly fee — no lock-in, cancel anytime.</p>
               </div>
 
               {/* Plan selector cards */}
@@ -396,7 +538,7 @@ function RegisterForm() {
                         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 4 }}>
                           <span style={{ fontFamily: "Lora, Georgia, serif", fontWeight: 600, fontSize: "1.1rem", color: isElite ? "#92650a" : "var(--slate-dark)" }}>{p.name}</span>
                           {p.badge && (
-                            <span style={{ fontSize: "0.62rem", fontWeight: 800, padding: "2px 10px", borderRadius: "50px", background: isElite ? "var(--gold)" : "var(--ocean-600)", color: "white", letterSpacing: "0.06em" }}>
+                            <span style={{ fontSize: "0.62rem", fontWeight: 800, padding: "2px 10px", borderRadius: "2px", background: isElite ? "var(--gold)" : "var(--ocean-600)", color: "white", letterSpacing: "0.06em" }}>
                               {p.badge}
                             </span>
                           )}
@@ -413,13 +555,13 @@ function RegisterForm() {
               </div>
 
               {/* Selected plan features */}
-              <div style={{ border: "1px solid var(--sand-200)", borderRadius: "4px", padding: "20px 24px", background: "var(--off-white)" }}>
+              <div style={{ border: "1px solid var(--sand-300)", borderRadius: "4px", padding: "20px 24px", background: "var(--off-white)" }}>
                 <p style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--slate-dark)", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "Outfit, sans-serif" }}>
                   {plan.name} plan includes:
                 </p>
-                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
+                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10, paddingLeft: 0 }}>
                   {plan.features.map((f) => (
-                    <li key={f} style={{ display: "flex", gap: 10, fontSize: "0.85rem", color: "var(--slate-mid)", alignItems: "flex-start" }}>
+                    <li key={f} style={{ display: "flex", gap: 10, fontSize: "0.85rem", color: "var(--slate-mid)", alignItems: "flex-start", fontFamily: "Outfit, sans-serif" }}>
                       <span style={{ color: "var(--ocean-500)", fontWeight: 700, flexShrink: 0 }}>✦</span><span>{f}</span>
                     </li>
                   ))}
@@ -427,17 +569,17 @@ function RegisterForm() {
               </div>
 
               {/* Secure payment note */}
-              <div style={{ background: "rgba(240, 249, 248, 0.6)", border: "1px solid var(--ocean-100)", borderRadius: "4px", padding: "18px 20px", display: "flex", alignItems: "flex-start", gap: 14 }}>
-                <span style={{ fontSize: "1.2rem", flexShrink: 0 }}>🔒</span>
+              <div style={{ background: "rgba(240, 249, 248, 0.6)", border: "1px solid var(--sand-300)", borderRadius: "4px", padding: "18px 20px", display: "flex", alignItems: "flex-start", gap: 14 }}>
+                <span style={{ fontSize: "0.95rem", color: "var(--ocean-600)", fontWeight: "bold" }}>✦</span>
                 <div>
                   <strong style={{ color: "var(--ocean-700)", fontSize: "0.88rem", fontFamily: "Outfit, sans-serif" }}>Secure checkout powered by Stripe</strong>
-                  <p style={{ fontSize: "0.82rem", color: "var(--slate-light)", lineHeight: 1.6, margin: "4px 0 0" }}>
+                  <p style={{ fontSize: "0.82rem", color: "var(--slate-light)", lineHeight: 1.6, margin: "4px 0 0", fontFamily: "Outfit, sans-serif" }}>
                     You&apos;ll be taken to Stripe&apos;s secure payment page. Your card details never touch our servers.
                   </p>
                 </div>
               </div>
 
-              <div style={{ display: "flex", gap: 16, flexWrap: "wrap", borderTop: "1px solid var(--sand-200)", paddingTop: 24 }}>
+              <div style={{ display: "flex", gap: 16, flexWrap: "wrap", borderTop: "1px solid var(--sand-300)", paddingTop: 24 }}>
                 <button type="button" className="btn-secondary" style={{ borderRadius: "4px", padding: "11px 24px", fontSize: "0.92rem", borderColor: "var(--sand-300)" }} onClick={() => setStep(2)} id="register-step3-back" disabled={loading}>← Back</button>
                 <button
                   type="submit"
@@ -446,18 +588,18 @@ function RegisterForm() {
                   disabled={loading}
                   style={{ opacity: loading ? 0.75 : 1, borderRadius: "4px", padding: "12px 32px", fontSize: "0.95rem" }}
                 >
-                  {loading ? "⏳ Redirecting to secure payment..." : `🔧 Register — $${plan.price}/month`}
+                  {loading ? "⏳ Redirecting to secure payment..." : `Register — $${plan.price}/month`}
                 </button>
               </div>
               {stripeError && (
-                <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 4, padding: "12px 16px", color: "#dc2626", fontSize: "0.85rem" }}>
-                  ⚠️ {stripeError}
+                <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 4, padding: "12px 16px", color: "#dc2626", fontSize: "0.85rem", fontFamily: "Outfit, sans-serif" }}>
+                  ✦ {stripeError}
                 </div>
               )}
-              <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-200)", padding: 16, borderRadius: "4px", fontSize: "0.74rem", color: "var(--slate-mid)", lineHeight: 1.6, fontFamily: "Lora, Georgia, serif", fontStyle: "italic" }}>
+              <div style={{ background: "var(--sand-50)", border: "1px solid var(--sand-300)", padding: 16, borderRadius: "4px", fontSize: "0.74rem", color: "var(--slate-mid)", lineHeight: 1.6, fontFamily: "Lora, Georgia, serif", fontStyle: "italic" }}>
                 <strong style={{ fontFamily: "Outfit, sans-serif", fontStyle: "normal", color: "var(--slate-dark)" }}>Compliance Note:</strong> CoastHomeHub (operated by EIJ Construction Pty Ltd) acts strictly as a directory matching licensed contractors with consumers. We are not a builder and do not contract or guarantee any building work. By registering, you confirm you hold a valid, active QBCC licence for your services and agree that you are solely liable for all projects and contracts with customers.
               </div>
-              <p style={{ fontSize: "0.75rem", color: "var(--slate-light)", lineHeight: 1.5 }}>
+              <p style={{ fontSize: "0.75rem", color: "var(--slate-light)", lineHeight: 1.5, fontFamily: "Outfit, sans-serif" }}>
                 By completing registration you agree to our <a href="/terms" style={{ color: "var(--ocean-600)", textDecoration: "underline" }}>Terms of Service</a> and <a href="/privacy" style={{ color: "var(--ocean-600)", textDecoration: "underline" }}>Privacy Policy</a>. You will be charged ${plan.price}+GST/month. Cancel anytime before your next billing date.
               </p>
             </div>
@@ -466,16 +608,16 @@ function RegisterForm() {
 
         {/* Sidebar */}
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-          <div style={{ background: "rgba(240, 249, 248, 0.75)", backdropFilter: "blur(8px)", border: "1px solid var(--ocean-100)", borderRadius: 4, padding: "32px 28px", color: "var(--slate-dark)" }}>
+          <div style={{ background: "rgba(240, 249, 248, 0.75)", border: "1px solid var(--sand-300)", borderRadius: 4, padding: "32px 28px", color: "var(--slate-dark)" }}>
             <h4 style={{ color: "var(--ocean-700)", marginBottom: 20, fontSize: "1.05rem", fontFamily: "Lora, Georgia, serif", fontWeight: 600 }}>What Happens Next</h4>
-            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 16 }}>
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 16, paddingLeft: 0 }}>
               {[
                 "We verify your QLD licence (24 hrs)",
                 "Your profile goes live immediately after",
                 "First lead notification within 48 hrs",
                 "Dedicated onboarding call within 1 week",
               ].map((item, i) => (
-                <li key={item} style={{ display: "flex", gap: 12, fontSize: "0.85rem", alignItems: "flex-start", lineHeight: 1.45 }}>
+                <li key={item} style={{ display: "flex", gap: 12, fontSize: "0.85rem", alignItems: "flex-start", lineHeight: 1.45, fontFamily: "Outfit, sans-serif" }}>
                   <span style={{ background: "var(--ocean-200)", color: "var(--ocean-700)", borderRadius: 2, width: 22, height: 22, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.72rem", fontWeight: 700, flexShrink: 0 }}>{i + 1}</span>
                   <span style={{ color: "var(--slate-mid)" }}>{item}</span>
                 </li>
@@ -483,20 +625,20 @@ function RegisterForm() {
             </ul>
           </div>
 
-          <div className="card" style={{ padding: 28, background: "white", border: "1px solid var(--sand-200)", borderRadius: 4 }}>
-            <div style={{ fontSize: "1.6rem", marginBottom: 12 }}>✉️</div>
+          <div className="card" style={{ padding: 28, background: "white", border: "1px solid var(--sand-300)", borderRadius: 4 }}>
+            <span style={{ fontSize: "0.85rem", color: "var(--gold)", fontWeight: "bold", display: "block", marginBottom: 12 }}>✦</span>
             <h4 style={{ fontSize: "1rem", marginBottom: 8, fontFamily: "Lora, Georgia, serif", fontWeight: 600, color: "var(--slate-dark)" }}>Questions?</h4>
-            <p style={{ fontSize: "0.84rem", color: "var(--slate-light)", lineHeight: 1.6, marginBottom: 16 }}>
+            <p style={{ fontSize: "0.84rem", color: "var(--slate-light)", lineHeight: 1.6, marginBottom: 16, fontFamily: "Outfit, sans-serif" }}>
               Email us anytime — we&apos;ll help you get set up within one business day.
             </p>
-            <a href="mailto:info@coasthomehub.com.au" style={{ fontWeight: 700, color: "var(--ocean-600)", textDecoration: "none", fontSize: "0.92rem", borderBottom: "1px dashed var(--ocean-400)" }}>
+            <a href="mailto:info@coasthomehub.com.au" style={{ fontWeight: 700, color: "var(--ocean-600)", textDecoration: "none", fontSize: "0.92rem", borderBottom: "1px dashed var(--ocean-400)", fontFamily: "Outfit, sans-serif" }}>
               info@coasthomehub.com.au
             </a>
           </div>
 
-          <div className="card" style={{ padding: 28, background: "white", border: "1px solid var(--sand-200)", borderRadius: 4 }}>
-            <h4 style={{ fontSize: "0.95rem", marginBottom: 10, fontFamily: "Lora, Georgia, serif", fontWeight: 600, color: "var(--slate-dark)" }}>🛡️ Our Guarantee</h4>
-            <p style={{ fontSize: "0.84rem", color: "var(--slate-light)", lineHeight: 1.7 }}>
+          <div className="card" style={{ padding: 28, background: "white", border: "1px solid var(--sand-300)", borderRadius: 4 }}>
+            <h4 style={{ fontSize: "0.95rem", marginBottom: 10, fontFamily: "Lora, Georgia, serif", fontWeight: 600, color: "var(--slate-dark)" }}>✦ Our Guarantee</h4>
+            <p style={{ fontSize: "0.84rem", color: "var(--slate-light)", lineHeight: 1.7, fontFamily: "Outfit, sans-serif" }}>
               If you don&apos;t receive at least 3 qualified leads in your first 30 days, we&apos;ll give you the next month free. No questions asked.
             </p>
           </div>
@@ -516,14 +658,14 @@ function RegisterForm() {
 export default function RegisterPage() {
   return (
     <>
-      <section style={{ background: "linear-gradient(160deg, var(--sand-50) 0%, var(--ocean-50) 100%)", paddingTop: 100, paddingBottom: 32 }}>
+      <section style={{ background: "var(--sand-50)", borderBottom: "1px solid var(--sand-300)", paddingTop: 100, paddingBottom: 32 }}>
         <div className="container-lg">
           <Link href="/tradies" style={{ color: "var(--ocean-500)", fontSize: "0.875rem", fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 20 }}>
             ← Back to Tradie Hub
           </Link>
-          <div className="badge" style={{ marginBottom: 16, display: "inline-flex" }}>Tradie Registration</div>
-          <h1 style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", marginBottom: 8 }}>Register Your Business</h1>
-          <p style={{ color: "var(--slate-light)", fontSize: "1rem" }}>Join licensed QLD tradies already winning jobs through CoastHomeHub.</p>
+          <div className="badge" style={{ marginBottom: 16, display: "inline-flex", borderRadius: 2 }}>Tradie Registration</div>
+          <h1 style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", marginBottom: 8, fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>Register Your Business</h1>
+          <p style={{ color: "var(--slate-light)", fontSize: "1rem", fontFamily: "Outfit, sans-serif" }}>Join licensed QLD tradies already winning jobs through CoastHomeHub.</p>
         </div>
       </section>
       <section style={{ background: "var(--off-white)" }}>

@@ -70,6 +70,10 @@ export type MagazineArticle = {
       materialSpec: string;
     };
   };
+  video?: {
+    youtubeId: string;
+    title: string;
+  };
 };
 
 export const contentTypeRegistry: Record<MagazineContentType, {
@@ -1152,6 +1156,139 @@ export const magazineArticles: MagazineArticle[] = [
         wideAngle: "Main perspective: Microcement vanity wall featuring backlit round amber LED mirror.",
         detailShot: "Ensuite view: Grout-free floor-to-ceiling render with integrated stone vanity.",
         materialSpec: "Technical view: Class III liquid waterproofing membrane application over bond breakers."
+      }
+    }
+  },
+  {
+    slug: "mid-century-modern-coastal-furniture-curation",
+    title: "Mid-Century Modern & Coastal Furniture Curation",
+    subtitle: "Integrating rich Tasmanian Oak sideboards, organic rattan armchairs, and budget-smart timber pairing guidelines.",
+    excerpt: "Bring warmth and character to your coastal space. Explore our premium furniture selection, material specifications, and styling secrets.",
+    type: "Style Guide",
+    collection: "inspiration",
+    category: "Living",
+    heroImage: "/images/mid-century-coastal-furniture.png",
+    readTime: "5 min read",
+    publishedAt: "2026-06-23",
+    updatedAt: "2026-06-23",
+    author: "CoastHomeHub Editorial",
+    tags: ["Living", "Furniture", "Tasmanian Oak", "Style Guide"],
+    featured: true,
+    status: "published",
+    seo: {
+      title: "Mid-Century Modern & Coastal Furniture Curation | CoastHomeHub",
+      description: "Learn how to select and arrange mid-century coastal furniture. Features Tasmanian Oak sideboards, rattan armchairs, and styling layout ideas."
+    },
+    styleMeta: {
+      palette: ["#dfd2c0", "#7c5c43", "#ffffff"],
+      bestFor: "Bright open-plan living rooms, coastal pavilions, and family dining spaces",
+      costLevel: "Mid-to-high curation tier"
+    },
+    video: {
+      youtubeId: "yO0U9-C0-aQ",
+      title: "Styling a Mid-Century Coastal Living Room"
+    },
+    sections: [
+      {
+        heading: "The Fusion: Mid-Century Structural Lines Meet Coastal Textures",
+        paragraphs: [
+          "Mid-century design brings clean geometric forms, tapered legs, and functional timber details, while coastal design emphasizes light, organic texture, and soft neutral backgrounds.",
+          "When combined, the structured lines of a retro Tasmanian Oak sideboard act as an anchor in a bright coastal living room, preventing the beachside theme from feeling overly light or drift-woody. Adding a woven rattan armchair softens the look, creating an elegant, premium, and comfortable space."
+        ]
+      },
+      {
+        heading: "Choosing Your Timber: Tasmanian Oak vs. Rattan & Teak",
+        paragraphs: [
+          "A common mistake is mixing too many wood species, which leads to visual clutter. For a cohesive South East Queensland interior, limit yourself to one primary hardwood and one secondary accent weave.",
+          "Tasmanian Oak features a straight grain and warm, honey-toned light brown hues. It pairs beautifully with light sandy carpets or warm oak flooring, while rattan adds an airy, textured accent that contrasts with the solid timber."
+        ]
+      }
+    ],
+    faq: [
+      {
+        question: "How do I care for Tasmanian Oak furniture?",
+        answer: "Dust weekly with a dry cloth and apply a premium natural furniture wax twice a year. Keep it out of direct tropical sun to prevent uneven fading."
+      },
+      {
+        question: "Is natural rattan durable enough for family living rooms?",
+        answer: "Yes, natural rattan is highly resilient. However, to keep it clean from spills, vacuum the weave with a soft brush attachment and clean up liquid spills immediately with a damp cloth."
+      }
+    ],
+    lookbook: {
+      wideAngle: "/images/mid-century-coastal-furniture.png",
+      detailShot: "/gallery/interior-2.jpg",
+      materialSpec: "/images/brushed_brass_macro.png",
+      captions: {
+        wideAngle: "Main perspective: Sun-drenched coastal living room featuring a Tasmanian Oak sideboard.",
+        detailShot: "Furniture detail: Close up of a retro woven rattan armchair showing organic cane textures.",
+        materialSpec: "Materials: Tasmanian Oak grain paired with warm cream linen upholstery."
+      }
+    }
+  },
+  {
+    slug: "diy-timber-deck-refinishing-guide",
+    title: "DIY Timber Deck Refinishing Guide",
+    subtitle: "Step-by-step sanding, wash-down, and natural oiling guidelines for Queensland weathering.",
+    excerpt: "Restore your sun-baked deck to pristine coastal condition. Learn the exact process, tools, and waterproofing safety measures.",
+    type: "Project Story",
+    collection: "projects",
+    category: "Outdoor",
+    heroImage: "/images/diy-timber-deck-refinishing.png",
+    readTime: "8 min read",
+    publishedAt: "2026-06-22",
+    updatedAt: "2026-06-23",
+    author: "CoastHomeHub Editorial",
+    tags: ["Outdoor", "Decking", "DIY", "Project Story"],
+    featured: true,
+    status: "published",
+    seo: {
+      title: "DIY Timber Deck Refinishing Guide | CoastHomeHub",
+      description: "Learn how to sand and oil your timber deck. A step-by-step guide with tools list, drying timelines, and weathering protection tips."
+    },
+    projectMeta: {
+      location: "Gold Coast",
+      projectType: "Decking & Carpentry",
+      budgetRange: "$800 - $1,500 DIY",
+      timeline: "3 days (weekend project)"
+    },
+    video: {
+      youtubeId: "J8a46f7pP9A",
+      title: "How to Oil and Refinish an Outdoor Timber Deck"
+    },
+    sections: [
+      {
+        heading: "Preparation: The Secret to Long-Lasting Decking Protection",
+        paragraphs: [
+          "The intense Queensland sun and coastal humidity will break down timber oil within 12 to 18 months if prep is rushed. Never apply fresh oil over old, peeling coatings.",
+          "Start by checking for loose deck screws or nails and driving them flush. Next, sand the entire deck with an orbital sander or hired floor sander using 80-grit paper. This opens the grain, allowing the timber oil to penetrate deeply rather than sit on the surface."
+        ]
+      },
+      {
+        heading: "The Application: Oiling Like a Pro",
+        paragraphs: [
+          "Once sanded, apply a specialized timber wash to remove sanding dust and natural tannins. Let it dry completely for 24-48 hours.",
+          "Using a lambswool applicator pad, work along the length of 2 to 3 boards at a time. Apply a thin, even coat of premium natural timber oil, avoiding pools or drips. Let the first coat cure for 24 hours before applying a second coat."
+        ]
+      }
+    ],
+    faq: [
+      {
+        question: "How long should I wait before walking on the oiled deck?",
+        answer: "Wait at least 24 hours for light foot traffic and 3 to 5 days before dragging heavy furniture back onto the deck."
+      },
+      {
+        question: "What timber oil is best for North-facing decks?",
+        answer: "For maximum UV resistance in QLD, choose a premium tinted oil (like Cabot's Aquadeck or Feast Watson) which filters out the sun's rays better than clear oils."
+      }
+    ],
+    lookbook: {
+      wideAngle: "/images/diy-timber-deck-refinishing.png",
+      detailShot: "/images/outdoor_living.png",
+      materialSpec: "/images/composite_decking_detail.png",
+      captions: {
+        wideAngle: "Main perspective: Freshly sanded and oiled Merbau timber deck looking out to the garden.",
+        detailShot: "Refinishing detail: Applicator pad spreading even coats of natural timber oil along deck boards.",
+        materialSpec: "Timber detail: Tight straight grain showing successful oil absorption."
       }
     }
   }

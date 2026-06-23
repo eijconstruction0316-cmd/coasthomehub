@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { logError, logWarn, logInfo } from "@/lib/logger";
+import { logError, logWarn } from "@/lib/logger";
 import {
   escapeHtml,
   getAppUrl,
