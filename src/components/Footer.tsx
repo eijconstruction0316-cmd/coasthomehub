@@ -1,10 +1,11 @@
 import Link from "next/link";
 
 const services = [
-  { label: "Waterproofing", href: "/services#waterproofing" },
-  { label: "Silicone Sealing", href: "/services#silicone" },
-  { label: "Home Renovation", href: "/services#renovation" },
-  { label: "Design Consultation", href: "/services#design" },
+  { label: "Building & Carpentry", href: "/services#carpentry" },
+  { label: "Plumbing & Gasfitting", href: "/services#plumbing" },
+  { label: "Electrical & Smart Home", href: "/services#electrical" },
+  { label: "Tiling & Waterproofing", href: "/services#tiling" },
+  { label: "Painting & Plastering", href: "/services#painting" },
 ];
 
 const resources = [

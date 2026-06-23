@@ -45,12 +45,12 @@ export default function Home() {
               </div>
 
               <h1 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "clamp(2.4rem, 6.5vw, 4.4rem)", fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1.08, marginBottom: 24, color: "white" }}>
-                Real Advice.
+                Expert Advice.
                 <br />
-                Real Trades.
+                Vetted Trades.
                 <br />
                 <span style={{ color: "var(--gold-light)", fontStyle: "italic", fontWeight: 400 }}>
-                  Real Homes.
+                  Trusted Homes.
                 </span>
               </h1>
 
@@ -244,7 +244,7 @@ export default function Home() {
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               <div>
                 <span style={{ fontSize: "0.74rem", fontWeight: 800, color: "var(--ocean-600)", letterSpacing: "0.08em", textTransform: "uppercase", display: "block", marginBottom: 6, fontFamily: "Outfit, sans-serif" }}>
-                  ✦ Real-time Activity
+                  ✦ Live Activity
                 </span>
                 <h2 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.8rem", margin: 0, fontWeight: 500, color: "var(--slate-dark)" }}>
                   Recent Quote Matches
@@ -366,7 +366,7 @@ export default function Home() {
               Recent Questions & DIY Discussions
             </h2>
             <p style={{ color: "var(--slate-light)", fontSize: "0.95rem", marginTop: 10, maxWidth: 520, margin: "10px auto 0", fontFamily: "Outfit, sans-serif" }}>
-              Ask questions anonymously or read real QLD contractor replies regarding local regulations, waterproofing, and structural work.
+              Ask questions anonymously or read verified QLD contractor replies regarding local regulations, waterproofing, and structural work.
             </p>
           </div>
 
@@ -457,6 +457,72 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ───────────────── WHY COASTHOMEHUB EXISTS ───────────────── */}
+      <section style={{ background: "#0d221f", color: "white", padding: "80px 0", borderBottom: "3px double var(--sand-300)" }}>
+        <div className="container-lg">
+          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 56, alignItems: "start" }} className="philosophy-home-grid">
+            
+            {/* Left: Philosophy description */}
+            <div>
+              <div className="badge" style={{ marginBottom: 20, display: "inline-flex", background: "rgba(255,255,255,0.06)", borderColor: "var(--sand-300)", color: "#e8b84b", borderRadius: 2 }}>
+                ✦ Our Purpose
+              </div>
+              <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.5rem)", marginBottom: 24, fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "white" }}>
+                Why CoastHomeHub Exists
+              </h2>
+              <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "1.05rem", lineHeight: 1.8, marginBottom: 20, fontFamily: "Outfit, sans-serif" }}>
+                CoastHomeHub was born from more than a decade of experience in the Australian construction industry.
+              </p>
+              <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.95rem", lineHeight: 1.75, marginBottom: 20, fontFamily: "Outfit, sans-serif" }}>
+                We saw homeowners confused by quotes, trades frustrated by misunderstandings, and great workmanship often overlooked.
+              </p>
+              <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.95rem", lineHeight: 1.75, marginBottom: 36, fontFamily: "Outfit, sans-serif" }}>
+                We created CoastHomeHub to bring transparency, trust, and practical knowledge to the people building, renovating, and improving Australian homes.
+              </p>
+              <Link href="/about" className="btn-gold" style={{ borderRadius: 4, display: "inline-flex", alignItems: "center", gap: 6, fontSize: "0.92rem", padding: "12px 28px", textDecoration: "none" }}>
+                About → Our Story
+              </Link>
+            </div>
+
+            {/* Right: The 3 Pillars of EIJ/CoastHomeHub philosophy */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+              {[
+                {
+                  title: "1. Investing in Future Talent",
+                  desc: "We support education and training programs for the next generation of building designers, tilers, plumbers, and carpenters in Queensland."
+                },
+                {
+                  title: "2. Supporting Those Who Need It",
+                  desc: "We pledge to actively give back by offering design and repair coordination help to Queensland families and homeowners facing structural hardship."
+                },
+                {
+                  title: "3. Rewarding Great Trades",
+                  desc: "We build features to showcase and reward local trade professionals who consistently deliver outstanding work, safety, and client satisfaction."
+                }
+              ].map(p => (
+                <div key={p.title} style={{ borderBottom: "1px dashed rgba(255,255,255,0.15)", paddingBottom: 20 }}>
+                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.1rem", color: "var(--gold-light)", margin: "0 0 8px 0", fontWeight: 600 }}>
+                    {p.title}
+                  </h4>
+                  <p style={{ fontSize: "0.88rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.65, margin: 0, fontFamily: "Outfit, sans-serif" }}>
+                    {p.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+        <style dangerouslySetInnerHTML={{ __html: `
+          @media (max-width: 820px) {
+            .philosophy-home-grid {
+              grid-template-columns: 1fr !important;
+              gap: 40px !important;
+            }
+          }
+        `}} />
+      </section>
+
       {/* ───────────────── FOR LICENSED TRADIES ───────────────── */}
       <section className="section-sm" style={{ background: "white", padding: "72px 0" }}>
         <div className="container-lg">
@@ -471,7 +537,7 @@ export default function Home() {
                 Warm, pre-qualified leads. Never junk.
               </h2>
               <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.92rem", lineHeight: 1.75, marginBottom: 28, maxWidth: 500, fontFamily: "Outfit, sans-serif" }}>
-                Every lead is a real homeowner who&apos;s already completed our detailed planner or design chat — fully scoped, photographed, and location-checked. Flat monthly membership. No commission. No bidding wars.
+                Every lead is a vetted homeowner who&apos;s already completed our detailed planner or design chat — fully scoped, photographed, and location-checked. Flat monthly membership. No commission. No bidding wars.
               </p>
               <Link href="/tradies" className="btn-gold" style={{ fontSize: "0.95rem", padding: "14px 32px", borderRadius: "4px" }}>
                 List my business →

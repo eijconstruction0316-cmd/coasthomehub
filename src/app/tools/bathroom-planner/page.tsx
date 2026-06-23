@@ -1037,6 +1037,42 @@ export default function BathroomPlannerPage() {
             </div>
           </div>
 
+          {/* Contractor Briefing & Communication Guide */}
+          <div style={{ background: "#0d221f", color: "white", border: "2px double var(--sand-300)", borderRadius: 4, padding: 24, boxShadow: "var(--shadow-sm)" }} className="no-print">
+            <h3 style={{ fontSize: "0.95rem", color: "var(--gold-light)", fontWeight: 700, borderBottom: "1px dashed rgba(255,255,255,0.15)", paddingBottom: 8, marginBottom: 14, fontFamily: "Lora, Georgia, serif" }}>
+              ✦ Contractor Briefing &amp; Communication Guide
+            </h3>
+            <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.5, marginBottom: 16 }}>
+              Use these tailor-made questions based on your specifications ({lengthInput}m x {widthInput}m room with a {showerType} shower &amp; {tileSize} {tileSelection} tiles) to communicate clearly with your trade specialists.
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              <div style={{ fontSize: "0.8rem" }}>
+                <strong style={{ color: "var(--gold-light)", display: "block", marginBottom: 3 }}>Plumbing Briefing:</strong>
+                <span style={{ color: "rgba(255,255,255,0.72)", lineHeight: 1.4, display: "block" }}>
+                  &quot;We have planned {outletsCount} plumbing outlets with a {tapwareType} tapware layout. Are we keeping the existing drainage points, or will we need to chase the concrete slab to accommodate the new walk-in shower?&quot;
+                </span>
+              </div>
+              <div style={{ fontSize: "0.8rem" }}>
+                <strong style={{ color: "var(--gold-light)", display: "block", marginBottom: 3 }}>Tiling Briefing:</strong>
+                <span style={{ color: "rgba(255,255,255,0.72)", lineHeight: 1.4, display: "block" }}>
+                  &quot;I&apos;ve specified {tileSize} {tileSelection} tiles in a {tilingPattern} pattern. What is your labor surcharge for the {tilingPattern} layout, and do we need self-leveling spacers to prevent lippage?&quot;
+                </span>
+              </div>
+              <div style={{ fontSize: "0.8rem" }}>
+                <strong style={{ color: "var(--gold-light)", display: "block", marginBottom: 3 }}>Waterproofing Briefing:</strong>
+                <span style={{ color: "rgba(255,255,255,0.72)", lineHeight: 1.4, display: "block" }}>
+                  &quot;Since this is a {waterproofingClass === "class3" ? "Class III Liquid Polyurethane" : "Class II"} membrane application, do you supply the QBCC Form 16 immediately upon curing, before tiling screed is laid?&quot;
+                </span>
+              </div>
+              <div style={{ fontSize: "0.8rem" }}>
+                <strong style={{ color: "var(--gold-light)", display: "block", marginBottom: 3 }}>Electrical Briefing:</strong>
+                <span style={{ color: "rgba(255,255,255,0.72)", lineHeight: 1.4, display: "block" }}>
+                  &quot;We are planning {gpoCount} GPOs and a {lightFixture === "ledmirror" ? "LED Mirror" : "standard fixture"}. Does our bathroom ventilation capacity meet NCC rules for damp environments?&quot;
+                </span>
+              </div>
+            </div>
+          </div>
+
           {/* QLD Compliance Checklist Box */}
           <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: 24, boxShadow: "var(--shadow-sm)" }} className="no-print">
             <h3 style={{ fontSize: "0.92rem", color: "var(--slate-dark)", fontWeight: 700, borderBottom: "3px double var(--sand-300)", paddingBottom: 8, marginBottom: 14, fontFamily: "Lora, Georgia, serif" }}>

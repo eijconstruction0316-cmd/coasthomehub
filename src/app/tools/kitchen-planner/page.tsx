@@ -1021,6 +1021,44 @@ export default function KitchenPlannerPage() {
             </div>
           </div>
 
+          {/* Contractor Briefing & Communication Guide */}
+          <div style={{ background: "#0d221f", color: "white", border: "2px double var(--sand-300)", borderRadius: 4, padding: 24, boxShadow: "var(--shadow-sm)" }} className="no-print">
+            <h3 style={{ fontSize: "0.95rem", color: "var(--gold-light)", fontWeight: 700, borderBottom: "1px dashed rgba(255,255,255,0.15)", paddingBottom: 8, marginBottom: 14, fontFamily: "Lora, Georgia, serif" }}>
+              ✦ Contractor Briefing &amp; Communication Guide
+            </h3>
+            <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.5, marginBottom: 16 }}>
+              Use these tailor-made questions based on your specifications ({layout} layout with {doorStyle} cabinets &amp; {benchThickness}mm {benchtopMaterial} benchtops) to communicate clearly with your joiner and trades.
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              <div style={{ fontSize: "0.8rem" }}>
+                <strong style={{ color: "var(--gold-light)", display: "block", marginBottom: 3 }}>Cabinetry &amp; Joinery Briefing:</strong>
+                <span style={{ color: "rgba(255,255,255,0.72)", lineHeight: 1.4, display: "block" }}>
+                  &quot;We are planning {cabinetCount} cabinet modules with {doorStyle} door styling. Can you confirm if these dimensions require custom filler panels, and do we have soft-close dampeners as standard?&quot;
+                </span>
+              </div>
+              <div style={{ fontSize: "0.8rem" }}>
+                <strong style={{ color: "var(--gold-light)", display: "block", marginBottom: 3 }}>Stonemason Briefing:</strong>
+                <span style={{ color: "rgba(255,255,255,0.72)", lineHeight: 1.4, display: "block" }}>
+                  &quot;I&apos;ve specified {benchThickness}mm {benchtopMaterial} benchtops with mitered waterfall edges. Will the sub-carcass require additional ply reinforcement to support the stone overhang weight?&quot;
+                </span>
+              </div>
+              {includePlumbing && (
+                <div style={{ fontSize: "0.8rem" }}>
+                  <strong style={{ color: "var(--gold-light)", display: "block", marginBottom: 3 }}>Plumbing Briefing:</strong>
+                  <span style={{ color: "rgba(255,255,255,0.72)", lineHeight: 1.4, display: "block" }}>
+                    &quot;We have scheduled a {sinkMount} sink fit-off. Will the sink require special waste cut-outs in the carcass drawers, and does the dishwasher line have a steam guard shield?&quot;
+                  </span>
+                </div>
+              )}
+              <div style={{ fontSize: "0.8rem" }}>
+                <strong style={{ color: "var(--gold-light)", display: "block", marginBottom: 3 }}>Electrical Briefing:</strong>
+                <span style={{ color: "rgba(255,255,255,0.72)", lineHeight: 1.4, display: "block" }}>
+                  &quot;We are planning general GPOs and dedicated LED strip lighting under overhead cabinets. Will we need a dedicated 32-amp circuit for the cooktop running back to our switchboard?&quot;
+                </span>
+              </div>
+            </div>
+          </div>
+
           {/* Kitchen guide rules */}
           <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: 24, boxShadow: "var(--shadow-sm)" }} className="no-print">
             <h3 style={{ fontSize: "0.92rem", color: "var(--slate-dark)", fontWeight: 700, borderBottom: "3px double var(--sand-300)", paddingBottom: 8, marginBottom: 14, fontFamily: "Lora, Georgia, serif" }}>

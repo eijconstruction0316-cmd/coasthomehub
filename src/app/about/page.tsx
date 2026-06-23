@@ -13,16 +13,16 @@ const team = [
     role: "Founder & Director — EIJ Construction",
     emoji: "👷",
     color: "var(--ocean-400)",
-    bio: "James founded EIJ Construction to raise the bar on waterproofing and home renovation quality across South East Queensland. A QBCC-licensed builder with deep roots in the Gold Coast and Sunshine Coast, James brings an eye for premium design and a commitment to workmanship that stands the test of Queensland's climate.",
-    credentials: ["QBCC Licensed Builder", "AS 3740 Waterproofing Certified", "Gold Coast · Sunshine Coast", "SEQ Specialist"],
+    bio: "James founded EIJ Construction to raise the bar on trade craftsmanship, practical design, and clear client communication across South East Queensland. A QBCC-licensed builder with deep roots in the Gold Coast and Sunshine Coast, James focuses on connecting homeowners with vetted trades through transparent, quote-ready project briefs.",
+    credentials: ["QBCC Licensed Builder", "Multi-Trade Registered", "Gold Coast · Sunshine Coast", "SEQ Specialist"],
   },
 ];
 
 const values = [
   { icon: "✦", title: "Licensed & Verified", desc: "Every tradie on our platform holds a valid Queensland licence. No exceptions, ever." },
-  { icon: "✦", title: "Honest & Transparent", desc: "We show real prices, real pros and cons, and real reviews — not just the glossy stuff." },
+  { icon: "✦", title: "Honest & Transparent", desc: "We show transparent prices, verified pros and cons, and honest reviews — not just the glossy stuff." },
   { icon: "✦", title: "Local First", desc: "We're based in QLD, built for QLD, and we understand how Queensland's climate and lifestyle affects your home." },
-  { icon: "✦", title: "Always Improving", desc: "Our platform grows every week. New design guides, new tradies, new features — based on real homeowner feedback." },
+  { icon: "✦", title: "Always Improving", desc: "Our platform grows every week. New design guides, new tradies, new features — based on verified homeowner feedback." },
 ];
 
 const milestones = [
@@ -81,7 +81,7 @@ export default function AboutPage() {
                 { v: "QBCC", l: "Licensed Builder" },
                 { v: "8+", l: "Years in QLD" },
                 { v: "SEQ", l: "Gold–Sunshine Coast" },
-                { v: "AS 3740", l: "Waterproofing Certified" },
+                { v: "Vetted", l: "Multi-Trade Network" },
               ].map((s) => (
                 <div key={s.l} className="card" style={{ padding: "24px", textAlign: "center", background: "var(--sand-50)", border: "1px solid var(--sand-300)", borderRadius: 4 }}>
                   <div style={{ fontSize: "1.8rem", fontWeight: 700, color: "var(--ocean-600)", lineHeight: 1, marginBottom: 6, fontFamily: "Lora, Georgia, serif" }}>{s.v}</div>
@@ -123,62 +123,76 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* EIJ Builder's Corner: Philosophy & Craft */}
+      {/* EIJ Builder's Corner: Philosophy & Story */}
       <section className="section" style={{ background: "#0c2422", color: "white", borderTop: "3px double var(--sand-300)", borderBottom: "3px double var(--sand-300)" }}>
         <div className="container-lg">
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div className="badge" style={{ marginBottom: 16, display: "inline-flex", background: "rgba(255,255,255,0.06)", borderColor: "var(--sand-300)", color: "#e8b84b", borderRadius: 2 }}>
-              Company Corner
+              Company Philosophy
             </div>
             <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "white" }}>
-              EIJ Builder&apos;s Corner
+              Our Story &amp; Philosophy
             </h2>
             <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.95rem", maxWidth: 520, margin: "10px auto 0", fontFamily: "Outfit, sans-serif" }}>
-              James Whitfield on craftsmanship, waterproofing compliance, and what it means to build with integrity in Queensland.
+              A look at how we started and the principles that guide EIJ Construction and the CoastHomeHub platform.
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 56, alignItems: "start" }} className="philosophy-grid">
-            {/* Left: blockquote */}
-            <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 4, padding: 36, position: "relative" }}>
-              <span style={{ position: "absolute", top: -20, left: 24, fontSize: "5rem", fontFamily: "Lora, serif", color: "var(--gold-light)", lineHeight: 1, opacity: 0.25 }}>“</span>
-              <p style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.25rem", fontStyle: "italic", lineHeight: 1.6, color: "rgba(255,255,255,0.95)", margin: "0 0 20px 0", position: "relative", zIndex: 1 }}>
-                A house is built with timber and nails, but a home is built with integrity and trust. We do not cover up shortcuts; we build for the Queensland generations that follow.
-              </p>
-              <cite style={{ display: "block", fontSize: "0.85rem", color: "var(--gold-light)", fontWeight: 700, fontStyle: "normal", textTransform: "uppercase", letterSpacing: "0.05em", fontFamily: "Outfit, sans-serif" }}>
-                — James Whitfield, Founder of EIJ Construction
-              </cite>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 56, alignItems: "start" }} className="philosophy-grid">
+            {/* Left: Our Story */}
+            <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 4, padding: 36 }}>
+              <span style={{ fontSize: "0.72rem", fontWeight: 850, color: "var(--gold-light)", display: "block", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 16, fontFamily: "Outfit, sans-serif" }}>
+                ✦ How We Began
+              </span>
+              <h3 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.6rem", color: "white", marginBottom: 20, fontWeight: 500 }}>
+                Our Story
+              </h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 16, fontSize: "0.9rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.7, fontFamily: "Outfit, sans-serif" }}>
+                <p style={{ fontWeight: 600, fontSize: "1rem", color: "white" }}>
+                  CoastHomeHub began with a simple question: Why do so many problems occur between homeowners and trades when both ultimately want the same thing?
+                </p>
+                <p>
+                  After more than a decade working across Australian construction sites, renovations, maintenance projects, and fit-outs, we repeatedly saw the same challenges.
+                </p>
+                <p>
+                  Homeowners often struggled to understand quotes, costs, timelines, and technical requirements. Tradespeople struggled to communicate the value of their experience, workmanship, and professional standards.
+                </p>
+                <p>
+                  In many cases, the problem was not bad intent. The problem was a lack of understanding.
+                </p>
+                <p>
+                  Miscommunication created frustration. Lack of transparency created distrust. Good trades were overlooked, and good customers became disappointed.
+                </p>
+                <p style={{ fontStyle: "italic", borderLeft: "2px solid var(--gold-light)", paddingLeft: 12, color: "rgba(255,255,255,0.9)" }}>
+                  Yet everyone was working toward the same goal: a better home and a successful project. CoastHomeHub was created to help bridge that gap.
+                </p>
+              </div>
             </div>
 
-            {/* Right: Pillars */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-              {[
-                {
-                  title: "1. The Waterproofing Creed (Invisible Quality)",
-                  desc: "A home&apos;s longevity starts with what you cannot see. We reject cheap compounds. We enforce double-coat Class III liquid polyurethane membranes and epoxy grouts—designed to withstand SEQ&apos;s humid, coastal environments."
-                },
-                {
-                  title: "2. Demolishing Information Asymmetry",
-                  desc: "We believe trust is forged through transparency. By providing free 2D room estimators and open material takeoff rates, we give Queensland homeowners the trade language they need to have honest client-builder relationships."
-                },
-                {
-                  title: "3. Active QBCC Compliance & Form 16",
-                  desc: "We never cut corners on licensing. EIJ Construction guarantees full QBCC insurance protection and compliance sign-offs (Form 15/16) for all works, protecting your structural warranty from the ground up."
-                },
-                {
-                  title: "4. Legacy-Grade Craftsmanship",
-                  desc: "A renovation is a legacy. From flush timber framing tolerances to clean mitered stone waterfall edges, we recruit local carpenters and tilers who take personal pride in every line they cut and joint they seal."
-                }
-              ].map((p) => (
-                <div key={p.title} style={{ borderBottom: "1px dashed rgba(255,255,255,0.15)", paddingBottom: 20 }}>
-                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.08rem", color: "var(--gold-light)", margin: "0 0 8px 0", fontWeight: 600 }}>
-                    {p.title}
-                  </h4>
-                  <p style={{ fontSize: "0.88rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.6, margin: 0, fontFamily: "Outfit, sans-serif" }}>
-                    {p.desc}
-                  </p>
+            {/* Right: Founder's Letter & Philosophy */}
+            <div style={{ background: "rgba(255,255,255,0.03)", border: "2px double var(--sand-300)", borderRadius: 4, padding: 36, position: "relative" }}>
+              <span style={{ fontSize: "0.72rem", fontWeight: 850, color: "var(--gold-light)", display: "block", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 16, fontFamily: "Outfit, sans-serif" }}>
+                ✦ Founder&apos;s Creed
+              </span>
+              <h3 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.6rem", color: "white", marginBottom: 20, fontWeight: 500 }}>
+                Our Philosophy
+              </h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14, fontSize: "0.88rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.65, fontFamily: "Outfit, sans-serif" }}>
+                <p>We believe a home is more than a building. It is where families grow, memories are created, and futures are built.</p>
+                <p>We believe good trades deserve recognition, honest customers deserve transparency, and knowledge should be shared, not hidden.</p>
+                <p>We believe trust is built when homeowners, trades, suppliers, and communities grow together.</p>
+                <p>Our goal is not simply to connect people. Our goal is to build a stronger home improvement industry through education, transparency, and collaboration.</p>
+                <p>We hope that CoastHomeHub can help train future designers and tradespeople, support those facing hardship, and recognise professionals who consistently deliver outstanding work.</p>
+                <p style={{ borderTop: "1px dashed rgba(255,255,255,0.15)", paddingTop: 16, marginTop: 10, fontWeight: 600, color: "var(--gold-light)" }}>
+                  Success for us is not measured only by revenue. Success is measured by how many people we help, how much trust we build, and how many better homes we create together.
+                </p>
+                <div style={{ marginTop: 10 }}>
+                  <cite style={{ display: "block", fontSize: "0.85rem", color: "white", fontWeight: 700, fontStyle: "normal", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                    — James Whitfield
+                  </cite>
+                  <span style={{ fontSize: "0.74rem", color: "rgba(255,255,255,0.5)" }}>Founder of EIJ Construction &amp; CoastHomeHub</span>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>

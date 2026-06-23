@@ -933,6 +933,36 @@ export default function DeckPlannerPage() {
             </div>
           </div>
 
+          {/* Contractor Briefing & Communication Guide */}
+          <div style={{ background: "#0d221f", color: "white", border: "2px double var(--sand-300)", borderRadius: 4, padding: 24, boxShadow: "var(--shadow-sm)" }} className="no-print">
+            <h3 style={{ fontSize: "0.95rem", color: "var(--gold-light)", fontWeight: 700, borderBottom: "1px dashed rgba(255,255,255,0.15)", paddingBottom: 8, marginBottom: 14, fontFamily: "Lora, Georgia, serif" }}>
+              ✦ Contractor Briefing &amp; Communication Guide
+            </h3>
+            <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.5, marginBottom: 16 }}>
+              Use these tailor-made questions based on your specifications ({lengthInput}m x {widthInput}m deck using {boardMaterial} boards &amp; {subframe} subframe) to communicate clearly with your builder or carpenter.
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              <div style={{ fontSize: "0.8rem" }}>
+                <strong style={{ color: "var(--gold-light)", display: "block", marginBottom: 3 }}>Subframe &amp; Elevation Briefing:</strong>
+                <span style={{ color: "rgba(255,255,255,0.72)", lineHeight: 1.4, display: "block" }}>
+                  &quot;I&apos;ve specified a {subframe} subframe. For a {clearance} clearance subframe structure, what footing depth and concrete stump size do you recommend for our soil type?&quot;
+                </span>
+              </div>
+              <div style={{ fontSize: "0.8rem" }}>
+                <strong style={{ color: "var(--gold-light)", display: "block", marginBottom: 3 }}>Decking Boards Briefing:</strong>
+                <span style={{ color: "rgba(255,255,255,0.72)", lineHeight: 1.4, display: "block" }}>
+                  &quot;We are laying {boardMaterial} boards. Are we using face-screwing or a concealed clipping system, and will we need a double picture-frame border around the edges?&quot;
+                </span>
+              </div>
+              <div style={{ fontSize: "0.8rem" }}>
+                <strong style={{ color: "var(--gold-light)", display: "block", marginBottom: 3 }}>Compliance &amp; Engineering:</strong>
+                <span style={{ color: "rgba(255,255,255,0.72)", lineHeight: 1.4, display: "block" }}>
+                  &quot;Will this deck configuration require a Form 15 design certificate for structural engineering sign-off, and does the balustrade height conform to the standard 1.0m QLD building code requirement?&quot;
+                </span>
+              </div>
+            </div>
+          </div>
+
           {/* QLD Compliance Checklist Box */}
           <div style={{ background: "white", border: "1px solid var(--sand-300)", borderRadius: 4, padding: 24, boxShadow: "var(--shadow-sm)" }} className="no-print">
             <h3 style={{ fontSize: "0.92rem", color: "var(--slate-dark)", fontWeight: 700, borderBottom: "3px double var(--sand-300)", paddingBottom: 8, marginBottom: 14, fontFamily: "Lora, Georgia, serif" }}>

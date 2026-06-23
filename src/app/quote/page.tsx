@@ -4,14 +4,15 @@ import Link from "next/link";
 import LocationInput from "@/components/LocationInput";
 
 const jobTypes = [
-  "Waterproofing",
-  "Silicone Sealing",
+  "Building & Carpentry",
+  "Plumbing & Gasfitting",
+  "Electrical & Smart Home",
+  "Tiling & Waterproofing",
+  "Painting & Plastering",
   "Bathroom Renovation",
-  "Tiling",
-  "Roof Repair",
   "Kitchen Renovation",
   "General Home Repair",
-  "Design Consultation",
+  "Design & Styling Consultation",
   "Other",
 ];
 
@@ -122,7 +123,7 @@ export default function QuotePage() {
             Free — No Obligation
           </div>
           <h1 style={{ fontSize: "clamp(2.2rem, 5vw, 3.2rem)", marginBottom: 16, color: "white", fontFamily: "Lora, Georgia, serif", fontWeight: 500 }}>
-            Ready for Real Quotes?
+            Ready for Verified Quotes?
           </h1>
           <p style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "1.05rem", maxWidth: 520, margin: "0 auto 20px", fontFamily: "Outfit, sans-serif", lineHeight: 1.6 }}>
             Tell us about your renovation and we&apos;ll match you with up to 3 QBCC-licensed local tradies — at no cost to you, with no obligation.

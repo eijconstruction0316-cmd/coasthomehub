@@ -5,19 +5,16 @@ import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
 const serviceCategories = [
-  "Waterproofing",
-  "Silicone Sealing",
+  "Building & Carpentry",
+  "Plumbing & Gasfitting",
+  "Electrical & Smart Home",
+  "Tiling & Waterproofing",
+  "Painting & Plastering",
   "Bathroom Renovation",
   "Kitchen Renovation",
-  "Tiling",
-  "Painting",
-  "Plastering",
-  "Roofing",
-  "General Carpentry",
-  "Landscaping",
-  "Electrical",
-  "Plumbing",
-  "Air Conditioning",
+  "Roofing & Cladding",
+  "Landscaping & Outdoor",
+  "Air Conditioning & HVAC",
   "Other",
 ];
 

@@ -2,121 +2,116 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services | Waterproofing & Home Renovation | CoastHomeHub",
+  title: "Services | Expert Trade Services | CoastHomeHub",
   description:
-    "Professional waterproofing, silicone sealing, tiling, and bathroom renovation services across Gold Coast and Sunshine Coast, QLD. Vetted QBCC compliance.",
+    "Professional carpentry, plumbing, electrical, tiling, waterproofing, and painting services across Gold Coast, Brisbane, and Sunshine Coast, QLD. Vetted QBCC compliance.",
 };
 
 const services = [
   {
-    id: "waterproofing",
-    title: "Waterproofing",
-    subtitle: "Licensed QLD Waterproofing Specialists",
-    desc: "Queensland's subtropical climate and heavy summer rainfall put immense hydraulic pressure on your home's structural framing. Wet areas, balconies, and basements must be sealed using premium materials and compliant techniques to prevent timber dry rot, slab damage, and mould growth.",
+    id: "carpentry",
+    title: "Building & Carpentry",
+    subtitle: "Licensed QLD Carpentry & Structural Services",
+    desc: "High-quality framing, structural timber works, decks, and structural wall removals. All structural carpentry complies strictly with QLD building regulations and timber standards.",
     technicalSpecs: {
-      standards: "AS 3740 (Waterproofing of domestic wet areas) & AS 4654.2 (External)",
-      materials: "Class III high-extensibility liquid polyurethane membranes & flexible bond-breaker bands",
-      certifications: "Form 16 statutory certificate of inspection issued by a licensed applicator"
+      standards: "AS 1684 (Residential timber-framed construction) & NCC Series",
+      materials: "F27 kiln-dried hardwood, H3/H4 treated framing timber, stainless steel fixings",
+      certifications: "Form 15 structural design certificate by licensed building certifier"
     },
     features: [
-      "Class III high-extensibility liquid polyurethane waterproofing",
-      "Shower recess, hobless, and wet area bathroom membranes",
-      "Balcony, terrace, and external deck liquid & sheet membranes",
-      "Retaining wall, subterranean basement, and planter box waterproofing",
-      "Installation of compliant water stop angles and floor puddle flanges",
-      "Comprehensive 10-year structural waterproofing warranty"
+      "Structural framing correction, wall removal & load-bearing checks",
+      "Custom hardwood and composite deck builds with compliance warranty",
+      "Pergola, gazebo, and alfresco outdoor living builds",
+      "Window and door installation including framing modifications",
+      "QBCC warranty protection on all structural carpentry works"
     ],
     color: "var(--off-white)",
     accent: "var(--ocean-700)",
-    price: "From $400–$1,200 per area",
+    price: "Custom Quote / Project Rates",
   },
   {
-    id: "silicone",
-    title: "Silicone Sealing",
-    subtitle: "Premium Weatherproof Silicone Application",
-    desc: "A failing, cracked, or mouldy silicone bead is the primary cause of slow-leak water damage that quietly rots wall studs. We perform full extraction of old sealant, treat the joints for active mould spores, and apply high-modulus, neutral-cure silicone to ensure long-term flexibility and waterproofing.",
+    id: "plumbing",
+    title: "Plumbing & Gasfitting",
+    subtitle: "Licensed QLD Plumbing & Drainage Contractors",
+    desc: "End-to-end plumbing rough-in, drainage, gas fitting, and appliance connection services. All plumbing is performed by fully qualified, QBCC-licensed plumbers.",
     technicalSpecs: {
-      standards: "ISO 11600 (Building construction joint sealants)",
-      materials: "High-grade sanitiser-resistant, neutral-cure sanitary silicone (anti-fungal)",
-      certifications: "Expansion joint movement capacity validation (up to ±25%)"
+      standards: "AS/NZS 3500 (Plumbing and drainage standards)",
+      materials: "Premium copper pipework, certified PEX piping, brass press fittings",
+      certifications: "Form 1 compliance certificate submitted to council/certifier"
     },
     features: [
-      "Shower screen, bathtub, and vanity basin perimeter sealing",
-      "Anti-fungal, sanitiser-resistant bathroom-grade silicone",
-      "Kitchen benchtop, splashback, and under-mount sink joints",
-      "Window frame, door frame, and external masonry expansion joints",
-      "Chemical mould extraction and deep surface preparation",
-      "Colour-matched silicone lines to match your grout and tiles"
+      "Rough-in pipework for kitchens, bathrooms, and laundries",
+      "Hot water system installs, repairs, and thermal efficiency upgrades",
+      "Gas line installation and safety leak testing",
+      "Drainage checks, sewer repairs, and waste line rerouting",
+      "Fixture fit-offs (toilets, basins, bath mixers, sinks)"
     ],
     color: "var(--off-white)",
     accent: "var(--ocean-700)",
-    price: "From $150–$600 per job",
+    price: "From $180 (Service call / fit-offs)",
   },
   {
-    id: "renovation",
-    title: "Bathroom Renovation",
-    subtitle: "Full Bathroom Refits from Concept to Completion",
-    desc: "Transform your dated bathroom into a high-end, functional sanctuary. Our end-to-end renovation service manages all phases of construction. We coordinate structural framing repairs, rough-in plumbing, compliant electrical works, waterproofing membranes, and precision tile laying under strict builder supervision.",
+    id: "electrical",
+    title: "Electrical & Smart Home",
+    subtitle: "Licensed QLD Electricians & Automation",
+    desc: "From switchboard upgrades to high-end architectural lighting layouts and smart automation. Safe, certified electrical works to power your home.",
     technicalSpecs: {
-      standards: "BCA Part 10.2 (Wet Areas) & AS/NZS 3000 (Electrical Safety)",
-      materials: "High moisture-resistant (HMR) cabinetry bases & premium brass or nickel hardware",
-      certifications: "QBCC Home Warranty Scheme protection & Form 21 Final Certifier Approval"
+      standards: "AS/NZS 3000 (Wiring Rules) & electrical safety standards",
+      materials: "Low-smoke zero-halogen cabling, IPX4+ wet area safety switches",
+      certifications: "Electrical Safety Certificate of Compliance (COoC)"
     },
     features: [
-      "End-to-end design layout consultation & structural engineering",
-      "Complete demolition, framing correction (AS 1684), and stud alignment",
-      "AS 3740 wet area waterproofing with Form 16 sign-off",
-      "Laying sloped screed beds to guarantee 1:60 fall-to-waste drainage",
-      "Vanity, smart toilet, frameless glass screen (AS 1288) & tapware installation",
-      "Stripe Escrow payment milestone security & builder warranty"
+      "Switchboard safety upgrades, RCD protection & smart metering",
+      "Architectural lighting layout design and energy-efficient LED installs",
+      "Dedicated high-amp lines (induction cooktops, EV chargers)",
+      "Smart home automation, networking, and home theatre installs",
+      "Kitchen/bathroom safety outlets and mechanical ventilation"
     ],
     color: "var(--off-white)",
     accent: "var(--ocean-700)",
-    price: "From $8,000–$30,000",
+    price: "From $150 (Service call / diagnostics)",
   },
   {
     id: "tiling",
-    title: "Tiling",
-    subtitle: "Professional Floor & Wall Tiling Throughout QLD",
-    desc: "Tile laying requires absolute precision to prevent 'lippage' and ensure correct fall-to-waste. Our licensed tilers handle everything from classic ceramic subway tiles to heavy, large-format porcelain sheets. We use flexible adhesives and stain-resistant epoxy grouts for a finish that stands up to daily wet-area use.",
+    title: "Tiling & Waterproofing",
+    subtitle: "Complete Wall/Floor Tiling & AS 3740 Waterproofing",
+    desc: "High-end wall and floor tiling combined with certified wet-area waterproofing. We seal wet areas with premium Class III liquid membranes and lay tiles with perfect alignment and screeding.",
     technicalSpecs: {
-      standards: "AS 3958.1 (Guide to the installation of ceramic tiles)",
-      materials: "AS 4586 P3/P4 slip-resistance rated tiles & flexible polymer-modified adhesives",
-      certifications: "Dry film thickness verification & epoxy grout joint validation"
+      standards: "AS 3740 (Wet area waterproofing) & AS 3958.1 (Tiling installation)",
+      materials: "Class III high-extensibility polyurethane membranes & epoxy stain-free grout",
+      certifications: "Form 16 statutory certificate of inspection issued by licensed applicator"
     },
     features: [
-      "Floor and wall tiling for bathrooms, laundries, and entryways",
-      "Large-format porcelain sheet laying (600mm x 1200mm and larger)",
-      "Hand-mitred external corners (45-degree bevelled edge joints)",
-      "Epoxy, acid-resistant grouting to prevent discolouration and mildew",
-      "Alfresco dining, pool coping (travertine), and external pathway tiling",
-      "Subfloor preparation, leveling, and acoustic underlay installation"
+      "Certified wet-area waterproofing for showers, baths, and laundries",
+      "Laying screed beds to guarantee 1:60 fall-to-waste drainage",
+      "Large-format porcelain, ceramic, natural stone, and terrazzo tiles",
+      "Stain-resistant, acid-proof epoxy grout for long-term protection",
+      "Shower screen and bath perimeter sanitiser-resistant silicone sealing"
     ],
     color: "var(--off-white)",
     accent: "var(--ocean-700)",
-    price: "From $50–$120 per m²",
+    price: "From $50 per m² / area estimates",
   },
   {
-    id: "design",
-    title: "Design & Spatial Consultation",
-    subtitle: "Premium Layout & Compliance Specification Planning",
-    desc: "Avoid costly mistakes before construction starts. Our design and spatial planning services combine visual aesthetics with building code realities. We help you choose layouts that keep plumbing costs stable, select materials suited to Queensland's humidity, and specify fixtures that comply with WELS water efficiency benchmarks.",
+    id: "painting",
+    title: "Painting & Plastering",
+    subtitle: "Premium Internal & External Architectural Finishes",
+    desc: "Professional plasterboard installation, patching, and multi-coat paint finishes. Protect and elevate your home with premium coatings suited to the QLD climate.",
     technicalSpecs: {
-      standards: "AS 6400 (WELS water efficient products rating and labelling)",
-      materials: "Natural stone curation, Osmo timber sealers & low-VOC architectural coatings",
-      certifications: "Form 15 structural design certificates for wall removals & layout plans"
+      standards: "AS/NZS 2311 (Guide to the painting of buildings) & plaster standards",
+      materials: "Low-VOC, anti-mould wash-and-wear architectural paint coatings",
+      certifications: "Lippage, flatness, and paint film thickness verification"
     },
     features: [
-      "Detailed 2D spatial layout drawings & fixture placement check",
-      "Curation of material boards: stone, timber (Osmo-sealed), and tile textures",
-      "WELS rating planning (optimizing flow rates to save on water bills)",
-      "Structural load-bearing wall checks & private certifier coordination advice",
-      "Detailed scope-of-work documents for accurate tradie quoting",
-      "Virtual design consultation sessions or in-person site walk-throughs"
+      "Full internal and external residential painting services",
+      "Plasterboard gyprock hanging, jointing, flushing, and cornices",
+      "Deep paint prep, active mould treatment, and peeling remediation",
+      "Premium timber decking restoration, staining, and oiling",
+      "Feature walls, texture coatings, and wallpaper installations"
     ],
     color: "var(--off-white)",
     accent: "var(--ocean-700)",
-    price: "From $150 per session",
+    price: "From $40 per m² / room estimates",
   },
 ];
 
