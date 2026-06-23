@@ -123,6 +123,75 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* EIJ Builder's Corner: Philosophy & Craft */}
+      <section className="section" style={{ background: "#0c2422", color: "white", borderTop: "3px double var(--sand-300)", borderBottom: "3px double var(--sand-300)" }}>
+        <div className="container-lg">
+          <div style={{ textAlign: "center", marginBottom: 56 }}>
+            <div className="badge" style={{ marginBottom: 16, display: "inline-flex", background: "rgba(255,255,255,0.06)", borderColor: "var(--sand-300)", color: "#e8b84b", borderRadius: 2 }}>
+              Company Corner
+            </div>
+            <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", fontFamily: "Lora, Georgia, serif", fontWeight: 500, color: "white" }}>
+              EIJ Builder&apos;s Corner
+            </h2>
+            <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.95rem", maxWidth: 520, margin: "10px auto 0", fontFamily: "Outfit, sans-serif" }}>
+              James Whitfield on craftsmanship, waterproofing compliance, and what it means to build with integrity in Queensland.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 56, alignItems: "start" }} className="philosophy-grid">
+            {/* Left: blockquote */}
+            <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 4, padding: 36, position: "relative" }}>
+              <span style={{ position: "absolute", top: -20, left: 24, fontSize: "5rem", fontFamily: "Lora, serif", color: "var(--gold-light)", lineHeight: 1, opacity: 0.25 }}>“</span>
+              <p style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.25rem", fontStyle: "italic", lineHeight: 1.6, color: "rgba(255,255,255,0.95)", margin: "0 0 20px 0", position: "relative", zIndex: 1 }}>
+                A house is built with timber and nails, but a home is built with integrity and trust. We do not cover up shortcuts; we build for the Queensland generations that follow.
+              </p>
+              <cite style={{ display: "block", fontSize: "0.85rem", color: "var(--gold-light)", fontWeight: 700, fontStyle: "normal", textTransform: "uppercase", letterSpacing: "0.05em", fontFamily: "Outfit, sans-serif" }}>
+                — James Whitfield, Founder of EIJ Construction
+              </cite>
+            </div>
+
+            {/* Right: Pillars */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+              {[
+                {
+                  title: "1. The Waterproofing Creed (Invisible Quality)",
+                  desc: "A home&apos;s longevity starts with what you cannot see. We reject cheap compounds. We enforce double-coat Class III liquid polyurethane membranes and epoxy grouts—designed to withstand SEQ&apos;s humid, coastal environments."
+                },
+                {
+                  title: "2. Demolishing Information Asymmetry",
+                  desc: "We believe trust is forged through transparency. By providing free 2D room estimators and open material takeoff rates, we give Queensland homeowners the trade language they need to have honest client-builder relationships."
+                },
+                {
+                  title: "3. Active QBCC Compliance & Form 16",
+                  desc: "We never cut corners on licensing. EIJ Construction guarantees full QBCC insurance protection and compliance sign-offs (Form 15/16) for all works, protecting your structural warranty from the ground up."
+                },
+                {
+                  title: "4. Legacy-Grade Craftsmanship",
+                  desc: "A renovation is a legacy. From flush timber framing tolerances to clean mitered stone waterfall edges, we recruit local carpenters and tilers who take personal pride in every line they cut and joint they seal."
+                }
+              ].map((p) => (
+                <div key={p.title} style={{ borderBottom: "1px dashed rgba(255,255,255,0.15)", paddingBottom: 20 }}>
+                  <h4 style={{ fontFamily: "Lora, Georgia, serif", fontSize: "1.08rem", color: "var(--gold-light)", margin: "0 0 8px 0", fontWeight: 600 }}>
+                    {p.title}
+                  </h4>
+                  <p style={{ fontSize: "0.88rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.6, margin: 0, fontFamily: "Outfit, sans-serif" }}>
+                    {p.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <style dangerouslySetInnerHTML={{ __html: `
+          @media (max-width: 820px) {
+            .philosophy-grid {
+              grid-template-columns: 1fr !important;
+              gap: 40px !important;
+            }
+          }
+        `}} />
+      </section>
+
       {/* Timeline */}
       <section className="section" style={{ background: "white" }}>
         <div className="container-md">
